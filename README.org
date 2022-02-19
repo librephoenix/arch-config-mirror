@@ -3,8 +3,11 @@
 
 I use Arch Linux btw.
 
-** Configs
-Stored in this repository are my dotfiles or "config" files.  Here are links to those I have stored here:
+** What is this repository?
+This repository stores my dotfiles (configuration files) for my personal Arch Linux system. I manage this repository using the git bare repository method (credit to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
+
+** My Configs
+Here is an organized list of configs stored in this repository:
 + TODO XMonad Literate Config
   + [[./.xinitrc][.xinitrc]]
   + [[./.xmonad/xmonad.hs][xmonad.hs]]
