@@ -1,0 +1,31 @@
+C = Ctrl
+M = Meta (Left Alt)
+S = Super ("Windows" Key)
+
+[Manage Xmonad]
+S-q .............. Close window
+S-L .............. Lock session
+S-c .............. Restart Xmonad
+S-k .............. Focus previous window on workspace
+S-j .............. Focus next window on workspace
+M-Tab ............ Focus next window on workspace
+S-Shift-k ........ Move current window back
+S-Shift-j ........ Move current window forward
+S-l .............. Increase size of master window
+S-h .............. Decrease size of master window
+S-/ .............. Show this help menu
+S-[1..9] ......... Switch workspace
+
+[Application Shortcuts]
+S-p .............. Dmenu run
+S-s .............. Web browser (Qutebrowser)
+S-a .............. Doom Emacs
+S-Return ......... Terminal (Alacritty)
+
+[Scratchpads]
+S-z .............. Terminal (Alacritty)
+S-x .............. KeePassXC
+S-e .............. mu4e (Doom Emacs)
+S-b .............. btm (Process Manager)
+S-f .............. Ranger (File Manager)
+S-o .............. Octave (Calculator)
