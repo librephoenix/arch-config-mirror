@@ -29,6 +29,7 @@ Here is an organized list of configs stored in this repository:
   + TODO pub-config.el
   + TODO pub-init.el
   + TODO [public mu4e configs]
++ [[./.config/autokey][Autokey Configs]]
 
 ** System
 My system is based on Arch Linux. My main programs are:
@@ -43,6 +44,7 @@ My system is based on Arch Linux. My main programs are:
 + [[https://wiki.archlinux.org/title/Xinit][xinit]] (startx instead of a Display Manager)
 + [[https://archlinux.org/packages/community/x86_64/xautolock/][xautolock]] + [[https://github.com/google/xsecurelock][xsecurelock]] (Inactivity Security Locker)
 + [[https://tools.suckless.org/dmenu/][dmenu]] (Run Prompt)
++ [[https://github.com/autokey/autokey][autokey]] (Quick Insertion of Symbols and Glyphs)
 + [[https://alacritty.org/][Alacritty]] (Terminal Emulator)
 + [[https://wiki.gnome.org/Projects/Libsecret][libsecret]] (Secret Service)
 + [[https://keepassxc.org/][KeePassXC]] (Password Manager)
@@ -67,6 +69,7 @@ My system is based on Arch Linux. My main programs are:
   + [[https://github.com/sharkdp/fd][fd]] ("find" replacement)
   + [[https://github.com/ClementTsang/bottom][bottom]] ("htop" replacement)
   + [[https://github.com/BurntSushi/ripgrep][ripgrep]] ("grep" replacement)
+
 *** Package Lists
 I keep two package lists for quick reinstall (if necessary). These are simple lists which contain a full list of packages installed on my system.
 These are managed by a shell alias:
