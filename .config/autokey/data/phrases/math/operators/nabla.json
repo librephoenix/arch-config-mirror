@@ -1,0 +1,32 @@
+{
+    "type": "phrase",
+    "description": "nabla",
+    "modes": [
+        1
+    ],
+    "usageCount": 0,
+    "prompt": false,
+    "omitTrigger": false,
+    "matchCase": false,
+    "showInTrayMenu": false,
+    "abbreviation": {
+        "abbreviations": [
+            "//diff",
+            "//nabla"
+        ],
+        "backspace": true,
+        "ignoreCase": true,
+        "immediate": true,
+        "triggerInside": true,
+        "wordChars": "[\\w]"
+    },
+    "hotkey": {
+        "modifiers": [],
+        "hotKey": null
+    },
+    "filter": {
+        "regex": null,
+        "isRecursive": false
+    },
+    "sendMode": "<shift>+<insert>"
+}
