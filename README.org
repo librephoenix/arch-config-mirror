@@ -32,7 +32,7 @@ Here is an organized list of configs stored in this repository:
 + [[./.config/autokey][Autokey Configs]]
 
 ** System
-My system is based on Arch Linux. My main programs are:
+My system is based on Arch Linux. Core programs on my system are:
 + [[https://github.com/jonaburg/picom][Jonaburg's Picom]] (Compositor)
 + [[https://github.com/AdnanHodzic/auto-cpufreq][auto-cpufreq]] (CPU Throttle)
 + [[https://xmonad.org/][XMonad]] (Window Manager)
@@ -74,6 +74,9 @@ My system is based on Arch Linux. My main programs are:
 I keep two package lists for quick reinstall (if necessary). These are simple lists which contain a full list of packages installed on my system.
 These are managed by a shell alias:
 #+BEGIN_SRC sh
-alias paclist='echo ":: Overwriting backup pacman .packagelist file" && pacman -Qe > ~/.packagelist && echo ":: Overwriting backup AUR .aurpackagelist file" && pacman -Qm > ~/.aurpackagelist'
+alias paclist='echo ":: Overwriting backup pacman .packagelist file" &&
+               pacman -Qe > ~/.packagelist &&
+               echo ":: Overwriting backup AUR .aurpackagelist file" &&
+               pacman -Qm > ~/.aurpackagelist'
 #+END_SRC
 This generates two package lists, one for the standard repositories ([[./.packagelist][.packagelist]]) and one for the AUR ([[./.aurpackagelist][.aurpackagelist]]).
