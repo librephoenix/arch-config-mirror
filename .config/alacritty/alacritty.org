@@ -1,0 +1,319 @@
+#+TITLE: Alacritty
+#+AUTHOR: emmet
+#+DESCRIPTION: My literate Alacritty config.
+
+* Fonts
+Fonts used in Alacritty.  Currently using Inconsolata for all fonts.
+
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Fonts
+font:
+  normal:
+    family: Inconsolata
+  bold:
+    family: Inconsolata
+  italic:
+    family: Inconsolata
+
+#+END_SRC
+
+* Available Color Schemes
+Color schemes to select from in my Alacritty.
+
+#+BEGIN_SRC yaml :tangle alacritty.yml
+#Start schemes
+schemes:
+
+#+END_SRC
+
+** Gruvbox Dark
+Gruvbox Dark color scheme.  Anchored as "gruvbox_dark"
+Credit to [[https://github.com/eendroroy][eendoroy]].
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Gruvbox Dark Color Scheme
+  gruvbox_dark: &gruvbox_dark
+
+    # Default colors
+    primary:
+      background: '0x282828'
+      foreground: '0xebdbb2'
+
+    # Normal colors
+    normal:
+      black:   '0x343428'
+      red:     '0xcc241d'
+      green:   '0x98971a'
+      yellow:  '0xd79921'
+      blue:    '0x458588'
+      magenta: '0xb16286'
+      cyan:    '0x689d6a'
+      white:   '0xa89984'
+
+    # Bright colors
+    bright:
+      black:   '0x928374'
+      red:     '0xfb4934'
+      green:   '0xb8bb26'
+      yellow:  '0xfabd2f'
+      blue:    '0x83a598'
+      magenta: '0xd3869b'
+      cyan:    '0x8ec07c'
+      white:   '0xebdbb2'
+
+#+END_SRC
+
+** Solarized Dark
+Solarized Dark color scheme.  Anchored as "solarized_dark"
+Credit to [[https://github.com/eendroroy][eendoroy]].
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Colors (Solarized Dark)
+  solarized_dark: &solarized_dark
+  # Default colors
+    primary:
+      background: '0x002b36'
+      foreground: '0x839496'
+
+    # Normal colors
+    normal:
+      black:   '0x073642'
+      red:     '0xdc322f'
+      green:   '0x859900'
+      yellow:  '0xb58900'
+      blue:    '0x268bd2'
+      magenta: '0xd33682'
+      cyan:    '0x2aa198'
+      white:   '0xeee8d5'
+
+      # Bright colors
+      bright:
+        black:   '0x002b36'
+        red:     '0xcb4b16'
+        green:   '0x586e75'
+        yellow:  '0x657b83'
+        blue:    '0x839496'
+        magenta: '0x6c71c4'
+        cyan:    '0x93a1a1'
+        white:   '0xfdf6e3'
+
+#+END_SRC
+
+** Dracula
+Dracula color scheme.  Anchored as "dracula"
+Credit to [[https://github.com/eendroroy][eendoroy]].
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Colors (Dracula)
+  dracula: &dracula
+  # Default colors
+    primary:
+      background: '0x282a36'
+      foreground: '0xf8f8f2'
+
+    # Normal colors
+    normal:
+      black:   '0x000000'
+      red:     '0xff5555'
+      green:   '0x50fa7b'
+      yellow:  '0xf1fa8c'
+      blue:    '0xbd93f9'
+      magenta: '0xff79c6'
+      cyan:    '0x8be9fd'
+      white:   '0xbbbbbb'
+
+      # Bright colors
+    bright:
+      black:   '0x555555'
+      red:     '0xff5555'
+      green:   '0x50fa7b'
+      yellow:  '0xf1fa8c'
+      blue:    '0xcaa9fa'
+      magenta: '0xff79c6'
+      cyan:    '0x8be9fd'
+      white:   '0xffffff'
+
+#+END_SRC
+
+** Tokyo Night
+Tokyo Night color scheme.  Anchored as "tokyo_night"
+Credit to [[https://github.com/zatchheems][zatchheems]].
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Colors (Tokyo Night)
+# Source: https://github.com/zatchheems/tokyo-night-alacritty-theme
+  tokyo_night: &tokyo_night
+  # Default colors
+    primary:
+      background: '0x1a1b26'
+      foreground: '0xa9b1d6'
+
+    # Normal colors
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x787c99'
+
+      # Bright colors
+      bright:
+        black:   '0x444b6a'
+        red:     '0xff7a93'
+        green:   '0xb9f27c'
+        yellow:  '0xff9e64'
+        blue:    '0x7da6ff'
+        magenta: '0xbb9af7'
+        cyan:    '0x0db9d7'
+        white:   '0xacb0d0'
+
+#+END_SRC
+
+** Tomorrow Night
+Tomorrow Night color scheme.  Anchored as "tomorrow_night"
+Credit to [[https://github.com/eendroroy][eendoroy]].
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Tomorrow Night Color Scheme
+  tomorrow_night: &tomorrow_night
+
+  # Default colors
+    primary:
+      background: '0x1d1f21'
+      foreground: '0xc5c8c6'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '0x1d1f21'
+      cursor: '0xffffff'
+
+  # Normal colors
+    normal:
+      black:   '0x1d1f21'
+      red:     '0xcc6666'
+      green:   '0xb5bd68'
+      yellow:  '0xe6c547'
+      blue:    '0x81a2be'
+      magenta: '0xb294bb'
+      cyan:    '0x70c0ba'
+      white:   '0x373b41'
+
+  # Bright colors
+    bright:
+      black:   '0x666666'
+      red:     '0xff3334'
+      green:   '0x9ec400'
+      yellow:  '0xf0c674'
+      blue:    '0x81a2be'
+      magenta: '0xb77ee0'
+      cyan:    '0x54ced6'
+      white:   '0x282a2e'
+
+#+END_SRC
+
+** Oceanic Next
+Oceanic Next color scheme.  Anchored as "oceanic_next"
+Credit to [[https://github.com/adrian5][adrian5]].
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Colors (Oceanic Next)
+colors:
+  # Default colors
+  primary:
+    background: '0x1b2b34'
+    foreground: '0xd8dee9'
+
+  # Normal colors
+  normal:
+    black:   '0x29414f'
+    red:     '0xec5f67'
+    green:   '0x99c794'
+    yellow:  '0xfac863'
+    blue:    '0x6699cc'
+    magenta: '0xc594c5'
+    cyan:    '0x5fb3b3'
+    white:   '0x65737e'
+
+  # Bright colors
+  bright:
+    black:   '0x405860'
+    red:     '0xec5f67'
+    green:   '0x99c794'
+    yellow:  '0xfac863'
+    blue:    '0x6699cc'
+    magenta: '0xc594c5'
+    cyan:    '0x5fb3b3'
+    white:   '0xadb5c0'
+
+#+END_SRC
+
+** Molokai
+Molokai color scheme.  Anchored as "molokai"
+Adapted from [[https://monokai.pro/][Monokai Pro]] originally created by Wimer Hazenberg.
+Utilized work from [[https://github.com/sonatard][sonatard]]/[[https://github.com/sonatard/color-theme-molokai][color-theme-molokai]] to create this port.
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Colors (Molokai)
+  molokai: &molokai
+  # Default colors
+    primary:
+      background: '0x1b1d1e'
+      foreground: '0xa0a0a0'
+
+    # Normal colors
+    normal:
+      black:   '0x1b1d1e'
+      red:     '0xf92672'
+      green:   '0x82b414'
+      yellow:  '0xfd971f'
+      blue:    '0x268bd2'
+      magenta: '0x8c54fe'
+      cyan:    '0x56c2d6'
+      white:   '0xccccc6'
+
+      # Bright colors
+      bright:
+        black:   '0x505354'
+        red:     '0xff5995'
+        green:   '0xb7eb46'
+        yellow:  '0xfeed6c'
+        blue:    '0x62ade3'
+        magenta: '0xbfa0fe'
+        cyan:    '0x94d8e5'
+        white:   '0xf8f8f2'
+
+#+END_SRC
+
+** TODO Ubuntu
+Ubuntu color scheme.  Anchored as "ubuntu"
+Adapted from Ubuntu Gnome Terminal default colors.
+
+** TODO Fairy Floss
+Fairy Floss color scheme.  Anchored as "fairy_floss" Adapted from Fairy Floss color scheme.
+
+* Select Color Scheme
+Select a color scheme by specifying colors: *anchor, where anchor selects one of the themes below:
+| Color Scheme   | Anchor         |
+|----------------+----------------|
+| Gruvbox Dark   | gruvbox_dark   |
+| Solarized Dark | solarized_dark |
+| Dracula        | dracula        |
+| Tokyo Night    | tokyo_night    |
+| Tomorrow Night | tomorrow_night |
+| Oceanic Next   | oceanic_next   |
+| Molokai        | molokai        |
+| Ubuntu         | ubuntu         |
+| Fairy Floss    | fairy_floss    |
+
+#+BEGIN_SRC yaml :tangle alacritty.yml
+#Select color theme
+colors: *gruvbox_dark
+
+#+END_SRC
+
+* Select Background Opacity
+Select an opacity between 0.1 - 1.0 using window.opacity: [opacity]
+window.opacity refers to the hierarchy of yaml, so window.opacity is actually like shown below:
+
+#+BEGIN_SRC yaml :tangle alacritty.yml
+#Apply background opacity
+window:
+  opacity: 0.9
+
+#+END_SRC
