@@ -1,10 +1,10 @@
 {
     "type": "phrase",
-    "description": "epislon",
+    "description": "epsilon",
     "modes": [
         1
     ],
-    "usageCount": 0,
+    "usageCount": 12,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": true,
