@@ -4,14 +4,14 @@
     "modes": [
         1
     ],
-    "usageCount": 2,
+    "usageCount": 7,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": true,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//Kappa"
+            "/Kappa"
         ],
         "backspace": true,
         "ignoreCase": true,

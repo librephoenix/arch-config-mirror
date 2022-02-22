@@ -4,14 +4,14 @@
     "modes": [
         1
     ],
-    "usageCount": 2,
+    "usageCount": 10,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": true,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//Tau"
+            "/Tau"
         ],
         "backspace": true,
         "ignoreCase": true,

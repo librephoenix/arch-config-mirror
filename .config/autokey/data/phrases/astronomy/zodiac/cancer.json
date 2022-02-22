@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//cancer"
+            "/.cancer"
         ],
         "backspace": true,
         "ignoreCase": true,

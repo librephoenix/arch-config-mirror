@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//pisces"
+            "/.pisces"
         ],
         "backspace": true,
         "ignoreCase": true,

@@ -4,14 +4,14 @@
     "modes": [
         1
     ],
-    "usageCount": 3,
+    "usageCount": 5,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//sun"
+            "/sun"
         ],
         "backspace": true,
         "ignoreCase": true,

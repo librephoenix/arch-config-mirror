@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//uranush"
+            "/uranush"
         ],
         "backspace": true,
         "ignoreCase": true,

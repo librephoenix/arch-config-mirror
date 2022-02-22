@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//aquarius"
+            "/.aquarius"
         ],
         "backspace": true,
         "ignoreCase": true,

@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//taurus"
+            "/.taurus"
         ],
         "backspace": true,
         "ignoreCase": true,

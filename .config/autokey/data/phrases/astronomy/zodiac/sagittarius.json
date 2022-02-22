@@ -4,14 +4,14 @@
     "modes": [
         1
     ],
-    "usageCount": 2,
+    "usageCount": 3,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//sagittarius"
+            "/.sagittarius"
         ],
         "backspace": true,
         "ignoreCase": true,

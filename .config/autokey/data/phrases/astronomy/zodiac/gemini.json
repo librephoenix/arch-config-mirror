@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//gemini"
+            "/.gemini"
         ],
         "backspace": true,
         "ignoreCase": true,

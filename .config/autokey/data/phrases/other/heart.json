@@ -1,17 +1,17 @@
 {
     "type": "phrase",
-    "description": "lambda",
+    "description": "heart",
     "modes": [
         1
     ],
-    "usageCount": 7,
+    "usageCount": 0,
     "prompt": false,
     "omitTrigger": false,
-    "matchCase": true,
+    "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Lambda"
+            "/heart"
         ],
         "backspace": true,
         "ignoreCase": true,

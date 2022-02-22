@@ -1,17 +1,17 @@
 {
     "type": "phrase",
-    "description": "lambda",
+    "description": "cross",
     "modes": [
         1
     ],
-    "usageCount": 7,
+    "usageCount": 0,
     "prompt": false,
     "omitTrigger": false,
-    "matchCase": true,
+    "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Lambda"
+            "/cross"
         ],
         "backspace": true,
         "ignoreCase": true,

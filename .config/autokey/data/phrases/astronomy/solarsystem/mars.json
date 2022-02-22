@@ -4,15 +4,15 @@
     "modes": [
         1
     ],
-    "usageCount": 7,
+    "usageCount": 14,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": false,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//mars",
-            "//male"
+            "/male",
+            "/mars"
         ],
         "backspace": true,
         "ignoreCase": true,

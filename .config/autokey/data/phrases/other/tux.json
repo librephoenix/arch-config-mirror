@@ -11,8 +11,8 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//penguin",
-            "//tux"
+            "/penguin",
+            "/tux"
         ],
         "backspace": true,
         "ignoreCase": true,

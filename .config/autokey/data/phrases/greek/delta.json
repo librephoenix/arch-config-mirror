@@ -4,14 +4,14 @@
     "modes": [
         1
     ],
-    "usageCount": 7,
+    "usageCount": 18,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": true,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//Delta"
+            "/Delta"
         ],
         "backspace": true,
         "ignoreCase": true,

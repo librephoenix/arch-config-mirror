@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//capricorn"
+            "/.capricorn"
         ],
         "backspace": true,
         "ignoreCase": true,

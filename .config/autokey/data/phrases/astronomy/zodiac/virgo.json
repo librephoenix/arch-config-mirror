@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//virgo"
+            "/.virgo"
         ],
         "backspace": true,
         "ignoreCase": true,

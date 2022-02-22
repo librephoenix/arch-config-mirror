@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//scorpio"
+            "/.scorpio"
         ],
         "backspace": true,
         "ignoreCase": true,

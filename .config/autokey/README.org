@@ -2,116 +2,124 @@
 #+AUTHOR: emmet
 
 ** What is this config?
-This config is for [[https://github.com/autokey/autokey][Autokey]], which allows you to keymap specific keystrokes and strings to do specific things. At the moment, I use this to quickly place unicode glyphs into any program that supports it. Many of the phrases I use are based on LaTeX, but use a double forward slash (//) instead of a single forward slash to avoid conflicting with actual LaTeX.
+This config is for [[https://github.com/autokey/autokey][Autokey]], which allows you to keymap specific keystrokes and strings to do specific things. At the moment, I use this to quickly place unicode glyphs into any program that supports it. Many of the phrases I use are based on LaTeX, but use a double forward slash (/) instead of a single forward slash to avoid conflicting with actual LaTeX.
 *** Phrases
 
 **** Math
 ***** Operators
-| Phrase     | Symbol |
-|------------+--------|
-| //minus    | −      |
-| //times    | ⨉      |
-| //cdot     | ⋅      |
-| //div      | ÷      |
-| //geq      | ≥      |
-| //leq      | ≤      |
-| //neq      | ≠      |
-| //similar  | ∼      |
-| //approx   | ≈      |
-| //napprox  | ≉      |
-| //propto   | ∝      |
-| //partial  | ∂      |
-| //nabla    | ∇      |
-| //diff     | ∇      |
-| //parallel | ∥      |
-| //perp     | ⊥      |
+| Phrase    | Symbol |
+|-----------+--------|
+| /minus    | −      |
+| /times    | ⨉      |
+| /cdot     | ⋅      |
+| /div      | ÷      |
+| /geq      | ≥      |
+| /leq      | ≤      |
+| /neq      | ≠      |
+| /similar  | ∼      |
+| /approx   | ≈      |
+| /napprox  | ≉      |
+| /propto   | ∝      |
+| /partial  | ∂      |
+| /nabla    | ∇      |
+| /diff     | ∇      |
+| /parallel | ∥      |
+| /perp     | ⊥      |
 ***** Logic
-| Phrase         | Symbol |
-|----------------+--------|
-| //and          | ∧      |
-| //nand         | ⊼      |
-| //or           | ∨      |
-| //nor          | ⊽      |
-| //xor          | ⊻      |
-| //not          | ¬      |
-| //forevery     | ∀      |
-| //forall       | ∀      |
-| //thereexists  | ∃      |
-| //doesnotexist | ∄      |
-| //because      | ∵      |
-| //bc           | ∵      |
-| //therefore    | ∴      |
+| Phrase        | Symbol |
+|---------------+--------|
+| /and          | ∧      |
+| /nand         | ⊼      |
+| /or           | ∨      |
+| /nor          | ⊽      |
+| /xor          | ⊻      |
+| /not          | ¬      |
+| /forevery     | ∀      |
+| /forall       | ∀      |
+| /thereexists  | ∃      |
+| /doesnotexist | ∄      |
+| /because      | ∵      |
+| /bc           | ∵      |
+| /therefore    | ∴      |
 ***** Other
-| Phrase   | Symbol |
-|----------+--------|
-| //inf    | ∞      |
-| //dagger | †      |
-| //hbar   | ℏ      |
+| Phrase  | Symbol |
+|---------+--------|
+| /inf    | ∞      |
+| /dagger | †      |
+| /hbar   | ℏ      |
 
 **** Greek
 | Uppercase Phrase | Uppercase Symbol | Lowercase Phrase | Lowercase Symbol |
 |------------------+------------------+------------------+------------------|
-| //Alpha          | Α                | //alpha          | α                |
-| //Beta           | Β                | //beta           | β                |
-| //Gamma          | Γ                | //gamma          | γ                |
-| //Delta          | Δ                | //delta          | δ                |
-| //Epsilon        | Ε                | //epsilon        | ε                |
-| //Zeta           | Ζ                | //zeta           | ζ                |
-| //Eta            | Η                | //eta            | η                |
-| //Theta          | Θ                | //theta          | θ                |
-| //Iota           | Ι                | ι                | ι                |
-| //Kappa          | Κ                | //kappa          | κ                |
-| //Lambda         | Λ                | //lambda         | λ                |
-| //Mu             | Μ                | //mu             | μ                |
-| //Nu             | Ν                | //nu             | ν                |
-| //Xi             | Ξ                | //xi             | ξ                |
-| //Omicron        | Ο                | //omicron        | ο                |
-| //Pi             | Π                | //pi             | π                |
-| //Rho            | Ρ                | //rho            | ρ                |
-| //Sigma          | Σ                | //sigma          | σ                |
-| //Tau            | Τ                | //tau            | τ                |
-| //Upsilon        | Υ                | //upsilon        | υ                |
-| //Phi            | Φ                | //phi            | φ                |
-| //Chi            | Χ                | //chi            | χ                |
-| //Psi            | Ψ                | //psi            | ψ                |
-| //Omega          | Ω                | //omega          | ω                |
+| /Alpha           | Α                | /alpha           | α                |
+| /Beta            | Β                | /beta            | β                |
+| /Gamma           | Γ                | /gamma           | γ                |
+| /Delta           | Δ                | /delta           | δ                |
+| /Epsilon         | Ε                | /epsilon         | ε                |
+| /Zeta            | Ζ                | /zeta            | ζ                |
+| /Eta             | Η                | /eta             | η                |
+| /Theta           | Θ                | /theta           | θ                |
+| /Iota            | Ι                | ι                | ι                |
+| /Kappa           | Κ                | /kappa           | κ                |
+| /Lambda          | Λ                | /lambda          | λ                |
+| /Mu              | Μ                | /mu              | μ                |
+| /Nu              | Ν                | /nu              | ν                |
+| /Xi              | Ξ                | /xi              | ξ                |
+| /Omicron         | Ο                | /omicron         | ο                |
+| /Pi              | Π                | /pi              | π                |
+| /Rho             | Ρ                | /rho             | ρ                |
+| /Sigma           | Σ                | /sigma           | σ                |
+| /Tau             | Τ                | /tau             | τ                |
+| /Upsilon         | Υ                | /upsilon         | υ                |
+| /Phi             | Φ                | /phi             | φ                |
+| /Chi             | Χ                | /chi             | χ                |
+| /Psi             | Ψ                | /psi             | ψ                |
+| /Omega           | Ω                | /omega           | ω                |
 
 **** Astronomy
 ***** Solar System
-| Phrase     | Symbol |
-|------------+--------|
-| //sun      | ☉      |
-| //mercury  | ☿      |
-| //venus    | ♀      |
-| //female   | ♀      |
-| //earth    | 🜨      |
-| //moon     | ☽      |
-| //leftmoon | ☾      |
-| //mars     | ♂      |
-| //male     | ♂      |
-| //jupiter  | ♃      |
-| //saturn   | ♄      |
-| //uranus   | ⛢      |
-| //neptune  | ♆      |
-| //pluto    | ♇      |
+| Phrase    | Symbol |
+|-----------+--------|
+| /sun      | ☉      |
+| /mercury  | ☿      |
+| /venus    | ♀      |
+| /female   | ♀      |
+| /earth    | 🜨      |
+| /moon     | ☽      |
+| /leftmoon | ☾      |
+| /mars     | ♂      |
+| /male     | ♂      |
+| /jupiter  | ♃      |
+| /saturn   | ♄      |
+| /uranus   | ⛢      |
+| /neptune  | ♆      |
+| /pluto    | ♇      |
 ***** Zodiac Constellations
+Pisces conflicts with the phrase for pi, and Taurus conflicts with the phrase for tau, so all of these have an extra . for consistency:
 | Phrase        | Symbol |
 |---------------+--------|
-| //aries       | ♈    |
-| TODO //taurus | ♉    |
-| //gemini      | ♊    |
-| //cancer      | ♋    |
-| //leo         | ♌    |
-| //virgo       | ♍    |
-| //libra       | ♎    |
-| //scorpio     | ♏    |
-| //sagittarius | ♐    |
-| //capricorn   | ♑    |
-| //aquarius    | ♒    |
-| TODO //pisces | ♓    |
-TODO taurus conflicts with tau and pisces conflicts with pi
+| /.aries       | ♈    |
+| /.taurus      | ♉    |
+| /.gemini      | ♊    |
+| /.cancer      | ♋    |
+| /.leo         | ♌    |
+| /.virgo       | ♍    |
+| /.libra       | ♎    |
+| /.scorpio     | ♏    |
+| /.sagittarius | ♐    |
+| /.capricorn   | ♑    |
+| /.aquarius    | ♒    |
+| /.pisces      | ♓    |
 ***** Other
-| Phrase  | Symbol |
-|---------+--------|
-| //star  | ✶      |
-| //comet | ☄    |
+| Phrase | Symbol |
+|--------+--------|
+| /star  | ✶      |
+| /comet | ☄    |
+
+**** Extra
+| Phrase   | Symbol |
+|----------+--------|
+| /heart   | ♥    |
+| /cross   | ✝    |
+| /penguin | 🐧    |
+| /tux     | 🐧    |

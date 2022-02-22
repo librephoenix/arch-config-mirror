@@ -4,14 +4,14 @@
     "modes": [
         1
     ],
-    "usageCount": 3,
+    "usageCount": 7,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": true,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//Beta"
+            "/Beta"
         ],
         "backspace": true,
         "ignoreCase": true,

@@ -4,14 +4,14 @@
     "modes": [
         1
     ],
-    "usageCount": 2,
+    "usageCount": 6,
     "prompt": false,
     "omitTrigger": false,
     "matchCase": true,
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "//Psi"
+            "/Psi"
         ],
         "backspace": true,
         "ignoreCase": true,
