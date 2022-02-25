@@ -12,6 +12,7 @@ killall xwinwrap
 killall gnome-keyring-daemon
 killall nitrogen
 killall xautolock
+killall autokey-gtk
 
 # Launch necessary desktop applications
 xautolock -time 5 -locker "xsecurelock" &
@@ -23,6 +24,7 @@ nitrogen --restore
 nm-applet &
 nextcloud &
 protonmail-bridge --no-window &
+autokey-gtk &
 xmonad --recompile
 xmonad --restart
 emacs --daemon
