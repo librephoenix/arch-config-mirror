@@ -23,7 +23,7 @@ Here is an organized list of configs stored in this repository:
 + TODO Shell Literate Config
   + TODO .bashrc
   + [[./.zshrc][.zshrc]]
-  + TODO .shaliases
+  + TODO .aliases
   + [[./.octaverc][.octaverc]]
 + TODO Public Doom Emacs Literate Config
   + TODO pub-config.el
