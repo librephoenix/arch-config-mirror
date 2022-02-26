@@ -4,7 +4,7 @@
 I use Arch Linux btw.
 
 ** What is this repository?
-This repository stores my dotfiles (configuration files) for my personal Arch Linux system. I manage this repository using the git bare repository method (credit to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
+This repository stores my dotfiles (configuration files) for my personal Arch Linux system. I manage this repository using the git bare repository method (credit for this method to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
 
 ** My Configs
 Here is an organized list of configs stored in this repository:
@@ -29,6 +29,14 @@ Here is an organized list of configs stored in this repository:
   + TODO pub-config.el
   + TODO pub-init.el
   + TODO [public mu4e configs]
++ TODO Qutebrowser Literate Config
+  + config.py
++ TODO Ranger Literate Config
+  + TODO rc.conf
+  + TODO rifle.conf
+  + TODO commands.py
+  + TODO commands_full.py
+  + TODO scope.sh
 + [[./.config/autokey][Autokey Configs]]
 
 ** System
