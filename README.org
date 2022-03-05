@@ -33,11 +33,11 @@ Here is an organized list of configs stored in this repository:
 - TODO Qutebrowser Literate Config
   - pub-config.py
 - TODO Ranger Literate Config
-  - TODO rc.conf
-  - TODO rifle.conf
-  - TODO commands.py
-  - TODO commands_full.py
-  - TODO scope.sh
+  - [[./.config/ranger/rc.conf][rc.conf]]
+  - [[./.config/ranger/rifle.conf][rifle.conf]]
+  - [[./.config/ranger/commands.py][commands.py]]
+  - [[./.config/ranger/commands_full.py][commands_full.py]]
+  - [[./.config/ranger/scope.sh][scope.sh]]
 - [[./.config/autokey][Autokey Configs]]
 
 ** System
