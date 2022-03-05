@@ -1,5 +1,5 @@
 # add doom to PATH
-export PATH=$PATH:~/.emacs.d/bin
+export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 
 # spaces prevent command from being logged
 # HISTCONTROL=ignorespace
