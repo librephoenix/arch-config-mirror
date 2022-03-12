@@ -29,3 +29,4 @@ xmonad --recompile
 xmonad --restart
 emacs --daemon
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"
+~/.xmonad/workspace-select.sh
