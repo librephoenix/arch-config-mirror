@@ -6,7 +6,7 @@ This is my shell literate config.  This includes configs related to bash and zsh
 
 ** ASCII Art
 No shell config is complete without ASCII art!
-*** [[./.bashrc][Bashrc]]
+*** [[./.bashrc][bashrc]]
 #+BEGIN_SRC shell :tangle .bashrc
 #
 #    ______                          _   _     
@@ -24,7 +24,7 @@ No shell config is complete without ASCII art!
 #
 #+END_SRC
 
-*** [[./.zshrc][Zshrc]]
+*** [[./.zshrc][zshrc]]
 #+BEGIN_SRC shell :tangle .zshrc
 #
 #    ______                          _   _     
@@ -44,21 +44,21 @@ No shell config is complete without ASCII art!
 
 ** PATH Variable
 My path variable currently includes the default PATH, emacs binaries and local binaries.
-*** [[./.bashrc][Bashrc]]
+*** [[./.bashrc][bashrc]]
 #+BEGIN_SRC shell :tangle .bashrc
 # add doom emacs bin and local bin to PATH on this bashrc
 export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 
 #+END_SRC
 
-*** [[./.zshrc][Zshrc]]
+*** [[./.zshrc][zshrc]]
 #+BEGIN_SRC shell :tangle .zshrc
 # add doom emacs bin and local bin to PATH on this zshrc
 export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 
 #+END_SRC
 
-** zshrc
+** [[./.zshrc][zshrc]]
 My zshrc is very simple, since I run oh-my-zsh.
 #+BEGIN_SRC shell :tangle .zshrc
 # path to oh-my-zsh installation.
@@ -93,7 +93,7 @@ fi
 
 #+END_SRC
 
-** bashrc
+** [[./.bashrc][bashrc]]
 My bashrc is primarily here just to handle some programs which automatically default to using bash instead of your default shell.
 #+BEGIN_SRC shell :tangle .bashrc
 # If not running interactively, don't do anything
@@ -121,14 +121,14 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
 Then, I source this [[./.aliases][.aliases]] file at the ends of both my [[./.bashrc][bashrc]] and [[./.zshrc][zshrc]].
 
-*** [[./.bashrc][Bashrc]]
+*** [[./.bashrc][bashrc]]
 #+BEGIN_SRC shell :tangle .bashrc
 # source aliases on this bashrc
 source .aliases
 
 #+END_SRC
 
-*** [[./.zshrc][Zshrc]]
+*** [[./.zshrc][zshrc]]
 #+BEGIN_SRC shell :tangle .zshrc
 # source aliases on this zshrc
 source .aliases
