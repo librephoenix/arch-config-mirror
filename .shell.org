@@ -6,8 +6,7 @@ This is my shell literate config.  This includes configs related to bash and zsh
 
 ** ASCII Art
 No shell config is complete without ASCII art!
-
-*** Bash
+*** [[./.bashrc][Bashrc]]
 #+BEGIN_SRC shell :tangle .bashrc
 #
 #    ______                          _   _     
@@ -25,7 +24,7 @@ No shell config is complete without ASCII art!
 #
 #+END_SRC
 
-*** Zsh
+*** [[./.zshrc][Zshrc]]
 #+BEGIN_SRC shell :tangle .zshrc
 #
 #    ______                          _   _     
@@ -45,12 +44,14 @@ No shell config is complete without ASCII art!
 
 ** PATH Variable
 My path variable currently includes the default PATH, emacs binaries and local binaries.
+*** [[./.bashrc][Bashrc]]
 #+BEGIN_SRC shell :tangle .bashrc
 # add doom emacs bin and local bin to PATH on this bashrc
 export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 
 #+END_SRC
 
+*** [[./.zshrc][Zshrc]]
 #+BEGIN_SRC shell :tangle .zshrc
 # add doom emacs bin and local bin to PATH on this zshrc
 export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
@@ -104,7 +105,7 @@ PS1='[\u@\h \W]\$ '
 #+END_SRC
 
 ** Aliases
-For my aliases, I put them in a .aliases file in my home directory.
+For my aliases, I put them in a [[./.aliases][.aliases]] file in my home directory.
 #+BEGIN_SRC shell :tangle .aliases
 # aliases
 alias ls='exa --icons -l -T -L=1'
@@ -118,13 +119,16 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
 #+END_SRC
 
-Then, I source this .aliases file at the ends of both my bashrc and zshrc.
+Then, I source this [[./.aliases][.aliases]] file at the ends of both my [[./.bashrc][bashrc]] and [[./.zshrc][zshrc]].
+
+*** [[./.bashrc][Bashrc]]
 #+BEGIN_SRC shell :tangle .bashrc
 # source aliases on this bashrc
 source .aliases
 
 #+END_SRC
 
+*** [[./.zshrc][Zshrc]]
 #+BEGIN_SRC shell :tangle .zshrc
 # source aliases on this zshrc
 source .aliases
