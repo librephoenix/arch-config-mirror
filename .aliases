@@ -1,0 +1,9 @@
+# aliases
+alias ls='exa --icons -l -T -L=1'
+alias grep='rg'
+alias cat='bat'
+alias htop='btm'
+alias find='fd'
+alias w3m='w3m -no-cookie -v'
+alias paclist='echo ":: Overwriting backup pacman .packagelist file" && pacman -Qe > ~/.packagelist && echo ":: Overwriting backup AUR .aurpackagelist file" && pacman -Qm > ~/.aurpackagelist'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'

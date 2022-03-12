@@ -1,0 +1,132 @@
+#+TITLE: Shell Literate Config
+#+AUTHOR: emmet
+
+** What is this file?
+This is my shell literate config.  This includes configs related to bash and zsh.  Zsh is my default shell, but I keep bash around since I sometimes use it in the background.
+
+** ASCII Art
+No shell config is complete without ASCII art!
+
+*** Bash
+#+BEGIN_SRC shell :tangle .bashrc
+#
+#    ______                          _   _     
+#   |  ____|                        | | ( )
+#   | |__   _ __ ___  _ __ ___   ___| |_|/ ___
+#   |  __| | '_ ` _ \| '_ ` _ \ / _ \ __| / __|
+#   | |____| | | | | | | | | | |  __/ |_  \__ \
+#   |______|_| |_| |_|_| |_| |_|\___|\__| |___/
+#   _                  _
+#  | |                | |
+#  | |__    __ _  ___ | |__   _ __   ___
+#  | '_ \  / _` |/ __|| '_ \ | '__| / __|
+#  | |_) || (_| |\__ \| | | || |   | (__
+#  |_.__/  \__,_||___/|_| |_||_|    \___|
+#
+#+END_SRC
+
+*** Zsh
+#+BEGIN_SRC shell :tangle .zshrc
+#
+#    ______                          _   _     
+#   |  ____|                        | | ( )
+#   | |__   _ __ ___  _ __ ___   ___| |_|/ ___
+#   |  __| | '_ ` _ \| '_ ` _ \ / _ \ __| / __|
+#   | |____| | | | | | | | | | |  __/ |_  \__ \
+#   |______|_| |_| |_|_| |_| |_|\___|\__| |___/
+#                  _
+#                 | |
+#        ____ ___ | |__   _ __   ___
+#       |_  // __|| '_ \ | '__| / __|
+#        / / \__ \| | | || |   | (__
+#       /___||___/|_| |_||_|    \___|
+#
+#+END_SRC
+
+** PATH Variable
+My path variable currently includes the default PATH, emacs binaries and local binaries.
+#+BEGIN_SRC shell :tangle .bashrc
+# add doom emacs bin and local bin to PATH on this bashrc
+export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
+
+#+END_SRC
+
+#+BEGIN_SRC shell :tangle .zshrc
+# add doom emacs bin and local bin to PATH on this zshrc
+export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
+
+#+END_SRC
+
+** zshrc
+My zshrc is very simple, since I run oh-my-zsh.
+#+BEGIN_SRC shell :tangle .zshrc
+# path to oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# zsh theme
+# see https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="agnoster"
+
+# custom zsh highlighting colors
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
+
+# plugins
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+# source oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+
+# User configuration
+export MANPATH="/usr/local/man:$MANPATH"
+export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
+
+#+END_SRC
+
+** bashrc
+My bashrc is primarily here just to handle some programs which automatically default to using bash instead of your default shell.
+#+BEGIN_SRC shell :tangle .bashrc
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Configure default prompt
+PS1='[\u@\h \W]\$ '
+
+#+END_SRC
+
+** Aliases
+For my aliases, I put them in a .aliases file in my home directory.
+#+BEGIN_SRC shell :tangle .aliases
+# aliases
+alias ls='exa --icons -l -T -L=1'
+alias grep='rg'
+alias cat='bat'
+alias htop='btm'
+alias find='fd'
+alias w3m='w3m -no-cookie -v'
+alias paclist='echo ":: Overwriting backup pacman .packagelist file" && pacman -Qe > ~/.packagelist && echo ":: Overwriting backup AUR .aurpackagelist file" && pacman -Qm > ~/.aurpackagelist'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
+
+#+END_SRC
+
+Then, I source this .aliases file at the ends of both my bashrc and zshrc.
+#+BEGIN_SRC shell :tangle .bashrc
+# source aliases on this bashrc
+source .aliases
+
+#+END_SRC
+
+#+BEGIN_SRC shell :tangle .zshrc
+# source aliases on this zshrc
+source .aliases
+
+#+END_SRC
