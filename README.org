@@ -20,12 +20,11 @@ Here is an organized list of configs stored in this repository:
   - [[./.config/twmn/twmn.conf][twmn.conf]]
 - [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]
   - [[./.config/alacritty/alacritty.yml][alacritty.yml]]
-- TODO Shell Literate Config
-  - TODO .bashrc
+- [[./.shell.org][Shell Literate Config]]
+  - [[./.bashrc][.bashrc]]
   - [[./.zshrc][.zshrc]]
-  - TODO .aliases
+  - [[./.aliases][.aliases]]
   - [[./.octaverc][.octaverc]]
-  - TODO [public calcurse config]
 - TODO Public Doom Emacs Literate Config
   - TODO pub-config.el
   - TODO pub-init.el
