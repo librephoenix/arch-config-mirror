@@ -30,7 +30,9 @@ Here is an organized list of configs stored in this repository:
   - TODO pub-init.el
   - TODO [public mu4e configs]
 - TODO Qutebrowser Literate Config
-  - pub-config.py
+  - [[./.config/qutebrowser/config.py][config.py]]
+    - [[./.config/qutebrowser/themes][Custom Stylesheets]]
+    - [[./.config/qutebrowser/qute-home.html][Custom Startpage]]
 - TODO Ranger Literate Config
   - [[./.config/ranger/rc.conf][rc.conf]]
   - [[./.config/ranger/rifle.conf][rifle.conf]]
