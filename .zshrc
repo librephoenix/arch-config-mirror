@@ -16,7 +16,7 @@
 # add doom emacs bin and local bin to PATH on this zshrc
 export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 
-# path to oh-my-zsh installation.
+# path to oh-my-zsh installation
 export ZSH="$HOME/.oh-my-zsh"
 
 # zsh theme

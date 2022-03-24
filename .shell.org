@@ -61,7 +61,7 @@ export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 ** [[./.zshrc][zshrc]]
 My zshrc is very simple, since I run oh-my-zsh.
 #+BEGIN_SRC shell :tangle .zshrc
-# path to oh-my-zsh installation.
+# path to oh-my-zsh installation
 export ZSH="$HOME/.oh-my-zsh"
 
 # zsh theme
