@@ -123,13 +123,13 @@ Then, I source this [[./.aliases][.aliases]] file at the ends of both my [[./.ba
 *** [[./.bashrc][bashrc]]
 #+BEGIN_SRC shell :tangle .bashrc
 # source aliases on this bashrc
-source .aliases
+source ~/.aliases
 
 #+END_SRC
 
 *** [[./.zshrc][zshrc]]
 #+BEGIN_SRC shell :tangle .zshrc
 # source aliases on this zshrc
-source .aliases
+source ~/.aliases
 
 #+END_SRC

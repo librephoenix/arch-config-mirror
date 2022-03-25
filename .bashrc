@@ -23,4 +23,4 @@ export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 PS1='[\u@\h \W]\$ '
 
 # source aliases on this bashrc
-source .aliases
+source ~/.aliases

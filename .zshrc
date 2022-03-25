@@ -46,4 +46,4 @@ else
 fi
 
 # source aliases on this zshrc
-source .aliases
+source ~/.aliases
