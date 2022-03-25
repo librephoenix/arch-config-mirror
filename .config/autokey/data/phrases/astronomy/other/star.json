@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/star"
+            "//star"
         ],
         "backspace": true,
         "ignoreCase": true,

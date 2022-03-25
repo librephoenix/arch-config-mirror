@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/xor"
+            "//xor"
         ],
         "backspace": true,
         "ignoreCase": true,

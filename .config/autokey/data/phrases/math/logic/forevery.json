@@ -11,8 +11,8 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/forall",
-            "/forevery"
+            "//forall",
+            "//forevery"
         ],
         "backspace": true,
         "ignoreCase": true,

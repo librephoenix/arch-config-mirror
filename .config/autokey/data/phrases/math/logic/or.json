@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/or"
+            "//or"
         ],
         "backspace": true,
         "ignoreCase": true,

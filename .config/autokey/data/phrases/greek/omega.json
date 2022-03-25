@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Omega"
+            "//Omega"
         ],
         "backspace": true,
         "ignoreCase": true,

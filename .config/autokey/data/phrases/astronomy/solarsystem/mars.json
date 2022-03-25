@@ -11,8 +11,8 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/male",
-            "/mars"
+            "//mars",
+            "//male"
         ],
         "backspace": true,
         "ignoreCase": true,

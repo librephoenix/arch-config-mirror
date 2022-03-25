@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/pluto"
+            "//pluto"
         ],
         "backspace": true,
         "ignoreCase": true,

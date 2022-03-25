@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Omicron"
+            "//Omicron"
         ],
         "backspace": true,
         "ignoreCase": true,

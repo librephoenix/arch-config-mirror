@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Mu"
+            "//Mu"
         ],
         "backspace": true,
         "ignoreCase": true,

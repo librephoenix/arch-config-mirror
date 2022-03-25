@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/inf"
+            "//inf"
         ],
         "backspace": true,
         "ignoreCase": true,

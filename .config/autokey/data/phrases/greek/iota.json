@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Iota"
+            "//Iota"
         ],
         "backspace": true,
         "ignoreCase": true,

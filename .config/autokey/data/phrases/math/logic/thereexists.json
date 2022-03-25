@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/thereexists"
+            "//thereexists"
         ],
         "backspace": true,
         "ignoreCase": true,

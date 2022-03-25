@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/parallel"
+            "//parallel"
         ],
         "backspace": true,
         "ignoreCase": true,

@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/therefore"
+            "//therefore"
         ],
         "backspace": true,
         "ignoreCase": true,

@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/saturn"
+            "//saturn"
         ],
         "backspace": true,
         "ignoreCase": true,

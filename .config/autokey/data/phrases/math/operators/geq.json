@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/geq"
+            "//geq"
         ],
         "backspace": true,
         "ignoreCase": true,

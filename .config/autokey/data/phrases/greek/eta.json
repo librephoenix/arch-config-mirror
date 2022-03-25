@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Eta"
+            "//Eta"
         ],
         "backspace": true,
         "ignoreCase": true,

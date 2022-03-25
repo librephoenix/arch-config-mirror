@@ -11,8 +11,8 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/diff",
-            "/nabla"
+            "//diff",
+            "//nabla"
         ],
         "backspace": true,
         "ignoreCase": true,

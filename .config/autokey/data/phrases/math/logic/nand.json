@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/nand"
+            "//nand"
         ],
         "backspace": true,
         "ignoreCase": true,

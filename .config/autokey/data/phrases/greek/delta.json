@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Delta"
+            "//Delta"
         ],
         "backspace": true,
         "ignoreCase": true,

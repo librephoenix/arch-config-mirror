@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/dagger"
+            "//dagger"
         ],
         "backspace": true,
         "ignoreCase": true,

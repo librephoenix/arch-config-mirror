@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/napprox"
+            "//napprox"
         ],
         "backspace": true,
         "ignoreCase": true,

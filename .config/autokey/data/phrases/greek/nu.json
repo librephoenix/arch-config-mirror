@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Nu"
+            "//Nu"
         ],
         "backspace": true,
         "ignoreCase": true,

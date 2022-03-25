@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Beta"
+            "//Beta"
         ],
         "backspace": true,
         "ignoreCase": true,

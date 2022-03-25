@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/cross"
+            "//cross"
         ],
         "backspace": true,
         "ignoreCase": true,

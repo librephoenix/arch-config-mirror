@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/neptune"
+            "//neptune"
         ],
         "backspace": true,
         "ignoreCase": true,

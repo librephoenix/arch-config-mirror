@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/nor"
+            "//nor"
         ],
         "backspace": true,
         "ignoreCase": true,

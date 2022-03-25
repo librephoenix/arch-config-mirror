@@ -11,8 +11,8 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/venus",
-            "/female"
+            "//female",
+            "//venus"
         ],
         "backspace": true,
         "ignoreCase": true,

@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/cdot"
+            "//cdot"
         ],
         "backspace": true,
         "ignoreCase": true,

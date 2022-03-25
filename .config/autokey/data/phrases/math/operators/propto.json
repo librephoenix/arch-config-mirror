@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/propto"
+            "//propto"
         ],
         "backspace": true,
         "ignoreCase": true,

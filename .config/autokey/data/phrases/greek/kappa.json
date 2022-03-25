@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Kappa"
+            "//Kappa"
         ],
         "backspace": true,
         "ignoreCase": true,

@@ -11,8 +11,8 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/because",
-            "/bc"
+            "//bc",
+            "//because"
         ],
         "backspace": true,
         "ignoreCase": true,

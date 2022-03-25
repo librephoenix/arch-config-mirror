@@ -11,7 +11,7 @@
     "showInTrayMenu": false,
     "abbreviation": {
         "abbreviations": [
-            "/Psi"
+            "//Psi"
         ],
         "backspace": true,
         "ignoreCase": true,
