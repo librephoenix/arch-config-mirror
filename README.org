@@ -9,7 +9,7 @@ This repository stores my dotfiles (configuration files) for my personal Arch Li
 ** My Configs
 Here is an organized list of configs stored in this repository:
 - TODO XMonad Literate Config
-  - [[./.xinitrc][=.xinitrc=]]
+  - [[./.xinitrc][.xinitrc]]
   - [[./.xmonad/xmonad.hs][xmonad.hs]]
     - [[./.xmonad/startup.sh][startup.sh]]
     - [[./.xmonad/helpmenu.txt][helpmenu.txt]]
