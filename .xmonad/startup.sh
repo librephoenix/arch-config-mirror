@@ -23,6 +23,7 @@ nitrogen --restore
 /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint 0x28282828 --monitor 0 &
 nm-applet &
 nextcloud &
+syncthing --no-browser &
 protonmail-bridge --no-window &
 autokey-gtk &
 xmonad --recompile
