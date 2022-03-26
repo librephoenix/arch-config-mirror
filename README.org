@@ -81,8 +81,9 @@ My system is based on Arch Linux. Core programs on my system are:
   - [[https://github.com/sharkdp/fd][fd]] ("find" replacement)
   - [[https://github.com/ClementTsang/bottom][bottom]] ("htop" replacement)
   - [[https://github.com/BurntSushi/ripgrep][ripgrep]] ("grep" replacement)
-- [[https://nextcloud.com/][Nextcloud]]
-  - I run a local Nextcloud server at home on a [[https://www.raspberrypi.org/][Raspberry Pi]]
+- +[[https://nextcloud.com/][Nextcloud]]+
+  - +I run a local Nextcloud server at home on a [[https://www.raspberrypi.org/][Raspberry Pi]]+
+- I am in the process of replacing my Nextcloud server with a [[https://syncthing.net/][Syncthing]] network
 
 *** Package Lists
 I keep two package lists for quick reinstall (if necessary). These are simple lists which contain a full list of packages installed on my system.
