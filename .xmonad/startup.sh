@@ -13,6 +13,7 @@ killall gnome-keyring-daemon
 killall nitrogen
 killall xautolock
 killall autokey-gtk
+killall caffeine
 
 # Launch necessary desktop applications
 xautolock -time 5 -locker "xsecurelock" &
@@ -26,6 +27,7 @@ nextcloud &
 syncthing --no-browser &
 protonmail-bridge --no-window &
 autokey-gtk &
+caffeine &
 xmonad --recompile
 xmonad --restart
 emacs --daemon
