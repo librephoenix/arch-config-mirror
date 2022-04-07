@@ -3,8 +3,9 @@ auto-cpufreq 1.9.2-1
 autokey-git 0.96.0.beta.10.r2.ab0d0c2-1
 bedstead-fonts-powerline 1.0-4
 bettergruvbox-gtk-theme 1.0-1
-bottles 2022.3.14-4
-brave-bin 1:1.36.122-1
+bottles 2022.3.28-1
+brave-bin 1:1.37.109-1
+c++utilities 5.13.0-1
 caffeine-ng 3.5.1-2
 dragon-drag-and-drop-git 1.2.0.r2.g379d2f5-1
 freetube-bin 0.16.0-1
@@ -19,9 +20,12 @@ picom-jonaburg-git 0.1-4
 protonmail-bridge-bin 2.1.1-1
 python-pulsectl 1:22.3.2-1
 qt5-styleplugins 5.0.0.20170311-27
+qtforkawesome 0.0.3-1
+qtutilities 6.5.3-1
 rdm-bin 2022.2-1
 rgrep 0.99.20.159-1
 sct 1.0.0-1
+syncthingtray 1.1.16-1
 ttf-unifont 14.0.02-1
 twmn-git 193.58ca77d-1
 vim-plug 0.11.0-1

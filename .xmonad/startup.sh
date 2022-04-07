@@ -14,6 +14,7 @@ killall nitrogen
 killall xautolock
 killall autokey-gtk
 killall caffeine
+killall syncthingtray
 
 # Launch necessary desktop applications
 xautolock -time 5 -locker "xsecurelock" &
@@ -25,6 +26,7 @@ nitrogen --restore
 nm-applet &
 nextcloud &
 syncthing --no-browser &
+syncthingtray &
 protonmail-bridge --no-window &
 autokey-gtk &
 caffeine &
