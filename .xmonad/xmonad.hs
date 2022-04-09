@@ -174,7 +174,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioNext), spawn "curl -X POST 'http://localhost:3100/nuclear/player/next' -H 'accept: application/json'")
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -nf '#282828' -nf '#ebdbb2' -sb '#458588' -sf '#ebdbb2' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")
+    , ((modm,               xK_semicolon     ), spawn "dmenu_run -nf '#282828' -nf '#ebdbb2' -sb '#458588' -sf '#ebdbb2' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")
 
     -- launch workspace switch dmenu script
     , ((modm,               xK_w     ), spawn "~/.xmonad/workspace-select.sh")
