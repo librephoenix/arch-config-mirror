@@ -19,6 +19,7 @@ killall syncthingtray
 # Launch necessary desktop applications
 xautolock -time 5 -locker "xsecurelock" &
 gnome-keyring-daemon &
+~/.local/bin/setup_external_monitor.sh &
 twmnd &
 mbsync -a && mu index &
 nitrogen --restore

@@ -168,6 +168,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 10")
     , ((0, xF86XK_AudioMute), spawn "pamixer -t")
 
+    -- manage multiple monitors with kbd
+    , ((0, xF86XK_Explorer), spawn "/home/emmet/.local/bin/setup_external_monitor.sh")
+
     -- control background music
     , ((0, xF86XK_AudioPlay), spawn "curl -X POST 'http://localhost:3100/nuclear/player/play-pause' -H 'accept: application/json'")
     , ((0, xF86XK_AudioPrev), spawn "curl -X POST 'http://localhost:3100/nuclear/player/previous' -H 'accept: application/json'")
@@ -260,15 +263,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    -- ++
+    ++
 
     --
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
-    --[((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-    --    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-    --    , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_y, xK_u, xK_i] [0..]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
 ------------------------------------------------------------------------
