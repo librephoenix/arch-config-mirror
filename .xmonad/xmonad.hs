@@ -78,7 +78,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "btm" spawnBtm findBtm manageBtm
                 , NS "mu4e" spawnMu4e findMu4e manageMu4e
                 , NS "helpmenu" spawnHelp findHelp manageHelp
-                , NS "nuclear" spawnNuclear findNuclear manageNuclear
+                , NS "myuzi" spawnMyuzi findMyuzi manageMyuzi
                 ]
     where
       spawnTerm  = myTerminal ++ " -t scratchpad"
@@ -137,9 +137,9 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                  w = 0.9
                  t = 0.95 -h
                  l = 0.95 -w
-      spawnNuclear = "nuclear"
-      findNuclear = className =? "nuclear"
-      manageNuclear = customFloating $ W.RationalRect l t w h
+      spawnMyuzi = "GDK_DPI_SCALE=1.5 myuzi"
+      findMyuzi = className =? "Myuzi"
+      manageMyuzi = customFloating $ W.RationalRect l t w h
                where
                  h = 0.9
                  w = 0.9
@@ -170,11 +170,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- manage multiple monitors with kbd
     , ((0, xF86XK_Explorer), spawn "/home/emmet/.local/bin/setup_external_monitor.sh")
+    , ((0, xK_F8), spawn "/home/emmet/.local/bin/setup_external_monitor.sh")
 
     -- control background music
-    , ((0, xF86XK_AudioPlay), spawn "curl -X POST 'http://localhost:3100/nuclear/player/play-pause' -H 'accept: application/json'")
-    , ((0, xF86XK_AudioPrev), spawn "curl -X POST 'http://localhost:3100/nuclear/player/previous' -H 'accept: application/json'")
-    , ((0, xF86XK_AudioNext), spawn "curl -X POST 'http://localhost:3100/nuclear/player/next' -H 'accept: application/json'")
+    --, ((0, xF86XK_AudioPlay), spawn "curl -X POST 'http://localhost:3100/nuclear/player/play-pause' -H 'accept: application/json'")
+    --, ((0, xF86XK_AudioPrev), spawn "curl -X POST 'http://localhost:3100/nuclear/player/previous' -H 'accept: application/json'")
+    --, ((0, xF86XK_AudioNext), spawn "curl -X POST 'http://localhost:3100/nuclear/player/next' -H 'accept: application/json'")
 
     -- launch dmenu
     , ((modm,               xK_semicolon     ), spawn "dmenu_run -nf '#282828' -nf '#ebdbb2' -sb '#458588' -sf '#ebdbb2' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")
@@ -234,7 +235,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_o), namedScratchpadAction myScratchPads "octave")
     , ((modm              , xK_e), namedScratchpadAction myScratchPads "mu4e")
     , ((modm              , xK_slash), namedScratchpadAction myScratchPads "helpmenu")
-    , ((modm              , xK_n), namedScratchpadAction myScratchPads "nuclear")
+    , ((modm              , xK_n), namedScratchpadAction myScratchPads "myuzi")
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -337,7 +338,7 @@ myLayout = avoidStruts $ (mySpacing $ (tiled ||| Mirror tiled ||| Full))
 --
 myManageHook = composeAll
     [ className =? "KeePassXC"      --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
-    , className =? "nuclear"        --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
+    , className =? "Myuzi"          --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , title =? "octave"             --> (customFloating $ W.RationalRect 0 0.03 1 0.5)
     , title =? "scratchpad"         --> (customFloating $ W.RationalRect 0 0.03 1 0.5)
     , title =? "ranger"             --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
