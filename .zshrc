@@ -45,5 +45,8 @@ else
   export EDITOR='mvim'
 fi
 
+# Set up hledger
+export LEDGER_FILE=~/Family.s/Documents/Finances/2022.journal
+
 # source aliases on this zshrc
 source ~/.aliases

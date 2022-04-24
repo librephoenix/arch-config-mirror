@@ -90,6 +90,9 @@ else
   export EDITOR='mvim'
 fi
 
+# Set up hledger
+export LEDGER_FILE=~/Family.s/Documents/Finances/2022.journal
+
 #+END_SRC
 
 ** [[./.bashrc][bashrc]]
@@ -100,6 +103,9 @@ My bashrc is primarily here just to handle some programs which automatically def
 
 # Configure default prompt
 PS1='[\u@\h \W]\$ '
+
+# Set up hledger
+export LEDGER_FILE=~/Family.s/Documents/Finances/2022.journal
 
 #+END_SRC
 
@@ -113,7 +119,7 @@ alias cat='bat'
 alias htop='btm'
 alias find='fd'
 alias w3m='w3m -no-cookie -v'
-alias paclist='echo ":: Overwriting backup pacman .packagelist file" && pacman -Qe > ~/.packagelist && echo ":: Overwriting backup AUR .aurpackagelist file" && pacman -Qm > ~/.aurpackagelist'
+alias paclist='echo ":: Overwriting backup pacman .packagelist file" && pacman -Qe > ~/.packagelist && echo ":: Overwriting backup AUR .aurpackagelist file" && pacman -Qm > ~/.aurpackagelist && echo ":: Overwriting backup pip .pippaclist file" && pip list > ~/.pippackagelist && echo "REMINDER TO MANUALLY UPDATE ~/.stackpackagelist"'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
 #+END_SRC

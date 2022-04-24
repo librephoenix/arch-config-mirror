@@ -22,5 +22,8 @@ export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 # Configure default prompt
 PS1='[\u@\h \W]\$ '
 
+# Set up hledger
+export LEDGER_FILE=~/Family.s/Documents/Finances/2022.journal
+
 # source aliases on this bashrc
 source ~/.aliases
