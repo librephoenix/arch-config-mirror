@@ -83,15 +83,20 @@ My system is based on Arch Linux. Core programs on my system are:
   - [[https://github.com/BurntSushi/ripgrep][ripgrep]] ("grep" replacement)
 - +[[https://nextcloud.com/][Nextcloud]]+
   - +I run a local Nextcloud server at home on a [[https://www.raspberrypi.org/][Raspberry Pi]]+
-- I am in the process of replacing my Nextcloud server with a [[https://syncthing.net/][Syncthing]] network
+- [[https://syncthing.net/][Syncthing]] network (Backup and File Sharing)
+- [[https://hledger.org/][hledger]] (Financial Accounting)
 
 *** Package Lists
-I keep two package lists for quick reinstall (if necessary). These are simple lists which contain a full list of packages installed on my system.
-These are managed by a shell alias:
+I keep four package lists for quick reinstall (if necessary). These are simple lists which contain a full list of packages installed on my system.
+My pacman, AUR, and pip packages are recorded by a shell alias:
 #+BEGIN_SRC sh
 alias paclist='echo ":: Overwriting backup pacman .packagelist file" &&
                pacman -Qe > ~/.packagelist &&
                echo ":: Overwriting backup AUR .aurpackagelist file" &&
-               pacman -Qm > ~/.aurpackagelist'
+               pacman -Qm > ~/.aurpackagelist &&
+               echo ":: Overwriting backup pip .pippackagelist file" &&
+               pip list > ~/.pippackagelist'
 #+END_SRC
-This generates two package lists, one for the standard repositories ([[./.packagelist][.packagelist]]) and one for the AUR ([[./.aurpackagelist][.aurpackagelist]]).
+This generates three package lists, one for the standard repositories ([[./.packagelist][.packagelist]]), one for the AUR ([[./.aurpackagelist][.aurpackagelist]]), and one for Python pip ([[./.pippackagelist][.pippackagelist]]).
+
+Since I manage my Haskell programs with [[https://docs.haskellstack.org/en/stable/README/][Stack]], I also have a Stack package list ([[./stackpackagelist][.stackpackagelist]]) which I maintain manually, since I don't have too many Haskell programs.
