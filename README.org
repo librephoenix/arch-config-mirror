@@ -81,8 +81,6 @@ My system is based on Arch Linux. Core programs on my system are:
   - [[https://github.com/sharkdp/fd][fd]] ("find" replacement)
   - [[https://github.com/ClementTsang/bottom][bottom]] ("htop" replacement)
   - [[https://github.com/BurntSushi/ripgrep][ripgrep]] ("grep" replacement)
-- +[[https://nextcloud.com/][Nextcloud]]+
-  - +I run a local Nextcloud server at home on a [[https://www.raspberrypi.org/][Raspberry Pi]]+
 - [[https://syncthing.net/][Syncthing]] network (Backup and File Sharing)
 - [[https://hledger.org/][hledger]] (Financial Accounting)
 
