@@ -91,7 +91,7 @@ else
 fi
 
 # Set up hledger
-export LEDGER_FILE=~/Family.s/Documents/Finances/2022.journal
+export LEDGER_FILE=~/Family.s/Documents/Finances/hledger.journal
 
 #+END_SRC
 
@@ -105,7 +105,7 @@ My bashrc is primarily here just to handle some programs which automatically def
 PS1='[\u@\h \W]\$ '
 
 # Set up hledger
-export LEDGER_FILE=~/Family.s/Documents/Finances/2022.journal
+export LEDGER_FILE=~/Family.s/Documents/Finances/hledger.journal
 
 #+END_SRC
 

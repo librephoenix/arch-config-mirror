@@ -46,7 +46,7 @@ else
 fi
 
 # Set up hledger
-export LEDGER_FILE=~/Family.s/Documents/Finances/2022.journal
+export LEDGER_FILE=~/Family.s/Documents/Finances/hledger.journal
 
 # source aliases on this zshrc
 source ~/.aliases

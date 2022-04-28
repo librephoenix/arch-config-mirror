@@ -23,7 +23,7 @@ export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 PS1='[\u@\h \W]\$ '
 
 # Set up hledger
-export LEDGER_FILE=~/Family.s/Documents/Finances/2022.journal
+export LEDGER_FILE=~/Family.s/Documents/Finances/hledger.journal
 
 # source aliases on this bashrc
 source ~/.aliases
