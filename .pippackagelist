@@ -1,5 +1,5 @@
 Package                       Version
------------------------------ -----------------
+----------------------------- ------------------
 alabaster                     0.7.12
 apparmor                      3.0.4
 appdirs                       1.4.4
@@ -8,8 +8,7 @@ argon2-cffi-bindings          21.2.0
 asciidoc                      10.1.4
 attrs                         21.4.0
 auto-cpufreq                  1.9.3
-autokey                       0.96.0b10
-Babel                         2.9.1
+Babel                         2.10.1
 Beaker                        1.11.0
 beautifulsoup4                4.11.1
 bs4                           0.0.1
@@ -56,9 +55,10 @@ Mako                          1.1.6
 Markdown                      3.3.6
 MarkupSafe                    2.1.1
 meson                         0.62.1
+Mimeo                         2021.11.20.2.28.56
 more-itertools                8.10.0
 msgpack                       1.0.3
-myuzi                         0.2.1
+myuzi                         0.3.0
 netsnmp-python                1.0a1
 nose                          1.3.7
 numpy                         1.22.3
@@ -85,7 +85,7 @@ pybind11                      2.9.2
 pycairo                       1.21.0
 pycparser                     2.21
 pycryptodomex                 3.14.1
-Pygments                      2.11.2
+Pygments                      2.12.0
 PyGObject                     3.42.1
 PyHamcrest                    1.10.1
 pyinotify                     0.9.6
