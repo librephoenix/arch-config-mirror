@@ -6,7 +6,18 @@ I use Arch Linux btw..
 ** What is this repository?
 This repository stores my dotfiles (configuration files) for my personal Arch Linux system. I manage this repository using the git bare repository method (credit for this method to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
 
-** My Configs
+** TLDR (List of Literate Configs)
+Below is the taxonomy of my literate (org mode) config files, which each control the plethora of config files related to the programs I use.  I use these (literate org mode files) to configure my machine.
+| Literate Config                        | Config Classification |
+|----------------------------------------+-----------------------|
+| TODO XMonad Literate Config            | Window Manager        |
+| [[./.shell.org][Shell Literate Config]]                  | Shell                 |
+| [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]              | Terminal              |
+| TODO Public Doom Emacs Literate Config | IDE                   |
+| TODO Ranger Literate Config            | File Manager          |
+| TODO Qutebrowser Literate Config       | Browser               |
+
+** Detailed List of Configs
 Here is an organized list of configs stored in this repository:
 - TODO XMonad Literate Config
   - [[./.xinitrc][.xinitrc]]
@@ -18,13 +29,13 @@ Here is an organized list of configs stored in this repository:
     - [[./.config/xmobar/padding-icon.sh][padding-icon.sh]]
     - [[./.config/xmobar/mail-count.sh][mail-count.sh]]
   - [[./.config/twmn/twmn.conf][twmn.conf]]
-- [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]
-  - [[./.config/alacritty/alacritty.yml][alacritty.yml]]
 - [[./.shell.org][Shell Literate Config]]
   - [[./.bashrc][.bashrc]]
   - [[./.zshrc][.zshrc]]
   - [[./.aliases][.aliases]]
   - [[./.octaverc][.octaverc]]
+- [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]
+  - [[./.config/alacritty/alacritty.yml][alacritty.yml]]
 - TODO Public Doom Emacs Literate Config
   - TODO pub-config.el
   - TODO pub-init.el
@@ -39,7 +50,6 @@ Here is an organized list of configs stored in this repository:
   - [[./.config/ranger/commands.py][commands.py]]
   - [[./.config/ranger/commands_full.py][commands_full.py]]
   - [[./.config/ranger/scope.sh][scope.sh]]
-- [[./.config/autokey][Autokey Configs]]
 
 ** System
 My system is based on Arch Linux. Core programs on my system are:
