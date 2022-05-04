@@ -52,7 +52,7 @@ Here is an organized list of configs stored in this repository:
   - [[./.config/ranger/scope.sh][scope.sh]]
 
 ** System
-My system is based on Arch Linux. Core programs on my system are:
+My system uses Arch Linux. Here are some cool programs I use:
 - [[https://github.com/jonaburg/picom][Jonaburg's Picom]] (Compositor)
 - [[https://github.com/AdnanHodzic/auto-cpufreq][auto-cpufreq]] (CPU Throttle)
 - [[https://xmonad.org/][XMonad]] (Window Manager)
@@ -81,7 +81,6 @@ My system is based on Arch Linux. Core programs on my system are:
 - [[https://github.com/ranger/ranger][Ranger]] (Terminal File Manager)
 - [[https://wiki.lxde.org/en/PCManFM][PCManFM]] (GUI File Manager)
 - [[https://github.com/sboli/twmn][twmn]] (Notification Manager)
-- [[https://www.freedesktop.org/wiki/Software/PulseAudio/][PulseAudio]] (Audio)
 - [[https://github.com/l3ib/nitrogen][Nitrogen]] (Desktop Background Manager)
 - [[https://wiki.lxde.org/en/LXAppearance][LXAppearance]] (GTK Theming)
 - [[https://sourceforge.net/projects/qt5ct/][qt5ct]] (Qt Theming)
@@ -93,6 +92,7 @@ My system is based on Arch Linux. Core programs on my system are:
   - [[https://github.com/ClementTsang/bottom][bottom]] ("htop" replacement)
   - [[https://github.com/BurntSushi/ripgrep][ripgrep]] ("grep" replacement)
 - [[https://syncthing.net/][Syncthing]] network (Backup and File Sharing)
+  - [[https://salsa.debian.org/debian/syncthing-gtk][syncthing-gtk]] (Syncthing Tray Application)
 - [[https://hledger.org/][hledger]] (Financial Accounting)
 
 *** Package Lists
