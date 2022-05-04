@@ -229,7 +229,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
     , ((modm              , xK_f), namedScratchpadAction myScratchPads "ranger")
-    , ((modm              , xK_x), namedScratchpadAction myScratchPads "keepassxc")
+    , ((modm              , xK_x), spawn "/home/emmet/.config/keepassxc/keepassxcmenu.sh")
+    , ((modm .|. shiftMask, xK_x), spawn "/home/emmet/.config/keepassxc/keepassxctotpmenu.sh")
     , ((modm              , xK_z), namedScratchpadAction myScratchPads "terminal")
     , ((modm              , xK_b), namedScratchpadAction myScratchPads "btm")
     , ((modm              , xK_o), namedScratchpadAction myScratchPads "octave")

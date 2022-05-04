@@ -109,6 +109,31 @@ export LEDGER_FILE=~/Family.s/Documents/Finances/hledger.journal
 
 #+END_SRC
 
+** Secrets
+I hold some secrets (such as storing important file locations in environment variables).  I don't publish this file (obviously), but you can see what it might look like as an example:
+#+BEGIN_SRC shell :noeval
+# secrets
+export MY_REAL_NAME="John Doe"
+export MY_KEEPASS_DB=path/to/my/keepass/database
+export MY_KEYFILE=path/to/my/keepass/keyfile
+export WHATEVER_ELSE="any other secrets I have..."
+#+END_SRC
+
+Then, I source this .secrets file in my [[./.bashrc][bashrc]] and [[./.zshrc][zshrc]].
+
+*** [[./.bashrc][bashrc]]
+#+BEGIN_SRC shell :tangle .bashrc
+# source aliases on this bashrc
+source ~/.secrets
+
+#+END_SRC
+
+*** [[./.zshrc][zshrc]]
+#+BEGIN_SRC shell :tangle .zshrc
+# source aliases on this zshrc
+source ~/.secrets
+
+#+END_SRC
 ** Aliases
 For my aliases, I put them in a [[./.aliases][.aliases]] file in my home directory.
 #+BEGIN_SRC shell :tangle .aliases

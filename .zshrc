@@ -49,4 +49,7 @@ fi
 export LEDGER_FILE=~/Family.s/Documents/Finances/hledger.journal
 
 # source aliases on this zshrc
+source ~/.secrets
+
+# source aliases on this zshrc
 source ~/.aliases

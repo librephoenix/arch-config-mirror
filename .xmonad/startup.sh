@@ -12,9 +12,8 @@ killall xwinwrap
 killall gnome-keyring-daemon
 killall nitrogen
 killall xautolock
-killall autokey-gtk
 killall caffeine
-killall syncthingtray
+killall syncthing-gtk
 
 # Launch necessary desktop applications
 xautolock -time 5 -locker "xsecurelock" &
@@ -27,9 +26,8 @@ nitrogen --restore
 nm-applet &
 nextcloud &
 syncthing --no-browser &
-syncthingtray &
+syncthing-gtk &
 protonmail-bridge --no-window &
-autokey-gtk &
 caffeine &
 xmonad --recompile
 xmonad --restart
