@@ -45,7 +45,7 @@ gawk 5.1.1-1
 gcc 11.2.0-4
 gettext 0.21-2
 ghc-static 9.0.2-1
-gimp 2.10.30-2
+gimp 2.10.30-3
 git 2.36.0-1
 git-filter-repo 2.34.0-1
 gnome-keyring 1:40.0-1
@@ -62,10 +62,11 @@ htop 3.2.0-1
 inotify-tools 3.22.1.0-1
 intel-ucode 20220419-1
 isync 1.4.4-1
-jre-openjdk 18.0.1.u10-1
+jre-openjdk 18.0.1.1.u2-1
 keepassxc 2.7.1-1
 krita 5.0.6-1
 libreoffice-still 7.2.6-2
+librewolf-bin 99.0.1-4
 libtool 2.4.7-1
 linux 5.17.5.arch1-1
 linux-firmware 20220411.705f19a-1
@@ -125,7 +126,7 @@ sct 1.0.0-1
 seahorse 1:41.0-2
 sed 4.8-1
 sudo 1.9.10-1
-syncthing 1.20.0-1
+syncthing 1.20.1-1
 syncthing-gtk-python3 1:0.9.4.4-3
 terminus-font 4.49.1-2
 texinfo 6.8-2
@@ -142,7 +143,7 @@ v4l2loopback-dkms 0.12.5-2
 vim 8.2.4827-1
 vim-plug 0.11.0-1
 virtualbox 6.1.34-2
-vlc 3.0.17.4-2
+vlc 3.0.17.4-3
 w3m 0.5.3.git20220409_1-1
 wget 1.21.3-1
 which 2.21-5

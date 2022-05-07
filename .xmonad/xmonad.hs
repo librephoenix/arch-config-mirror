@@ -181,7 +181,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_semicolon     ), spawn "dmenu_run -nf '#282828' -nf '#ebdbb2' -sb '#458588' -sf '#ebdbb2' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")
 
     -- launch workspace switch dmenu script
-    , ((modm,               xK_w     ), spawn "~/.xmonad/workspace-select.sh")
+    , ((modm .|. shiftMask, xK_w     ), spawn "~/.xmonad/workspace-select.sh")
+
+    -- launch workspace switch dmenu script
+    , ((modm,               xK_w     ), spawn "~/.xmonad/template-select.sh")
 
     -- close focused window
     , ((modm, xK_q     ), kill)
@@ -230,6 +233,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     , ((modm              , xK_f), namedScratchpadAction myScratchPads "ranger")
     , ((modm              , xK_x), spawn "/home/emmet/.config/keepassxc/keepassxcmenu.sh")
+    , ((modm              , xK_p), namedScratchpadAction myScratchPads "keepassxc")
     , ((modm .|. shiftMask, xK_x), spawn "/home/emmet/.config/keepassxc/keepassxctotpmenu.sh")
     , ((modm              , xK_z), namedScratchpadAction myScratchPads "terminal")
     , ((modm              , xK_b), namedScratchpadAction myScratchPads "btm")
