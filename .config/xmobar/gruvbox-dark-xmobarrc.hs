@@ -20,20 +20,20 @@ Config { font = "xft:UbuntuMono-R:size=16"
                     , Run BatteryP ["BAT0"]
                       ["-t", "<acstatus>",
                       "-L", "10", "-H", "80", "-p", "3", "--",
-                      "-O","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn></fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#98971a,#3b3838><fn=1>\xf583</fn><left>%</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
-                      "-i","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn></fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#98971a,#3b3838><fn=1>\xf578</fn><left>%</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
-                      "-o","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn></fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#cc241d,#3b3838><fn=1>\xf58b</fn><left>%</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
+                      "-O","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#98971a,#3b3838> <fn=1>\xf583</fn><left>% </fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
+                      "-i","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#98971a,#3b3838> <fn=1>\xf578</fn><left>% </fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
+                      "-o","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#cc241d,#3b3838> <fn=1>\xf58b</fn><left>% </fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
                       "-L", "-15", "-H", "-5",
                       "-l", "#cc241d", "-m", "#458588", "-h", "#98971z"] 10
                     , Run Brightness
-                      [ "-t", "<fc=#d79921><fn=1>\xf5dd</fn> <percent>%</fc><fn=2><fc=#282828,#3b3838>\xe0b0</fc></fn>", "--",
+                      [ "-t", "<fc=#d79921><fn=1>\xf5dd</fn> <percent>% </fc><fn=2><fc=#282828,#3b3838>\xe0b0</fc></fn>", "--",
                         "-D", "intel_backlight"
                       ] 2 
                     , Run Volume "default" "Master"
                       [ "-t", "<status>", "--"
-                      , "--on", "<fc=#689d6a,#3b3838> <fn=1>\xf028</fn> <volume>%</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>"
+                      , "--on", "<fc=#689d6a,#3b3838> <fn=1>\xf028</fn> <volume>% </fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>"
                       , "--onc", "#689d6a"
-                      , "--off", "<fc=#b16286,#3b3838> <fn=1>\xf026</fn>Mute</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>"
+                      , "--off", "<fc=#b16286,#3b3838> <fn=1>\xf026</fn>Mute </fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>"
                       , "--offc", "#b16286"
                       ] 1 
                     , Run Com "/home/emmet/.config/xmobar/padding-icon.sh" [] "trayerpad" 2
