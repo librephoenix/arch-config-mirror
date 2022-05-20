@@ -41,6 +41,6 @@ Config { font = "xft:UbuntuMono-R:size=16"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%battery% %bright%<action=`pavucontrol`>%default:Master%</action> %mail% }<action=`/home/emmet/.config/xmobar/open-org-calendar.sh`>%date%</action>{<box color=#3b3838 width=3>%UnsafeStdinReader%</box> %trayerpad%"
+       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> <action=`xdotool key Super_L+e`>%mail%</action> }<action=`xdotool key Super_L+c`>%date%</action>{<box color=#3b3838 width=3>%UnsafeStdinReader%</box> %trayerpad%"
        }
 }

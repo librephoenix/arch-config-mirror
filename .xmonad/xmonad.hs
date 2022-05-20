@@ -79,6 +79,8 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "mu4e" spawnMu4e findMu4e manageMu4e
                 , NS "helpmenu" spawnHelp findHelp manageHelp
                 , NS "myuzi" spawnMyuzi findMyuzi manageMyuzi
+                , NS "cfw" spawnCfw findCfw manageCfw
+                , NS "pavucontrol" spawnPavucontrol findPavucontrol managePavucontrol
                 ]
     where
       spawnTerm  = myTerminal ++ " -t scratchpad"
@@ -145,7 +147,23 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                  w = 0.9
                  t = 0.95 -h
                  l = 0.95 -w
-------------------------------------------------------------------------
+      spawnCfw = "~/.config/xmobar/open-org-calendar.sh"
+      findCfw = title =? "scratch_cfw"
+      manageCfw = customFloating $ W.RationalRect l t w h
+               where
+                 h = 0.5
+                 w = 0.3
+                 t = 0.9 -h
+                 l = 0.65 -w
+      spawnPavucontrol = "pavucontrol"
+      findPavucontrol = className =? "Pavucontrol"
+      managePavucontrol = customFloating $ W.RationalRect l t w h
+               where
+                 h = 0.5
+                 w = 0.3
+                 t = 0.9 -h
+                 l = 0.65 -w
+-----------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -244,6 +262,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_e), namedScratchpadAction myScratchPads "mu4e")
     , ((modm              , xK_slash), namedScratchpadAction myScratchPads "helpmenu")
     , ((modm              , xK_n), namedScratchpadAction myScratchPads "myuzi")
+    , ((modm              , xK_c), namedScratchpadAction myScratchPads "cfw")
+    , ((modm              , xK_y), namedScratchpadAction myScratchPads "pavucontrol")
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -255,7 +275,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --, ((modm .|. shiftMask, xK_r     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_c     ), spawn "xmonad --recompile; xmonad --restart")
+    --, ((modm              , xK_c     ), spawn "xmonad --recompile; xmonad --restart")
 
     -- Lock with xsecurelock
     , ((modm .|. shiftMask, xK_l     ), spawn "xsecurelock")
@@ -357,8 +377,10 @@ myManageHook = composeAll
     , title =? "ranger"             --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , title =? "btm"                --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8)
     , title =? "scratch_mu4e"       --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
+    , title =? "scratch_cfw"        --> (customFloating $ W.RationalRect 0.29 0.03 0.42 0.7)
     , title =? "xmonad_helpmenu"    --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , className =? "fl64.exe"       --> (customFloating $ W.RationalRect 0 0 1 1)
+    , className =? "Pavucontrol"    --> (customFloating $ W.RationalRect 0.05 0.04 0.5 0.35)
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
