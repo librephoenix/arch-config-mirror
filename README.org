@@ -7,9 +7,9 @@ I use Arch Linux btw..
 This repository stores my dotfiles (configuration files) for my personal Arch Linux system. I manage this repository using the git bare repository method (credit for this method to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
 ** Screenshots
 Gotta have screenshots after informing you that I run Arch..
-[[./-/blob/main/.img/silasa-desktop-work.png]]
-[[./-/blob/main/.img/silasa-desktop-btm.png]]
-[[./-/blob/main/.img/silasa-desktop-emacs-cfw.png]]
+[[.img/silasa-desktop-work.png]]
+[[.img/silasa-desktop-btm.png]]
+[[.img/silasa-desktop-emacs-cfw.png]]
 
 Credit to [[https://unsplash.com/@bkview][Jason McCann on Unsplash]] for [[https://unsplash.com/photos/Gj76llxJHd4][the background]].
 ** TLDR (List of Literate Configs)
