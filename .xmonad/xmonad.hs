@@ -223,7 +223,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
+    , ((modm,               xK_t     ), withFocused toggleFloat)
+
+    -- Make window floating
+    --, ((modm .|. shiftMask, xK_t     ), withFocused $ windows . W.float)
 
     -- Increment the number of windows in the master area
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
@@ -272,12 +275,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ++
 
     --
-    -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-    -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
+    -- mod-{Left, Right}, Switch to physical/Xinerama screens 1 or 2
+    -- mod-shift-{Left, Right}, Move client to screen 1 or 2
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_y, xK_u, xK_i] [0..]
+        | (key, sc) <- zip [xK_Left, xK_Right] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
+    where
+            toggleFloat w = windows (\s -> if M.member w (W.floating s)
+                            then W.sink w s
+                            else (W.float w (W.RationalRect (1/8) (1/8) (3/4) (3/4)) s))
 
 
 ------------------------------------------------------------------------
@@ -344,14 +352,13 @@ myLayout = avoidStruts $ (mySpacing $ (tiled ||| Mirror tiled ||| Full))
 myManageHook = composeAll
     [ className =? "KeePassXC"      --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , className =? "Myuzi"          --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
-    , title =? "octave"             --> (customFloating $ W.RationalRect 0 0.03 1 0.5)
-    , title =? "scratchpad"         --> (customFloating $ W.RationalRect 0 0.03 1 0.5)
+    , title =? "octave"             --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8)
+    , title =? "scratchpad"         --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8)
     , title =? "ranger"             --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
-    , title =? "btm"                --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
+    , title =? "btm"                --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8)
     , title =? "scratch_mu4e"       --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , title =? "xmonad_helpmenu"    --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , className =? "fl64.exe"       --> (customFloating $ W.RationalRect 0 0 1 1)
-    , className =? "Brave-browser"  --> (customFloating $ W.RationalRect 0 0 1 1)
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
