@@ -16,20 +16,21 @@ killall caffeine
 killall syncthing-gtk
 
 # Launch necessary desktop applications
+emacs --daemon &
 xautolock -time 5 -locker "xsecurelock" &
-gnome-keyring-daemon &
 ~/.local/bin/setup_external_monitor.sh &
 twmnd &
-mbsync -a && mu index &
-nitrogen --restore
+nitrogen --restore &
 /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint 0x28282828 --monitor 0 &
+~/.xmonad/workspace-select.sh
+gnome-keyring-daemon
+mbsync -a && mu index &
 nm-applet &
 nextcloud &
 syncthing --no-browser &
 syncthing-gtk &
 protonmail-bridge --no-window &
 caffeine &
-xmonad --recompile
-xmonad --restart
-emacs --daemon
+xmonad --recompile &
+xmonad --restart &
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"

@@ -381,6 +381,7 @@ myManageHook = composeAll
     , title =? "xmonad_helpmenu"    --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , className =? "fl64.exe"       --> (customFloating $ W.RationalRect 0 0 1 1)
     , className =? "Pavucontrol"    --> (customFloating $ W.RationalRect 0.05 0.04 0.5 0.35)
+    , className =? "Syncthing GTK"    --> (customFloating $ W.RationalRect 0.53 0.04 0.46 0.45)
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
