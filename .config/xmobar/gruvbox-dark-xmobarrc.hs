@@ -1,11 +1,10 @@
-Config { font = "xft:UbuntuMono-R:size=14"
-       , additionalFonts = ["xft:Symbols Nerd Font"]
-       , borderColor = "#282828"
+Config { font = "xft:UbuntuMono-R:size=16"
+       , additionalFonts = ["xft:Symbols Nerd Font:size=16","xft:Bedstead for Powerline:size=21"]
+       , borderColor = "#222222"
        , border = FullB
        , bgColor = "#282828"
        , fgColor = "#458588"
-       , alpha = 225
-       , position = TopSize C 100 30 
+       , position = TopSize C 100 30
        , textOffset = -1
        , iconOffset = -1
        , lowerOnStart = True
@@ -17,24 +16,24 @@ Config { font = "xft:UbuntuMono-R:size=14"
        , overrideRedirect = True
        , commands = [
                       Run UnsafeStdinReader
-                    , Run Date "<fc=#d79921>%a</fc> <fc=#b16286>%-m/%-d/%y</fc> <fc=#689d6a>%-I:%M:%S%P</fc>" "date" 10
+                    , Run Date "<fn=2><fc=#3b3838,#282828>\xe0b2</fc></fn><fc=#b16286,#3b3838> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P </fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn> " "date" 10
                     , Run BatteryP ["BAT0"]
                       ["-t", "<acstatus>",
-                      "-L", "10", "-H", "80", "-p", "3",
-                      "--", "-O"," <fn=1><fc=#b16286>\xe61f</fc></fn> <fc=#cc241d>X</fc><fc=#d79921>m</fc><fc=#98971a>o</fc><fc=#689d6a>n</fc><fc=#458588>a</fc><fc=#b16286>d</fc> <fc=#cc241d>+</fc> <fn=1><fc=#d79921>\xf303</fc></fn> <fc=#98971a>A</fc><fc=#689d6a>r</fc><fc=#458588>c</fc><fc=#b16286>h</fc> <fc=#ebdbb2>|</fc> <fc=#98971a><fn=1>\xf583</fn><left>%</fc>",
-                      "-i"," <fn=1><fc=#b16286>\xe61f</fc></fn> <fc=#cc241d>X</fc><fc=#d79921>m</fc><fc=#98971a>o</fc><fc=#689d6a>n</fc><fc=#458588>a</fc><fc=#b16286>d</fc> <fc=#cc241d>+</fc> <fn=1><fc=#d79921>\xf303</fc></fn> <fc=#98971a>A</fc><fc=#689d6a>r</fc><fc=#458588>c</fc><fc=#b16286>h</fc> <fc=#ebdbb2>|</fc> <fc=#98971a><fn=1>\xf578</fn><left>%</fc>",
-                      "-o"," <fn=1><fc=#b16286>\xe61f</fc></fn> <fc=#cc241d>X</fc><fc=#d79921>m</fc><fc=#98971a>o</fc><fc=#689d6a>n</fc><fc=#458588>a</fc><fc=#b16286>d</fc> <fc=#cc241d>+</fc> <fn=1><fc=#d79921>\xf303</fc></fn> <fc=#98971a>A</fc><fc=#689d6a>r</fc><fc=#458588>c</fc><fc=#b16286>h</fc> <fc=#ebdbb2>|</fc> <fc=#cc241d><fn=1>\xf58b</fn><left>%</fc>",
+                      "-L", "10", "-H", "80", "-p", "3", "--",
+                      "-O","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn></fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#98971a,#3b3838><fn=1>\xf583</fn><left>%</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
+                      "-i","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn></fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#98971a,#3b3838><fn=1>\xf578</fn><left>%</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
+                      "-o","<fc=#282828,#d79921> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn></fc><fn=2><fc=#d79921,#3b3838>\xe0b0</fc></fn><fc=#cc241d,#3b3838><fn=1>\xf58b</fn><left>%</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>",
                       "-L", "-15", "-H", "-5",
                       "-l", "#cc241d", "-m", "#458588", "-h", "#98971z"] 10
                     , Run Brightness
-                      [ "-t", "<fc=#d79921><fn=1>\xf5dd</fn> <percent>%</fc>", "--",
+                      [ "-t", "<fc=#d79921><fn=1>\xf5dd</fn> <percent>%</fc><fn=2><fc=#282828,#3b3838>\xe0b0</fc></fn>", "--",
                         "-D", "intel_backlight"
                       ] 2 
                     , Run Volume "default" "Master"
                       [ "-t", "<status>", "--"
-                      , "--on", "<fc=#689d6a><fn=1>\xf028</fn> <volume>%</fc>"
+                      , "--on", "<fc=#689d6a,#3b3838> <fn=1>\xf028</fn> <volume>%</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>"
                       , "--onc", "#689d6a"
-                      , "--off", "<fc=#b16286><fn=1>\xf026</fn>Mute</fc>"
+                      , "--off", "<fc=#b16286,#3b3838> <fn=1>\xf026</fn>Mute</fc><fn=2><fc=#3b3838,#282828>\xe0b0</fc></fn>"
                       , "--offc", "#b16286"
                       ] 1 
                     , Run Com "/home/emmet/.config/xmobar/padding-icon.sh" [] "trayerpad" 2
@@ -42,6 +41,6 @@ Config { font = "xft:UbuntuMono-R:size=14"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%battery% %bright% <action=`pavucontrol`>%default:Master%</action> %mail%}%UnsafeStdinReader%{<action=`/home/emmet/.config/xmobar/open-org-calendar.sh`>%date%</action> %trayerpad%"
+       , template = "%battery% %bright%<action=`pavucontrol`>%default:Master%</action> %mail% }<action=`/home/emmet/.config/xmobar/open-org-calendar.sh`>%date%</action>{<box color=#3b3838 width=3>%UnsafeStdinReader%</box> %trayerpad%"
        }
 }
