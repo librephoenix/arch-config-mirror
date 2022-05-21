@@ -23,7 +23,89 @@ import XMonad.Layout.Fullscreen
 
 import Graphics.X11.ExtraTypes.XF86
 
+-- CUSTOM COLORS
+colorSchemeList, colorSchemePrettyList :: [String]
+colorBgNormalList, colorFgNormalList  :: [String]
+color01NormalList, color01BrightList, color02NormalList, color02BrightList :: [String]
+color03NormalList, color03BrightList, color04NormalList, color04BrightList :: [String]
+color05NormalList, color05BrightList, color06NormalList, color06BrightList :: [String]
+color07NormalList, color07BrightList, color08NormalList, color08BrightList :: [String]
+
+colorScheme, colorSchemePretty :: String
+colorBgNormal, colorFgNormal  :: [Char]
+color01Normal, color01Bright, color02Normal, color02Bright :: String
+color03Normal, color03Bright, color04Normal, color04Bright :: String
+color05Normal, color05Bright, color06Normal, color06Bright :: String
+color07Normal, color07Bright, color08Normal, color08Bright :: String
+
+-- color scheme enumerations
+gruvboxIndex, solarizedIndex, draculaIndex, tomorrowNightIndex, oceanicNextIndex, ubuntuIndex :: Int
+gruvboxIndex =       0
+solarizedIndex =     1
+draculaIndex =       2
+tomorrowNightIndex = 3
+oceanicNextIndex =   4
+ubuntuIndex =        5
+
+-- choose a color scheme
+myColorScheme = solarizedIndex
+
+colorSchemeList =       ["gruvbox",      "solarized",      "dracula"]
+colorSchemePrettyList = ["Gruvbox Dark", "Solarized Dark", "Dracula"]
+colorBgNormalList =     ["#282828",      "#002b36"] --normal bg
+colorBgBrightList =     ["#3b3838",      "#113b3f"] --lighter bg
+trayerBgNormalList =    ["0x00282828",   "0x002b36"] --trayer tint
+colorFgNormalList =     ["#ebdbb2",      "#839496"] --normal fg
+color01NormalList =     ["#343428",      "#073642"] --black
+color01BrightList =     ["#928374",      "#002b36"] --bright black
+color02NormalList =     ["#cc241d",      "#dc3ddf"] --red
+color02BrightList =     ["#fb4934",      "#cb4b16"] --bright red
+color03NormalList =     ["#98971a",      "#859900"] --green
+color03BrightList =     ["#b8bb26",      "#586e75"] --bright green
+color04NormalList =     ["#d79921",      "#b58900"] --yellow
+color04BrightList =     ["#fabd2f",      "#657b83"] --bright yellow
+color05NormalList =     ["#458588",      "#268bd2"] --blue
+color05BrightList =     ["#83a598",      "#839496"] --bright blue
+color06NormalList =     ["#b16286",      "#d33682"] --magenta
+color06BrightList =     ["#d3869b",      "#6c71c4"] --bright magenta
+color07NormalList =     ["#689d6a",      "#2aa198"] --cyan
+color07BrightList =     ["#8ec07c",      "#93a1a1"] --bright cyan
+color08NormalList =     ["#a89984",      "#eee8d5"] --white
+color08BrightList =     ["#ebdbb2",      "#fdf6e3"] --bright white
+colorFocusList =        ["#458588",      "#859900"] --focus and run launcher color
+
+colorScheme =           colorSchemeList!!myColorScheme
+colorSchemePretty =     colorSchemePrettyList!!myColorScheme
+colorBgNormal =         colorBgNormalList!!myColorScheme --normal bg
+colorBgBright =         colorBgBrightList!!myColorScheme --lighter bg
+trayerBgNormal =        trayerBgNormalList!!myColorScheme --trayer tint
+colorFgNormal =         colorFgNormalList!!myColorScheme --normal fg
+color01Normal =         color01NormalList!!myColorScheme --black
+color01Bright =         color01BrightList!!myColorScheme --bright black
+color02Normal =         color02NormalList!!myColorScheme --red
+color02Bright =         color02BrightList!!myColorScheme --bright red
+color03Normal =         color03NormalList!!myColorScheme --green
+color03Bright =         color03BrightList!!myColorScheme --bright green
+color04Normal =         color04NormalList!!myColorScheme --yellow
+color04Bright =         color04BrightList!!myColorScheme --bright yellow
+color05Normal =         color05NormalList!!myColorScheme --blue
+color05Bright =         color05BrightList!!myColorScheme --bright blue
+color06Normal =         color06NormalList!!myColorScheme --magenta
+color06Bright =         color06BrightList!!myColorScheme --bright magenta
+color07Normal =         color07NormalList!!myColorScheme --cyan
+color07Bright =         color07BrightList!!myColorScheme --bright cyan
+color08Normal =         color08NormalList!!myColorScheme --white
+color08Bright =         color08BrightList!!myColorScheme --bright white
+colorFocus =            colorFocusList!!myColorScheme --focus and run launcher color
+
 -- MY SETTINGS
+-- Border colors for unfocused and focused windows, respectively.
+myNormalBorderColor, myFocusedBorderColor :: String
+myNormalBorderColor  = colorBgNormal
+myFocusedBorderColor = colorFocus
+
+-- Default apps
+myTerminal, myBrowser :: String
 myTerminal      = "alacritty"
 myBrowser       = "qutebrowser"
 
@@ -37,6 +119,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
+myBorderWidth :: Dimension
 myBorderWidth   = 3 
 
 -- modMask lets you specify which modkey you want to use. The default
@@ -44,6 +127,7 @@ myBorderWidth   = 3
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
+myModMask :: KeyMask
 myModMask       = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
@@ -55,6 +139,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
+myWorkspaces :: [String]
 myWorkspaces    = ["<fn=1>\xf15c</fn>¹", -- document icon for writing
                    "<fn=1>\xfa9e</fn>²", -- globe icon for browsing
                    "<fn=1>\xf121</fn>³", -- dev icon for game dev
@@ -65,10 +150,6 @@ myWorkspaces    = ["<fn=1>\xf15c</fn>¹", -- document icon for writing
                    "<fn=1>\xfce8</fn>⁸", -- rice icon for ricing
                    "<fn=1>\xe370</fn>⁹"] -- glitter icon for extra
 
--- Border colors for unfocused and focused windows, respectively.
---
-myNormalBorderColor  = "#282828"
-myFocusedBorderColor = "#458588"
 
 -- Scratchpads
 myScratchPads :: [NamedScratchpad]
@@ -197,7 +278,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --, ((0, xF86XK_AudioNext), spawn "curl -X POST 'http://localhost:3100/nuclear/player/next' -H 'accept: application/json'")
 
     -- launch dmenu
-    , ((modm,               xK_semicolon     ), spawn "dmenu_run -nf '#282828' -nf '#ebdbb2' -sb '#458588' -sf '#ebdbb2' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")
+    , ((modm,               xK_semicolon     ), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'"))
 
     -- launch workspace switch dmenu script
     , ((modm .|. shiftMask, xK_w     ), spawn "~/.xmonad/workspace-select.sh")
@@ -408,7 +489,6 @@ myFullscreenEventHook = fullscreenEventHook
 --
 --myLogHook = return () 
 
-
 ------------------------------------------------------------------------
 -- Startup hook
 
@@ -418,7 +498,7 @@ myFullscreenEventHook = fullscreenEventHook
 --
 -- By default, do nothing.
 myStartupHook = do
-    spawnOnce "~/.xmonad/startup.sh"
+    spawnOnce ("~/.xmonad/startup.sh " ++ trayerBgNormal)
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -426,7 +506,7 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/xmobarrc")
+  xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
   xmonad $ docks def {
       -- simple stuff
         terminal           = myTerminal,
@@ -449,11 +529,11 @@ main = do
         logHook            = dynamicLogWithPP $ xmobarPP
           {
              ppOutput = \x ->  hPutStrLn xmproc x,
-             ppTitle = xmobarColor "#458588" "" . shorten 10,
-             ppCurrent = xmobarColor "#458588" "" . wrap ("<box type=Bottom Top width=2 mb=2 color=#438588>")"</box>"
+             ppTitle = xmobarColor colorFocus "" . shorten 10,
+             ppCurrent = xmobarColor colorFocus "" . wrap ("<box type=Bottom Top width=2 mb=2 color=" ++ colorFocus ++ ">")"</box>"
 ,
-             ppVisible = xmobarColor "#ebdbb2" "",
-             ppHidden = xmobarColor "#a89984" "",
+             ppVisible = xmobarColor colorFgNormal "",
+             ppHidden = xmobarColor color08Normal "",
              ppOrder = \(ws:_) -> [ws],
              ppSep = " "
           },
