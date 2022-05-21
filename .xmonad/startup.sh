@@ -1,5 +1,6 @@
 #!/bin/bash
 
+trayertint=$1
 # Startup script called by xmonad to start necessary programs
 #
 ## Kill previous instances of applications (Prevents multiple instances of the following if XMonad is restarted durin the X session)
@@ -21,7 +22,7 @@ xautolock -time 5 -locker "xsecurelock" &
 ~/.local/bin/setup_external_monitor.sh &
 twmnd &
 nitrogen --restore &
-/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint 0x28282828 --monitor 0 &
+/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor 0 &
 ~/.xmonad/workspace-select.sh
 gnome-keyring-daemon
 mbsync -a && mu index &
