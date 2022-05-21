@@ -19,6 +19,7 @@ import XMonad.Hooks.ServerMode
 
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
+import XMonad.Layout.Fullscreen
 
 import Graphics.X11.ExtraTypes.XF86
 
@@ -340,7 +341,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --
 spcPx = 6
 mySpacing = spacingRaw False (Border spcPx spcPx spcPx spcPx) True (Border spcPx spcPx spcPx spcPx) True
-myLayout = avoidStruts $ (mySpacing $ (tiled ||| Mirror tiled ||| Full))
+myLayout = fullscreenFull $ avoidStruts $ (mySpacing $ (tiled ||| Mirror tiled ||| Full))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -385,6 +386,8 @@ myManageHook = composeAll
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
+myFullscreenManageHook = fullscreenManageHook
+
 ------------------------------------------------------------------------
 -- Event handling
 
@@ -395,6 +398,8 @@ myManageHook = composeAll
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
 myEventHook = serverModeEventHook
+
+myFullscreenEventHook = fullscreenEventHook
 ------------------------------------------------------------------------
 -- Status bars and logging
 
@@ -439,8 +444,8 @@ main = do
 
       -- hooks, layouts
         layoutHook         = myLayout,
-        manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
+        manageHook         = myManageHook <+> myFullscreenManageHook,
+        handleEventHook    = myEventHook <+> myFullscreenEventHook,
         logHook            = dynamicLogWithPP $ xmobarPP
           {
              ppOutput = \x ->  hPutStrLn xmproc x,
