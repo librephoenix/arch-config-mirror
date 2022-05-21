@@ -191,7 +191,7 @@ c.url.default_page = str(config.configdir)+'/qute-home.html'
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://search.brave.com/search?q={}&source=web',
+c.url.searchengines = {'DEFAULT': 'https://startpage.com/do/search?query={}',
                        'd'   : 'https://duckduckgo.com/?q={}&ia=web',
                        'sb'     : 'https://www.serebii.net/search.shtml?q={}&sa=Search',
                        'bp'     : 'https://bulbapedia.bulbagarden.net/wiki/index.php?title=Special%3ASearch&search={}&go=Go',
