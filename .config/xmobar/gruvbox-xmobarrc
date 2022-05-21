@@ -1,6 +1,6 @@
 Config { font = "xft:UbuntuMono-R:size=16"
        , additionalFonts = ["xft:Symbols Nerd Font:size=16","xft:Bedstead for Powerline:size=21"]
-       , borderColor = "#222222"
+       , borderColor = "#282828"
        , border = FullB
        , bgColor = "#282828"
        , fgColor = "#458588"
