@@ -39,40 +39,40 @@ color05Normal, color05Bright, color06Normal, color06Bright :: String
 color07Normal, color07Bright, color08Normal, color08Bright :: String
 
 -- color scheme enumerations
-gruvboxIndex, solarizedIndex, draculaIndex, tomorrowNightIndex, oceanicNextIndex, ubuntuIndex :: Int
+gruvboxIndex, solarizedIndex, draculaIndex, tokyoNightIndex, oceanicNextIndex, ubuntuIndex :: Int
 gruvboxIndex =       0
 solarizedIndex =     1
 draculaIndex =       2
-tomorrowNightIndex = 3
+tokyoNightIndex =    3
 oceanicNextIndex =   4
 ubuntuIndex =        5
 
 -- choose a color scheme
-myColorScheme = tomorrowNightIndex
+myColorScheme = gruvboxIndex
 
-colorSchemeList =       ["gruvbox",      "solarized",      "dracula",     "tomorrow-night"]
-colorSchemePrettyList = ["Gruvbox Dark", "Solarized Dark", "Dracula",     "Tomorrow Night"]
-colorBgNormalList =     ["#282828",      "#002b36",        "#282a36",     "#1a1b26"] --normal bg
-colorBgBrightList =     ["#3b3838",      "#113b3f",        "#36343f",     "#2a2b36"] --lighter bg
-trayerBgNormalList =    ["0x00282828",   "0x00002b36",     "0x00282a36",  "0x1a1b26"] --trayer tint
-colorFgNormalList =     ["#ebdbb2",      "#839496",        "#f8f8f2",     "#a9b1d6"] --normal fg
-color01NormalList =     ["#343428",      "#073642",        "#000000",     "#32344a"] --black
-color01BrightList =     ["#928374",      "#002b36",        "#555555",     "#444b6a"] --bright black
-color02NormalList =     ["#cc241d",      "#dc3ddf",        "#ff5555",     "#f7768e"] --red
-color02BrightList =     ["#fb4934",      "#cb4b16",        "#ff1010",     "#ff7a93"] --bright red
-color03NormalList =     ["#98971a",      "#859900",        "#50fa7b",     "#9ece6a"] --green
-color03BrightList =     ["#b8bb26",      "#586e75",        "#02fe03",     "#b9f27c"] --bright green
-color04NormalList =     ["#d79921",      "#b58900",        "#f1fa8c",     "#e0af68"] --yellow
-color04BrightList =     ["#fabd2f",      "#657b83",        "#ffff02",     "#ff9e64"] --bright yellow
-color05NormalList =     ["#458588",      "#268bd2",        "#bd93f9",     "#7aa2f7"] --blue
-color05BrightList =     ["#83a598",      "#839496",        "#4d31fd",     "#7da6ff"] --bright blue
-color06NormalList =     ["#b16286",      "#d33682",        "#ff79c6",     "#ad8ee6"] --magenta
-color06BrightList =     ["#d3869b",      "#6c71c4",        "#ff20d8",     "#bb9af7"] --bright magenta
-color07NormalList =     ["#689d6a",      "#2aa198",        "#8be9fd",     "#449dab"] --cyan
-color07BrightList =     ["#8ec07c",      "#93a1a1",        "#03feff",     "#0db9d7"] --bright cyan
-color08NormalList =     ["#a89984",      "#eee8d5",        "#bbbbbb",     "#787c99"] --white
-color08BrightList =     ["#ebdbb2",      "#fdf6e3",        "#ffffff",     "#acb0d0"] --bright white
-colorFocusList =        ["#458588",      "#859900",        "#ff79c6",     "#449dab"] --focus and run launcher color
+colorSchemeList =       ["gruvbox",      "solarized",      "dracula",     "tokyo-night",    "oceanic-next"]
+colorSchemePrettyList = ["Gruvbox Dark", "Solarized Dark", "Dracula",     "Tokyo Night",    "Oceanic Next"]
+colorBgNormalList =     ["#282828",      "#002b36",        "#282a36",     "#1a1b26",        "#1b2b34"] --normal bg
+colorBgBrightList =     ["#3b3838",      "#113b3f",        "#36343f",     "#2a2b36",        "#2b3b41"] --lighter bg
+trayerBgNormalList =    ["0x00282828",   "0x00002b36",     "0x00282a36",  "0x1a1b26",       "0x1b2b34"] --trayer tint
+colorFgNormalList =     ["#ebdbb2",      "#839496",        "#f8f8f2",     "#a9b1d6",        "#d8dee9"] --normal fg
+color01NormalList =     ["#343428",      "#073642",        "#000000",     "#32344a",        "#29414f"] --black
+color01BrightList =     ["#928374",      "#002b36",        "#555555",     "#444b6a",        "#405860"] --bright black
+color02NormalList =     ["#cc241d",      "#dc3ddf",        "#ff5555",     "#f7768e",        "#ec5f67"] --red
+color02BrightList =     ["#fb4934",      "#cb4b16",        "#ff1010",     "#ff7a93",        "#ff3130"] --bright red
+color03NormalList =     ["#98971a",      "#859900",        "#50fa7b",     "#9ece6a",        "#99c794"] --green
+color03BrightList =     ["#b8bb26",      "#586e75",        "#02fe03",     "#b9f27c",        "#66fa56"] --bright green
+color04NormalList =     ["#d79921",      "#b58900",        "#f1fa8c",     "#e0af68",        "#fac863"] --yellow
+color04BrightList =     ["#fabd2f",      "#657b83",        "#ffff02",     "#ff9e64",        "#ffca4f"] --bright yellow
+color05NormalList =     ["#458588",      "#268bd2",        "#bd93f9",     "#7aa2f7",        "#6699cc"] --blue
+color05BrightList =     ["#83a598",      "#839496",        "#4d31fd",     "#7da6ff",        "#4477ee"] --bright blue
+color06NormalList =     ["#b16286",      "#d33682",        "#ff79c6",     "#ad8ee6",        "#c594c5"] --magenta
+color06BrightList =     ["#d3869b",      "#6c71c4",        "#ff20d8",     "#bb9af7",        "#d864d8"] --bright magenta
+color07NormalList =     ["#689d6a",      "#2aa198",        "#8be9fd",     "#449dab",        "#5fb3b3"] --cyan
+color07BrightList =     ["#8ec07c",      "#93a1a1",        "#03feff",     "#0db9d7",        "#30d2d0"] --bright cyan
+color08NormalList =     ["#a89984",      "#eee8d5",        "#bbbbbb",     "#787c99",        "#65737e"] --white
+color08BrightList =     ["#ebdbb2",      "#fdf6e3",        "#ffffff",     "#acb0d0",        "#d8dee9"] --bright white
+colorFocusList =        ["#458588",      "#859900",        "#ff79c6",     "#ff9e64",        "#c594c5"] --focus and run launcher color
 
 colorScheme =           colorSchemeList!!myColorScheme
 colorSchemePretty =     colorSchemePrettyList!!myColorScheme
