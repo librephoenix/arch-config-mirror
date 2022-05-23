@@ -30,6 +30,7 @@ color01NormalList, color01BrightList, color02NormalList, color02BrightList :: [S
 color03NormalList, color03BrightList, color04NormalList, color04BrightList :: [String]
 color05NormalList, color05BrightList, color06NormalList, color06BrightList :: [String]
 color07NormalList, color07BrightList, color08NormalList, color08BrightList :: [String]
+colorFocusList, colorSecondaryList :: [String]
 
 colorScheme, colorSchemePretty :: String
 colorBgNormal, colorFgNormal  :: [Char]
@@ -37,6 +38,7 @@ color01Normal, color01Bright, color02Normal, color02Bright :: String
 color03Normal, color03Bright, color04Normal, color04Bright :: String
 color05Normal, color05Bright, color06Normal, color06Bright :: String
 color07Normal, color07Bright, color08Normal, color08Bright :: String
+colorFocus, colorSecondary :: String
 
 -- color scheme enumerations
 gruvboxIndex, solarizedIndex, draculaIndex, tokyoNightIndex, oceanicNextIndex, ubuntuIndex :: Int
@@ -48,7 +50,7 @@ oceanicNextIndex =   4
 ubuntuIndex =        5
 
 -- choose a color scheme
-myColorScheme = gruvboxIndex
+myColorScheme = oceanicNextIndex
 
 colorSchemeList =       ["gruvbox",      "solarized",      "dracula",     "tokyo-night",    "oceanic-next"]
 colorSchemePrettyList = ["Gruvbox Dark", "Solarized Dark", "Dracula",     "Tokyo Night",    "Oceanic Next"]
@@ -73,6 +75,7 @@ color07BrightList =     ["#8ec07c",      "#93a1a1",        "#03feff",     "#0db9
 color08NormalList =     ["#a89984",      "#eee8d5",        "#bbbbbb",     "#787c99",        "#65737e"] --white
 color08BrightList =     ["#ebdbb2",      "#fdf6e3",        "#ffffff",     "#acb0d0",        "#d8dee9"] --bright white
 colorFocusList =        ["#458588",      "#859900",        "#ff79c6",     "#ff9e64",        "#c594c5"] --focus and run launcher color
+colorSecondaryList =    ["#d79921",      "#dc3ddf",        "#bbbbbb",     "#0db9d7",        "#fac863"] --secondary color
 
 colorScheme =           colorSchemeList!!myColorScheme
 colorSchemePretty =     colorSchemePrettyList!!myColorScheme
@@ -97,6 +100,7 @@ color07Bright =         color07BrightList!!myColorScheme --bright cyan
 color08Normal =         color08NormalList!!myColorScheme --white
 color08Bright =         color08BrightList!!myColorScheme --bright white
 colorFocus =            colorFocusList!!myColorScheme --focus and run launcher color
+colorSecondary =        colorSecondaryList!!myColorScheme
 
 -- MY SETTINGS
 -- Border colors for unfocused and focused windows, respectively.
