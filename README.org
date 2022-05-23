@@ -7,11 +7,12 @@ I use Arch Linux btw..
 This repository stores my dotfiles (configuration files) for my personal Arch Linux system. I manage this repository using the git bare repository method (credit for this method to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
 ** Screenshots
 Gotta have screenshots after informing you that I run Arch..
-[[.img/silasa-desktop-work.png]]
-[[.img/silasa-desktop-btm.png]]
-[[.img/silasa-desktop-emacs-cfw.png]]
+[[.img/silasa-desktop-work-gruvbox.png]]
+[[.img/silasa-desktop-octave-oceanic-next.png]]
 
-Credit to [[https://unsplash.com/@bkview][Jason McCann on Unsplash]] for [[https://unsplash.com/photos/Gj76llxJHd4][the background]].
+Credit to [[https://unsplash.com/@bkview][Jason McCann on Unsplash]] for [[https://unsplash.com/photos/Gj76llxJHd4][the background in my Gruvbox theme]].
+Credit to [[https://unsplash.com/@timberfoster][Tim Foster on Unsplash]] for the [[https://unsplash.com/photos/wPXBkZ-Pxjw][the background in my Oceanic Next theme]].
+
 ** TLDR (List of Literate Configs)
 Below is the taxonomy of my literate (org mode) config files, which each control the plethora of config files related to the programs I use.  I use these (literate org mode files) to configure my machine.
 | Literate Config                        | Config Classification |
