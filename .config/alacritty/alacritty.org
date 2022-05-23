@@ -214,33 +214,33 @@ Oceanic Next color scheme.  Anchored as "oceanic_next"
 Credit to [[https://github.com/adrian5][adrian5]].
 #+BEGIN_SRC yaml :tangle alacritty.yml
 # Colors (Oceanic Next)
-colors:
-  # Default colors
-  primary:
-    background: '0x1b2b34'
-    foreground: '0xd8dee9'
+  oceanic_next: &oceanic_next
+    # Default colors
+    primary:
+      background: '0x1b2b34'
+      foreground: '0xd8dee9'
 
-  # Normal colors
-  normal:
-    black:   '0x29414f'
-    red:     '0xec5f67'
-    green:   '0x99c794'
-    yellow:  '0xfac863'
-    blue:    '0x6699cc'
-    magenta: '0xc594c5'
-    cyan:    '0x5fb3b3'
-    white:   '0x65737e'
+    # Normal colors
+    normal:
+      black:   '0x29414f'
+      red:     '0xec5f67'
+      green:   '0x99c794'
+      yellow:  '0xfac863'
+      blue:    '0x6699cc'
+      magenta: '0xc594c5'
+      cyan:    '0x5fb3b3'
+      white:   '0x65737e'
 
-  # Bright colors
-  bright:
-    black:   '0x405860'
-    red:     '0xec5f67'
-    green:   '0x99c794'
-    yellow:  '0xfac863'
-    blue:    '0x6699cc'
-    magenta: '0xc594c5'
-    cyan:    '0x5fb3b3'
-    white:   '0xadb5c0'
+    # Bright colors
+    bright:
+      black:   '0x405860'
+      red:     '0xec5f67'
+      green:   '0x99c794'
+      yellow:  '0xfac863'
+      blue:    '0x6699cc'
+      magenta: '0xc594c5'
+      cyan:    '0x5fb3b3'
+      white:   '0xadb5c0'
 
 #+END_SRC
 
@@ -303,7 +303,7 @@ Select a color scheme by specifying colors: *anchor, where anchor selects one of
 
 #+BEGIN_SRC yaml :tangle alacritty.yml
 #Select color theme
-colors: *gruvbox_dark
+colors: *oceanic_next
 
 #+END_SRC
 
