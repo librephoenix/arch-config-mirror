@@ -1,0 +1,46 @@
+Config { font = "xft:UbuntuMono-R:size=16"
+       , additionalFonts = ["xft:Symbols Nerd Font:size=16","xft:Bedstead for Powerline:size=21"]
+       , borderColor = "#1b2b34"
+       , border = FullB
+       , bgColor = "#1b2b34"
+       , fgColor = "#d8dee9"
+       , position = TopSize C 100 30
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False 
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [
+                      Run UnsafeStdinReader
+                    , Run Date "<fn=2><fc=#2b3b41,#1b2b34>\xe0b2</fc></fn><fc=#c594c5,#2b3b41> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P </fc><fn=2><fc=#2b3b41,#1b2b34>\xe0b0</fc></fn> " "date" 10
+                    , Run BatteryP ["BAT0"]
+                      ["-t", "<acstatus>",
+                      "-L", "10", "-H", "80", "-p", "3", "--",
+                      "-O","<fc=#1b2b34,#5fb3b3> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=#5fb3b3,#2b3b41>\xe0b0</fc></fn><fc=#99c794,#2b3b41> <fn=1>\xf583</fn><left>% </fc><fn=2><fc=#2b3b41,#1b2b34>\xe0b0</fc></fn>",
+                      "-i","<fc=#1b2b34,#5fb3b3> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=#5fb3b3,#2b3b41>\xe0b0</fc></fn><fc=#99c794,#2b3b41> <fn=1>\xf578</fn><left>% </fc><fn=2><fc=#2b3b41,#1b2b34>\xe0b0</fc></fn>",
+                      "-o","<fc=#1b2b34,#5fb3b3> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=#5fb3b3,#2b3b41>\xe0b0</fc></fn><fc=#ec5f67,#2b3b41> <fn=1>\xf58b</fn><left>% </fc><fn=2><fc=#2b3b41,#1b2b34>\xe0b0</fc></fn>",
+                      "-L", "-15", "-H", "-5",
+                      "-l", "#ec5f67", "-m", "#6699cc", "-h", "#99c794"] 10
+                    , Run Brightness
+                      [ "-t", "<fc=#fac863><fn=1>\xf5dd</fn> <percent>% </fc><fn=2><fc=#1b2b34,#2b3b41>\xe0b0</fc></fn>", "--",
+                        "-D", "intel_backlight"
+                      ] 2 
+                    , Run Volume "default" "Master"
+                      [ "-t", "<status>", "--"
+                      , "--on", "<fc=#5fb3b3,#2b3b41> <fn=1>\xf028</fn> <volume>% </fc><fn=2><fc=#2b3b41,#1b2b34>\xe0b0</fc></fn>"
+                      , "--onc", "#5fb3b3"
+                      , "--off", "<fc=#c594c5,#2b3b41> <fn=1>\xf026</fn>Mute </fc><fn=2><fc=#2b3b41,#1b2b34>\xe0b0</fc></fn>"
+                      , "--offc", "#c594c5"
+                      ] 1 
+                    , Run Com "/home/emmet/.config/xmobar/padding-icon.sh" [] "trayerpad" 2
+                    , Run Mail [("<fn=1><fc=#6699cc>\xf6ed</fc></fn> ", "~/.mail/INBOX")] "mail"
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> <action=`xdotool key Super_L+e`>%mail%</action> }<action=`xdotool key Super_L+c`>%date%</action>{<box color=#2b3b41 width=3>%UnsafeStdinReader%</box> %trayerpad%"
+       }
+}
