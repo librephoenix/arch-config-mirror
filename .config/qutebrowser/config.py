@@ -171,6 +171,9 @@ c.tabs.width = '3%'
 # for a blank page.
 # Type: FuzzyUrl
 c.url.default_page = str(config.configdir)+'/qute-home.html'
+# Page(s) to open at the start.
+# Type: List of FuzzyUrl, or FuzzyUrl
+c.url.start_pages = str(config.configdir)+'/qute-home.html'
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -197,10 +200,6 @@ c.url.searchengines = {'DEFAULT': 'https://startpage.com/do/search?query={}',
                        'bp'     : 'https://bulbapedia.bulbagarden.net/wiki/index.php?title=Special%3ASearch&search={}&go=Go',
                        'aw'     : 'https://wiki.archlinux.org/index.php?search={}&title=Special%3ASearch&wprov=acrw1',
                        'az'     : 'https://www.amazon.com/s?k={}'}
-
-# Page(s) to open at the start.
-# Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = str(config.configdir)+'/qute-home.html'
 
 # Set the main window background to transparent.  This allows having a
 # transparent tab- or statusbar (might require a compositor such as
@@ -235,22 +234,43 @@ config.bind(',S', 'set content.user_stylesheets '+current_stylesheet_path)
 # Base16 qutebrowser template by theova
 # Gruvbox dark, medium scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
-base00 = "#2f2f2f"
-base01 = "#3c3836"
-base02 = "#504945"
-base03 = "#665c54"
-base04 = "#bdae93"
-base05 = "#d5c4a1"
-base06 = "#ebdbb2"
-base07 = "#fbf1c7"
-base08 = "#fb4934"
-base09 = "#fe8019"
-base0A = "#fabd2f"
-base0B = "#b8bb26"
-base0C = "#8ec07c"
-base0D = "#83a598"
-base0E = "#d3869b"
-base0F = "#d65d0e"
+base16_theme = "oceanic-next"
+
+if base16_theme == "gruvbox":
+    base00 = "#2f2f2f"
+    base01 = "#3c3836"
+    base02 = "#504945"
+    base03 = "#665c54"
+    base04 = "#bdae93"
+    base05 = "#d5c4a1"
+    base06 = "#ebdbb2"
+    base07 = "#fbf1c7"
+    base08 = "#fb4934"
+    base09 = "#fe8019"
+    base0A = "#fabd2f"
+    base0B = "#b8bb26"
+    base0C = "#8ec07c"
+    base0D = "#83a598"
+    base0E = "#d3869b"
+    base0F = "#d65d0e"
+
+elif base16_theme == "oceanic-next":
+    base00 = "#1B2B34"
+    base01 = "#343D46"
+    base02 = "#4F5B66"
+    base03 = "#65737E"
+    base04 = "#A7ADBA"
+    base05 = "#C0C5CE"
+    base06 = "#CDD3DE"
+    base07 = "#D8DEE9"
+    base08 = "#EC5f67"
+    base09 = "#F99157"
+    base0A = "#FAC863"
+    base0B = "#99C794"
+    base0C = "#5FB3B3"
+    base0D = "#6699CC"
+    base0E = "#C594C5"
+    base0F = "#AB7967"
 
 # set qutebrowser colors
 
