@@ -5,7 +5,8 @@ I use Arch Linux btw..
 
 ** What is this repository?
 This repository stores my dotfiles (configuration files) for my personal Arch Linux system. I manage this repository using the git bare repository method (credit for this method to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
-** Screenshots
+
+** [[./.screenshots.org][Screenshots]]
 Gotta have screenshots after informing you that I run Arch..
 [[.img/silasa-desktop-work-gruvbox.png]]
 [[.img/silasa-desktop-octave-oceanic-next.png]]

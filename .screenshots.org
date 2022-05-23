@@ -1,0 +1,18 @@
+#+TITLE: emmet's Desktop Screenshots
+#+AUTHOR: emmet
+
+Here is a more full list of desktop rice screenshots from my system:
+
+** Gruvbox
+[[.img/silasa-desktop-work-gruvbox.png]]
+[[.img/silasa-desktop-btm-gruvbox.png]]
+[[.img/silasa-desktop-emacs-cfw-gruvbox.png]]
+
+Credit to [[https://unsplash.com/@bkview][Jason McCann on Unsplash]] for [[https://unsplash.com/photos/Gj76llxJHd4][the background in my Gruvbox theme]].
+
+** Oceanic Next
+[[.img/silasa-desktop-work-oceanic-next.png]]
+[[.img/silasa-desktop-octave-oceanic-next.png]]
+[[.img/silasa-desktop-ranger-oceanic-next.png]]
+
+Credit to [[https://unsplash.com/@timberfoster][Tim Foster on Unsplash]] for the [[https://unsplash.com/photos/wPXBkZ-Pxjw][the background in my Oceanic Next theme]].
