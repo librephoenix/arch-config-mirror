@@ -285,10 +285,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_semicolon     ), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'"))
 
     -- launch workspace switch dmenu script
-    , ((modm .|. shiftMask, xK_w     ), spawn "~/.xmonad/workspace-select.sh")
+    , ((modm .|. shiftMask, xK_w     ), spawn ("~/.xmonad/workspace-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
 
-    -- launch workspace switch dmenu script
-    , ((modm,               xK_w     ), spawn "~/.xmonad/template-select.sh")
+    -- launch app template dmenu script
+    , ((modm,               xK_w     ), spawn ("~/.xmonad/template-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
 
     -- close focused window
     , ((modm, xK_q     ), kill)
@@ -502,7 +502,7 @@ myFullscreenEventHook = fullscreenEventHook
 --
 -- By default, do nothing.
 myStartupHook = do
-    spawnOnce ("~/.xmonad/startup.sh " ++ trayerBgNormal)
+    spawnOnce ("~/.xmonad/startup.sh " ++ trayerBgNormal ++ " '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
