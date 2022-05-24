@@ -116,4 +116,4 @@ alias paclist='echo ":: Overwriting backup pacman .packagelist file" &&
 #+END_SRC
 This generates three package lists, one for the standard repositories ([[./.packagelist][.packagelist]]), one for the AUR ([[./.aurpackagelist][.aurpackagelist]]), and one for Python pip ([[./.pippackagelist][.pippackagelist]]).
 
-Since I manage my Haskell programs with [[https://docs.haskellstack.org/en/stable/README/][Stack]], I also have a Stack package list ([[./stackpackagelist][.stackpackagelist]]) which I maintain manually, since I don't have too many Haskell programs.
+Since I manage my Haskell programs with [[https://docs.haskellstack.org/en/stable/README/][Stack]], I also have a Stack package list ([[./.stackpackagelist][.stackpackagelist]]) which I maintain manually, since I don't have too many Haskell programs.
