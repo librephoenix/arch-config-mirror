@@ -1,6 +1,12 @@
 #!/bin/bash
 
 trayertint=$1
+
+nbColor=$2
+nfColor=$3
+sbColor=$4
+sfColor=$5
+
 # Startup script called by xmonad to start necessary programs
 #
 ## Kill previous instances of applications (Prevents multiple instances of the following if XMonad is restarted durin the X session)
@@ -23,7 +29,7 @@ xautolock -time 5 -locker "xsecurelock" &
 twmnd &
 nitrogen --restore &
 /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor 0 &
-~/.xmonad/workspace-select.sh
+~/.xmonad/workspace-select.sh ${nbColor} ${nfColor} ${sbColor} ${sfColor}
 gnome-keyring-daemon
 mbsync -a && mu index &
 nm-applet &
