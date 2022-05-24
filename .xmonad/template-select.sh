@@ -1,5 +1,10 @@
 #!/bin/sh
 
+nbColor=$1
+nfColor=$2
+sbColor=$3
+sfColor=$4
+
 choices=$(/usr/bin/ls ~/.xmonad/workspace-templates/)
 
 promptarray[0]="What to do?"
@@ -17,6 +22,6 @@ index=$(($RANDOM % $size))
 
 selectedprompt=${promptarray[$index]}
 
-choice=$(echo -e "$choices" | dmenu -i -nf '#282828' -nf '#ebdbb2' -sb '#458588' -sf '#ebdbb2' -fn 'UbuntuMono-R:regular:pixelsize=28' -p "$selectedprompt")
+choice=$(echo -e "$choices" | dmenu -i -nb ${nbColor} -nf ${nfColor} -sb ${sbColor} -sf ${sfColor} -fn 'UbuntuMono-R:regular:pixelsize=28' -p "$selectedprompt")
 
 exec ~/.xmonad/workspace-templates/$choice
