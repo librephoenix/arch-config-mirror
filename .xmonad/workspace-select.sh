@@ -1,5 +1,10 @@
 #!/bin/sh
 
+nbColor=$1
+nfColor=$2
+sbColor=$3
+sfColor=$4
+
 choices="writing\nbrowsing\ncoding\nmusic\nart\n3dmodel\nfinances\nricing\nother"
 
 promptarray[0]="What do you wish to work on?"
@@ -17,7 +22,7 @@ index=$(($RANDOM % $size))
 
 selectedprompt=${promptarray[$index]}
 
-choice=$(echo -e "$choices" | dmenu -i -nf '#282828' -nf '#ebdbb2' -sb '#458588' -sf '#ebdbb2' -fn 'UbuntuMono-R:regular:pixelsize=28' -p "$selectedprompt")
+choice=$(echo -e "$choices" | dmenu -i -nb ${nbColor} -nf ${nfColor} -sb ${sbColor} -sf ${sfColor} -fn 'UbuntuMono-R:regular:pixelsize=28' -p "$selectedprompt")
 
 case "$choice" in
 	writing) ~/.xmonad/xmonadctl 1 ;;
