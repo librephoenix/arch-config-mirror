@@ -1,6 +1,49 @@
 config.load_autoconfig(False)
+
+# base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
+# Base16 qutebrowser template by theova
+# Gruvbox dark, medium scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+
+base16_theme = "oceanic-next"
+
+if base16_theme == "gruvbox":
+    base00 = "#2f2f2f"
+    base01 = "#3c3836"
+    base02 = "#504945"
+    base03 = "#665c54"
+    base04 = "#bdae93"
+    base05 = "#d5c4a1"
+    base06 = "#ebdbb2"
+    base07 = "#fbf1c7"
+    base08 = "#fb4934"
+    base09 = "#fe8019"
+    base0A = "#fabd2f"
+    base0B = "#b8bb26"
+    base0C = "#8ec07c"
+    base0D = "#83a598"
+    base0E = "#d3869b"
+    base0F = "#d65d0e"
+
+elif base16_theme == "oceanic-next":
+    base00 = "#1B2B34"
+    base01 = "#343D46"
+    base02 = "#4F5B66"
+    base03 = "#65737E"
+    base04 = "#A7ADBA"
+    base05 = "#C0C5CE"
+    base06 = "#CDD3DE"
+    base07 = "#D8DEE9"
+    base08 = "#EC5f67"
+    base09 = "#F99157"
+    base0A = "#FAC863"
+    base0B = "#99C794"
+    base0C = "#5FB3B3"
+    base0D = "#6699CC"
+    base0E = "#C594C5"
+    base0F = "#AB7967"
+
 current_stylesheet_directory = '~/.config/qutebrowser/themes/'
-current_stylesheet = 'gruvbox-all-sites.css'
+current_stylesheet = base16_theme+'-all-sites.css'
 current_stylesheet_path = current_stylesheet_directory + current_stylesheet
 config.set('content.user_stylesheets', current_stylesheet_path)
 
@@ -229,48 +272,6 @@ config.bind('yf', 'hint links yank')
 config.bind(',m', 'hint links spawn freetube {hint-url}')
 config.bind(',s', 'set content.user_stylesheets \'\'')
 config.bind(',S', 'set content.user_stylesheets '+current_stylesheet_path)
-
-# base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
-# Base16 qutebrowser template by theova
-# Gruvbox dark, medium scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
-
-base16_theme = "oceanic-next"
-
-if base16_theme == "gruvbox":
-    base00 = "#2f2f2f"
-    base01 = "#3c3836"
-    base02 = "#504945"
-    base03 = "#665c54"
-    base04 = "#bdae93"
-    base05 = "#d5c4a1"
-    base06 = "#ebdbb2"
-    base07 = "#fbf1c7"
-    base08 = "#fb4934"
-    base09 = "#fe8019"
-    base0A = "#fabd2f"
-    base0B = "#b8bb26"
-    base0C = "#8ec07c"
-    base0D = "#83a598"
-    base0E = "#d3869b"
-    base0F = "#d65d0e"
-
-elif base16_theme == "oceanic-next":
-    base00 = "#1B2B34"
-    base01 = "#343D46"
-    base02 = "#4F5B66"
-    base03 = "#65737E"
-    base04 = "#A7ADBA"
-    base05 = "#C0C5CE"
-    base06 = "#CDD3DE"
-    base07 = "#D8DEE9"
-    base08 = "#EC5f67"
-    base09 = "#F99157"
-    base0A = "#FAC863"
-    base0B = "#99C794"
-    base0C = "#5FB3B3"
-    base0D = "#6699CC"
-    base0E = "#C594C5"
-    base0F = "#AB7967"
 
 # set qutebrowser colors
 
