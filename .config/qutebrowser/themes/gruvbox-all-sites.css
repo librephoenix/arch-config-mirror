@@ -1711,3 +1711,85 @@ a.comment-user.owner {
   background-color: #b8bb26 !important;
   color: #282828 !important;
 }
+.gl-dark {
+  background-color: #232323;
+}
+.nav-sidebar-inner-scroll {
+  background-color: #232323;
+}
+.header-content {
+  background-color: #232323;
+}
+.header-content {
+  background-color: #232323;
+}
+.file-title-flex-parent {
+  background-color: #232323;
+  background: #232323;
+}
+.js-file-title {
+  background-color: #232323;
+  background: #232323;
+}
+.file-title-flex-parent {
+  background-color: #232323;
+  background: #232323;
+}
+.file-holder {
+  background-color: #232323;
+  background: #232323;
+}
+.file-content.md {
+  background-color: #232323;
+  background: #232323;
+}
+.limited-width-container {
+  background-color: #232323;
+}
+.readme-holder {
+  background-color: #232323;
+}
+.blob-viewer {
+  background-color: #232323;
+}
+.dropdown-menu-toggle {
+  background-color: #232323;
+}
+.toggle-sidebar-button {
+  background-color: #232323;
+}
+thead {
+  background-color: #232323;
+}
+table {
+  background-color: #232323;
+}
+.md {
+  background-color: #232323;
+}
+.file-title-flex-parent, .file-holder .file-title-flex-parent {
+  background-color: #232323;
+  border-bottom: #282828;
+}
+.md table:not(.code) tr th, table.table:not(.gl-table) tr th {
+  background-color: #232323;
+  border-bottom: #282828;
+}
+.md table:not(.code) tbody {
+  background-color: #282828;
+  border: #232323;
+}
+body.gl-dark .navbar-gitlab {
+  background-color: #232323;
+}
+.layout-web--dark, .layout-web--dark .layout-web__body, .layout-web--night, .layout-web--night .layout-web__body {
+    background: #282828;
+}
+.w-gl--dark, .w-gl--night {
+    background: #282828;
+}
+.si101 {
+    font-size: 2px;
+    background-color: #282828; */
+    width: 0%;
+}
