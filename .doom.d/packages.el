@@ -50,6 +50,7 @@
 ;(unpin! t)
 
 (package! org-bullets)
+(package! org-roam)
 (package! toc-org)
 (package! beacon)
 (package! ox-reveal)
