@@ -3,7 +3,6 @@
 ;; My default user identity as my yt alias
 (setq user-full-name "emmet")
 
-(load! "~/.doom.d/private.el")
 
 ;; This shows me normal line numbers
 (setq display-line-numbers-type t)
@@ -54,7 +53,8 @@
 ;; Enable the auto-revert mode globally. This is quite useful when you have
 ;; multiple buffers opened that Org-mode can update after tangling.
 ;; All the buffers will be updated with what changed on the disk.
-(global-auto-revert-mode)
+(setq global-auto-revert-mode t)
+(setq auto-revert-use-notify nil)
 
 ;; Add Org files to the agenda when we save them
 (defun to-agenda-on-save-org-mode-file()
@@ -202,6 +202,16 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :desc "Add new entry to hledger journal"
       "e" 'hledger-jentry)
 
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Insert new roam node"
+      "i" 'org-roam-node-insert)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Find roam node"
+      "." 'org-roam-node-find)
+
 (map! :localleader
       :map hledger-mode-map
       :desc "Reschedule transaction at point"
@@ -211,5 +221,12 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :map hledger-mode-map
       :desc "Edit amount at point"
       "t a" 'hledger-edit-amount)
+
+(setq org-roam-directory "~/Roam")
+(setq org-roam-db-location "~/Roam/org-roam.db")
+
+(org-roam-db-autosync-mode)
+
+(load! "~/.doom.d/private.el")
 
 (org-agenda-list)
