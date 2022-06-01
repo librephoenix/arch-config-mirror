@@ -290,6 +290,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch app template dmenu script
     , ((modm,               xK_w     ), spawn ("~/.xmonad/template-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
 
+    -- launch virt-manager
+    , ((modm,               xK_v     ), spawn "virt-manager")
+
     -- close focused window
     , ((modm, xK_q     ), kill)
 
