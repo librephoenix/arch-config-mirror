@@ -222,8 +222,36 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :desc "Edit amount at point"
       "t a" 'hledger-edit-amount)
 
-(setq org-roam-directory "~/Roam")
-(setq org-roam-db-location "~/Roam/org-roam.db")
+(setq org-roam-directory "~/Teaching.p/Roam"
+      org-roam-db-location "~/Teaching.p/Roam/org-roam.db")
+
+(defun org-roam-switch-db ()
+  "Switch to a different org-roam database"
+  (interactive)
+  (setq org-roam-db-choice (completing-read "Select org roam database: "
+                            '("Default" "Family" "Teaching" "Producer" "Gamedev") nil t))
+  (if (string= org-roam-db-choice "Default")
+      (setq org-roam-directory "~/Roam"
+            org-roam-db-location "~/Roam/org-roam.db"))
+  (if (string= org-roam-db-choice "Teaching")
+      (setq org-roam-directory "~/Teaching.p/Roam"
+            org-roam-db-location "~/Teaching.p/Roam/org-roam.db"))
+  (if (string= org-roam-db-choice "Family")
+      (setq org-roam-directory "~/Family.s/Roam"
+            org-roam-db-location "~/Family.s/Roam/org-roam.db"))
+  (if (string= org-roam-db-choice "Producer")
+      (setq org-roam-directory "~/Producer.p/Roam"
+            org-roam-db-location "~/Producer.p/Roam/org-roam.db"))
+  (if (string= org-roam-db-choice "Gamedev")
+      (setq org-roam-directory "~/Gamedev.p/Roam"
+            org-roam-db-location "~/Gamedev.p/Roam/org-roam.db"))
+  (message (concat "Switched to " org-roam-db-choice " org-roam database."))
+  )
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Switch org-roam database"
+      "s" 'org-roam-switch-db)
 
 (org-roam-db-autosync-mode)
 
