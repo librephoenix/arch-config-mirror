@@ -31,7 +31,6 @@
 ;; Disables custom.el
 (setq custom-file null-device)
 
-
 ;;;------ Org mode configuration ------;;;
 
 ;; Set default org directory
