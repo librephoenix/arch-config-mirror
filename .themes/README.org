@@ -1,0 +1,4 @@
+#+TITLE: Themes
+
+** Attribution
+All theme directories beginning with My (i.e. MyGruvbox, MyOceanicNext, etc...) are simply forks of [[https://github.com/SafwanLjd][SafwanLjd's]] [[https://github.com/SafwanLjd/BetterGruvbox][BetterGruvbox]].
