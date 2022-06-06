@@ -1,8 +1,9 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;;;------ User configuration ------;;;
+
 ;; My default user identity as my yt alias
 (setq user-full-name "emmet")
-
 
 ;; This shows me normal line numbers
 (setq display-line-numbers-type t)
@@ -10,11 +11,31 @@
 ;; Theme
 (setq doom-theme 'doom-oceanic-next)
 
-;; Beacon shows where the cursor is, even when fast scrolling
-(setq beacon-mode t)
+;; Transparent background
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
 (solaire-global-mode +1)
+
+;; Beacon shows where the cursor is, even when fast scrolling
+(setq beacon-mode t)
+
+;; Quicker window management keybindings
+(bind-key* "C-j" #'evil-window-down)
+(bind-key* "C-k" #'evil-window-up)
+(bind-key* "C-h" #'evil-window-left)
+(bind-key* "C-l" #'evil-window-right)
+(bind-key* "C-q" #'evil-window-delete)
+
+;; Disables custom.el
+(setq custom-file null-device)
+
+
+;;;------ Org mode configuration ------;;;
+
+;; Set default org directory
+(setq org-directory "~/Org")
 
 ;; This allows you to actually control how big images are in org docs!
 (setq org-image-actual-width nil)
@@ -35,14 +56,6 @@
       (add-hook 'markdown-mode-hook 'toc-org-mode))
   (warn "toc-org not found"))
 
-(setq org-directory "~/Org")
-
-;; Set folder for my org agenda files
-(setq org-agenda-files (list "/home/emmet/Family.s/Agenda"
-                             "/home/emmet/Producer.p/Agenda"
-                             "/home/emmet/Agenda"
-                             "/home/emmet/Teaching.p/Agenda"
-                             "/home/emmet/Gamedev.p/Agenda"))
 
 ;;---- this block from http://fgiasson.com/blog/index.php/2016/06/21/optimal-emacs-settings-for-org-mode-for-literate-programming/ ----;;
 ;; Tangle Org files when we save them
@@ -52,19 +65,37 @@
 
 (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
 
-;; Enable the auto-revert mode globally. This is quite useful when you have
-;; multiple buffers opened that Org-mode can update after tangling.
-;; All the buffers will be updated with what changed on the disk.
+;; Enable autorevert globally so that buffers update when files change on disk.
+;; Very useful when used with file syncing (i.e. syncthing)
 (setq global-auto-revert-mode t)
 (setq auto-revert-use-notify nil)
 
 ;; Add Org files to the agenda when we save them
-(defun to-agenda-on-save-org-mode-file()
-  (when (string= (message "%s" major-mode) "org-mode")
-    (org-agenda-file-to-front)))
+;;(defun to-agenda-on-save-org-mode-file()
+;;  (when (string= (message "%s" major-mode) "org-mode")
+;;    (org-agenda-file-to-front)))
 
-(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
+;;(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
 ;; ---- end block ---- ;;
+
+;; Custom function to convert org mode to ODP presentation
+;; Depends on bash, libreoffice, and pandoc
+(defun my-ox-odp ()
+  "Convert an org mode file to an ODP presentation."
+  (interactive)
+  (setq file-name (buffer-file-name))
+  (setq output-pptx-file-name (replace-regexp-in-string "\.org" "\.pptx" (buffer-file-name)))
+  (setq output-odp-file-name (replace-regexp-in-string "\.org" "\.odp" (buffer-file-name)))
+  (setq odp-style-file-name (completing-read "Choose style: "
+                                             '(("/home/emmet/.doom.d/scripts/ox-odp/styles/water.odp")) nil t))
+  (shell-command (concat "~/.doom.d/scripts/ox-odp.sh \"" (buffer-file-name) "\" \"" odp-style-file-name "\" > /dev/null"))
+  )
+
+(map! :leader
+      :desc "Convert org document to odp presentation"
+      "e p" 'my-ox-odp)
+
+;;;------ magit configuration ------;;;
 
 ;; Need the following two blocks to make magit work with git bare repos
 (defun ~/magit-process-environment (env)
@@ -81,19 +112,13 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (advice-add 'magit-process-environment
             :filter-return #'~/magit-process-environment)
 
+;;;------ elfeed configuration ------;;;
+
 (map! :leader
       :desc "Open elfeed"
       "o n" #'elfeed)
 
-(map! :leader
-      :desc "Open org calendar"
-      "o c" #'cfw:open-org-calendar)
-
-(bind-key* "C-j" #'evil-window-down)
-(bind-key* "C-k" #'evil-window-up)
-(bind-key* "C-h" #'evil-window-left)
-(bind-key* "C-l" #'evil-window-right)
-(bind-key* "C-q" #'evil-window-delete)
+;;;------ mu4e configuration ------;;;
 
 ;; Auto-load mu4e and org-mu4e on start
 (require 'mu4e)
@@ -139,55 +164,42 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
                  (mu4e~proc-move docid
                     (mu4e~mark-check-target target) "-N"))))
 
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+;;;------ Org agenda configuration ------;;;
 
-(setq custom-file null-device)
+;; Set folder for my org agenda files
+(setq org-agenda-files (list "/home/emmet/Family.s/Agenda"
+                             "/home/emmet/Producer.p/Agenda"
+                             "/home/emmet/Agenda"
+                             "/home/emmet/Teaching.p/Agenda"
+                             "/home/emmet/Gamedev.p/Agenda"))
 
+;; Function to be run when org-agenda is opened
 (defun org-agenda-open-hook ()
   "Hook to be run when org-agenda is opened"
   (org-agenda-follow-mode)
   )
 
-(add-hook 'org-agenda 'org-agenda-open-hook)
-
-(defun my-ox-odp ()
-  "Convert an org mode file to an ODP presentation."
-  (interactive)
-  (setq file-name (buffer-file-name))
-  (setq output-pptx-file-name (replace-regexp-in-string "\.org" "\.pptx" (buffer-file-name)))
-  (setq output-odp-file-name (replace-regexp-in-string "\.org" "\.odp" (buffer-file-name)))
-  (setq odp-style-file-name (completing-read "Choose style: "
-                                             '(("/home/emmet/.doom.d/scripts/ox-odp/styles/water.odp")) nil t))
-  (shell-command (concat "~/.doom.d/scripts/ox-odp.sh \"" (buffer-file-name) "\" \"" odp-style-file-name "\" > /dev/null"))
-  )
+;; Adds hook to org agenda mode, making follow mode active in org agenda
+(add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
 
 (map! :leader
-      :desc "Convert org document to odp presentation"
-      "e p" 'my-ox-odp)
+      :desc "Open org calendar"
+      "o c" #'cfw:open-org-calendar)
 
 ;;;-- hledger-mode configuration ;;;--
+
 ;;; Basic configuration
 (require 'hledger-mode)
 
 ;; To open files with .journal extension in hledger-mode
 (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
 
-;; Provide the path to you journal file.
-;; The default location is too opinionated.
+;; The default journal location is too opinionated.
 (setq hledger-jfile "/home/emmet/Family.s/Documents/Finances/hledger.journal")
 
-
 ;;; Auto-completion for account names
-;; For company-mode users,
+;; For company-mode users:
 (add-to-list 'company-backends 'hledger-company)
-
-(map! :leader
-      :desc "Jump to register"
-      "r" 'jump-to-register)
-
-(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.journal"))
-(set-register ?r '(file . "/home/emmet/README.org"))
 
 (map! :leader
       :prefix ("l" . "hledger")
@@ -213,6 +225,17 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :map hledger-mode-map
       :desc "Edit amount at point"
       "t a" 'hledger-edit-amount)
+
+;;;------ Registers ------;;;
+
+(map! :leader
+      :desc "Jump to register"
+      "r" 'jump-to-register)
+
+(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.journal"))
+(set-register ?r '(file . "/home/emmet/README.org"))
+
+;;;------ Org roam configuration ------;;;
 
 (setq org-roam-directory "~/Teaching.p/Roam"
       org-roam-db-location "~/Teaching.p/Roam/org-roam.db")
@@ -262,6 +285,12 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 (org-roam-db-autosync-mode)
 
+;;;------ Load my private config ------;;;
+
 (load! "~/.doom.d/private.el")
 
+;;;------ Extra ------;;;
+
+;; This line is here so that my org calendar works properly
+;; Auto opens org agenda on server startup
 (org-agenda-list)
