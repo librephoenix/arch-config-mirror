@@ -16,14 +16,14 @@ Credit to [[https://unsplash.com/@timberfoster][Tim Foster on Unsplash]] for the
 
 ** TLDR (List of Literate Configs)
 Below is the taxonomy of my literate (org mode) config files, which each control the plethora of config files related to the programs I use.  I use these (literate org mode files) to configure my machine.
-| Literate Config                        | Config Classification |
-|----------------------------------------+-----------------------|
-| TODO XMonad Literate Config            | Window Manager        |
-| [[./.shell.org][Shell Literate Config]]                  | Shell                 |
-| [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]              | Terminal              |
-| TODO Public Doom Emacs Literate Config | IDE                   |
-| TODO Ranger Literate Config            | File Manager          |
-| TODO Qutebrowser Literate Config       | Browser               |
+| Literate Config                   | Config Classification |
+|-----------------------------------+-----------------------|
+| TODO XMonad Literate Config       | Window Manager        |
+| [[./.shell.org][Shell Literate Config]]             | Shell                 |
+| [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]         | Terminal              |
+| [[./.doom.d/doom-pub.org][Public Doom Emacs Literate Config]] | IDE                   |
+| TODO Ranger Literate Config       | File Manager          |
+| TODO Qutebrowser Literate Config  | Browser               |
 
 ** Detailed List of Primary Configs
 Here is an organized list of my most important configs stored in this repository:
