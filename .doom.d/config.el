@@ -35,6 +35,8 @@
       (add-hook 'markdown-mode-hook 'toc-org-mode))
   (warn "toc-org not found"))
 
+(setq org-directory "~/Org")
+
 ;; Set folder for my org agenda files
 (setq org-agenda-files (list "/home/emmet/Family.s/Agenda"
                              "/home/emmet/Producer.p/Agenda"
