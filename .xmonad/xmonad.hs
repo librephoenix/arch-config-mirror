@@ -514,7 +514,7 @@ myStartupHook = do
 --
 main = do
   xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
-  xmonad $ docks def {
+  xmonad $ fullscreenSupportBorder $ docks def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
