@@ -25,8 +25,8 @@ Below is the taxonomy of my literate (org mode) config files, which each control
 | TODO Ranger Literate Config            | File Manager          |
 | TODO Qutebrowser Literate Config       | Browser               |
 
-** Detailed List of Configs
-Here is an organized list of configs stored in this repository:
+** Detailed List of Primary Configs
+Here is an organized list of my most important configs stored in this repository:
 - TODO XMonad Literate Config
   - [[./.xinitrc][.xinitrc]]
   - [[./.xmonad/xmonad.hs][xmonad.hs]]
@@ -45,9 +45,10 @@ Here is an organized list of configs stored in this repository:
 - [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]
   - [[./.config/alacritty/alacritty.yml][alacritty.yml]]
 - TODO Public Doom Emacs Literate Config
-  - TODO pub-config.el
-  - TODO pub-init.el
-  - TODO [public mu4e configs]
+  - [[./.doom.d/config.el][config.el]]
+  - [[./.doom.d/init.el][init.el]]
+  - [[./.doom.d/packages.el][packages.el]]
+  - [public mu4e configs]
 - TODO Qutebrowser Literate Config
   - [[./.config/qutebrowser/config.py][config.py]]
     - [[./.config/qutebrowser/themes][Custom Stylesheets]]
