@@ -204,16 +204,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :desc "Add new entry to hledger journal"
       "e" 'hledger-jentry)
 
-(map! :leader
-      :prefix ("N" . "org-roam notes")
-      :desc "Insert new roam node"
-      "i" 'org-roam-node-insert)
-
-(map! :leader
-      :prefix ("N" . "org-roam notes")
-      :desc "Find roam node"
-      "." 'org-roam-node-find)
-
 (map! :localleader
       :map hledger-mode-map
       :desc "Reschedule transaction at point"
@@ -249,6 +239,21 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
             org-roam-db-location "~/Gamedev.p/Roam/org-roam.db"))
   (message (concat "Switched to " org-roam-db-choice " org-roam database."))
   )
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Insert new roam node"
+      "c" 'org-roam-capture)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Insert new roam node"
+      "i" 'org-roam-node-insert)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Find roam node"
+      "." 'org-roam-node-find)
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
