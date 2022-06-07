@@ -31,6 +31,15 @@
 ;; Disables custom.el
 (setq custom-file null-device)
 
+;;;------ Registers ------;;;
+
+(map! :leader
+      :desc "Jump to register"
+      "r" 'jump-to-register)
+
+(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.journal"))
+(set-register ?r '(file . "/home/emmet/README.org"))
+
 ;;;------ Org mode configuration ------;;;
 
 ;; Set default org directory
@@ -93,6 +102,78 @@
 (map! :leader
       :desc "Convert org document to odp presentation"
       "e p" 'my-ox-odp)
+
+;;;------ Org roam configuration ------;;;
+
+(setq org-roam-directory "~/Roam"
+      org-roam-db-location "~/Roam/org-roam.db")
+
+(defun org-roam-switch-db ()
+  "Switch to a different org-roam database"
+  (interactive)
+  (setq org-roam-db-choice (completing-read "Select org roam database: "
+                            '("Default" "Family" "Teaching" "Producer" "Gamedev") nil t))
+  (if (string= org-roam-db-choice "Default")
+      (setq org-roam-directory "~/Roam"
+            org-roam-db-location "~/Roam/org-roam.db"))
+  (if (string= org-roam-db-choice "Teaching")
+      (setq org-roam-directory "~/Teaching.p/Roam"
+            org-roam-db-location "~/Teaching.p/Roam/org-roam.db"))
+  (if (string= org-roam-db-choice "Family")
+      (setq org-roam-directory "~/Family.s/Roam"
+            org-roam-db-location "~/Family.s/Roam/org-roam.db"))
+  (if (string= org-roam-db-choice "Producer")
+      (setq org-roam-directory "~/Producer.p/Roam"
+            org-roam-db-location "~/Producer.p/Roam/org-roam.db"))
+  (if (string= org-roam-db-choice "Gamedev")
+      (setq org-roam-directory "~/Gamedev.p/Roam"
+            org-roam-db-location "~/Gamedev.p/Roam/org-roam.db"))
+  (message (concat "Switched to " org-roam-db-choice " org-roam database."))
+  )
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Insert new roam node"
+      "c" 'org-roam-capture)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Insert new roam node"
+      "i" 'org-roam-node-insert)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Find roam node"
+      "." 'org-roam-node-find)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Switch org-roam database"
+      "s" 'org-roam-switch-db)
+
+(org-roam-db-autosync-mode)
+
+;;;------ Org agenda configuration ------;;;
+
+;; Set folder for my org agenda files
+(setq org-agenda-files (list "/home/emmet/Family.s/Agenda"
+                             "/home/emmet/Producer.p/Agenda"
+                             "/home/emmet/Agenda"
+                             "/home/emmet/Teaching.p/Agenda"
+                             "/home/emmet/Gamedev.p/Agenda"))
+
+;; Function to be run when org-agenda is opened
+(defun org-agenda-open-hook ()
+  "Hook to be run when org-agenda is opened"
+  (org-agenda-follow-mode)
+  )
+
+;; Adds hook to org agenda mode, making follow mode active in org agenda
+(add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
+
+(map! :leader
+      :desc "Open org calendar"
+      "o c" #'cfw:open-org-calendar)
 
 ;;;------ magit configuration ------;;;
 
@@ -163,28 +244,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
                  (mu4e~proc-move docid
                     (mu4e~mark-check-target target) "-N"))))
 
-;;;------ Org agenda configuration ------;;;
-
-;; Set folder for my org agenda files
-(setq org-agenda-files (list "/home/emmet/Family.s/Agenda"
-                             "/home/emmet/Producer.p/Agenda"
-                             "/home/emmet/Agenda"
-                             "/home/emmet/Teaching.p/Agenda"
-                             "/home/emmet/Gamedev.p/Agenda"))
-
-;; Function to be run when org-agenda is opened
-(defun org-agenda-open-hook ()
-  "Hook to be run when org-agenda is opened"
-  (org-agenda-follow-mode)
-  )
-
-;; Adds hook to org agenda mode, making follow mode active in org agenda
-(add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
-
-(map! :leader
-      :desc "Open org calendar"
-      "o c" #'cfw:open-org-calendar)
-
 ;;;-- hledger-mode configuration ;;;--
 
 ;;; Basic configuration
@@ -224,65 +283,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :map hledger-mode-map
       :desc "Edit amount at point"
       "t a" 'hledger-edit-amount)
-
-;;;------ Registers ------;;;
-
-(map! :leader
-      :desc "Jump to register"
-      "r" 'jump-to-register)
-
-(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.journal"))
-(set-register ?r '(file . "/home/emmet/README.org"))
-
-;;;------ Org roam configuration ------;;;
-
-(setq org-roam-directory "~/Teaching.p/Roam"
-      org-roam-db-location "~/Teaching.p/Roam/org-roam.db")
-
-(defun org-roam-switch-db ()
-  "Switch to a different org-roam database"
-  (interactive)
-  (setq org-roam-db-choice (completing-read "Select org roam database: "
-                            '("Default" "Family" "Teaching" "Producer" "Gamedev") nil t))
-  (if (string= org-roam-db-choice "Default")
-      (setq org-roam-directory "~/Roam"
-            org-roam-db-location "~/Roam/org-roam.db"))
-  (if (string= org-roam-db-choice "Teaching")
-      (setq org-roam-directory "~/Teaching.p/Roam"
-            org-roam-db-location "~/Teaching.p/Roam/org-roam.db"))
-  (if (string= org-roam-db-choice "Family")
-      (setq org-roam-directory "~/Family.s/Roam"
-            org-roam-db-location "~/Family.s/Roam/org-roam.db"))
-  (if (string= org-roam-db-choice "Producer")
-      (setq org-roam-directory "~/Producer.p/Roam"
-            org-roam-db-location "~/Producer.p/Roam/org-roam.db"))
-  (if (string= org-roam-db-choice "Gamedev")
-      (setq org-roam-directory "~/Gamedev.p/Roam"
-            org-roam-db-location "~/Gamedev.p/Roam/org-roam.db"))
-  (message (concat "Switched to " org-roam-db-choice " org-roam database."))
-  )
-
-(map! :leader
-      :prefix ("N" . "org-roam notes")
-      :desc "Insert new roam node"
-      "c" 'org-roam-capture)
-
-(map! :leader
-      :prefix ("N" . "org-roam notes")
-      :desc "Insert new roam node"
-      "i" 'org-roam-node-insert)
-
-(map! :leader
-      :prefix ("N" . "org-roam notes")
-      :desc "Find roam node"
-      "." 'org-roam-node-find)
-
-(map! :leader
-      :prefix ("N" . "org-roam notes")
-      :desc "Switch org-roam database"
-      "s" 'org-roam-switch-db)
-
-(org-roam-db-autosync-mode)
 
 ;;;------ Load my private config ------;;;
 
