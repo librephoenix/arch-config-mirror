@@ -1,4 +1,4 @@
-# Created 2022-06-06 Mon 18:35
+# Created 2022-06-06 Mon 20:40
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -360,8 +360,8 @@ styletree.write('styles.xml')
 #+begin_src emacs-lisp
 ;;;------ Org roam configuration ------;;;
 
-(setq org-roam-directory "~/Teaching.p/Roam"
-      org-roam-db-location "~/Teaching.p/Roam/org-roam.db")
+(setq org-roam-directory "~/Roam"
+      org-roam-db-location "~/Roam/org-roam.db")
 
 (defun org-roam-switch-db ()
   "Switch to a different org-roam database"
