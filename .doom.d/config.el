@@ -14,6 +14,7 @@
 ;; Transparent background
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+()
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
 (solaire-global-mode +1)
@@ -54,6 +55,16 @@
         :init
         (add-hook 'org-mode-hook (lambda ()
                                    (org-bullets-mode 1))))
+
+(custom-set-faces!
+  '(org-level-1 :inherit outline-1 :height 1.6)
+  '(org-level-2 :inherit outline-2 :height 1.4)
+  '(org-level-3 :inherit outline-3 :height 1.3)
+  '(org-level-4 :inherit outline-4 :height 1.2)
+  '(org-level-5 :inherit outline-5 :height 1.15)
+  '(org-level-6 :inherit outline-6 :height 1.1)
+  '(org-level-7 :inherit outline-7 :height 1.05)
+  )
 
 ; Automatic table of contents is nice
 (if (require 'toc-org nil t)
