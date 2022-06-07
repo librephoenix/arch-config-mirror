@@ -91,12 +91,6 @@
 (setq global-auto-revert-mode t)
 (setq auto-revert-use-notify nil)
 
-;; Add Org files to the agenda when we save them
-;;(defun to-agenda-on-save-org-mode-file()
-;;  (when (string= (message "%s" major-mode) "org-mode")
-;;    (org-agenda-file-to-front)))
-
-;;(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
 ;; ---- end block ---- ;;
 
 ;; Custom function to convert org mode to ODP presentation
@@ -183,6 +177,19 @@
 
 ;; Adds hook to org agenda mode, making follow mode active in org agenda
 (add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
+
+;; Function to list all my available org agenda files and switch to them
+(defun list-and-switch-to-agenda-file ()
+  "Lists all available agenda files and switches to desired one"
+  (interactive)
+  (setq full-agenda-file-list nil)
+  (dolist (item org-agenda-files)
+    (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list)))
+  (setq choice (completing-read "Select agenda file:" full-agenda-file-list nil t)))
+
+(map! :leader
+      :desc "Switch to specific org agenda file"
+      "o a s" 'list-and-switch-to-agenda-file)
 
 (map! :leader
       :desc "Open org calendar"
