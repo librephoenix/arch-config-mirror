@@ -40,6 +40,8 @@
 
 (set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.journal"))
 (set-register ?r '(file . "/home/emmet/README.org"))
+(set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
+(set-register ?h '(file . "/home/emmet"))
 
 ;;;------ Org mode configuration ------;;;
 

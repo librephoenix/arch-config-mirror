@@ -1,4 +1,4 @@
-# Created 2022-06-07 Tue 11:32
+# Created 2022-06-07 Tue 15:59
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -76,6 +76,8 @@ I use this functionality to load my private config file with non-public informat
 
 (set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.journal"))
 (set-register ?r '(file . "/home/emmet/README.org"))
+(set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
+(set-register ?h '(file . "/home/emmet"))
 #+end_src
 ** Org Mode Configuration
 *** Standard Org Mode Configuration
