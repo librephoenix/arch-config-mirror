@@ -44,11 +44,10 @@ Here is an organized list of my most important configs stored in this repository
   - [[./.octaverc][.octaverc]]
 - [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]
   - [[./.config/alacritty/alacritty.yml][alacritty.yml]]
-- TODO Public Doom Emacs Literate Config
+- [[./.doom.d/doom-pub.org][Public Doom Emacs Literate Config]]
   - [[./.doom.d/config.el][config.el]]
   - [[./.doom.d/init.el][init.el]]
   - [[./.doom.d/packages.el][packages.el]]
-  - [public mu4e configs]
 - TODO Qutebrowser Literate Config
   - [[./.config/qutebrowser/config.py][config.py]]
     - [[./.config/qutebrowser/themes][Custom Stylesheets]]
