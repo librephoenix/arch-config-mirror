@@ -140,12 +140,12 @@
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
-      :desc "Insert new roam node"
+      :desc "Capture new roam node"
       "c" 'org-roam-capture)
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
-      :desc "Insert new roam node"
+      :desc "Insert roam node link at point"
       "i" 'org-roam-node-insert)
 
 (map! :leader
