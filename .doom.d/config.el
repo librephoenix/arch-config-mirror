@@ -51,13 +51,6 @@
 ;; This allows you to actually control how big images are in org docs!
 (setq org-image-actual-width nil)
 
-;; Pretty org bullets
-(use-package org-bullets
-    :ensure t
-        :init
-        (add-hook 'org-mode-hook (lambda ()
-                                   (org-bullets-mode 1))))
-
 (custom-set-faces!
   '(org-level-1 :inherit outline-1 :height 1.6)
   '(org-level-2 :inherit outline-2 :height 1.4)
@@ -67,6 +60,13 @@
   '(org-level-6 :inherit outline-6 :height 1.1)
   '(org-level-7 :inherit outline-7 :height 1.05)
   )
+
+;; Pretty org bullets
+(use-package org-bullets
+    :ensure t
+        :init
+        (add-hook 'org-mode-hook (lambda ()
+                                   (org-bullets-mode 1))))
 
 ; Automatic table of contents is nice
 (if (require 'toc-org nil t)
