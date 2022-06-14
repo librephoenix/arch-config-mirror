@@ -185,7 +185,8 @@
   (setq full-agenda-file-list nil)
   (dolist (item org-agenda-files)
     (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list)))
-  (setq choice (completing-read "Select agenda file:" full-agenda-file-list nil t)))
+  (setq choice (completing-read "Select agenda file:" full-agenda-file-list nil t))
+  (find-file choice))
 
 (map! :leader
       :desc "Switch to specific org agenda file"
@@ -288,6 +289,11 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :prefix ("l" . "hledger")
       :desc "Generate hledger balancesheet"
       "b" 'hledger-balancesheet*)
+
+(map! :leader
+      :prefix ("l" . "hledger")
+      :desc "Exec hledger command"
+      "d" 'hledger-daily-report*)
 
 (map! :leader
       :prefix ("l" . "hledger")
