@@ -24,7 +24,7 @@ killall syncthing-gtk
 
 # Launch necessary desktop applications
 emacs --daemon &
-xautolock -time 5 -locker "xsecurelock" &
+xautolock -time 5 -locker "xsecurelock & systemctl suspend" &
 ~/.local/bin/setup_external_monitor.sh &
 twmnd &
 nitrogen --restore &
@@ -37,7 +37,6 @@ nextcloud &
 syncthing --no-browser &
 syncthing-gtk &
 protonmail-bridge --no-window &
-caffeine &
 xmonad --recompile &
 xmonad --restart &
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"
