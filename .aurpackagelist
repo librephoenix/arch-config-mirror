@@ -2,10 +2,10 @@ audio-recorder 3.3.4-1
 auto-cpufreq 1.9.3-1
 bedstead-fonts-powerline 1.0-4
 bettergruvbox-gtk-theme 1.0-1
-bottles 2022.5.28-4
-brave-bin 1:1.39.111-3
-c++utilities 5.15.0-1
-caffeine-ng 3.5.1-4
+bottles 2022.5.28-5
+brave-bin 1:1.39.120-1
+c++utilities 5.16.0-1
+caffeine 2.9.11-1
 dragon-drag-and-drop-git 1.2.0.r2.g379d2f5-1
 freetube-bin 0.16.0-1
 gstreamer0.10 0.10.36-20
@@ -15,7 +15,7 @@ kazam 1.4.5-9
 librewolf-bin 101.0-2
 mimeo 2021.11-3
 mu 1.6.11-1
-myuzi v0.7.0-1
+myuzi v0.7.1-1
 nodejs-lts-erbium 12.22.12-2
 nsxiv 29-3
 paru 1.10.0-1
@@ -34,7 +34,7 @@ rgrep 0.99.20.160-1
 rpi-imager-bin 1.7.2-1
 sct 1.0.0-1
 syncthing-gtk-python3 1:0.9.4.4-3
-tomb 2.9-2
+tomb 2.9-3
 ttf-unifont 14.0.04-1
 twmn-git 193.58ca77d-1
 vim-plug 0.11.0-1
