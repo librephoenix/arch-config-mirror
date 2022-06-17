@@ -290,8 +290,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch app template dmenu script
     , ((modm,               xK_w     ), spawn ("~/.xmonad/template-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
 
-    -- launch virt-manager
-    , ((modm,               xK_v     ), spawn "virt-manager")
+    -- launch virt-manager vm select dmenu script
+    , ((modm,               xK_v     ), spawn ("~/.xmonad/vm-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
 
     -- close focused window
     , ((modm, xK_q     ), kill)
@@ -368,6 +368,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Lock with xsecurelock
     , ((modm .|. shiftMask, xK_l     ), spawn "xsecurelock")
+
+    -- lock and sleep with xsecurelock and systemd
+    , ((modm .|. shiftMask, xK_s     ), spawn "xsecurelock & systemctl suspend")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
