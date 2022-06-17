@@ -15,16 +15,13 @@ promptarray[4]="Your wish is my command:"
 promptarray[5]="Where would you like to go?"
 promptarray[6]="Yeas, boss?"
 promptarray[7]="Which workspace?"
-promptarray[8]="よし！いくぜ！"
 
 size=${#promptarray[@]}
 index=$(($RANDOM % $size))
 
 selectedprompt=${promptarray[$index]}
 
-choice=$(echo -e "$choices" | dmenu -i -nb ${nbColor} -nf ${nfColor} -sb ${sbColor} -sf ${sfColor} -fn 'UbuntuMono-R:regular:pixelsize=28' -p "$selectedprompt")
-
-case "$choice" in
+choice=$(echo -e "$choices" | dmenu -i -nb ${nbColor} -nf ${nfColor} -sb ${sbColor} -sf ${sfColor} -fn 'UbuntuMono-R:regular:pixelsize=28' -p "$selectedprompt") && case "$choice" in
 	writing) ~/.xmonad/xmonadctl 1 ;;
 	browsing) ~/.xmonad/xmonadctl 3 ;;
 	coding) ~/.xmonad/xmonadctl 5 ;;
