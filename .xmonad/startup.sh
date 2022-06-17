@@ -26,6 +26,7 @@ killall syncthing-gtk
 emacs --daemon &
 xautolock -time 5 -locker "xsecurelock & systemctl suspend" &
 ~/.local/bin/setup_external_monitor.sh &
+~/.xmonad/touchscreen-setup.sh
 twmnd &
 nitrogen --restore &
 /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor 0 &
