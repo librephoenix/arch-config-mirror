@@ -118,25 +118,28 @@
 (defun org-roam-switch-db ()
   "Switch to a different org-roam database"
   (interactive)
+  (setq full-org-roam-db-list nil)
+
+  (setq full-org-roam-db-list (directory-files "~" t "\\.[p,s]$"))
+  (dolist (item full-org-roam-db-list)
+    (setq full-org-roam-db-list
+          (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
+
+  (setq full-org-roam-db-list-pretty (list))
+  (dolist (item full-org-roam-db-list)
+    (setq full-org-roam-db-list-pretty
+          (append (list
+                   (replace-regexp-in-string "\\/home\\/emmet\\/" "" item)) full-org-roam-db-list-pretty)))
+
   (setq org-roam-db-choice (completing-read "Select org roam database: "
-                            '("Default" "Family" "Teaching" "Producer" "Gamedev") nil t))
+                            full-org-roam-db-list-pretty nil t))
   (if (string= org-roam-db-choice "Default")
       (setq org-roam-directory "~/Roam"
-            org-roam-db-location "~/Roam/org-roam.db"))
-  (if (string= org-roam-db-choice "Teaching")
-      (setq org-roam-directory "~/Teaching.p/Roam"
-            org-roam-db-location "~/Teaching.p/Roam/org-roam.db"))
-  (if (string= org-roam-db-choice "Family")
-      (setq org-roam-directory "~/Family.s/Roam"
-            org-roam-db-location "~/Family.s/Roam/org-roam.db"))
-  (if (string= org-roam-db-choice "Producer")
-      (setq org-roam-directory "~/Producer.p/Roam"
-            org-roam-db-location "~/Producer.p/Roam/org-roam.db"))
-  (if (string= org-roam-db-choice "Gamedev")
-      (setq org-roam-directory "~/Gamedev.p/Roam"
-            org-roam-db-location "~/Gamedev.p/Roam/org-roam.db"))
-  (message (concat "Switched to " org-roam-db-choice " org-roam database."))
-  )
+            org-roam-db-location "~/Roam/org-roam.db")
+      (setq org-roam-directory (concat "~/" org-roam-db-choice "/Roam")
+            org-roam-db-location (concat "~/" org-roam-db-choice "/Roam/org-roam.db")))
+
+  (message (concat "Switched to " org-roam-db-choice " org-roam database.")))
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
