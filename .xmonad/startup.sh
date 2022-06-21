@@ -21,6 +21,7 @@ killall nitrogen
 killall xautolock
 killall caffeine
 killall syncthing-gtk
+killall webcord
 
 # Launch necessary desktop applications
 emacs --daemon &
@@ -34,10 +35,10 @@ nitrogen --restore &
 gnome-keyring-daemon
 mbsync -a && mu index &
 nm-applet &
-nextcloud &
 syncthing --no-browser &
 syncthing-gtk &
 protonmail-bridge --no-window &
+webcord --start-minimized &
 xmonad --recompile &
 xmonad --restart &
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"

@@ -167,6 +167,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "myuzi" spawnMyuzi findMyuzi manageMyuzi
                 , NS "cfw" spawnCfw findCfw manageCfw
                 , NS "pavucontrol" spawnPavucontrol findPavucontrol managePavucontrol
+                , NS "webcord" spawnWebcord findWebcord manageWebcord
                 ]
     where
       spawnTerm  = myTerminal ++ " -t scratchpad"
@@ -196,6 +197,14 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
       spawnBtm = myTerminal ++ " -t btm -e btm"
       findBtm = title =? "btm"
       manageBtm = customFloating $ W.RationalRect l t w h
+               where
+                 h = 0.5
+                 w = 0.4
+                 t = 0.75 -h
+                 l = 0.70 -w
+      spawnWebcord = "webcord"
+      findWebcord = className =? "WebCord"
+      manageWebcord = customFloating $ W.RationalRect l t w h
                where
                  h = 0.5
                  w = 0.4
@@ -293,6 +302,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch virt-manager vm select dmenu script
     , ((modm,               xK_v     ), spawn ("~/.xmonad/vm-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
 
+    -- launch virt-manager vm select dmenu script
+    , ((modm .|. shiftMask, xK_v     ), spawn ("~/.xmonad/vm-app-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
+
     -- close focused window
     , ((modm, xK_q     ), kill)
 
@@ -347,6 +359,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_x), spawn "/home/emmet/.config/keepassxc/keepassxctotpmenu.sh")
     , ((modm              , xK_z), namedScratchpadAction myScratchPads "terminal")
     , ((modm              , xK_b), namedScratchpadAction myScratchPads "btm")
+    , ((modm              , xK_d), namedScratchpadAction myScratchPads "webcord")
     , ((modm              , xK_o), namedScratchpadAction myScratchPads "octave")
     , ((modm              , xK_e), namedScratchpadAction myScratchPads "mu4e")
     , ((modm              , xK_slash), namedScratchpadAction myScratchPads "helpmenu")
@@ -466,6 +479,7 @@ myManageHook = composeAll
     , className =? "Myuzi"          --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , title =? "octave"             --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8)
     , title =? "scratchpad"         --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8)
+    , className =? "WebCord"         --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8)
     , title =? "ranger"             --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , title =? "btm"                --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8)
     , title =? "scratch_mu4e"       --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
@@ -473,7 +487,8 @@ myManageHook = composeAll
     , title =? "xmonad_helpmenu"    --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9)
     , className =? "fl64.exe"       --> (customFloating $ W.RationalRect 0 0 1 1)
     , className =? "Pavucontrol"    --> (customFloating $ W.RationalRect 0.05 0.04 0.5 0.35)
-    , className =? "Syncthing GTK"    --> (customFloating $ W.RationalRect 0.53 0.04 0.46 0.45)
+    , className =? "Syncthing GTK"  --> (customFloating $ W.RationalRect 0.53 0.04 0.46 0.45)
+    , className =? "Zenity"         --> (customFloating $ W.RationalRect 0.45 0.4 0.1 0.2)
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
