@@ -125,7 +125,7 @@
     (setq full-org-roam-db-list
           (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
-  (setq full-org-roam-db-list-pretty (list))
+  (setq full-org-roam-db-list-pretty (list "Default"))
   (dolist (item full-org-roam-db-list)
     (setq full-org-roam-db-list-pretty
           (append (list
@@ -138,8 +138,11 @@
             org-roam-db-location "~/Roam/org-roam.db")
       (setq org-roam-directory (concat "~/" org-roam-db-choice "/Roam")
             org-roam-db-location (concat "~/" org-roam-db-choice "/Roam/org-roam.db")))
+  (if (string= org-roam-db-choice "Default")
+      (dired "~/Roam")
+      (dired (concat "~/" org-roam-db-choice "/Roam")))
 
-  (message (concat "Switched to " org-roam-db-choice " org-roam database.")))
+  (message (concat "Switched to " org-roam-db-choice " org-roam database!")))
 
 (map! :leader
       :prefix ("N" . "org-roam notes")

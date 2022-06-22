@@ -1,4 +1,4 @@
-# Created 2022-06-18 Sat 22:55
+# Created 2022-06-22 Wed 07:42
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -380,7 +380,7 @@ styletree.write('styles.xml')
     (setq full-org-roam-db-list
           (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
-  (setq full-org-roam-db-list-pretty (list))
+  (setq full-org-roam-db-list-pretty (list "Default"))
   (dolist (item full-org-roam-db-list)
     (setq full-org-roam-db-list-pretty
           (append (list
@@ -393,8 +393,11 @@ styletree.write('styles.xml')
             org-roam-db-location "~/Roam/org-roam.db")
       (setq org-roam-directory (concat "~/" org-roam-db-choice "/Roam")
             org-roam-db-location (concat "~/" org-roam-db-choice "/Roam/org-roam.db")))
+  (if (string= org-roam-db-choice "Default")
+      (dired "~/Roam")
+      (dired (concat "~/" org-roam-db-choice "/Roam")))
 
-  (message (concat "Switched to " org-roam-db-choice " org-roam database.")))
+  (message (concat "Switched to " org-roam-db-choice " org-roam database!")))
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
