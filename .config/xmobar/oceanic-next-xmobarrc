@@ -16,7 +16,7 @@ Config { font = "xft:UbuntuMono-R:size=16"
        , overrideRedirect = True
        , commands = [
                       Run UnsafeStdinReader
-                    , Run Date "<fn=2><fc=#2b3b41,#1b2b34>\xe0b2</fc></fn><fc=#c594c5,#2b3b41> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P </fc><fn=2><fc=#2b3b41,#1b2b34>\xe0b0</fc></fn> " "date" 10
+                    , Run Date "<fn=2><fc=#2b3b41,#1b2b34>\xe0b2</fc></fn><fc=#c594c5,#2b3b41> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P </fc><fn=2><fc=#2b3b41,#1b2b34>\xe0b0</fc></fn> <fc=#d8dee9><fn=1>\xf15a</fn></fc>" "date" 10
                     , Run BatteryP ["BAT0"]
                       ["-t", "<acstatus>",
                       "-L", "10", "-H", "80", "-p", "3", "--",
@@ -37,10 +37,11 @@ Config { font = "xft:UbuntuMono-R:size=16"
                       , "--offc", "#c594c5"
                       ] 1 
                     , Run Com "/home/emmet/.config/xmobar/padding-icon.sh" [] "trayerpad" 2
+                    , Run Com "/home/emmet/.config/xmobar/bitcoin-monitor.sh" [] "bitcoin" 300
                     , Run Mail [("<fn=1><fc=#6699cc>\xf6ed</fc></fn> ", "~/.mail/INBOX")] "mail"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> <action=`xdotool key Super_L+e`>%mail%</action> }<action=`xdotool key Super_L+c`>%date%</action>{<box color=#2b3b41 width=3>%UnsafeStdinReader%</box> %trayerpad%"
+       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> <action=`xdotool key Super_L+e`>%mail%</action> }<action=`xdotool key Super_L+c`>%date%</action><fc=#d8dee9>$%bitcoin%</fc>{<box color=#2b3b41 width=3>%UnsafeStdinReader%</box> %trayerpad%"
        }
 }
