@@ -178,7 +178,6 @@
 ;; Function to be run when org-agenda is opened
 (defun org-agenda-open-hook ()
   "Hook to be run when org-agenda is opened"
-  (org-agenda-follow-mode)
   )
 
 ;; Adds hook to org agenda mode, making follow mode active in org agenda
