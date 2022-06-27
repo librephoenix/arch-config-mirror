@@ -549,7 +549,7 @@ main = do
 
       -- hooks, layouts
         layoutHook         = myLayout,
-        manageHook         = myManageHook <+> myFullscreenManageHook,
+        manageHook         = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
         handleEventHook    = myEventHook <+> myFullscreenEventHook,
         logHook            = dynamicLogWithPP $ xmobarPP
           {
