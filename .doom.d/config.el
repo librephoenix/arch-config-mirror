@@ -32,6 +32,9 @@
 ;; Disables custom.el
 (setq custom-file null-device)
 
+;; Fancy splash image
+(setq fancy-splash-image "~/.doom.d/arch.png")
+
 ;;;------ Registers ------;;;
 
 (map! :leader
