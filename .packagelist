@@ -1,7 +1,6 @@
 alacritty
 android-tools
 android-udev
-arc-gtk-theme
 atril
 autoconf
 automake
@@ -12,7 +11,6 @@ binutils
 bison
 blender
 bottom
-breeze-gtk
 bridge-utils
 cbatticon
 cheese
@@ -73,7 +71,6 @@ lmms
 luakit
 lxappearance
 lxc
-lximage-qt
 m4
 make
 man-db
@@ -128,7 +125,6 @@ ufw
 unzip
 v4l2loopback-dkms
 vim
-vimb
 virt-manager
 virtualbox
 vlc
