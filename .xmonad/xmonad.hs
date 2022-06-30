@@ -354,7 +354,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
     , ((modm              , xK_f), namedScratchpadAction myScratchPads "ranger")
-    , ((modm              , xK_p), namedScratchpadAction myScratchPads "keepassxc")
+    , ((modm              , xK_x), namedScratchpadAction myScratchPads "keepassxc")
     , ((modm              , xK_z), namedScratchpadAction myScratchPads "terminal")
     , ((modm              , xK_b), namedScratchpadAction myScratchPads "btm")
     , ((modm              , xK_d), namedScratchpadAction myScratchPads "webcord")
