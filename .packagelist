@@ -12,7 +12,6 @@ bison
 blender
 bottom
 bridge-utils
-cbatticon
 cheese
 clang
 clisp
@@ -39,7 +38,6 @@ gettext
 ghc-static
 gimp
 git
-git-filter-repo
 gnome-keyring
 gnu-netcat
 godot
