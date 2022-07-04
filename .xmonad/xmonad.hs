@@ -24,6 +24,8 @@ import XMonad.Layout.Fullscreen
 
 import Graphics.X11.ExtraTypes.XF86
 
+import Network.HostName
+
 -- CUSTOM COLORS
 colorSchemeList, colorSchemePrettyList :: [String]
 colorBgNormalList, colorFgNormalList  :: [String]
@@ -530,7 +532,8 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
+  hostName <- getHostName
+  xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/" ++ colorScheme ++ "-xmobarrc-" ++ hostName)
   xmonad $ fullscreenSupportBorder $ docks def {
       -- simple stuff
         terminal           = myTerminal,
