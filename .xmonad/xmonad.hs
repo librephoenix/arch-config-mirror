@@ -3,6 +3,7 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import System.IO
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -110,7 +111,7 @@ myFocusedBorderColor = colorFocus
 
 -- Default apps
 myTerminal, myBrowser :: String
-myTerminal      = "alacritty"
+myTerminal      = "alacritty -o font.size=20"
 myBrowser       = "qutebrowser"
 
 -- Whether focus follows the mouse pointer.
