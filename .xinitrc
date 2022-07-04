@@ -34,6 +34,7 @@ fi
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+dbus-update-activation-environment --systemd DISPLAY
 xrandr --dpi 120 
 picom --experimental-backends &
 exec xmonad 
