@@ -25,7 +25,7 @@ killall webcord
 
 # Launch necessary desktop applications
 emacs --daemon &
-xautolock -time 5 -locker "xsecurelock & systemctl suspend" &
+xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 ~/.local/bin/setup_external_monitor.sh &
 ~/.xmonad/touchscreen-setup.sh
 twmnd &
