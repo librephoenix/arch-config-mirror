@@ -1,0 +1,267 @@
+#+title: emmet Arch Installation Manual
+
+** Base Arch Install
+
+** Core Package and Config Installation Script
+Performing the following commands will set up the core packages of my system. The script assumes you are running as a normal (non-root) user with sudo priveleges, and will not work otherwise. The following sections install the core packages and install my dotfiles from this repo.
+#+BEGIN_SRC shell :tangle install.sh
+#!/bin/sh
+
+# emmet's Arch Config Installation Script
+
+#+END_SRC
+*** Arch and AUR Packages
+Here, we begin by installing necessary packages from the standard Arch repositories.  Packages can be changed or commented out if necessary.
+
+Then, after the Arch packages are installed, paru is installed with relevant AUR packages.
+
+Packages are organized by function.
+#+BEGIN_SRC shell :tangle install.sh
+archpackages=()
+aurpackages=()
+
+#+END_SRC
+
+**** Browsers
+#+BEGIN_SRC shell :tangle install.sh
+    # browsers
+    archpackages+=(
+    qutebrowser
+    luakit
+    )
+
+#+END_SRC
+
+**** Documents
+#+BEGIN_SRC shell :tangle install.sh
+    # documents
+    archpackages+=(
+    libreoffice-still
+    atril
+    xournalpp
+    )
+#+END_SRC
+
+**** File Managers
+#+BEGIN_SRC shell :tangle install.sh
+    # file managers
+    archpackages+=(
+    ranger
+    pcmanfm
+    )
+
+#+END_SRC
+
+**** Media
+#+BEGIN_SRC shell :tangle install.sh
+    # media
+    archpackages+=(
+
+        # image viewer(s)
+
+        # image editor(s)
+        gimp
+        krita
+
+        # media players
+        vlc
+        mpv
+
+        # 3d modelling and video editing
+        blender
+
+        # media recording
+        cheese
+        obs
+
+        # digital audio workstation
+        lmms
+    )
+
+#+END_SRC
+
+**** Shells
+#+BEGIN_SRC shell :tangle install.sh
+    # shells
+    archpackages+=(
+    zsh
+    ##fish
+    )
+
+#+END_SRC
+**** Terminal Emulators
+#+BEGIN_SRC shell :tangle install.sh
+    # terminal emulators
+    archpackages+=(
+    alacritty
+    )
+
+#+END_SRC
+
+**** Command Line Utilities
+#+BEGIN_SRC shell :tangle install.sh
+    # command line utilities
+    archpackages+=(
+    grep sed wget which
+    bat exa fd bottom ripgrep
+    pacman-contrib
+    rsync
+    systeroid
+    tmux
+    htop
+    hwinfo
+    unzip
+    )
+
+#+END_SRC
+**** Editors
+#+BEGIN_SRC shell :tangle install.sh
+    # editors
+    archpackages+=(
+    emacs
+    vim
+    )
+
+#+END_SRC
+**** Development
+#+BEGIN_SRC shell :tangle install.sh
+    # development packages
+
+#+END_SRC
+***** Android
+#+BEGIN_SRC shell :tangle install.sh
+        # android
+        archpackages+=(
+        android-tools
+        android-udev
+        )
+#+END_SRC
+***** C/C++
+#+BEGIN_SRC shell :tangle install.sh
+        # cc
+        archpackages+=(
+        gcc
+        clang
+        make
+        autoconf
+        automake
+        libtool
+        )
+
+#+END_SRC
+
+***** Python
+#+BEGIN_SRC shell :tangle install.sh
+        # python
+        archpackages+=(
+        python
+        python-pip
+        )
+
+#+END_SRC
+
+***** Gamedev
+#+BEGIN_SRC shell :tangle install.sh
+        # gamedev
+        archpackages+=(
+        godot
+        )
+
+#+END_SRC
+**** Fonts
+#+BEGIN_SRC shell :tangle install.sh
+    #fonts
+    archpackages+=(
+    ttf-font-awesome
+    ttf-inconsolata
+    ttf-nerd-fonts-symbols-mono
+    ttf-ubuntu-font-family
+    )
+
+#+END_SRC
+**** Virtual Machines
+#+BEGIN_SRC shell :tangle install.sh
+    # virtual machines
+    archpackages+=(
+    libvirt
+    virt-manager
+    qemu-full
+    lxc
+    )
+
+#+END_SRC
+
+**** Core System Packages
+#+BEGIN_SRC shell :tangle install.sh
+    # core system packages
+    archpackages+=(
+    linux linux-firmware linux-headers
+    base base-devel
+    binutils
+    git
+    fakeroot
+    dialog
+    xdg-utils
+    )
+
+#+END_SRC
+
+**** Security
+#+BEGIN_SRC shell :tangle install.sh
+    # security
+    archpackages+=(
+    xsecurelock xautolock
+    ufw gufw
+    yubikey-manager
+    libsecret gnome-keyring seahorse
+    keepassxc
+    )
+
+#+END_SRC
+
+**** Graphical Display and X Utils
+#+BEGIN_SRC shell :tangle install.sh
+    # graphical display and X utils
+    archpackages+=(
+    xorg
+    autorandr
+    xorg-xinit
+    xf86-video-vesa
+    xf86-video-intel
+    ##xf86-video-amd
+    xdotool
+    xclip
+    ddcutil
+    )
+#+END_SRC
+
+**** Networking Utils
+#+BEGIN_SRC shell :tangle install.sh
+    # networking
+    archpackages+=(
+    networkmanager
+    network-manager-applet
+    wireless_tools
+    wpa_supplicant
+    dhclient
+    dnsmasq
+    )
+
+#+END_SRC
+**** File Systems
+#+BEGIN_SRC shell :tangle install.sh
+    # file systems
+    archpackages+=(
+    dosfstools
+    )
+
+#+END_SRC
+**** Microcode
+#+BEGIN_SRC shell :tangle install.sh
+    # microcode
+    archpackages+=(
+    intel-ucode
+    ##amd-ucode
+    )
+
+#+END_SRC

@@ -1,6 +1,6 @@
 #+title: Packages (Programs)
 
-** Core Packages
+** Core Package List
 For my computing, I like to select programs based upon efficiency, security, and relative minimalism. Here are some cool programs I use:
 - [[https://github.com/jonaburg/picom][Jonaburg's Picom]] (Compositor)
 - [[https://github.com/AdnanHodzic/auto-cpufreq][auto-cpufreq]] (CPU Throttle)
