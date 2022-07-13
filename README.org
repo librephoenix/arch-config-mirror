@@ -32,7 +32,8 @@ Below is a taxonomy of my system documentation, which describes core programs in
 | TODO Literate Installation Script | Installation   |
 | [[Packages (Programs)][Core Package List]]                 | Packages       |
 | TODO Supplementary Program Lists  | Packages       |
-** Config
+** More Detailed Information
+*** Config
 Here is an organized list of my most important configs stored in this repository:
 - TODO XMonad Literate Config
   - [[./.xinitrc][.xinitrc]]
@@ -65,7 +66,7 @@ Here is an organized list of my most important configs stored in this repository
   - [[./.config/ranger/commands.py][commands.py]]
   - [[./.config/ranger/commands_full.py][commands_full.py]]
   - [[./.config/ranger/scope.sh][scope.sh]]
-** Packages (Programs)
+*** Packages (Programs)
 For my computing, I like to select programs based upon efficiency, security, and relative minimalism. Here are some cool programs I use:
 - [[https://github.com/jonaburg/picom][Jonaburg's Picom]] (Compositor)
 - [[https://github.com/AdnanHodzic/auto-cpufreq][auto-cpufreq]] (CPU Throttle)
@@ -109,18 +110,3 @@ For my computing, I like to select programs based upon efficiency, security, and
 - [[https://syncthing.net/][Syncthing]] network (Backup and File Sharing)
   - [[https://salsa.debian.org/debian/syncthing-gtk][syncthing-gtk]] (Syncthing Tray Application)
 - [[https://hledger.org/][hledger]] (Financial Accounting)
-
-*** Package Lists
-I keep four package lists for quick reinstall (if necessary). These are simple lists which contain a full list of packages installed on my system.
-My pacman, AUR, and pip packages are recorded by a shell alias:
-#+BEGIN_SRC sh
-alias paclist='echo ":: Overwriting backup pacman .packagelist file" &&
-               pacman -Qe > ~/.packagelist &&
-               echo ":: Overwriting backup AUR .aurpackagelist file" &&
-               pacman -Qm > ~/.aurpackagelist &&
-               echo ":: Overwriting backup pip .pippackagelist file" &&
-               pip list > ~/.pippackagelist'
-#+END_SRC
-This generates three package lists, one for the standard repositories ([[./.packagelist][.packagelist]]), one for the AUR ([[./.aurpackagelist][.aurpackagelist]]), and one for Python pip ([[./.pippackagelist][.pippackagelist]]).
-
-Since I manage my Haskell programs with [[https://docs.haskellstack.org/en/stable/README/][Stack]], I also have a Stack package list ([[./.stackpackagelist][.stackpackagelist]]) which I maintain manually, since I don't have too many Haskell programs.
