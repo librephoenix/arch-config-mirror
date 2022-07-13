@@ -1,0 +1,16 @@
+#+title: emmet Arch Install Overview
+
+Here is an overview of steps to replicate my system:
+1. Complete a base arch install, making sure to pacstrap =linux=, =base=, =base-devel=, =git=, relevant =graphics drivers=, and the relevant =microcode package=.
+2. Create a normal user in the wheel group and enable sudo for the wheel group in the sudoers file.
+3. Clone the git bare repository for the normal user into =~/.dotfiles.git= and checkout the dotfiles onto the machine.
+4. Install any relevant Arch packages from package lists.
+5. Install paru and install any relevant AUR packages via paru.
+6. Install stack and relevant Haskell packages via Stack.
+7. Install supplementary Python packages via pip.
+8. Install =oh-my-zsh=, =zsh-autosuggestions=, and =zsh-syntax-highlighting=.
+9. Load a wallpaper via nitrogen.
+10. Install =doom emacs=.
+11. Set up =mbsync= inside of =~/.mail=. Set up =mu-1.16.5=, and =mu4e= for email.
+12. Set up relevant syncthing connections to load relevant files.
+13. Configure larger and nicer fonts for the tty.
