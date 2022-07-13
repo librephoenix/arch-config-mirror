@@ -14,7 +14,7 @@ Gotta have screenshots after informing you that I run Arch..
 Credit to [[https://unsplash.com/@bkview][Jason McCann on Unsplash]] for [[https://unsplash.com/photos/Gj76llxJHd4][the background in my Gruvbox theme]].
 Credit to [[https://unsplash.com/@timberfoster][Tim Foster on Unsplash]] for the [[https://unsplash.com/photos/wPXBkZ-Pxjw][the background in my Oceanic Next theme]].
 
-** TLDR (List of Literate Configs)
+** Config Overview
 Below is the taxonomy of my literate (org mode) config files, which each control the plethora of config files related to the programs I use.  I use these (literate org mode files) to configure my machine.
 | Literate Config                   | Config Classification |
 |-----------------------------------+-----------------------|
@@ -24,8 +24,15 @@ Below is the taxonomy of my literate (org mode) config files, which each control
 | [[./.doom.d/doom-pub.org][Public Doom Emacs Literate Config]] | IDE                   |
 | TODO Ranger Literate Config       | File Manager          |
 | TODO Qutebrowser Literate Config  | Browser               |
-
-** Detailed List of Primary Configs
+** Packages (Programs) Overview
+Below is a taxonomy of my system documentation, which describes core programs in my variant of Arch Linux, and how to install or reinstall a system with my configurations.
+| Document                          | Classification |
+|-----------------------------------+----------------|
+| [[./.install][Installation Overview]]             | Installation   |
+| TODO Literate Installation Script | Installation   |
+| [[Packages (Programs)][Core Package List]]                 | Packages       |
+| TODO Supplementary Program Lists  | Packages       |
+** Config
 Here is an organized list of my most important configs stored in this repository:
 - TODO XMonad Literate Config
   - [[./.xinitrc][.xinitrc]]
@@ -58,9 +65,8 @@ Here is an organized list of my most important configs stored in this repository
   - [[./.config/ranger/commands.py][commands.py]]
   - [[./.config/ranger/commands_full.py][commands_full.py]]
   - [[./.config/ranger/scope.sh][scope.sh]]
-
-** System
-My system uses Arch Linux. Here are some cool programs I use:
+** Packages (Programs)
+For my computing, I like to select programs based upon efficiency, security, and relative minimalism. Here are some cool programs I use:
 - [[https://github.com/jonaburg/picom][Jonaburg's Picom]] (Compositor)
 - [[https://github.com/AdnanHodzic/auto-cpufreq][auto-cpufreq]] (CPU Throttle)
 - [[https://xmonad.org/][XMonad]] (Window Manager)
@@ -72,7 +78,6 @@ My system uses Arch Linux. Here are some cool programs I use:
 - [[https://wiki.archlinux.org/title/Xinit][xinit]] (startx instead of a Display Manager)
 - [[https://archlinux.org/packages/community/x86_64/xautolock/][xautolock]] + [[https://github.com/google/xsecurelock][xsecurelock]] (Inactivity Security Locker)
 - [[https://tools.suckless.org/dmenu/][dmenu]] (Run Prompt)
-- [[https://github.com/autokey/autokey][autokey]] (Quick Insertion of Symbols and Glyphs)
 - [[https://alacritty.org/][Alacritty]] (Terminal Emulator)
 - [[https://wiki.gnome.org/Projects/Libsecret][libsecret]] (Secret Service)
 - [[https://keepassxc.org/][KeePassXC]] (Password Manager)
