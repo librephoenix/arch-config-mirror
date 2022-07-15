@@ -17,6 +17,7 @@ import XMonad.ManageHook
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ServerMode
+import XMonad.Hooks.FadeWindows
 
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
@@ -552,7 +553,7 @@ main = do
       -- hooks, layouts
         layoutHook         = myLayout,
         manageHook         = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
-        handleEventHook    = myEventHook <+> myFullscreenEventHook,
+        handleEventHook    = myEventHook <+> myFullscreenEventHook <+> fadeWindowsEventHook,
         logHook            = dynamicLogWithPP $ xmobarPP
           {
              ppOutput = \x ->  hPutStrLn xmproc x,
