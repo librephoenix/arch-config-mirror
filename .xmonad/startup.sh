@@ -30,7 +30,8 @@ xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 ~/.xmonad/touchscreen-setup.sh
 twmnd &
 nitrogen --restore &
-/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor 0 &
+# /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor 0 &
+tint2 -c ~/.config/tint2/applauncher_tint2rc &
 ~/.xmonad/workspace-select.sh ${nbColor} ${nfColor} ${sbColor} ${sfColor}
 gnome-keyring-daemon
 mbsync -a && mu index &
