@@ -4,5 +4,5 @@
 while :
   do 
     xdotool windowraise $(xwininfo -name tint2 | grep "Window id:" | cut -d " " -f4)
-    sleep 2
+    sleep 1
   done
