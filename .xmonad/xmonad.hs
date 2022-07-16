@@ -150,13 +150,13 @@ myModMask       = mod4Mask
 myWorkspaces :: [String]
 myWorkspaces    = ["<fn=1>\xf15c</fn>¹", -- document icon for writing
                    "<fn=1>\xfa9e</fn>²", -- globe icon for browsing
-                   "<fn=1>\xf121</fn>³", -- dev icon for game dev
+                   "<fn=1>\xf121</fn>³", -- dev icon for programming
                    "<fn=1>\xf722</fn>⁴", -- music file icon for composition
                    "<fn=1>\xf1fc</fn>⁵", -- paint icon for art
-                   "<fn=1>\xf5aa</fn>⁶", -- blender icon for blender
+                   "<fn=1>\xfa66</fn>⁶", -- video icon for recording/editing
                    "<fn=1>\xf616</fn>⁷", -- money icon for finances
                    "<fn=1>\xfce8</fn>⁸", -- rice icon for ricing
-                   "<fn=1>\xe370</fn>⁹"] -- glitter icon for extra
+                   "<fn=1>\xf11b</fn>⁹"] -- gamepad icon for gaming
 
 
 -- Scratchpads
@@ -298,7 +298,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_semicolon     ), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'"))
 
     -- launch workspace switch dmenu script
-    , ((modm .|. shiftMask, xK_w     ), spawn ("~/.xmonad/workspace-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
+    , ((modm,               xK_Tab     ), spawn ("~/.xmonad/workspace-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))
 
     -- launch app template dmenu script
     , ((modm,               xK_w     ), spawn ("~/.xmonad/template-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'"))

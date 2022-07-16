@@ -5,7 +5,7 @@ nfColor=$2
 sbColor=$3
 sfColor=$4
 
-choices="writing\nbrowsing\ncoding\nmusic\nart\n3dmodel\nfinances\nricing\nother"
+choices="writing\nbrowsing\ncoding\nmusic\nart\nvideo\nfinances\nricing\ngaming"
 
 promptarray[0]="What do you wish to work on?"
 promptarray[1]="Let me guess... ricing?"
@@ -27,8 +27,8 @@ choice=$(echo -e "$choices" | dmenu -i -nb ${nbColor} -nf ${nfColor} -sb ${sbCol
 	coding) ~/.xmonad/xmonadctl 5 ;;
 	music) ~/.xmonad/xmonadctl 7 ;;
 	art) ~/.xmonad/xmonadctl 9 ;;
-	3dmodel) ~/.xmonad/xmonadctl 11 ;;
+	video) ~/.xmonad/xmonadctl 11 ;;
 	finances) ~/.xmonad/xmonadctl 13 ;;
 	ricing) ~/.xmonad/xmonadctl 15 ;;
-	other) ~/.xmonad/xmonadctl 17 ;;
+	gaming) ~/.xmonad/xmonadctl 17 ;;
 esac
