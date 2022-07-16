@@ -19,7 +19,7 @@ launcher_icon_theme_override = 0
 startup_notifications = 1
 launcher_tooltip = 0
 launcher_item_app = Alacritty.desktop
-launcher_item_app = emacsclient.desktop
+launcher_item_app = ~/.local/share/applications/emacsclient.desktop
 launcher_item_app = org.qutebrowser.qutebrowser.desktop
 launcher_item_app = librewolf.desktop
 launcher_item_app = brave-browser.desktop
@@ -31,6 +31,7 @@ launcher_item_app = org.kde.krita.desktop
 launcher_item_app = com.github.xournalpp.xournalpp.desktop
 launcher_item_app = blender.desktop
 launcher_item_app = virt-manager.desktop
+launcher_item_app = net.lutris.Lutris.desktop
 
 # Panel
 panel_items = LTSC
