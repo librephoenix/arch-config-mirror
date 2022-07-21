@@ -8,6 +8,9 @@
 ;; This shows me normal line numbers
 (setq display-line-numbers-type t)
 
+;; Makes for easier editing with wrapped lines
+(setq line-move-visual t)
+
 ;; Theme
 (setq doom-theme 'doom-oceanic-next)
 
@@ -49,7 +52,7 @@
 ;;;------ Org mode configuration ------;;;
 
 ;; Set default org directory
-(setq org-directory "~/Org")
+(setq org-directory "~/.Org")
 
 ;; This allows you to actually control how big images are in org docs!
 (setq org-image-actual-width nil)
@@ -176,6 +179,7 @@
                              "/home/emmet/Producer.p/Agenda"
                              "/home/emmet/Agenda"
                              "/home/emmet/Teaching.p/Agenda"
+                             "/home/emmet/Author.p/Agenda"
                              "/home/emmet/Gamedev.p/Agenda"))
 
 ;; Function to be run when org-agenda is opened
