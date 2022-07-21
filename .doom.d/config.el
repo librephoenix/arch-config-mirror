@@ -172,6 +172,12 @@
 
 (org-roam-db-autosync-mode)
 
+(after! org-roam
+  (setq org-roam-capture-templates
+        '(("d" "default" plain "%?" :target
+  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "${title}\n")
+  :unnarrowed t))))
+
 ;;;------ Org agenda configuration ------;;;
 
 ;; Set folder for my org agenda files

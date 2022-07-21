@@ -1,4 +1,4 @@
-# Created 2022-07-20 Wed 21:47
+# Created 2022-07-21 Thu 13:00
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -426,6 +426,12 @@ styletree.write('styles.xml')
       "s" 'org-roam-switch-db)
 
 (org-roam-db-autosync-mode)
+
+(after! org-roam
+  (setq org-roam-capture-templates
+        '(("d" "default" plain "%?" :target
+  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "${title}\n")
+  :unnarrowed t))))
 #+end_src
 ** Org Agenda Configuration
 #+begin_src emacs-lisp
