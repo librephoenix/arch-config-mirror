@@ -1,6 +1,7 @@
 #+title: emmet Arch Installation Manual
 
 ** Base Arch Install
+TODO
 
 ** Core Package and Config Installation Script
 Performing the following commands will set up the core packages of my system. The script assumes you are running as a normal (non-root) user with sudo priveleges, and will not work otherwise. The following sections install the core packages and install my dotfiles from this repo.
@@ -10,15 +11,25 @@ Performing the following commands will set up the core packages of my system. Th
 # emmet's Arch Config Installation Script
 
 #+END_SRC
-*** Arch and AUR Packages
-Here, we begin by installing necessary packages from the standard Arch repositories.  Packages can be changed or commented out if necessary.
+*** Package Lists
+First, we make sure git is installed and we checkout my full dotfiles repository.
+#+BEGIN_SRC shell :tangle install.sh
+# make sure git is installed
+sudo pacman -S git
 
-Then, after the Arch packages are installed, paru is installed with relevant AUR packages.
+# checkout my full dotfiles repo
+git clone --bare https://gitlab.com/librephoenix/dotfiles.git .dotfiles.git
+git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME checkout
+
+#+END_SRC
+
+Then, we begin by listing necessary packages from the standard Arch repositories, the AUR, and Flathub.  Packages can be changed or commented out if necessary.
 
 Packages are organized by function.
 #+BEGIN_SRC shell :tangle install.sh
 archpackages=()
 aurpackages=()
+flatpackages=()
 
 #+END_SRC
 
@@ -30,15 +41,42 @@ aurpackages=()
     luakit
     )
 
+    aurpackages+=(
+    brave-browser-bin
+    librewolf-bin)
+
 #+END_SRC
 
-**** Documents
+**** Office
 #+BEGIN_SRC shell :tangle install.sh
     # documents
     archpackages+=(
     libreoffice-still
     atril
     xournalpp
+    )
+
+    aurpackages+=(
+    autokey-gtk
+    )
+
+    # mail
+    archpackages+=(
+    geary
+    )
+
+    aurpackages+=(
+    protonmail-bridge-bin
+    mu
+    )
+
+    # file sync
+    archpackages+=(
+    syncthing
+    )
+
+    aurpackages+=(
+    syncthing-gtk-python3
     )
 #+END_SRC
 
@@ -50,14 +88,17 @@ aurpackages=()
     pcmanfm
     )
 
+    # for ranger
+    aurpackages+=(
+    dragon-drop
+    )
+
 #+END_SRC
 
 **** Media
 #+BEGIN_SRC shell :tangle install.sh
     # media
     archpackages+=(
-
-        # image viewer(s)
 
         # image editor(s)
         gimp
@@ -66,6 +107,7 @@ aurpackages=()
         # media players
         vlc
         mpv
+        youtube-dl
 
         # 3d modelling and video editing
         blender
@@ -76,6 +118,45 @@ aurpackages=()
 
         # digital audio workstation
         lmms
+    )
+
+    aurpackages+=(
+        # image viewers
+        nsxiv
+
+        # media players
+        freetube-bin
+        myuzi
+
+        # media recording
+        audio-recorder
+    )
+
+    flatpackages+=(
+    com.discordapp.Discord
+    )
+
+#+END_SRC
+**** Games
+#+BEGIN_SRC shell :tangle install.sh
+    # games and relevant apps
+    archpackages+=(
+    steam
+    lutris
+    retroarch
+    retroarch-assets-ozone
+    libretro-desmume
+    libretro-genesis-plus-gx
+    libretro-mgba
+    )
+
+    aurpackages+=(
+    airshipper # veloren
+    nbtexplorer-bin
+    )
+
+    flatpackages+=(
+    com.mojang.Minecraft
     )
 
 #+END_SRC
@@ -94,6 +175,7 @@ aurpackages=()
     # terminal emulators
     archpackages+=(
     alacritty
+    kitty
     )
 
 #+END_SRC
@@ -111,6 +193,13 @@ aurpackages=()
     htop
     hwinfo
     unzip
+    octave
+    reflector
+    )
+
+    aurpackages+=(
+    mimeo
+    pandoc-bin
     )
 
 #+END_SRC
@@ -118,9 +207,12 @@ aurpackages=()
 #+BEGIN_SRC shell :tangle install.sh
     # editors
     archpackages+=(
-    emacs
+    emacs-nativecomp
     vim
     )
+
+    aurpackages+=(
+    vim-plug)
 
 #+END_SRC
 **** Development
@@ -136,7 +228,7 @@ aurpackages=()
         android-udev
         )
 #+END_SRC
-***** C/C++
+***** CC
 #+BEGIN_SRC shell :tangle install.sh
         # cc
         archpackages+=(
@@ -160,11 +252,39 @@ aurpackages=()
 
 #+END_SRC
 
+***** Haskell
+#+BEGIN_SRC shell :tangle install.sh
+        # haskell
+        aurpackages+=(
+        haskell-language-server-static
+        )
+
+#+END_SRC
+
+***** Java
+#+BEGIN_SRC shell :tangle install.sh
+        # java
+        archpackages+=(
+        jdk-openjdk
+        jre-openjdk
+        )
+
+#+END_SRC
+
 ***** Gamedev
 #+BEGIN_SRC shell :tangle install.sh
         # gamedev
         archpackages+=(
         godot
+        )
+
+#+END_SRC
+***** Other
+#+BEGIN_SRC shell :tangle install.sh
+        # other
+        archpackages+=(
+        texinfo
+        libffi zlib libgmp libtinfo # required to build xmonad + xmobar
         )
 
 #+END_SRC
@@ -176,9 +296,52 @@ aurpackages=()
     ttf-inconsolata
     ttf-nerd-fonts-symbols-mono
     ttf-ubuntu-font-family
+    terminus-font
+    )
+
+    aurpackages+=(
+    otf-inconsolata-powerline-git
+    ttf-unifont
     )
 
 #+END_SRC
+**** Compositor and Desktop Utils
+#+BEGIN_SRC shell :tangle install.sh
+    # desktop utils
+    archpackages+=(
+    tint2
+    lxappearance
+    mate-icon-theme
+    )
+
+    aurpackages+=(
+    picom-jonaburg-git
+    qt5-styleplugins
+    xwinwrap-git
+    )
+#+END_SRC
+
+**** Graphical Display and X Utils
+#+BEGIN_SRC shell :tangle install.sh
+    # graphical display and X utils
+    archpackages+=(
+    xorg
+    autorandr
+    xorg-xinit
+    ##xf86-video-vesa
+    ##xf86-video-intel
+    xf86-video-amd
+    xdotool
+    xclip
+    ddcutil
+    )
+
+    aurpackages+=(
+    caffeine-ng
+    sct
+    )
+#+END_SRC
+
 **** Virtual Machines
 #+BEGIN_SRC shell :tangle install.sh
     # virtual machines
@@ -187,6 +350,7 @@ aurpackages=()
     virt-manager
     qemu-full
     lxc
+    swtpm
     )
 
 #+END_SRC
@@ -199,10 +363,17 @@ aurpackages=()
     base base-devel
     binutils
     git
+    git-delta
     fakeroot
     dialog
     xdg-utils
+    cups
+    gparted
+    flatpak
     )
+
+    aurpackages+=(
+    auto-cpufreq)
 
 #+END_SRC
 
@@ -219,22 +390,6 @@ aurpackages=()
 
 #+END_SRC
 
-**** Graphical Display and X Utils
-#+BEGIN_SRC shell :tangle install.sh
-    # graphical display and X utils
-    archpackages+=(
-    xorg
-    autorandr
-    xorg-xinit
-    xf86-video-vesa
-    xf86-video-intel
-    ##xf86-video-amd
-    xdotool
-    xclip
-    ddcutil
-    )
-#+END_SRC
-
 **** Networking Utils
 #+BEGIN_SRC shell :tangle install.sh
     # networking
@@ -245,6 +400,11 @@ aurpackages=()
     wpa_supplicant
     dhclient
     dnsmasq
+    )
+
+    aurpackages+=(
+    protonvpn
+    rdm-bin
     )
 
 #+END_SRC
@@ -260,8 +420,112 @@ aurpackages=()
 #+BEGIN_SRC shell :tangle install.sh
     # microcode
     archpackages+=(
-    intel-ucode
-    ##amd-ucode
+    ##intel-ucode
+    amd-ucode
     )
+
+#+END_SRC
+*** Install Packages
+Here, we begin by installing necessary packages from the standard Arch repositories.  Then, after the Arch packages are installed, paru is installed with relevant AUR packages.  Then, packages via Flatpak are installed.  Finally, stack is installed along with needed Haskell packages.
+
+To complete the installation, packages not tracked by package managers are installed, including: Doom Emacs, Oh My Zsh + Zsh Plugins.
+**** Arch Packages
+#+BEGIN_SRC shell :tangle install.sh
+# install arch packages
+sudo pacman -S $archpackages
+
+#+END_SRC
+
+**** Paru + AUR Packages
+#+BEGIN_SRC shell :tangle install.sh
+# install paru
+sudo pacman -S --needed base-devel
+cd /tmp
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+cd ~
+
+# install aur packages
+paru -S $aurpackages
+
+#+END_SRC
+
+**** Flatpaks
+#+BEGIN_SRC shell :tangle install.sh
+# install flatpaks
+flatpak install $flatpackages
+
+#+END_SRC
+**** Stack Packages
+***** Install Stack
+#+BEGIN_SRC shell :tangle install.sh
+# install stack
+curl -sSL https://get.haskellstack.org/ | sh
+
+#+END_SRC
+***** Install XMonad and XMobar plus extras
+#+BEGIN_SRC shell :tangle install.sh
+# install xmonad and xmobar
+
+# go to .xmonad working directory
+cd ~/.xmonad
+
+# clone xmonad, xmonad-contrib, and xmobar
+git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git
+git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git
+git clone https://github.com/jaor/xmobar ~/.xmonad/xmobar-git
+
+# setup stack and install
+stack setup
+stack install
+
+# compile xmonadctl binary
+stack ghc xmonadctl.hs
+
+#+END_SRC
+***** Install Hledger
+#+BEGIN_SRC shell :tangle install.sh
+# install hledger
+
+stack install hledger
+
+#+END_SRC
+
+**** Doom Emacs
+#+BEGIN_SRC shell :tangle install.sh
+# install doom
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+~/.emacs.d/bin/doom sync
+
+#+END_SRC
+**** Oh My Zsh
+#+BEGIN_SRC shell :tangle install.sh
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# re-apply my existing config
+mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+
+# get zsh plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+#+END_SRC
+*** Post Install Reminders
+In this section, the script outputs a list of "post install reminders" which are things that I haven't added to the script yet, or are difficult to set up a script for.
+#+BEGIN_SRC shell :tangle install.sh
+# post install reminders
+echo ""
+echo "Post Install Reminders"
+echo "-------------------"
+echo ""
+echo "Configure wallpaper via nitrogen"
+echo "Set up mbsync and mu4e, including mu-1.16.5"
+echo "Transfer relevant files via backups and syncthing"
+echo "Configure larger and nicer fonts for the tty"
+echo "Set up ssh keys for servers and git"
 
 #+END_SRC

@@ -1,13 +1,15 @@
 airshipper
 audio-recorder
 auto-cpufreq
-bedstead-fonts-powerline
+autokey-gtk
 bottles
 brave-bin
 caffeine-ng
-discordo-git
 dragon-drop
+filebrowser-bin
 freetube-bin
+gamehub-bin
+haskell-language-server-static
 hid-nintendo-dkms
 kazam
 librewolf-bin
@@ -15,8 +17,10 @@ mimeo
 minecraft-launcher
 mu
 myuzi
+nbtexplorer-bin
 nsxiv
-paru
+otf-inconsolata-powerline-git
+paru-bin
 picom-jonaburg-git
 protonmail-bridge-bin
 protonvpn
@@ -31,3 +35,4 @@ twmn-git
 vim-plug
 webcord
 xwinwrap-git
+zafiro-icon-theme
