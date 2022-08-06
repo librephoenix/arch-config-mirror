@@ -5,6 +5,13 @@ TODO
 
 ** Core Package and Config Installation Script
 Performing the following commands will set up the core packages of my system. The script assumes you are running as a normal (non-root) user with sudo priveleges, and will not work otherwise. The following sections install the core packages and install my dotfiles from this repo.
+
+To run the script on a base arch install, use:
+#+BEGIN_SRC shell :noeval
+curl -sSL https://gitlab.com/librephoenix/dotfiles/-/raw/main/.install/install.sh | sh
+#+END_SRC
+
+Otherwise, the remainder of this literate org document explains the entire script:
 #+BEGIN_SRC shell :tangle install.sh
 #!/bin/sh
 
