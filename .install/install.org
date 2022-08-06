@@ -34,6 +34,7 @@ Then, we begin by listing necessary packages from the standard Arch repositories
 
 Packages are organized by function.
 #+BEGIN_SRC shell :tangle install.sh
+# intialize package list bash arrays
 archpackages=()
 aurpackages=()
 flatpackages=()
@@ -347,6 +348,20 @@ flatpackages=()
     caffeine-ng
     sct
     )
+#+END_SRC
+
+**** Audio Server
+#+BEGIN_SRC shell :tangle install.sh
+    # pipewire for audio server
+    archpackages+=(
+    pipewire
+    wireplumber
+    helvum
+    pipewire-alsa
+    pipewire-pulse
+    pavucontrol
+    pipewire-jack)
+
 #+END_SRC
 
 **** Virtual Machines

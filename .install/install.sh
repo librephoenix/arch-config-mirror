@@ -9,6 +9,7 @@ sudo pacman -S --needed git
 git clone --bare https://gitlab.com/librephoenix/dotfiles.git .dotfiles.git
 git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME checkout
 
+# intialize package list bash arrays
 archpackages=()
 aurpackages=()
 flatpackages=()
@@ -254,6 +255,16 @@ flatpackages=()
     caffeine-ng
     sct
     )
+
+    # pipewire for audio server
+    archpackages+=(
+    pipewire
+    wireplumber
+    helvum
+    pipewire-alsa
+    pipewire-pulse
+    pavucontrol
+    pipewire-jack)
 
     # virtual machines
     archpackages+=(
