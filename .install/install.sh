@@ -3,7 +3,7 @@
 # emmet's Arch Config Installation Script
 
 # make sure git is installed
-sudo pacman -S git
+sudo pacman -S --needed git
 
 # checkout my full dotfiles repo
 git clone --bare https://gitlab.com/librephoenix/dotfiles.git .dotfiles.git
@@ -318,7 +318,7 @@ flatpackages=()
     )
 
 # install arch packages
-sudo pacman -S $archpackages
+sudo pacman -S --needed $archpackages
 
 # install paru
 sudo pacman -S --needed base-devel
