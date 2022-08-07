@@ -21,7 +21,7 @@ flatpackages=();
     );
 
     aurpackages+=(
-    brave-browser-bin
+    brave-bin
     librewolf-bin);
 
     # documents
@@ -43,6 +43,7 @@ flatpackages=();
     aurpackages+=(
     protonmail-bridge-bin
     mu
+    mbsync
     );
 
     # file sync
@@ -178,6 +179,7 @@ flatpackages=();
         gcc
         clang
         make
+        cmake
         autoconf
         automake
         libtool
@@ -228,7 +230,9 @@ flatpackages=();
 
     # desktop utils
     archpackages+=(
+    dmenu
     tint2
+    nitrogen
     lxappearance
     mate-icon-theme
     );
@@ -236,6 +240,7 @@ flatpackages=();
     aurpackages+=(
     picom-jonaburg-git
     qt5-styleplugins
+    qt5ct
     xwinwrap-git
     );
 
