@@ -330,61 +330,61 @@ flatpackages=()
     )
 
 # install arch packages
-sudo pacman -S --needed $archpackages
+sudo pacman -S --needed --noconfirm $archpackages &&
 
 # install paru
-sudo pacman -S --needed base-devel
-cd /tmp
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-cd ~
+sudo pacman -S --needed --noconfirm base-devel &&
+cd /tmp &&
+git clone https://aur.archlinux.org/paru.git &&
+cd paru &&
+makepkg -si &&
+cd ~ &&
 
 # install aur packages
-paru -S $aurpackages
+paru -S $aurpackages &&
 
 # install flatpaks
-flatpak install $flatpackages
+flatpak install $flatpackages &&
 
 # install stack
-curl -sSL https://get.haskellstack.org/ | sh
+curl -sSL https://get.haskellstack.org/ | sh &&
 
 # install xmonad and xmobar
 
 # go to .xmonad working directory
-cd ~/.xmonad
+cd ~/.xmonad &&
 
 # clone xmonad, xmonad-contrib, and xmobar
-git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git
-git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git
-git clone https://github.com/jaor/xmobar ~/.xmonad/xmobar-git
+git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git &
+git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git &
+git clone https://github.com/jaor/xmobar ~/.xmonad/xmobar-git &
 
 # setup stack and install
-stack setup
-stack install
+stack setup &&
+stack install &&
 
 # compile xmonadctl binary
-stack ghc xmonadctl.hs
+stack ghc xmonadctl.hs &&
 
 # install hledger
 
-stack install hledger
+stack install hledger &&
 
 # install doom
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-~/.emacs.d/bin/doom sync
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d &&
+~/.emacs.d/bin/doom install &&
+~/.emacs.d/bin/doom sync &&
 
 # install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &&
 
 # re-apply my existing config
-mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc &&
 
 # get zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
 
 # post install reminders
 echo ""
