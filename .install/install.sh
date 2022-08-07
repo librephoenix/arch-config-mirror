@@ -6,64 +6,64 @@
 sudo pacman -S --needed git
 
 # checkout my full dotfiles repo
-git clone --bare https://gitlab.com/librephoenix/dotfiles.git .dotfiles.git
-git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME checkout
+git clone --bare https://gitlab.com/librephoenix/dotfiles.git .dotfiles.git;
+git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME checkout;
 
 # intialize package list bash arrays
-archpackages=()
-aurpackages=()
-flatpackages=()
+archpackages=();
+aurpackages=();
+flatpackages=();
 
     # browsers
     archpackages+=(
     qutebrowser
     luakit
-    )
+    );
 
     aurpackages+=(
     brave-browser-bin
-    librewolf-bin)
+    librewolf-bin);
 
     # documents
     archpackages+=(
     libreoffice-still
     atril
     xournalpp
-    )
+    );
 
     aurpackages+=(
     autokey-gtk
-    )
+    );
 
     # mail
     archpackages+=(
     geary
-    )
+    );
 
     aurpackages+=(
     protonmail-bridge-bin
     mu
-    )
+    );
 
     # file sync
     archpackages+=(
     syncthing
-    )
+    );
 
     aurpackages+=(
     syncthing-gtk-python3
-    )
+    );
 
     # file managers
     archpackages+=(
     ranger
     pcmanfm
-    )
+    );
 
     # for ranger
     aurpackages+=(
     dragon-drop
-    )
+    );
 
     # media
     archpackages+=(
@@ -82,11 +82,11 @@ flatpackages=()
 
         # media recording
         cheese
-        obs
+        obs-studio
 
         # digital audio workstation
         lmms
-    )
+    );
 
     aurpackages+=(
         # image viewers
@@ -98,11 +98,11 @@ flatpackages=()
 
         # media recording
         audio-recorder
-    )
+    );
 
     flatpackages+=(
     com.discordapp.Discord
-    )
+    );
 
     # games and relevant apps
     archpackages+=(
@@ -113,28 +113,28 @@ flatpackages=()
     libretro-desmume
     libretro-genesis-plus-gx
     libretro-mgba
-    )
+    );
 
     aurpackages+=(
     airshipper # veloren
     nbtexplorer-bin
-    )
+    );
 
     flatpackages+=(
     com.mojang.Minecraft
-    )
+    );
 
     # shells
     archpackages+=(
     zsh
     ##fish
-    )
+    );
 
     # terminal emulators
     archpackages+=(
     alacritty
     kitty
-    )
+    );
 
     # command line utilities
     archpackages+=(
@@ -149,21 +149,21 @@ flatpackages=()
     unzip
     octave
     reflector
-    )
+    );
 
     aurpackages+=(
     mimeo
     pandoc-bin
-    )
+    );
 
     # editors
     archpackages+=(
     emacs-nativecomp
     vim
-    )
+    );
 
     aurpackages+=(
-    vim-plug)
+    vim-plug);
 
     # development packages
 
@@ -171,7 +171,7 @@ flatpackages=()
         archpackages+=(
         android-tools
         android-udev
-        )
+        );
 
         # cc
         archpackages+=(
@@ -181,36 +181,36 @@ flatpackages=()
         autoconf
         automake
         libtool
-        )
+        );
 
         # python
         archpackages+=(
         python
         python-pip
-        )
+        );
 
         # haskell
         aurpackages+=(
         haskell-language-server-static
-        )
+        );
 
         # java
         archpackages+=(
         jdk-openjdk
         jre-openjdk
         gradle
-        )
+        );
 
         # gamedev
         archpackages+=(
         godot
-        )
+        );
 
         # other
         archpackages+=(
         texinfo
-        libffi zlib libgmp libtinfo # required to build xmonad + xmobar
-        )
+        libffi zlib # required to build xmonad + xmobar
+        );
 
     #fonts
     archpackages+=(
@@ -219,25 +219,25 @@ flatpackages=()
     ttf-nerd-fonts-symbols-mono
     ttf-ubuntu-font-family
     terminus-font
-    )
+    );
 
     aurpackages+=(
     otf-inconsolata-powerline-git
     ttf-unifont
-    )
+    );
 
     # desktop utils
     archpackages+=(
     tint2
     lxappearance
     mate-icon-theme
-    )
+    );
 
     aurpackages+=(
     picom-jonaburg-git
     qt5-styleplugins
     xwinwrap-git
-    )
+    );
 
     # graphical display and X utils
     archpackages+=(
@@ -246,16 +246,16 @@ flatpackages=()
     xorg-xinit
     ##xf86-video-vesa
     ##xf86-video-intel
-    xf86-video-amd
+    xf86-video-amdgpu
     xdotool
     xclip
     ddcutil
-    )
+    );
 
     aurpackages+=(
     caffeine-ng
     sct
-    )
+    );
 
     # pipewire for audio server
     archpackages+=(
@@ -265,7 +265,8 @@ flatpackages=()
     pipewire-alsa
     pipewire-pulse
     pavucontrol
-    pipewire-jack)
+    pipewire-jack
+    );
 
     # virtual machines
     archpackages+=(
@@ -274,7 +275,7 @@ flatpackages=()
     qemu-full
     lxc
     swtpm
-    )
+    );
 
     # core system packages
     archpackages+=(
@@ -289,10 +290,11 @@ flatpackages=()
     cups
     gparted
     flatpak
-    )
+    );
 
     aurpackages+=(
-    auto-cpufreq)
+    auto-cpufreq
+    );
 
     # security
     archpackages+=(
@@ -301,7 +303,7 @@ flatpackages=()
     yubikey-manager
     libsecret gnome-keyring seahorse
     keepassxc
-    )
+    );
 
     # networking
     archpackages+=(
@@ -311,80 +313,80 @@ flatpackages=()
     wpa_supplicant
     dhclient
     dnsmasq
-    )
+    );
 
     aurpackages+=(
     protonvpn
     rdm-bin
-    )
+    );
 
     # file systems
     archpackages+=(
     dosfstools
-    )
+    );
 
     # microcode
     archpackages+=(
     ##intel-ucode
     amd-ucode
-    )
+    );
 
 # install arch packages
-sudo pacman -S --needed $archpackages
+sudo pacman -S --needed --noconfirm "${archpackages[@]}";
 
 # install paru
-sudo pacman -S --needed base-devel
-cd /tmp
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-cd ~
+sudo pacman -S --needed --noconfirm base-devel;
+cd /tmp;
+git clone https://aur.archlinux.org/paru.git;
+cd paru;
+makepkg -si;
+cd ~;
 
 # install aur packages
-paru -S $aurpackages
+paru -S "${aurpackages[@]}";
 
 # install flatpaks
-flatpak install $flatpackages
+flatpak install "${flatpackages[@]}";
 
 # install stack
-curl -sSL https://get.haskellstack.org/ | sh
+curl -sSL https://get.haskellstack.org/ | sh;
 
 # install xmonad and xmobar
 
 # go to .xmonad working directory
-cd ~/.xmonad
+cd ~/.xmonad;
 
 # clone xmonad, xmonad-contrib, and xmobar
-git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git
-git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git
-git clone https://github.com/jaor/xmobar ~/.xmonad/xmobar-git
+git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git;
+git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git;
+git clone https://codeberg.org/xmobar/xmobar.git ~/.xmonad/xmobar-git;
 
 # setup stack and install
-stack setup
-stack install
+stack setup;
+stack install;
 
 # compile xmonadctl binary
-stack ghc xmonadctl.hs
+stack ghc xmonadctl.hs;
 
 # install hledger
 
-stack install hledger
+stack install hledger;
 
 # install doom
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-~/.emacs.d/bin/doom sync
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d;
+~/.emacs.d/bin/doom install;
+~/.emacs.d/bin/doom sync;
 
 # install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
 
 # re-apply my existing config
-mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc;
 
 # get zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting;
 
 # post install reminders
 echo ""
