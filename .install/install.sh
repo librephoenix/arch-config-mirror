@@ -198,6 +198,7 @@ flatpackages=()
         archpackages+=(
         jdk-openjdk
         jre-openjdk
+        gradle
         )
 
         # gamedev
