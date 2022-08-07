@@ -122,7 +122,7 @@ flatpackages=();
 
         # media recording
         cheese
-        obs
+        obs-studio
 
         # digital audio workstation
         lmms
@@ -293,7 +293,7 @@ flatpackages=();
         # other
         archpackages+=(
         texinfo
-        libffi zlib libgmp libtinfo # required to build xmonad + xmobar
+        libffi zlib # required to build xmonad + xmobar
         );
 
 #+END_SRC
@@ -339,7 +339,7 @@ flatpackages=();
     xorg-xinit
     ##xf86-video-vesa
     ##xf86-video-intel
-    xf86-video-amd
+    xf86-video-amdgpu
     xdotool
     xclip
     ddcutil
@@ -457,7 +457,7 @@ To complete the installation, packages not tracked by package managers are insta
 **** Arch Packages
 #+BEGIN_SRC shell :tangle install.sh
 # install arch packages
-sudo pacman -S --needed --noconfirm $archpackages;
+sudo pacman -S --needed --noconfirm "${archpackages[@]}";
 
 #+END_SRC
 
@@ -472,14 +472,14 @@ makepkg -si;
 cd ~;
 
 # install aur packages
-paru -S $aurpackages;
+paru -S "${aurpackages[@]}";
 
 #+END_SRC
 
 **** Flatpaks
 #+BEGIN_SRC shell :tangle install.sh
 # install flatpaks
-flatpak install $flatpackages &&
+flatpak install "${flatpackages[@]}";
 
 #+END_SRC
 **** Stack Packages
@@ -499,7 +499,7 @@ cd ~/.xmonad;
 # clone xmonad, xmonad-contrib, and xmobar
 git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git;
 git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git;
-git clone https://github.com/jaor/xmobar ~/.xmonad/xmobar-git;
+git clone https://codeberg.org/xmobar/xmobar.git ~/.xmonad/xmobar-git;
 
 # setup stack and install
 stack setup;
@@ -513,16 +513,16 @@ stack ghc xmonadctl.hs;
 #+BEGIN_SRC shell :tangle install.sh
 # install hledger
 
-stack install hledger &&
+stack install hledger;
 
 #+END_SRC
 
 **** Doom Emacs
 #+BEGIN_SRC shell :tangle install.sh
 # install doom
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d &&
-~/.emacs.d/bin/doom install &&
-~/.emacs.d/bin/doom sync &&
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d;
+~/.emacs.d/bin/doom install;
+~/.emacs.d/bin/doom sync;
 
 #+END_SRC
 **** Oh My Zsh

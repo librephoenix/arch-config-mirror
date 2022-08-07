@@ -82,7 +82,7 @@ flatpackages=();
 
         # media recording
         cheese
-        obs
+        obs-studio
 
         # digital audio workstation
         lmms
@@ -209,7 +209,7 @@ flatpackages=();
         # other
         archpackages+=(
         texinfo
-        libffi zlib libgmp libtinfo # required to build xmonad + xmobar
+        libffi zlib # required to build xmonad + xmobar
         );
 
     #fonts
@@ -246,7 +246,7 @@ flatpackages=();
     xorg-xinit
     ##xf86-video-vesa
     ##xf86-video-intel
-    xf86-video-amd
+    xf86-video-amdgpu
     xdotool
     xclip
     ddcutil
@@ -332,7 +332,7 @@ flatpackages=();
     );
 
 # install arch packages
-sudo pacman -S --needed --noconfirm $archpackages;
+sudo pacman -S --needed --noconfirm "${archpackages[@]}";
 
 # install paru
 sudo pacman -S --needed --noconfirm base-devel;
@@ -343,10 +343,10 @@ makepkg -si;
 cd ~;
 
 # install aur packages
-paru -S $aurpackages;
+paru -S "${aurpackages[@]}";
 
 # install flatpaks
-flatpak install $flatpackages &&
+flatpak install "${flatpackages[@]}";
 
 # install stack
 curl -sSL https://get.haskellstack.org/ | sh;
@@ -359,7 +359,7 @@ cd ~/.xmonad;
 # clone xmonad, xmonad-contrib, and xmobar
 git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git;
 git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git;
-git clone https://github.com/jaor/xmobar ~/.xmonad/xmobar-git;
+git clone https://codeberg.org/xmobar/xmobar.git ~/.xmonad/xmobar-git;
 
 # setup stack and install
 stack setup;
@@ -370,12 +370,12 @@ stack ghc xmonadctl.hs;
 
 # install hledger
 
-stack install hledger &&
+stack install hledger;
 
 # install doom
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d &&
-~/.emacs.d/bin/doom install &&
-~/.emacs.d/bin/doom sync &&
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d;
+~/.emacs.d/bin/doom install;
+~/.emacs.d/bin/doom sync;
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
