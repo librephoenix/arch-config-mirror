@@ -139,6 +139,7 @@ flatpackages=();
 
     # command line utilities
     archpackages+=(
+    neofetch
     grep sed wget which
     bat exa fd bottom ripgrep
     pacman-contrib
