@@ -150,6 +150,7 @@ flatpackages=();
     unzip
     octave
     reflector
+    brightnessctl
     );
 
     aurpackages+=(
@@ -382,8 +383,8 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d;
 ~/.emacs.d/bin/doom install;
 ~/.emacs.d/bin/doom sync;
 
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
+# install oh-my-zsh with unattended flag
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended;
 
 # re-apply my existing config
 mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc;
@@ -392,6 +393,8 @@ mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc;
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting;
+
+chsh -s /bin/zsh;
 
 # post install reminders
 echo ""
