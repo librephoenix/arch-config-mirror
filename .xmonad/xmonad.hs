@@ -215,7 +215,7 @@ myScratchPads =
     NS "myuzi" spawnMyuzi findMyuzi manageMyuzi,
     NS "cfw" spawnCfw findCfw manageCfw,
     NS "pavucontrol" spawnPavucontrol findPavucontrol managePavucontrol,
-    NS "webcord" spawnWebcord findWebcord manageWebcord
+    NS "discord" spawnDiscord findDiscord manageDiscord
   ]
   where
     spawnTerm = myTerminal ++ " -t scratchpad"
@@ -250,9 +250,9 @@ myScratchPads =
         w = 0.4
         t = 0.75 - h
         l = 0.70 - w
-    spawnWebcord = "webcord"
-    findWebcord = className =? "WebCord"
-    manageWebcord = customFloating $ W.RationalRect l t w h
+    spawnDiscord = "flatpak run com.discordapp.Discord"
+    findDiscord = className =? "discord"
+    manageDiscord = customFloating $ W.RationalRect l t w h
       where
         h = 0.5
         w = 0.4
@@ -380,7 +380,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_x), namedScratchpadAction myScratchPads "keepassxc"),
       ((modm, xK_z), namedScratchpadAction myScratchPads "terminal"),
       ((modm, xK_b), namedScratchpadAction myScratchPads "btm"),
-      ((modm, xK_d), namedScratchpadAction myScratchPads "webcord"),
+      ((modm, xK_d), namedScratchpadAction myScratchPads "discord"),
       ((modm, xK_o), namedScratchpadAction myScratchPads "octave"),
       ((modm, xK_e), namedScratchpadAction myScratchPads "mu4e"),
       ((modm, xK_slash), namedScratchpadAction myScratchPads "helpmenu"),
@@ -506,7 +506,7 @@ myManageHook =
       className =? "Myuzi" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "octave" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       title =? "scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
-      className =? "WebCord" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
+      className =? "discord" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       title =? "ranger" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "btm" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       title =? "scratch_mu4e" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
