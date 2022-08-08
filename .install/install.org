@@ -1,10 +1,12 @@
 #+title: emmet Arch Installation Manual
 
-** Base Arch Install
+** ArchInstall Config
 TODO
 
 ** Core Package and Config Installation Script
 Performing the following commands will set up the core packages of my system. The script assumes you are running as a normal (non-root) user with sudo priveleges, and will not work otherwise. The following sections install the core packages and install my dotfiles from this repo.
+
+This script also assumes that the =multilib= repo is enabled in pacman, so check to make sure that section is uncommented in your =/etc/pacman.conf= before running this script.
 
 To run the script on a base arch install, use:
 #+BEGIN_SRC shell :noeval
@@ -22,7 +24,8 @@ Otherwise, the remainder of this literate org document explains the entire scrip
 First, we make sure git is installed and we checkout my full dotfiles repository.
 #+BEGIN_SRC shell :tangle install.sh
 # make sure git is installed
-sudo pacman -S --needed git
+sudo pacman -Syu --noconfirm;
+sudo pacman -S --needed --noconfirm git;
 
 # checkout my full dotfiles repo
 git clone --bare https://gitlab.com/librephoenix/dotfiles.git .dotfiles.git;
@@ -193,7 +196,7 @@ flatpackages=();
 #+BEGIN_SRC shell :tangle install.sh
     # command line utilities
     archpackages+=(
-    neofetch
+    neofetch lolcat cowsay
     grep sed wget which
     bat exa fd bottom ripgrep
     pacman-contrib
@@ -470,16 +473,19 @@ sudo pacman -S --needed --noconfirm "${archpackages[@]}";
 
 **** Paru + AUR Packages
 #+BEGIN_SRC shell :tangle install.sh
-# install paru
+# install paru if it isn't already installed
 sudo pacman -S --needed --noconfirm base-devel;
-cd /tmp;
-git clone https://aur.archlinux.org/paru.git;
-cd paru;
-makepkg -si;
+if ! command -v paru &> /dev/null
+   then
+      cd /tmp;
+      git clone https://aur.archlinux.org/paru.git;
+      cd paru;
+      makepkg -si;
+fi;
 cd ~;
 
 # install aur packages
-paru -S "${aurpackages[@]}";
+paru -S --needed --noconfirm "${aurpackages[@]}";
 
 #+END_SRC
 
@@ -487,6 +493,14 @@ paru -S "${aurpackages[@]}";
 #+BEGIN_SRC shell :tangle install.sh
 # install flatpaks
 flatpak install "${flatpackages[@]}";
+
+# apply my gtk themes to all flatpaks
+sudo flatpak override --filesystem=$HOME/.themes;
+sudo flatpak override --env=GTK_THEME=MyOceanicNext;
+
+# setup file uploads with Discord (files are sandboxed into ~/.discord_launchpad; this works with my ranger config)
+mkdir ~/.discord_launchpad;
+sudo flatpak override com.discordapp.Discord --filesystem=$HOME/.discord_launchpad
 
 #+END_SRC
 **** Stack Packages
@@ -527,7 +541,7 @@ stack install hledger;
 **** Doom Emacs
 #+BEGIN_SRC shell :tangle install.sh
 # install doom
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d;
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d; &&
 ~/.emacs.d/bin/doom install;
 ~/.emacs.d/bin/doom sync;
 
@@ -535,15 +549,15 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d;
 **** Oh My Zsh
 #+BEGIN_SRC shell :tangle install.sh
 # install oh-my-zsh with unattended flag
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended;
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended; &&
 
 # re-apply my existing config
-mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc;
+mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc; &&
 
 # get zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions; &&
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting;
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting; &&
 
 chsh -s /bin/zsh;
 

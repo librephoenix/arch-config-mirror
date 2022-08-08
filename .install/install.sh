@@ -3,7 +3,8 @@
 # emmet's Arch Config Installation Script
 
 # make sure git is installed
-sudo pacman -S --needed git
+sudo pacman -Syu --noconfirm;
+sudo pacman -S --needed --noconfirm git;
 
 # checkout my full dotfiles repo
 git clone --bare https://gitlab.com/librephoenix/dotfiles.git .dotfiles.git;
@@ -139,7 +140,7 @@ flatpackages=();
 
     # command line utilities
     archpackages+=(
-    neofetch
+    neofetch lolcat cowsay
     grep sed wget which
     bat exa fd bottom ripgrep
     pacman-contrib
@@ -341,19 +342,30 @@ flatpackages=();
 # install arch packages
 sudo pacman -S --needed --noconfirm "${archpackages[@]}";
 
-# install paru
+# install paru if it isn't already installed
 sudo pacman -S --needed --noconfirm base-devel;
-cd /tmp;
-git clone https://aur.archlinux.org/paru.git;
-cd paru;
-makepkg -si;
+if ! command -v paru &> /dev/null
+   then
+      cd /tmp;
+      git clone https://aur.archlinux.org/paru.git;
+      cd paru;
+      makepkg -si;
+fi;
 cd ~;
 
 # install aur packages
-paru -S "${aurpackages[@]}";
+paru -S --needed --noconfirm "${aurpackages[@]}";
 
 # install flatpaks
 flatpak install "${flatpackages[@]}";
+
+# apply my gtk themes to all flatpaks
+sudo flatpak override --filesystem=$HOME/.themes;
+sudo flatpak override --env=GTK_THEME=MyOceanicNext;
+
+# setup file uploads with Discord (files are sandboxed into ~/.discord_launchpad; this works with my ranger config)
+mkdir ~/.discord_launchpad;
+sudo flatpak override com.discordapp.Discord --filesystem=$HOME/.discord_launchpad
 
 # install stack
 curl -sSL https://get.haskellstack.org/ | sh;
@@ -380,20 +392,20 @@ stack ghc xmonadctl.hs;
 stack install hledger;
 
 # install doom
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d;
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d; &&
 ~/.emacs.d/bin/doom install;
 ~/.emacs.d/bin/doom sync;
 
 # install oh-my-zsh with unattended flag
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended;
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended; &&
 
 # re-apply my existing config
-mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc;
+mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc; &&
 
 # get zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions; &&
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting;
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting; &&
 
 chsh -s /bin/zsh;
 
