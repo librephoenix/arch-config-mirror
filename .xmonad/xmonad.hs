@@ -312,15 +312,18 @@ myScratchPads =
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList $
-    -- launch a terminal
-    [ ((modm, xK_Return), spawn $ XMonad.terminal conf),
+    [ -- launch a terminal
+      ((modm, xK_Return), spawn $ XMonad.terminal conf),
       -- launch emacsclient
       ((modm, xK_a), spawn "emacsclient -c -a 'emacs'"),
       -- launch browser
       ((modm, xK_s), spawn "qutebrowser"),
       -- control brightness from kbd
-      ((0, xF86XK_MonBrightnessUp), spawn "xbacklight +10"),
-      ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -10"),
+      ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl set +15"),
+      ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 15-"),
+      -- control kbd brightness from kbd
+      ((0, xF86XK_KbdBrightnessUp), spawn "brightnessctl --device='asus::kbd_backlight' set +1"),
+      ((0, xF86XK_KbdBrightnessDown), spawn "brightnessctl --device='asus::kbd_backlight' set 1-"),
       -- control volume from kbd
       ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 10"),
       ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 10"),
@@ -328,11 +331,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- manage multiple monitors with kbd
       ((0, xF86XK_Explorer), spawn "/home/emmet/.local/bin/setup_external_monitor.sh"),
       ((0, xK_F8), spawn "/home/emmet/.local/bin/setup_external_monitor.sh"),
-      -- control background music
-      --, ((0, xF86XK_AudioPlay), spawn "curl -X POST 'http://localhost:3100/nuclear/player/play-pause' -H 'accept: application/json'")
-      --, ((0, xF86XK_AudioPrev), spawn "curl -X POST 'http://localhost:3100/nuclear/player/previous' -H 'accept: application/json'")
-      --, ((0, xF86XK_AudioNext), spawn "curl -X POST 'http://localhost:3100/nuclear/player/next' -H 'accept: application/json'")
-
       -- launch dmenu
       ((modm, xK_semicolon), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")),
       -- launch workspace switch dmenu script
