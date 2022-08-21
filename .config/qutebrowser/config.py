@@ -4,7 +4,7 @@ config.load_autoconfig(False)
 # Base16 qutebrowser template by theova
 # Gruvbox dark, medium scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
-base16_theme = "oceanic-next"
+base16_theme = "gruvbox"
 
 if base16_theme == "gruvbox":
     base00 = "#2f2f2f"

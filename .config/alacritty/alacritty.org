@@ -110,7 +110,7 @@ Credit to [[https://github.com/eendroroy][eendoroy]].
 
     # Normal colors
     normal:
-      black:   '0x000000'
+      black:   '0x161616'
       red:     '0xff5555'
       green:   '0x50fa7b'
       yellow:  '0xf1fa8c'
@@ -303,7 +303,7 @@ Select a color scheme by specifying colors: *anchor, where anchor selects one of
 
 #+BEGIN_SRC yaml :tangle alacritty.yml
 #Select color theme
-colors: *oceanic_next
+colors: *gruvbox_dark
 
 #+END_SRC
 

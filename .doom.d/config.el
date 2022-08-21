@@ -12,7 +12,7 @@
 (setq line-move-visual t)
 
 ;; Theme
-(setq doom-theme 'doom-oceanic-next)
+(setq doom-theme 'doom-gruvbox)
 
 ;; Transparent background
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))

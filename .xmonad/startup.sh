@@ -29,17 +29,18 @@ xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 ~/.local/bin/setup_external_monitor.sh &
 ~/.xmonad/touchscreen-setup.sh
 twmnd &
-nitrogen --restore &
-# /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor 0 &
-tint2 -c ~/.config/tint2/applauncher_tint2rc & ~/.config/tint2/tint2top.sh &
+# nitrogen --restore &
+/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor 0 &
 ~/.xmonad/workspace-select.sh ${nbColor} ${nfColor} ${sbColor} ${sfColor}
 gnome-keyring-daemon
-mbsync -a && mu index &
+mbsync -a & mu index &
 nm-applet &
 syncthing --no-browser &
 syncthing-gtk &
 protonmail-bridge --no-window &
-webcord --start-minimized &
+flatpak run com.discordapp.Discord --start-minimized &
+setxkbmap -option caps:escape &
 xmonad --recompile &
 xmonad --restart &
+back4.sh 0.04 ~/Media/Backgrounds/steampunk-city.gif &
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"

@@ -50,7 +50,7 @@ oceanicNextIndex = 4
 ubuntuIndex = 5
 
 -- choose a color scheme
-myColorScheme = oceanicNextIndex
+myColorScheme = gruvboxIndex
 
 colorSchemeList = ["gruvbox", "solarized", "dracula", "tokyo-night", "oceanic-next"]
 
@@ -322,8 +322,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl set +15"),
       ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 15-"),
       -- control kbd brightness from kbd
-      ((0, xF86XK_KbdBrightnessUp), spawn "brightnessctl --device='asus::kbd_backlight' set +1"),
-      ((0, xF86XK_KbdBrightnessDown), spawn "brightnessctl --device='asus::kbd_backlight' set 1-"),
+      ((0, xF86XK_KbdBrightnessUp), spawn "brightnessctl --device='asus::kbd_backlight' set +1"), -- oddly disrupts normal functioning of keyboard until I switch on/off another tty
+      ((0, xF86XK_KbdBrightnessDown), spawn "brightnessctl --device='asus::kbd_backlight' set 1-"), -- same as above ""
+      ((shiftMask, xF86XK_MonBrightnessUp), spawn "brightnessctl --device='asus::kbd_backlight' set +1"),
+      ((shiftMask, xF86XK_MonBrightnessDown), spawn "brightnessctl --device='asus::kbd_backlight' set 1-"),
       -- control volume from kbd
       ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 10"),
       ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 10"),
@@ -515,7 +517,8 @@ myManageHook =
       className =? "Syncthing GTK" --> (customFloating $ W.RationalRect 0.53 0.04 0.46 0.45),
       className =? "Zenity" --> (customFloating $ W.RationalRect 0.45 0.4 0.1 0.2),
       resource =? "desktop_window" --> doIgnore,
-      resource =? "kdesktop" --> doIgnore
+      resource =? "kdesktop" --> doIgnore,
+      manageDocks
     ]
 
 myFullscreenManageHook = fullscreenManageHook
@@ -551,7 +554,7 @@ myFullscreenEventHook = fullscreenEventHook
 --
 -- By default, do nothing.
 myStartupHook = do
-  spawnOnce ("~/.xmonad/startup.sh " ++ trayerBgNormal ++ " '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")
+  spawnOnce ("~/.xmonad/startup.sh '" ++ trayerBgNormal ++ "' '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

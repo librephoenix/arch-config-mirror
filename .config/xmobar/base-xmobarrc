@@ -27,7 +27,7 @@ Config { font = "xft:UbuntuMono-R:size=16"
                       "-l", "color02Normal", "-m", "color05Normal", "-h", "color03Normal"] 10
                     , Run Brightness
                       [ "-t", "<fc=color04Normal><fn=1>\xf5dd</fn> <percent>% </fc><fn=2><fc=colorBgNormal,colorBgBright>\xe0b0</fc></fn>", "--",
-                        "-D", "intel_backlight"
+                        "-D", "amdgpu_bl1"
                       ] 2 
                     , Run Volume "default" "Master"
                       [ "-t", "<status>", "--"

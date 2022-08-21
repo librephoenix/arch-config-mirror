@@ -78,7 +78,7 @@ schemes:
 
     # Normal colors
     normal:
-      black:   '0x000000'
+      black:   '0x161616'
       red:     '0xff5555'
       green:   '0x50fa7b'
       yellow:  '0xf1fa8c'
@@ -222,7 +222,7 @@ schemes:
         white:   '0xf8f8f2'
 
 #Select color theme
-colors: *oceanic_next
+colors: *gruvbox_dark
 
 #Apply background opacity
 window:
