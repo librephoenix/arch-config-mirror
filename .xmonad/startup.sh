@@ -30,17 +30,17 @@ xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 ~/.xmonad/touchscreen-setup.sh
 twmnd &
 # nitrogen --restore &
-/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor 0 &
+/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor "primary" &
 ~/.xmonad/workspace-select.sh ${nbColor} ${nfColor} ${sbColor} ${sfColor}
-gnome-keyring-daemon
+#gnome-keyring-daemon --start --components=secrets &
 mbsync -a & mu index &
 nm-applet &
 syncthing --no-browser &
-syncthing-gtk &
+syncthing-gtk -m &
 protonmail-bridge --no-window &
 flatpak run com.discordapp.Discord --start-minimized &
 setxkbmap -option caps:escape &
 xmonad --recompile &
 xmonad --restart &
-back4.sh 0.04 ~/Media/Backgrounds/steampunk-city.gif &
+#back4.sh 0.04 ~/Media/Backgrounds/steampunk-city.gif &
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"
