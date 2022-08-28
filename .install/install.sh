@@ -100,6 +100,9 @@ flatpackages=();
 
         # media recording
         audio-recorder
+
+        # misc
+        betterdiscordctl-git
     );
 
     flatpackages+=(
@@ -361,11 +364,15 @@ flatpak install "${flatpackages[@]}";
 
 # apply my gtk themes to all flatpaks
 sudo flatpak override --filesystem=$HOME/.themes;
-sudo flatpak override --env=GTK_THEME=MyOceanicNext;
+sudo flatpak override --env=GTK_THEME=OffcialDracula;
+sudo flatpak override --env=QT_STYLE_OVERRIDE=qt5ct --filesystem=~/.config/qt5ct
 
 # setup file uploads with Discord (files are sandboxed into ~/.discord_launchpad; this works with my ranger config)
 mkdir ~/.discord_launchpad;
 sudo flatpak override com.discordapp.Discord --filesystem=$HOME/.discord_launchpad
+
+# set up betterdiscord
+betterdiscordctl -i flatpak install
 
 # install stack
 curl -sSL https://get.haskellstack.org/ | sh;

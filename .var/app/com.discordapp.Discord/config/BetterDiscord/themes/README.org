@@ -1,0 +1,3 @@
+#+title: My BetterDiscord Theme
+
+My BetterDiscord theme utilizes the [[https://bdeditor.dev/theme/clearvision][ClearVision]] CSS theme, with a background by [[https://unsplash.com/photos/KFIjzXYg1RM][Jeremy Bishop on Unsplash]].
