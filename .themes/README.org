@@ -1,4 +1,5 @@
 #+TITLE: Themes
 
 ** Attribution
-All theme directories beginning with My (i.e. MyGruvbox, MyOceanicNext, etc...) are simply forks of [[https://github.com/SafwanLjd][SafwanLjd's]] [[https://github.com/SafwanLjd/BetterGruvbox][BetterGruvbox]].
+- All theme directories beginning with My (i.e. MyGruvbox, MyOceanicNext, etc...) are simply forks of [[https://github.com/SafwanLjd][SafwanLjd's]] [[https://github.com/SafwanLjd/BetterGruvbox][BetterGruvbox]].
+- The OfficialDracula directory is the from [[https://draculatheme.com/][official Dracula theme]] developers.
