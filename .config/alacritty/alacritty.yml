@@ -222,7 +222,7 @@ schemes:
         white:   '0xf8f8f2'
 
 #Select color theme
-colors: *gruvbox_dark
+colors: *dracula
 
 #Apply background opacity
 window:

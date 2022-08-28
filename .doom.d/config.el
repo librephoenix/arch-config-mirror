@@ -12,7 +12,7 @@
 (setq line-move-visual t)
 
 ;; Theme
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-dracula)
 
 ;; Transparent background
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
@@ -240,7 +240,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 ;;;------ mu4e configuration ------;;;
 
 ;; Auto-load mu4e and org-mu4e on start
-(require 'mu4e)
+(require 'mu4e-config)
 
 ;; mu4e update command
 (setq mu4e-get-mail-command "mbsync -a")

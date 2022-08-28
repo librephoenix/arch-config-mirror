@@ -50,7 +50,7 @@ oceanicNextIndex = 4
 ubuntuIndex = 5
 
 -- choose a color scheme
-myColorScheme = gruvboxIndex
+myColorScheme = draculaIndex
 
 colorSchemeList = ["gruvbox", "solarized", "dracula", "tokyo-night", "oceanic-next"]
 
@@ -157,7 +157,7 @@ myFocusedBorderColor = colorFocus
 -- Default apps
 myTerminal, myBrowser :: String
 myTerminal = "alacritty -o font.size=20"
-myBrowser = "qutebrowser"
+myBrowser = "brave"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -317,15 +317,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- launch emacsclient
       ((modm, xK_a), spawn "emacsclient -c -a 'emacs'"),
       -- launch browser
-      ((modm, xK_s), spawn "qutebrowser"),
+      ((modm, xK_s), spawn "brave"),
       -- control brightness from kbd
       ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl set +15"),
       ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 15-"),
       -- control kbd brightness from kbd
-      ((0, xF86XK_KbdBrightnessUp), spawn "brightnessctl --device='asus::kbd_backlight' set +1"), -- oddly disrupts normal functioning of keyboard until I switch on/off another tty
-      ((0, xF86XK_KbdBrightnessDown), spawn "brightnessctl --device='asus::kbd_backlight' set 1-"), -- same as above ""
-      ((shiftMask, xF86XK_MonBrightnessUp), spawn "brightnessctl --device='asus::kbd_backlight' set +1"),
-      ((shiftMask, xF86XK_MonBrightnessDown), spawn "brightnessctl --device='asus::kbd_backlight' set 1-"),
+      ((0, xF86XK_KbdBrightnessUp), spawn "brightnessctl --device='asus::kbd_backlight' set +1 & xset r rate 350 100"),
+      ((0, xF86XK_KbdBrightnessDown), spawn "brightnessctl --device='asus::kbd_backlight' set 1- & xset r rate 350 100"),
+      ((shiftMask, xF86XK_MonBrightnessUp), spawn "brightnessctl --device='asus::kbd_backlight' set +1 & xset r rate 350 100"),
+      ((shiftMask, xF86XK_MonBrightnessDown), spawn "brightnessctl --device='asus::kbd_backlight' set 1- & xset r rate 350 100"),
       -- control volume from kbd
       ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 10"),
       ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 10"),

@@ -303,7 +303,7 @@ Select a color scheme by specifying colors: *anchor, where anchor selects one of
 
 #+BEGIN_SRC yaml :tangle alacritty.yml
 #Select color theme
-colors: *gruvbox_dark
+colors: *dracula
 
 #+END_SRC
 
