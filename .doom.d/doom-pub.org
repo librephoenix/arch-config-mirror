@@ -1,4 +1,4 @@
-# Created 2022-08-07 Sun 14:00
+# Created 2022-09-03 Sat 21:04
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -46,7 +46,7 @@ I use this functionality to load my private config file with non-public informat
 (setq line-move-visual t)
 
 ;; Theme
-(setq doom-theme 'doom-oceanic-next)
+(setq doom-theme 'doom-dracula)
 
 ;; Transparent background
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
@@ -504,7 +504,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 ;;;------ mu4e configuration ------;;;
 
 ;; Auto-load mu4e and org-mu4e on start
-(require 'mu4e)
+(require 'mu4e-config)
 
 ;; mu4e update command
 (setq mu4e-get-mail-command "mbsync -a")
@@ -537,15 +537,15 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
     (let ((last (nthcdr (1- nth) list)))
       (setcdr last (cddr last))
       list)))
-(setq mu4e-marks (remove-nth-element 5 mu4e-marks))
-(add-to-list 'mu4e-marks
-     '(trash
-       :char ("d" . "▼")
-       :prompt "dtrash"
-       :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
-       :action (lambda (docid msg target)
-                 (mu4e~proc-move docid
-                    (mu4e~mark-check-target target) "-N"))))
+;;(setq mu4e-marks (remove-nth-element 5 mu4e-marks))
+;;(add-to-list 'mu4e-marks
+;;     '(trash
+;;       :char ("d" . "▼")
+;;       :prompt "dtrash"
+;;       :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
+;;       :action (lambda (docid msg target)
+;;                 (mu4e~proc-move docid
+;;                    (mu4e~mark-check-target target) "-N"))))
 #+end_src
 ** hledger-mode Configuration
 #+begin_src emacs-lisp
