@@ -32,10 +32,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-export QT_QPA_PLATFORMTHEME=qt5ct
-
-dbus-update-activation-environment --all
-xrandr --dpi 120 
-picom --experimental-backends --daemon &
-xset r rate 350 100
-exec xmonad 
+exec xmonad

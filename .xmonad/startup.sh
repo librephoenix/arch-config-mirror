@@ -23,6 +23,15 @@ killall caffeine
 killall syncthing-gtk
 killall webcord
 
+# setup necessary environment variables
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# pre-launch configurations
+dbus-update-activation-environment --all
+xrandr --dpi 120
+picom --experimental-backends --daemon &
+xset r rate 350 100
+
 # Launch necessary desktop applications
 emacs --daemon &
 xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
