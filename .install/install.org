@@ -44,6 +44,21 @@ flatpackages=();
 
 #+END_SRC
 
+**** WMs
+#+BEGIN_SRC shell :tangle install.sh
+    # hypr
+    aurpackages+=(
+    hypr-git
+    );
+
+    # hyprland
+    aurpackages+=(
+    hyprland-bin
+    waybar-hyprland-git
+    );
+
+#+END_SRC
+
 **** Browsers
 #+BEGIN_SRC shell :tangle install.sh
     # browsers
@@ -224,12 +239,13 @@ flatpackages=();
 #+BEGIN_SRC shell :tangle install.sh
     # editors
     archpackages+=(
-    emacs-nativecomp
     vim
     );
 
     aurpackages+=(
-    vim-plug);
+    emacs-gcc-wayland-devel-bin
+    vim-plug
+    );
 
 #+END_SRC
 **** Development
@@ -328,6 +344,7 @@ flatpackages=();
 #+BEGIN_SRC shell :tangle install.sh
     # desktop utils
     archpackages+=(
+    sddm
     dmenu
     tint2
     nitrogen
@@ -340,10 +357,11 @@ flatpackages=();
     qt5-styleplugins
     qt5ct
     xwinwrap-git
+    sddm-sugar-dark
     );
 #+END_SRC
 
-**** Graphical Display and X Utils
+**** X Utils
 #+BEGIN_SRC shell :tangle install.sh
     # graphical display and X utils
     archpackages+=(
@@ -364,6 +382,21 @@ flatpackages=();
     );
 #+END_SRC
 
+**** Wayland Utils
+#+BEGIN_SRC shell :tangle install.sh
+    # wayland utils
+    archpackages+=(
+    xdg-desktop-portal-wlr
+    grim
+    slurp
+    );
+
+    aurpackages+=(
+    wlsunset
+    hyprpaper-git
+    );
+
+#+END_SRC
 **** Audio Server
 #+BEGIN_SRC shell :tangle install.sh
     # pipewire for audio server

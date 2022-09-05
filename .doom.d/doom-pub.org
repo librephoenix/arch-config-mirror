@@ -1,4 +1,4 @@
-# Created 2022-09-03 Sat 21:04
+# Created 2022-09-04 Sun 07:36
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -49,8 +49,8 @@ I use this functionality to load my private config file with non-public informat
 (setq doom-theme 'doom-dracula)
 
 ;; Transparent background
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 ()
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
@@ -653,14 +653,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 ;;;------ Load my private config ------;;;
 
 (load! "~/.doom.d/private.el")
-#+end_src
-** Extra
-#+begin_src emacs-lisp
-;;;------ Extra ------;;;
-
-;; This line is here so that my org calendar works properly
-;; Auto opens org agenda on server startup
-(org-agenda-list)
 #+end_src
 * My [[file:./init.el][init.el]]
 ** Default Preamble

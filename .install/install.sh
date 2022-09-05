@@ -15,6 +15,17 @@ archpackages=();
 aurpackages=();
 flatpackages=();
 
+    # hypr
+    aurpackages+=(
+    hypr-git
+    );
+
+    # hyprland
+    aurpackages+=(
+    hyprland-bin
+    waybar-hyprland-git
+    );
+
     # browsers
     archpackages+=(
     qutebrowser
@@ -165,12 +176,13 @@ flatpackages=();
 
     # editors
     archpackages+=(
-    emacs-nativecomp
     vim
     );
 
     aurpackages+=(
-    vim-plug);
+    emacs-gcc-wayland-devel-bin
+    vim-plug
+    );
 
     # development packages
 
@@ -236,6 +248,7 @@ flatpackages=();
 
     # desktop utils
     archpackages+=(
+    sddm
     dmenu
     tint2
     nitrogen
@@ -248,6 +261,7 @@ flatpackages=();
     qt5-styleplugins
     qt5ct
     xwinwrap-git
+    sddm-sugar-dark
     );
 
     # graphical display and X utils
@@ -266,6 +280,18 @@ flatpackages=();
     aurpackages+=(
     caffeine-ng
     sct
+    );
+
+    # wayland utils
+    archpackages+=(
+    xdg-desktop-portal-wlr
+    grim
+    slurp
+    );
+
+    aurpackages+=(
+    wlsunset
+    hyprpaper-git
     );
 
     # pipewire for audio server
