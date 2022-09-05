@@ -1,5 +1,5 @@
 Config { font = "xft:UbuntuMono-R:size=16"
-       , additionalFonts = ["xft:Symbols Nerd Font:size=16","xft:Inconsolata for Powerline:size=21"]
+       , additionalFonts = ["xft:Symbols Nerd Font Mono:size=16","xft:Inconsolata for Powerline:size=21"]
        , borderColor = "colorBgNormal"
        , border = FullB
        , bgColor = "colorBgNormal"
