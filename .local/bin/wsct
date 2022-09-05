@@ -1,0 +1,5 @@
+#!/bin/bash
+killall wlsunset
+temphigh=$(( $1 + 1 ))
+templow=$1
+wlsunset -t $templow -T $temphigh &
