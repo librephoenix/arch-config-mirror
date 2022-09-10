@@ -54,3 +54,4 @@
 (package! ox-reveal)
 (package! hledger-mode)
 (package! rainbow-mode)
+(package! crdt)

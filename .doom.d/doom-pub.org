@@ -1,4 +1,4 @@
-# Created 2022-09-04 Sun 07:36
+# Created 2022-09-10 Sat 10:26
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -917,6 +917,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (package! ox-reveal)
 (package! hledger-mode)
 (package! rainbow-mode)
+(package! crdt)
 #+end_src
 * Publish Script
 I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with noexport, and then export my private doom.org config using the following script:
