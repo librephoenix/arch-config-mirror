@@ -167,6 +167,7 @@ flatpackages=();
     octave
     reflector
     brightnessctl
+    w3m
     );
 
     aurpackages+=(
@@ -285,6 +286,8 @@ flatpackages=();
     # wayland utils
     archpackages+=(
     xdg-desktop-portal-wlr
+    swayidle
+    swaylock
     grim
     slurp
     );
