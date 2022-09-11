@@ -1,4 +1,4 @@
-# Created 2022-09-10 Sat 19:24
+# Created 2022-09-11 Sun 11:35
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -112,9 +112,6 @@ I use this functionality to load my private config file with non-public informat
         :init
         (add-hook 'org-mode-hook (lambda ()
                                    (org-bullets-mode 1))))
-
-(require 'org-download)
-(setq org-download-edit-cmd "xdg-open %s")
 
 ; Automatic table of contents is nice
 (if (require 'toc-org nil t)
@@ -986,7 +983,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 #+begin_src emacs-lisp
 (package! org-bullets)
 (package! org-roam)
-(package! org-download)
 (package! toc-org)
 (package! beacon)
 (package! ox-reveal)
