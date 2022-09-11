@@ -286,10 +286,13 @@ flatpackages=();
     # wayland utils
     archpackages+=(
     xdg-desktop-portal-wlr
+    xorg-xlsclients
+    glfw-wayland
     swayidle
     swaylock
     grim
     slurp
+    wayshot
     );
 
     aurpackages+=(
