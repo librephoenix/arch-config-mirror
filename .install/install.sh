@@ -359,6 +359,7 @@ flatpackages=();
     );
 
     aurpackages+=(
+    nm-tray-git
     protonvpn
     rdm-bin
     );
