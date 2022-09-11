@@ -1,0 +1,2 @@
+#!/bin/sh
+wayshot -s "$(slurp -f '%x %y %w %h')" -f $1
