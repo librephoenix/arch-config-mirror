@@ -116,6 +116,77 @@
       :desc "Convert org document to odp presentation"
       "e p" 'my-ox-odp)
 
+(defun my-org-screenshot ()
+  "Take a screenshot into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq filename
+        (concat
+         (make-temp-name
+          (concat (buffer-file-name)
+                  "_"
+                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
+  (shell-command (concat "emacs-wayshot " filename))
+  (insert (concat "[[" filename "]]"))
+  (org-display-inline-images))
+
+(defun my-org-paste()
+  "Take an image from the clipboard into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq filename
+        (concat
+         (make-temp-name
+          (concat (file-name-directory (buffer-file-name))
+                  "img/"
+                  (file-name-nondirectory (buffer-file-name))
+                  "_"
+                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
+  (shell-command (concat "wl-paste > " filename))
+  (insert (concat "[[" filename "]]"))
+  (org-display-inline-images))
+
+(defun my-org-new-file-from-template()
+  "Copy a template from ~/Templates into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq template-file (completing-read "Template file:" (directory-files "~/Templates")))
+  (setq filename
+        (concat
+         (make-temp-name
+          (concat (file-name-directory (buffer-file-name))
+                  "files/"
+                  (file-name-nondirectory (buffer-file-name))
+                  "_"
+                  (format-time-string "%Y%m%d_%H%M%S_")) ) (file-name-extension template-file t)))
+  (copy-file (concat "/home/emmet/Templates/" template-file) filename)
+  (setq prettyname (read-from-minibuffer "Pretty name:"))
+  (insert (concat "[[./files/" (file-name-nondirectory filename) "][" prettyname "]]"))
+  (org-display-inline-images))
+
+(defun my-better-link-opener()
+  "Open a link with mimeo instead of using emacs"
+  (interactive)
+  (setq the-link (expand-file-name (link-hint-copy-link-at-point)))
+  (shell-command (concat "mimeo " "'" the-link "'"))
+  )
+
+(map! :leader
+      :desc "Insert a screenshot"
+      "i s" 'my-org-screenshot)
+
+(map! :leader
+      :desc "Insert image from clipboard"
+      "i p" 'my-org-paste)
+
+(map! :leader
+      :desc "Create a new file from a template and insert a link at point"
+      "i t" 'my-org-new-file-from-template)
+
+(map! :leader
+      :desc "Open the link at point using mimeo"
+      "o o" 'my-better-link-opener)
+
 ;;;------ Org roam configuration ------;;;
 
 (setq org-roam-directory "~/Roam"

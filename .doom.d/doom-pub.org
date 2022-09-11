@@ -1,4 +1,4 @@
-# Created 2022-09-10 Sat 10:26
+# Created 2022-09-10 Sat 19:24
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -113,6 +113,9 @@ I use this functionality to load my private config file with non-public informat
         (add-hook 'org-mode-hook (lambda ()
                                    (org-bullets-mode 1))))
 
+(require 'org-download)
+(setq org-download-edit-cmd "xdg-open %s")
+
 ; Automatic table of contents is nice
 (if (require 'toc-org nil t)
     (progn
@@ -154,6 +157,77 @@ I use this functionality to load my private config file with non-public informat
 (map! :leader
       :desc "Convert org document to odp presentation"
       "e p" 'my-ox-odp)
+
+(defun my-org-screenshot ()
+  "Take a screenshot into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq filename
+        (concat
+         (make-temp-name
+          (concat (buffer-file-name)
+                  "_"
+                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
+  (shell-command (concat "emacs-wayshot " filename))
+  (insert (concat "[[" filename "]]"))
+  (org-display-inline-images))
+
+(defun my-org-paste()
+  "Take an image from the clipboard into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq filename
+        (concat
+         (make-temp-name
+          (concat (file-name-directory (buffer-file-name))
+                  "img/"
+                  (file-name-nondirectory (buffer-file-name))
+                  "_"
+                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
+  (shell-command (concat "wl-paste > " filename))
+  (insert (concat "[[" filename "]]"))
+  (org-display-inline-images))
+
+(defun my-org-new-file-from-template()
+  "Copy a template from ~/Templates into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq template-file (completing-read "Template file:" (directory-files "~/Templates")))
+  (setq filename
+        (concat
+         (make-temp-name
+          (concat (file-name-directory (buffer-file-name))
+                  "files/"
+                  (file-name-nondirectory (buffer-file-name))
+                  "_"
+                  (format-time-string "%Y%m%d_%H%M%S_")) ) (file-name-extension template-file t)))
+  (copy-file (concat "/home/emmet/Templates/" template-file) filename)
+  (setq prettyname (read-from-minibuffer "Pretty name:"))
+  (insert (concat "[[./files/" (file-name-nondirectory filename) "][" prettyname "]]"))
+  (org-display-inline-images))
+
+(defun my-better-link-opener()
+  "Open a link with mimeo instead of using emacs"
+  (interactive)
+  (setq the-link (expand-file-name (link-hint-copy-link-at-point)))
+  (shell-command (concat "mimeo " "'" the-link "'"))
+  )
+
+(map! :leader
+      :desc "Insert a screenshot"
+      "i s" 'my-org-screenshot)
+
+(map! :leader
+      :desc "Insert image from clipboard"
+      "i p" 'my-org-paste)
+
+(map! :leader
+      :desc "Create a new file from a template and insert a link at point"
+      "i t" 'my-org-new-file-from-template)
+
+(map! :leader
+      :desc "Open the link at point using mimeo"
+      "o o" 'my-better-link-opener)
 #+end_src
 *** Custom Org Mode Scripts
 **** my-ox-odp Script
@@ -912,6 +986,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 #+begin_src emacs-lisp
 (package! org-bullets)
 (package! org-roam)
+(package! org-download)
 (package! toc-org)
 (package! beacon)
 (package! ox-reveal)
@@ -924,6 +999,7 @@ I keep two literate configs, one which I edit (doom.org) and one that gets publi
 #+begin_src emacs-lisp
 ;; Export link below runs this
 (org-org-export-to-org)
+[[/home/emmet/.doom.d/doom.org_20220910_141453_QgNMtZ.png]]
 #+end_src
 #+begin_src emacs-lisp
 ;; Publish link below runs this
