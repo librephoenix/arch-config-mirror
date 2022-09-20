@@ -241,6 +241,16 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Switch org-roam database"
       "s" 'org-roam-switch-db)
 
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Update current org-roam database"
+      "u" 'org-roam-db-sync)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Visualize org-roam database with org-roam-ui"
+      "v" 'org-roam-ui-open)
+
 (org-roam-db-autosync-mode)
 
 (after! org-roam
