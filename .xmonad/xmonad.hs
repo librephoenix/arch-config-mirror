@@ -56,95 +56,95 @@ colorSchemeList = ["gruvbox", "solarized", "dracula", "tokyo-night", "oceanic-ne
 
 colorSchemePrettyList = ["Gruvbox Dark", "Solarized Dark", "Dracula", "Tokyo Night", "Oceanic Next"]
 
-colorBgNormalList = ["#282828", "#002b36", "#282a36", "#1a1b26", "#1b2b34"] --normal bg
+colorBgNormalList = ["#282828", "#002b36", "#282a36", "#1a1b26", "#1b2b34"] -- normal bg
 
-colorBgBrightList = ["#3b3838", "#113b3f", "#36343f", "#2a2b36", "#2b3b41"] --lighter bg
+colorBgBrightList = ["#3b3838", "#113b3f", "#36343f", "#2a2b36", "#2b3b41"] -- lighter bg
 
-trayerBgNormalList = ["0x00282828", "0x00002b36", "0x00282a36", "0x1a1b26", "0x1b2b34"] --trayer tint
+trayerBgNormalList = ["0x00282828", "0x00002b36", "0x00282a36", "0x1a1b26", "0x1b2b34"] -- trayer tint
 
-colorFgNormalList = ["#ebdbb2", "#839496", "#f8f8f2", "#a9b1d6", "#d8dee9"] --normal fg
+colorFgNormalList = ["#ebdbb2", "#839496", "#f8f8f2", "#a9b1d6", "#d8dee9"] -- normal fg
 
-color01NormalList = ["#343428", "#073642", "#000000", "#32344a", "#29414f"] --black
+color01NormalList = ["#343428", "#073642", "#000000", "#32344a", "#29414f"] -- black
 
-color01BrightList = ["#928374", "#002b36", "#555555", "#444b6a", "#405860"] --bright black
+color01BrightList = ["#928374", "#002b36", "#555555", "#444b6a", "#405860"] -- bright black
 
-color02NormalList = ["#cc241d", "#dc3ddf", "#ff5555", "#f7768e", "#ec5f67"] --red
+color02NormalList = ["#cc241d", "#dc3ddf", "#ff5555", "#f7768e", "#ec5f67"] -- red
 
-color02BrightList = ["#fb4934", "#cb4b16", "#ff1010", "#ff7a93", "#ff3130"] --bright red
+color02BrightList = ["#fb4934", "#cb4b16", "#ff1010", "#ff7a93", "#ff3130"] -- bright red
 
-color03NormalList = ["#98971a", "#859900", "#50fa7b", "#9ece6a", "#99c794"] --green
+color03NormalList = ["#98971a", "#859900", "#50fa7b", "#9ece6a", "#99c794"] -- green
 
-color03BrightList = ["#b8bb26", "#586e75", "#02fe03", "#b9f27c", "#66fa56"] --bright green
+color03BrightList = ["#b8bb26", "#586e75", "#02fe03", "#b9f27c", "#66fa56"] -- bright green
 
-color04NormalList = ["#d79921", "#b58900", "#f1fa8c", "#e0af68", "#fac863"] --yellow
+color04NormalList = ["#d79921", "#b58900", "#f1fa8c", "#e0af68", "#fac863"] -- yellow
 
-color04BrightList = ["#fabd2f", "#657b83", "#ffff02", "#ff9e64", "#ffca4f"] --bright yellow
+color04BrightList = ["#fabd2f", "#657b83", "#ffff02", "#ff9e64", "#ffca4f"] -- bright yellow
 
-color05NormalList = ["#458588", "#268bd2", "#bd93f9", "#7aa2f7", "#6699cc"] --blue
+color05NormalList = ["#458588", "#268bd2", "#bd93f9", "#7aa2f7", "#6699cc"] -- blue
 
-color05BrightList = ["#83a598", "#839496", "#4d31fd", "#7da6ff", "#4477ee"] --bright blue
+color05BrightList = ["#83a598", "#839496", "#4d31fd", "#7da6ff", "#4477ee"] -- bright blue
 
-color06NormalList = ["#b16286", "#d33682", "#ff79c6", "#ad8ee6", "#c594c5"] --magenta
+color06NormalList = ["#b16286", "#d33682", "#ff79c6", "#ad8ee6", "#c594c5"] -- magenta
 
-color06BrightList = ["#d3869b", "#6c71c4", "#ff20d8", "#bb9af7", "#d864d8"] --bright magenta
+color06BrightList = ["#d3869b", "#6c71c4", "#ff20d8", "#bb9af7", "#d864d8"] -- bright magenta
 
-color07NormalList = ["#689d6a", "#2aa198", "#8be9fd", "#449dab", "#5fb3b3"] --cyan
+color07NormalList = ["#689d6a", "#2aa198", "#8be9fd", "#449dab", "#5fb3b3"] -- cyan
 
-color07BrightList = ["#8ec07c", "#93a1a1", "#03feff", "#0db9d7", "#30d2d0"] --bright cyan
+color07BrightList = ["#8ec07c", "#93a1a1", "#03feff", "#0db9d7", "#30d2d0"] -- bright cyan
 
-color08NormalList = ["#a89984", "#eee8d5", "#bbbbbb", "#787c99", "#65737e"] --white
+color08NormalList = ["#a89984", "#eee8d5", "#bbbbbb", "#787c99", "#65737e"] -- white
 
-color08BrightList = ["#ebdbb2", "#fdf6e3", "#ffffff", "#acb0d0", "#d8dee9"] --bright white
+color08BrightList = ["#ebdbb2", "#fdf6e3", "#ffffff", "#acb0d0", "#d8dee9"] -- bright white
 
-colorFocusList = ["#458588", "#859900", "#ff79c6", "#ff9e64", "#c594c5"] --focus and run launcher color
+colorFocusList = ["#458588", "#859900", "#ff79c6", "#ff9e64", "#c594c5"] -- focus and run launcher color
 
-colorSecondaryList = ["#d79921", "#dc3ddf", "#bbbbbb", "#0db9d7", "#fac863"] --secondary color
+colorSecondaryList = ["#d79921", "#dc3ddf", "#bbbbbb", "#0db9d7", "#fac863"] -- secondary color
 
 colorScheme = colorSchemeList !! myColorScheme
 
 colorSchemePretty = colorSchemePrettyList !! myColorScheme
 
-colorBgNormal = colorBgNormalList !! myColorScheme --normal bg
+colorBgNormal = colorBgNormalList !! myColorScheme -- normal bg
 
-colorBgBright = colorBgBrightList !! myColorScheme --lighter bg
+colorBgBright = colorBgBrightList !! myColorScheme -- lighter bg
 
-trayerBgNormal = trayerBgNormalList !! myColorScheme --trayer tint
+trayerBgNormal = trayerBgNormalList !! myColorScheme -- trayer tint
 
-colorFgNormal = colorFgNormalList !! myColorScheme --normal fg
+colorFgNormal = colorFgNormalList !! myColorScheme -- normal fg
 
-color01Normal = color01NormalList !! myColorScheme --black
+color01Normal = color01NormalList !! myColorScheme -- black
 
-color01Bright = color01BrightList !! myColorScheme --bright black
+color01Bright = color01BrightList !! myColorScheme -- bright black
 
-color02Normal = color02NormalList !! myColorScheme --red
+color02Normal = color02NormalList !! myColorScheme -- red
 
-color02Bright = color02BrightList !! myColorScheme --bright red
+color02Bright = color02BrightList !! myColorScheme -- bright red
 
-color03Normal = color03NormalList !! myColorScheme --green
+color03Normal = color03NormalList !! myColorScheme -- green
 
-color03Bright = color03BrightList !! myColorScheme --bright green
+color03Bright = color03BrightList !! myColorScheme -- bright green
 
-color04Normal = color04NormalList !! myColorScheme --yellow
+color04Normal = color04NormalList !! myColorScheme -- yellow
 
-color04Bright = color04BrightList !! myColorScheme --bright yellow
+color04Bright = color04BrightList !! myColorScheme -- bright yellow
 
-color05Normal = color05NormalList !! myColorScheme --blue
+color05Normal = color05NormalList !! myColorScheme -- blue
 
-color05Bright = color05BrightList !! myColorScheme --bright blue
+color05Bright = color05BrightList !! myColorScheme -- bright blue
 
-color06Normal = color06NormalList !! myColorScheme --magenta
+color06Normal = color06NormalList !! myColorScheme -- magenta
 
-color06Bright = color06BrightList !! myColorScheme --bright magenta
+color06Bright = color06BrightList !! myColorScheme -- bright magenta
 
-color07Normal = color07NormalList !! myColorScheme --cyan
+color07Normal = color07NormalList !! myColorScheme -- cyan
 
-color07Bright = color07BrightList !! myColorScheme --bright cyan
+color07Bright = color07BrightList !! myColorScheme -- bright cyan
 
-color08Normal = color08NormalList !! myColorScheme --white
+color08Normal = color08NormalList !! myColorScheme -- white
 
-color08Bright = color08BrightList !! myColorScheme --bright white
+color08Bright = color08BrightList !! myColorScheme -- bright white
 
-colorFocus = colorFocusList !! myColorScheme --focus and run launcher color
+colorFocus = colorFocusList !! myColorScheme -- focus and run launcher color
 
 colorSecondary = colorSecondaryList !! myColorScheme
 
@@ -258,7 +258,7 @@ myScratchPads =
         w = 0.4
         t = 0.75 - h
         l = 0.70 - w
-    spawnKeepassXC = "keepassxc"
+    spawnKeepassXC = "QT_QPA_PLATFORMTHEME=qt5ct keepassxc"
     findKeepassXC = className =? "KeePassXC"
     manageKeepassXC = customFloating $ W.RationalRect l t w h
       where
@@ -370,7 +370,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Push window back into tiling
       ((modm, xK_t), withFocused toggleFloat),
       -- Make window floating
-      --, ((modm .|. shiftMask, xK_t     ), withFocused $ windows . W.float)
+      -- , ((modm .|. shiftMask, xK_t     ), withFocused $ windows . W.float)
 
       -- Increment the number of windows in the master area
       ((modm, xK_comma), sendMessage (IncMasterN 1)),
@@ -394,10 +394,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
       -- Quit xmonad
-      --, ((modm .|. shiftMask, xK_r     ), io (exitWith ExitSuccess))
+      -- , ((modm .|. shiftMask, xK_r     ), io (exitWith ExitSuccess))
 
       -- Restart xmonad
-      --, ((modm              , xK_c     ), spawn "xmonad --recompile; xmonad --restart")
+      -- , ((modm              , xK_c     ), spawn "xmonad --recompile; xmonad --restart")
 
       -- Lock with xsecurelock
       ((modm .|. shiftMask, xK_l), spawn "xsecurelock"),
@@ -407,8 +407,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_slash), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
       ++
-      --mod-[1..9], Switch to workspace N
-      --mod-shift-[1..9], Move client to workspace N
+      -- mod-[1..9], Switch to workspace N
+      -- mod-shift-[1..9], Move client to workspace N
 
       [ ((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
@@ -440,7 +440,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ( (modm, button1),
         ( \w ->
-            focus w >> mouseMoveWindow w
+            focus w
+              >> mouseMoveWindow w
               >> windows W.shiftMaster
         )
       ),
@@ -449,7 +450,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
       -- mod-button3, Set the window to floating mode and resize by dragging
       ( (modm, button3),
         ( \w ->
-            focus w >> mouseResizeWindow w
+            focus w
+              >> mouseResizeWindow w
               >> windows W.shiftMaster
         )
       )
@@ -543,7 +545,7 @@ myFullscreenEventHook = fullscreenEventHook
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
---myLogHook = return ()
+-- myLogHook = return ()
 
 ------------------------------------------------------------------------
 -- Startup hook

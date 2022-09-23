@@ -15,9 +15,8 @@
 (setq doom-theme 'doom-dracula)
 
 ;; Transparent background
-(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
-()
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
 (solaire-global-mode +1)

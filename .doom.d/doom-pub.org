@@ -1,4 +1,4 @@
-# Created 2022-09-19 Mon 19:20
+# Created 2022-09-23 Fri 07:40
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -49,8 +49,8 @@ I use this functionality to load my private config file with non-public informat
 (setq doom-theme 'doom-dracula)
 
 ;; Transparent background
-(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
+(set-frame-parameter (selected-frame) 'alpha '(90 . 100))
+(add-to-list 'default-frame-alist '(alpha . (90 . 100)))
 ()
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
@@ -993,6 +993,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 #+begin_src emacs-lisp
 (package! org-bullets)
 (package! org-roam)
+(package! org-roam-ui)
 (package! toc-org)
 (package! beacon)
 (package! ox-reveal)
