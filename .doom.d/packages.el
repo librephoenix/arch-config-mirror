@@ -47,6 +47,7 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! smooth-scrolling)
 (package! org-bullets)
 (package! org-roam)
 (package! org-roam-ui)
