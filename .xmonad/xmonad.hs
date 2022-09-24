@@ -10,6 +10,7 @@ import XMonad.Actions.Navigation2D
 import XMonad.Actions.SpawnOn
 import XMonad.Actions.TiledWindowDragging
 import XMonad.Actions.WindowNavigation
+import XMonad.Actions.WithAll
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
@@ -18,6 +19,7 @@ import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.Dwindle
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Gaps
+import XMonad.Layout.LimitWindows
 import XMonad.Layout.MouseResizableTile
 import XMonad.Layout.Spacing
 import XMonad.ManageHook
@@ -351,6 +353,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_v), spawn ("~/.xmonad/vm-app-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")),
       -- close focused window
       ((modm, xK_q), kill),
+      ((modm .|. shiftMask, xK_c), killAll),
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
       --  Reset the layouts on the current workspace to default
@@ -359,6 +362,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_r), refresh),
       -- Move focus to the next window
       ((mod1Mask, xK_Tab), windows W.focusDown),
+      ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp),
       -- Move focus to window below
       ((modm, xK_j), windowGo D False),
       -- Move focus to window above
