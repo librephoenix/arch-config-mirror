@@ -6,13 +6,19 @@ import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import System.IO
 import XMonad
+import XMonad.Actions.Navigation2D
 import XMonad.Actions.SpawnOn
+import XMonad.Actions.TiledWindowDragging
+import XMonad.Actions.WindowNavigation
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ServerMode
+import XMonad.Layout.DraggingVisualizer
+import XMonad.Layout.Dwindle
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Gaps
+import XMonad.Layout.MouseResizableTile
 import XMonad.Layout.Spacing
 import XMonad.ManageHook
 import qualified XMonad.StackSet as W
@@ -353,20 +359,28 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_r), refresh),
       -- Move focus to the next window
       ((mod1Mask, xK_Tab), windows W.focusDown),
-      -- Move focus to the next window
-      ((modm, xK_j), windows W.focusDown),
-      -- Move focus to the previous window
-      ((modm, xK_k), windows W.focusUp),
+      -- Move focus to window below
+      ((modm, xK_j), windowGo D False),
+      -- Move focus to window above
+      ((modm, xK_k), windowGo U False),
+      -- Move focus to window left
+      ((modm, xK_h), windowGo L False),
+      -- Move focus to window right
+      ((modm, xK_l), windowGo R False),
+      -- Swap with window below
+      ((modm .|. shiftMask, xK_j), windowSwap D False),
+      -- Swap with window above
+      ((modm .|. shiftMask, xK_k), windowSwap U False),
+      -- Swap with window left
+      ((modm .|. shiftMask, xK_h), windowSwap L False),
+      -- Swap with window right
+      ((modm .|. shiftMask, xK_l), windowSwap R False),
+      -- Shrink the master area
+      ((modm .|. controlMask, xK_h), sendMessage Shrink),
+      -- Expand the master area
+      ((modm .|. controlMask, xK_l), sendMessage Expand),
       -- Swap the focused window and the master window
       ((modm, xK_m), windows W.swapMaster),
-      -- Swap the focused window with the next window
-      ((modm .|. shiftMask, xK_j), windows W.swapDown),
-      -- Swap the focused window with the previous window
-      ((modm .|. shiftMask, xK_k), windows W.swapUp),
-      -- Shrink the master area
-      ((modm, xK_h), sendMessage Shrink),
-      -- Expand the master area
-      ((modm, xK_l), sendMessage Expand),
       -- Push window back into tiling
       ((modm, xK_t), withFocused toggleFloat),
       -- Make window floating
@@ -399,9 +413,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Restart xmonad
       -- , ((modm              , xK_c     ), spawn "xmonad --recompile; xmonad --restart")
 
-      -- Lock with xsecurelock
-      ((modm .|. shiftMask, xK_l), spawn "xsecurelock"),
-      -- lock and sleep with xsecurelock and systemd
+      -- Lock with xsecurelock and suspend
       ((modm .|. shiftMask, xK_s), spawn "xsecurelock & systemctl suspend"),
       -- Run xmessage with a summary of the default keybindings (useful for beginners)
       ((modm .|. shiftMask, xK_slash), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -437,14 +449,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
 --
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
   M.fromList $
-    -- mod-button1, Set the window to floating mode and move by dragging
-    [ ( (modm, button1),
+    --    -- mod-button1, Set the window to floating mode and move by dragging
+    [ ( (modm .|. shiftMask, button1),
         ( \w ->
             focus w
               >> mouseMoveWindow w
               >> windows W.shiftMaster
         )
       ),
+      ((modm, button1), dragWindow),
       -- mod-button2, Raise the window to the top of the stack
       ((modm, button2), (\w -> focus w >> windows W.shiftMaster)),
       -- mod-button3, Set the window to floating mode and resize by dragging
@@ -473,19 +486,27 @@ spcPx = 6
 
 mySpacing = spacingRaw False (Border spcPx spcPx spcPx spcPx) True (Border spcPx spcPx spcPx spcPx) True
 
-myLayout = fullscreenFocus $ avoidStruts $ (mySpacing $ (tiled ||| Mirror tiled ||| Full))
+myLayout = fullscreenFocus $ draggingVisualizer $ avoidStruts $ (mySpacing $ (mouseResizable ||| mouseResizableMirrored ||| Full))
   where
     -- default tiling algorithm partitions the screen into two panes
-    tiled = Tall nmaster delta ratio
+    tiled = Tall 1 (5 / 100) (1 / 2)
 
-    -- The default number of windows in the master pane
-    nmaster = 1
+    dwindled = Dwindle R CW 1.1 1.1
 
-    -- Default proportion of screen occupied by master pane
-    ratio = 1 / 2
+    mouseResizable =
+      mouseResizableTile
+        { masterFrac = 0.51,
+          slaveFrac = 0.51,
+          draggerType = BordersDragger
+        }
 
-    -- Percent of screen to increment by when resizing panes
-    delta = 5 / 100
+    mouseResizableMirrored =
+      mouseResizableTile
+        { masterFrac = 0.51,
+          slaveFrac = 0.51,
+          draggerType = BordersDragger,
+          isMirrored = True
+        }
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -558,6 +579,8 @@ myFullscreenEventHook = fullscreenEventHook
 myStartupHook = do
   spawnOnce ("~/.xmonad/startup.sh '" ++ trayerBgNormal ++ "' '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")
 
+myNavigation2DConfig = def {layoutNavigation = [("Tall", lineNavigation), ("Full", centerNavigation)]}
+
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
@@ -566,38 +589,39 @@ myStartupHook = do
 main = do
   xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
   xmonad $
-    fullscreenSupportBorder $
-      docks
-        def
-          { -- simple stuff
-            terminal = myTerminal,
-            focusFollowsMouse = myFocusFollowsMouse,
-            clickJustFocuses = myClickJustFocuses,
-            borderWidth = myBorderWidth,
-            modMask = myModMask,
-            workspaces = myWorkspaces,
-            normalBorderColor = myNormalBorderColor,
-            focusedBorderColor = myFocusedBorderColor,
-            -- key bindings
-            keys = myKeys,
-            mouseBindings = myMouseBindings,
-            -- hooks, layouts
-            layoutHook = myLayout,
-            manageHook = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
-            handleEventHook = myEventHook <+> myFullscreenEventHook <+> fadeWindowsEventHook,
-            logHook =
-              dynamicLogWithPP $
-                xmobarPP
-                  { ppOutput = \x -> hPutStrLn xmproc x,
-                    ppTitle = xmobarColor colorFocus "" . shorten 10,
-                    ppCurrent = xmobarColor colorFocus "" . wrap ("<box type=Bottom Top width=2 mb=2 color=" ++ colorFocus ++ ">") "</box>",
-                    ppVisible = xmobarColor colorFgNormal "",
-                    ppHidden = xmobarColor color08Normal "",
-                    ppOrder = \(ws : _) -> [ws],
-                    ppSep = " "
-                  },
-            startupHook = myStartupHook
-          }
+    withNavigation2DConfig myNavigation2DConfig $
+      fullscreenSupportBorder $
+        docks
+          def
+            { -- simple stuff
+              terminal = myTerminal,
+              focusFollowsMouse = myFocusFollowsMouse,
+              clickJustFocuses = myClickJustFocuses,
+              borderWidth = myBorderWidth,
+              modMask = myModMask,
+              workspaces = myWorkspaces,
+              normalBorderColor = myNormalBorderColor,
+              focusedBorderColor = myFocusedBorderColor,
+              -- key bindings
+              keys = myKeys,
+              mouseBindings = myMouseBindings,
+              -- hooks, layouts
+              layoutHook = myLayout,
+              manageHook = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
+              handleEventHook = myEventHook <+> myFullscreenEventHook <+> fadeWindowsEventHook,
+              logHook =
+                dynamicLogWithPP $
+                  xmobarPP
+                    { ppOutput = \x -> hPutStrLn xmproc x,
+                      ppTitle = xmobarColor colorFocus "" . shorten 10,
+                      ppCurrent = xmobarColor colorFocus "" . wrap ("<box type=Bottom Top width=2 mb=2 color=" ++ colorFocus ++ ">") "</box>",
+                      ppVisible = xmobarColor colorFgNormal "",
+                      ppHidden = xmobarColor color08Normal "",
+                      ppOrder = \(ws : _) -> [ws],
+                      ppSep = " "
+                    },
+              startupHook = myStartupHook
+            }
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
