@@ -290,8 +290,8 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnMyuzi = "GDK_DPI_SCALE=1.5 myuzi"
-    findMyuzi = className =? "Myuzi"
+    spawnMyuzi = "GTK_THEME=OfficialDracula myuzi"
+    findMyuzi = title =? "Myuzi"
     manageMyuzi = customFloating $ W.RationalRect l t w h
       where
         h = 0.9
@@ -530,7 +530,7 @@ myLayout = fullscreenFocus $ draggingVisualizer $ avoidStruts $ (mySpacing $ (mo
 myManageHook =
   composeAll
     [ className =? "KeePassXC" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
-      className =? "Myuzi" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
+      title =? "Myuzi" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "octave" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       title =? "scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       className =? "discord" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
