@@ -258,6 +258,11 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Visualize org-roam database with org-roam-ui"
       "v" 'org-roam-ui-open)
 
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Re-zoom on current node in org-roam-ui"
+      "z" 'org-roam-ui-node-zoom)
+
 (org-roam-db-autosync-mode)
 
 (after! org-roam

@@ -1,4 +1,4 @@
-# Created 2022-09-23 Fri 07:40
+# Created 2022-09-25 Sun 10:14
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -49,9 +49,8 @@ I use this functionality to load my private config file with non-public informat
 (setq doom-theme 'doom-dracula)
 
 ;; Transparent background
-(set-frame-parameter (selected-frame) 'alpha '(90 . 100))
-(add-to-list 'default-frame-alist '(alpha . (90 . 100)))
-()
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
 (solaire-global-mode +1)
@@ -71,6 +70,14 @@ I use this functionality to load my private config file with non-public informat
 
 ;; Fancy splash image
 (setq fancy-splash-image "~/.doom.d/arch.png")
+
+;; Configure smooth scrolling
+(require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
+
+;; Requires for faster loading
+(require 'org-agenda)
+(require 'dired)
 #+end_src
 ** Registers
 #+begin_src emacs-lisp
@@ -505,6 +512,11 @@ styletree.write('styles.xml')
       :prefix ("N" . "org-roam notes")
       :desc "Visualize org-roam database with org-roam-ui"
       "v" 'org-roam-ui-open)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Re-zoom on current node in org-roam-ui"
+      "z" 'org-roam-ui-node-zoom)
 
 (org-roam-db-autosync-mode)
 
@@ -991,6 +1003,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 #+end_src
 ** MELPA/ELPA/emacsmirror Package List
 #+begin_src emacs-lisp
+(package! smooth-scrolling)
 (package! org-bullets)
 (package! org-roam)
 (package! org-roam-ui)
