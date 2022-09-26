@@ -1,4 +1,4 @@
-# Created 2022-09-25 Sun 10:14
+# Created 2022-09-25 Sun 19:12
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -582,6 +582,22 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 (advice-add 'magit-process-environment
             :filter-return #'~/magit-process-environment)
+#+end_src
+** Ranger Configuration
+#+begin_src emacs-lisp
+;;;------ ranger configuration ------;;;
+
+(map! :map ranger-mode-map
+      :desc "Mark current file"
+      "m" 'ranger-mark)
+
+(map! :map ranger-mode-map
+      :desc "Toggle mark on current file"
+      "x" 'ranger-toggle-mark)
+
+(map! :leader
+      :desc "Open ranger"
+      "o d" 'ranger)
 #+end_src
 ** Elfeed Configuration
 #+begin_src emacs-lisp

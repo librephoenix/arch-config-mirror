@@ -324,6 +324,20 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (advice-add 'magit-process-environment
             :filter-return #'~/magit-process-environment)
 
+;;;------ ranger configuration ------;;;
+
+(map! :map ranger-mode-map
+      :desc "Mark current file"
+      "m" 'ranger-mark)
+
+(map! :map ranger-mode-map
+      :desc "Toggle mark on current file"
+      "x" 'ranger-toggle-mark)
+
+(map! :leader
+      :desc "Open ranger"
+      "o d" 'ranger)
+
 ;;;------ elfeed configuration ------;;;
 
 (map! :leader
