@@ -123,6 +123,19 @@
       :desc "Convert org document to odp presentation"
       "e p" 'my-ox-odp)
 
+(require 'org-download)
+
+;; Drag-and-drop to `dired`
+(add-hook 'dired-mode-hook 'org-download-enable)
+
+(setq org-download-screenshot-method "flameshot gui -p %s")
+(after! org-download
+   (setq org-download-method 'directory))
+
+(after! org
+  (setq-default org-download-image-dir "img/"
+        org-download-heading-lvl nil))
+
 (defun my-org-screenshot ()
   "Take a screenshot into a time stamped unique-named file in the
 same directory as the org-buffer and insert a link to this file."
@@ -175,16 +188,20 @@ same directory as the org-buffer and insert a link to this file."
   "Open a link with mimeo instead of using emacs"
   (interactive)
   (setq the-link (expand-file-name (link-hint-copy-link-at-point)))
-  (shell-command (concat "mimeo " "'" the-link "'"))
+  (setq the-command (if (string= (file-name-extension the-link) "kra") "krita"
+                       (if (string= (file-name-extension the-link) "blend") "blender")))
+  (async-shell-command (concat the-command " '" the-link "'") nil)
   )
 
 (map! :leader
       :desc "Insert a screenshot"
-      "i s" 'my-org-screenshot)
+;;      "i s" 'my-org-screenshot)
+      "i s" 'org-download-screenshot)
 
 (map! :leader
       :desc "Insert image from clipboard"
-      "i p" 'my-org-paste)
+;;      "i p" 'my-org-paste)
+      "i p" 'org-download-clipboard)
 
 (map! :leader
       :desc "Create a new file from a template and insert a link at point"
@@ -323,6 +340,14 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 (advice-add 'magit-process-environment
             :filter-return #'~/magit-process-environment)
+
+;;;------ dired configuration ------;;;
+
+(map! :desc "Increase font size"
+      "C-=" 'text-scale-increase)
+
+(map! :desc "Decrease font size"
+      "C--" 'text-scale-decrease)
 
 ;;;------ ranger configuration ------;;;
 
