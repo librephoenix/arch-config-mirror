@@ -188,10 +188,12 @@ same directory as the org-buffer and insert a link to this file."
   "Open a link with mimeo instead of using emacs"
   (interactive)
   (setq the-link (expand-file-name (link-hint-copy-link-at-point)))
-  (setq the-command (if (string= (file-name-extension the-link) "kra") "krita"
+  (setq the-command (if (string= (file-name-extension the-link) "kra") "krita --nosplash"
                        (if (string= (file-name-extension the-link) "blend") "blender")))
-  (async-shell-command (concat the-command " '" the-link "'") nil)
+  (async-shell-command (concat the-command " '" the-link "'"))
   )
+
+(add-to-list 'display-buffer-alist '("^*Async Shell Command*" . (display-buffer-no-window)))
 
 (map! :leader
       :desc "Insert a screenshot"
@@ -216,6 +218,9 @@ same directory as the org-buffer and insert a link to this file."
 (setq org-roam-directory "~/Roam"
       org-roam-db-location "~/Roam/org-roam.db")
 
+(setq org-roam-node-display-template
+      "${title:65}📝${tags:*}")
+
 (defun org-roam-switch-db ()
   "Switch to a different org-roam database"
   (interactive)
@@ -236,9 +241,11 @@ same directory as the org-buffer and insert a link to this file."
                             full-org-roam-db-list-pretty nil t))
   (if (string= org-roam-db-choice "Default")
       (setq org-roam-directory "~/Roam"
-            org-roam-db-location "~/Roam/org-roam.db")
+            org-roam-db-location "~/Roam/org-roam.db"
+            org-directory "~/Roam")
       (setq org-roam-directory (concat "~/" org-roam-db-choice "/Roam")
-            org-roam-db-location (concat "~/" org-roam-db-choice "/Roam/org-roam.db")))
+            org-roam-db-location (concat "~/" org-roam-db-choice "/Roam/org-roam.db")
+            org-directory (concat "~/" org-roam-db-choice "/Roam")))
   (if (string= org-roam-db-choice "Default")
       (dired "~/Roam")
       (dired (concat "~/" org-roam-db-choice "/Roam")))
@@ -287,6 +294,9 @@ same directory as the org-buffer and insert a link to this file."
         '(("d" "default" plain "%?" :target
   (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "${title}\n")
   :unnarrowed t))))
+
+(use-package org-roam-dblocks
+  :hook (org-mode . org-roam-dblocks-autoupdate-mode))
 
 ;;;------ Org agenda configuration ------;;;
 
