@@ -1,4 +1,4 @@
-# Created 2022-10-09 Sun 11:22
+# Created 2022-10-09 Sun 12:51
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1058,6 +1058,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 #+begin_src emacs-lisp
 (package! smooth-scrolling)
 (package! org-bullets)
+(package! org-super-agenda)
 (package! org-roam)
 (package! org-roam-ui)
 (package! org-roam-nursery :recipe (:repo "https://github.com/chrisbarrett/nursery"))
