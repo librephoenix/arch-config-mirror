@@ -6,7 +6,7 @@
 (setq user-full-name "emmet")
 
 ;; This shows me normal line numbers
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'visual)
 
 ;; Makes for easier editing with wrapped lines
 (setq line-move-visual t)
@@ -300,9 +300,14 @@ same directory as the org-buffer and insert a link to this file."
 
 ;;;------ Org agenda configuration ------;;;
 
+;; Set span for agenda
+(setq org-agenda-span 1
+      org-agenda-start-day "+0d")
+
 ;; Set folder for my org agenda files
 (setq org-agenda-files (list "/home/emmet/Family.s/Agenda"
                              "/home/emmet/Producer.p/Agenda"
+                             "/home/emmet/Producer.p/Roam"
                              "/home/emmet/Agenda"
                              "/home/emmet/Teaching.p/Agenda"
                              "/home/emmet/Author.p/Agenda"
@@ -333,6 +338,79 @@ same directory as the org-buffer and insert a link to this file."
 (map! :leader
       :desc "Open org calendar"
       "o c" #'cfw:open-org-calendar)
+
+(require 'org-super-agenda)
+
+(setq org-super-agenda-groups
+       '(;; Each group has an implicit boolean OR operator between its selectors.
+         (:name "Home Tech"
+                ;; Single arguments given alone
+                :and(
+                    :file-path "emmet/Agenda"
+                    :not (:tag "event"))
+                :order 3)
+         (:name "Family"
+                ;; Single arguments given alone
+                :and(
+                    :file-path "Family.s"
+                    :not (:tag "event"))
+                :order 3)
+         (:name "Teaching Prep"
+                ;; Single arguments given alone
+                :and(
+                    :file-path "Teaching.p"
+                    :tag "planning"
+                    :not (:tag "grading"))
+                :order 3)
+         (:name "Teaching Grading"
+                ;; Single arguments given alone
+                :and(
+                    :file-path "Teaching.p"
+                    :tag "grading"
+                    :not (:tag "planning"))
+                :order 3)
+         (:name "School Side Projects"
+                :and(
+                    :file-path "Teaching.p"
+                    :tag "tech"
+                    :not (:tag "planning"))
+                :order 3)
+         (:name "Gamedev Current Projects"
+                ;; Single arguments given alone
+                :and (
+                    :file-path "Gamedev.p"
+                    :todo "STRT")
+                :order 5)
+         (:name "Youtube"
+                ;; Single arguments given alone
+                :tag "youtube"
+                :order 6)
+         (:name "Learning"
+                ;; Single arguments given alone
+                :tag "learning"
+                :order 7)
+          (:name "Today"  ; Optionally specify section name
+                :time-grid t
+                :date today
+                :scheduled today
+                :order 1)
+       ))
+
+(map! :leader
+      :desc "Open org QL view"
+      "o q v" #'org-ql-view)
+
+(map! :leader
+      :desc "Open org QL view dispatcher"
+      "o q d" #'org-ql-view-dispatch)
+
+(map! :desc "Next line"
+      :map org-super-agenda-header-map
+      "j" 'org-agenda-next-line)
+
+(map! :desc "Next line"
+      :map org-super-agenda-header-map
+      "k" 'org-agenda-previous-line)
 
 ;;;------ magit configuration ------;;;
 
