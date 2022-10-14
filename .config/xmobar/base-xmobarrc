@@ -1,5 +1,5 @@
 Config { font = "xft:UbuntuMono-R:size=16"
-       , additionalFonts = ["xft:Symbols Nerd Font Mono:size=16","xft:Inconsolata for Powerline:size=21"]
+       , additionalFonts = ["xft:Symbols Nerd Font:size=16","xft:Inconsolata for Powerline:size=21"]
        , borderColor = "colorBgNormal"
        , border = FullB
        , bgColor = "colorBgNormal"
@@ -16,7 +16,7 @@ Config { font = "xft:UbuntuMono-R:size=16"
        , overrideRedirect = True
        , commands = [
                       Run UnsafeStdinReader
-                    , Run Date "<fn=2><fc=colorBgBright,colorBgNormal>\xe0b2</fc></fn><fc=color06Normal,colorBgBright> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn> <fc=colorFgNormal><fn=1>\xf15a</fn></fc>" "date" 10
+                    , Run Date "<fn=2><fc=colorBgBright,colorBgNormal>\xe0b2</fc></fn><fc=color06Normal,colorBgBright> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>" "date" 10
                     , Run BatteryP ["BAT0"]
                       ["-t", "<acstatus>",
                       "-L", "10", "-H", "80", "-p", "3", "--",
@@ -42,6 +42,6 @@ Config { font = "xft:UbuntuMono-R:size=16"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> <action=`xdotool key Super_L+e`>%mail%</action> }<action=`xdotool key Super_L+c`>%date%</action><fc=colorFgNormal>$%bitcoin%</fc>{<box color=colorBgBright width=3>%UnsafeStdinReader%</box> %trayerpad%"
+       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> <action=`xdotool key Super_L+e`>%mail%</action> }<action=`xdotool key Super_L+c`>%date%</action>{<box color=colorBgBright width=3>%UnsafeStdinReader%</box> %trayerpad%"
        }
 }
