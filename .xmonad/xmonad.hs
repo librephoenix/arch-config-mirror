@@ -354,6 +354,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- close focused window
       ((modm, xK_q), kill),
       ((modm .|. shiftMask, xK_c), killAll),
+      -- exit xmonad
+      ((modm .|. shiftMask, xK_q), spawn "killall xmonad-x86_64-linux"),
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
       --  Reset the layouts on the current workspace to default
