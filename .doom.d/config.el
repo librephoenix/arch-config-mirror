@@ -37,10 +37,6 @@
 ;; Fancy splash image
 (setq fancy-splash-image "~/.doom.d/arch.png")
 
-;; Configure smooth scrolling
-(require 'smooth-scrolling)
-(smooth-scrolling-mode 1)
-
 ;; Requires for faster loading
 (require 'org-agenda)
 (require 'dired)

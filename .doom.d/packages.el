@@ -47,7 +47,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! smooth-scrolling)
 (package! org-bullets)
 (package! org-super-agenda)
 (package! org-roam)
