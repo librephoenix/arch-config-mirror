@@ -15,6 +15,8 @@
 
 # add doom emacs bin and local bin to PATH on this bashrc
 export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
+export QT_QPA_PLATFORMTHEME=qt5ct
+export GTK_THEME=OfficialDracula
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

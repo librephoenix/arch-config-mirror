@@ -42,12 +42,14 @@ No shell config is complete without ASCII art!
 #
 #+END_SRC
 
-** PATH Variable
-My path variable currently includes the default PATH, emacs binaries and local binaries.
+** Environment Variables
+My path variable currently includes the default PATH, emacs binaries and local binaries.  I also need to set the QT_QPA_PLATFORMTHEME environment variable to qt5ct and the GTK_THEME to my current gtk theme.
 *** [[./.bashrc][bashrc]]
 #+BEGIN_SRC shell :tangle .bashrc
 # add doom emacs bin and local bin to PATH on this bashrc
 export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
+export QT_QPA_PLATFORMTHEME=qt5ct
+export GTK_THEME=OfficialDracula
 
 #+END_SRC
 
@@ -55,6 +57,8 @@ export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
 #+BEGIN_SRC shell :tangle .zshrc
 # add doom emacs bin and local bin to PATH on this zshrc
 export PATH=$PATH:~/.emacs.d/bin:~/.local/bin
+export QT_QPA_PLATFORMTHEME=qt5ct
+export GTK_THEME=OfficialDracula
 
 #+END_SRC
 
