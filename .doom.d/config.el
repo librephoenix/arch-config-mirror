@@ -400,6 +400,8 @@ same directory as the org-buffer and insert a link to this file."
                 :order 1)
        ))
 
+(org-super-agenda-mode t)
+
 (map! :leader
       :desc "Open org QL view"
       "o q v" #'org-ql-view)

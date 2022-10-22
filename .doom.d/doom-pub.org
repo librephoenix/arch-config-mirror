@@ -1,4 +1,4 @@
-# Created 2022-10-22 Sat 11:10
+# Created 2022-10-22 Sat 11:31
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -656,6 +656,8 @@ styletree.write('styles.xml')
                 :scheduled today
                 :order 1)
        ))
+
+(org-super-agenda-mode t)
 
 (map! :leader
       :desc "Open org QL view"
