@@ -266,7 +266,7 @@ myScratchPads =
         w = 0.4
         t = 0.75 - h
         l = 0.70 - w
-    spawnKeepassXC = "QT_QPA_PLATFORMTHEME=qt5ct keepassxc"
+    spawnKeepassXC = "keepassxc"
     findKeepassXC = className =? "KeePassXC"
     manageKeepassXC = customFloating $ W.RationalRect l t w h
       where
@@ -290,7 +290,7 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnMyuzi = "GTK_THEME=OfficialDracula myuzi"
+    spawnMyuzi = "myuzi"
     findMyuzi = title =? "Myuzi"
     manageMyuzi = customFloating $ W.RationalRect l t w h
       where
@@ -584,6 +584,7 @@ myFullscreenEventHook = fullscreenEventHook
 -- By default, do nothing.
 myStartupHook = do
   spawnOnce ("~/.xmonad/startup.sh '" ++ trayerBgNormal ++ "' '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")
+  spawnOnce ("export QT_QPA_PLATFORMTHEME=qt5ct")
 
 myNavigation2DConfig = def {layoutNavigation = [("Tall", lineNavigation), ("Full", centerNavigation)]}
 

@@ -23,24 +23,23 @@ killall caffeine
 killall syncthing-gtk
 killall webcord
 
-# setup necessary environment variables
-export QT_QPA_PLATFORMTHEME=qt5ct
-
 # pre-launch configurations
-dbus-update-activation-environment --all
+#dbus-update-activation-environment --all
 xrandr --dpi 120
 picom --experimental-backends --daemon &
-xset r rate 350 100
+xset r rate 350 50
+setxkbmap -option caps:escape &
+
+# setup necessary environment variables
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # Launch necessary desktop applications
 emacs --daemon &
 xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 ~/.local/bin/setup_external_monitor.sh &
-~/.xmonad/touchscreen-setup.sh
 twmnd &
 # nitrogen --restore &
 /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor "primary" &
-~/.xmonad/workspace-select.sh ${nbColor} ${nfColor} ${sbColor} ${sfColor}
 #gnome-keyring-daemon --start --components=secrets &
 mbsync -a & mu index &
 nm-applet &
@@ -48,7 +47,6 @@ syncthing --no-browser &
 syncthing-gtk -m &
 protonmail-bridge --no-window &
 flatpak run com.discordapp.Discord --start-minimized &
-setxkbmap -option caps:escape &
 xmonad --recompile &
 xmonad --restart &
 #back4.sh 0.04 ~/Media/Backgrounds/steampunk-city.gif &
