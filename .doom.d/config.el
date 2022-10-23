@@ -210,6 +210,9 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Open the link at point using mimeo"
       "o o" 'my-better-link-opener)
 
+(setq-global evil-insert-state-exit-hook '(org-update-parent-todo-statistics
+ t))
+
 ;;;------ Org roam configuration ------;;;
 
 (setq org-roam-directory "~/Roam"

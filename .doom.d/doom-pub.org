@@ -1,4 +1,4 @@
-# Created 2022-10-22 Sat 11:31
+# Created 2022-10-23 Sun 15:51
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -248,6 +248,9 @@ same directory as the org-buffer and insert a link to this file."
 (map! :leader
       :desc "Open the link at point using mimeo"
       "o o" 'my-better-link-opener)
+
+(setq-global evil-insert-state-exit-hook '(org-update-parent-todo-statistics
+ t))
 #+end_src
 *** Custom Org Mode Scripts
 **** my-ox-odp Script
