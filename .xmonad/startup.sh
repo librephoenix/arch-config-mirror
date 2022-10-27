@@ -47,6 +47,7 @@ syncthing --no-browser &
 syncthing-gtk -m &
 protonmail-bridge --no-window &
 flatpak run com.discordapp.Discord --start-minimized &
+kdeconnect-indicator &
 xmonad --recompile &
 xmonad --restart &
 #back4.sh 0.04 ~/Media/Backgrounds/steampunk-city.gif &
