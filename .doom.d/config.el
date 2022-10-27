@@ -42,6 +42,13 @@
 (require 'org-agenda)
 (require 'dired)
 
+;; Garbage collection to speed things up
+(add-hook 'after-init-hook
+          #'(lambda ()
+              (setq gc-cons-threshold (* 100 1000 1000))))
+(add-hook 'focus-out-hook 'garbage-collect)
+(run-with-idle-timer 5 t 'garbage-collect)
+
 ;;;------ Registers ------;;;
 
 (map! :leader
@@ -57,6 +64,9 @@
 
 ;; Set default org directory
 (setq org-directory "~/.Org")
+
+(remove-hook 'after-save-hook #'+literate|recompile-maybe)
+(set-company-backend! 'org-mode nil)
 
 ;; This allows you to actually control how big images are in org docs!
 (setq org-image-actual-width nil)
@@ -98,8 +108,8 @@
 
 ;; Enable autorevert globally so that buffers update when files change on disk.
 ;; Very useful when used with file syncing (i.e. syncthing)
-(setq global-auto-revert-mode t)
-(setq auto-revert-use-notify nil)
+(setq global-auto-revert-mode nil)
+(setq auto-revert-use-notify t)
 
 ;; ---- end block ---- ;;
 
@@ -210,8 +220,10 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Open the link at point using mimeo"
       "o o" 'my-better-link-opener)
 
-(setq-global evil-insert-state-exit-hook '(org-update-parent-todo-statistics
+(setq-default evil-insert-state-exit-hook '(org-update-parent-todo-statistics
  t))
+
+(setq org-table-automatic-realign nil)
 
 ;;;------ Org roam configuration ------;;;
 

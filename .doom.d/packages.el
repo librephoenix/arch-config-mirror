@@ -55,7 +55,6 @@
 (package! org-download)
 (package! org-ql)
 (package! toc-org)
-(package! beacon)
 (package! ox-reveal)
 (package! hledger-mode)
 (package! rainbow-mode)

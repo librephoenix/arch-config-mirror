@@ -1,4 +1,4 @@
-# Created 2022-10-23 Sun 15:51
+# Created 2022-10-27 Thu 18:27
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -75,6 +75,13 @@ I use this functionality to load my private config file with non-public informat
 ;; Requires for faster loading
 (require 'org-agenda)
 (require 'dired)
+
+;; Garbage collection to speed things up
+(add-hook 'after-init-hook
+          #'(lambda ()
+              (setq gc-cons-threshold (* 100 1000 1000))))
+(add-hook 'focus-out-hook 'garbage-collect)
+(run-with-idle-timer 5 t 'garbage-collect)
 #+end_src
 ** Registers
 #+begin_src emacs-lisp
@@ -96,6 +103,9 @@ I use this functionality to load my private config file with non-public informat
 
 ;; Set default org directory
 (setq org-directory "~/.Org")
+
+(remove-hook 'after-save-hook #'+literate|recompile-maybe)
+(set-company-backend! 'org-mode nil)
 
 ;; This allows you to actually control how big images are in org docs!
 (setq org-image-actual-width nil)
@@ -137,8 +147,8 @@ I use this functionality to load my private config file with non-public informat
 
 ;; Enable autorevert globally so that buffers update when files change on disk.
 ;; Very useful when used with file syncing (i.e. syncthing)
-(setq global-auto-revert-mode t)
-(setq auto-revert-use-notify nil)
+(setq global-auto-revert-mode nil)
+(setq auto-revert-use-notify t)
 
 ;; ---- end block ---- ;;
 
@@ -249,8 +259,10 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Open the link at point using mimeo"
       "o o" 'my-better-link-opener)
 
-(setq-global evil-insert-state-exit-hook '(org-update-parent-todo-statistics
+(setq-default evil-insert-state-exit-hook '(org-update-parent-todo-statistics
  t))
+
+(setq org-table-automatic-realign nil)
 #+end_src
 *** Custom Org Mode Scripts
 **** my-ox-odp Script
@@ -1029,10 +1041,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 ;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
 ;;      directory (for easy access to its source code).
 
-(use-package-hook! evil
-  :pre-init
-  (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
-  t)
+;;(use-package-hook! evil
+;;  :pre-init
+;;  (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
+;;  t)
 #+end_src
 ** Doom Package List
 #+begin_src emacs-lisp
@@ -1274,7 +1286,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (package! org-download)
 (package! org-ql)
 (package! toc-org)
-(package! beacon)
 (package! ox-reveal)
 (package! hledger-mode)
 (package! rainbow-mode)
