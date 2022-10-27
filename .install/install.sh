@@ -41,6 +41,7 @@ flatpackages=();
     libreoffice-still
     atril
     xournalpp
+    kdeconnect
     );
 
     aurpackages+=(
@@ -237,7 +238,10 @@ flatpackages=();
     archpackages+=(
     ttf-font-awesome
     ttf-inconsolata
+    ttf-nerd-fonts-symbols
+    ttf-nerd-fonts-symbols-1000-em
     ttf-nerd-fonts-symbols-mono
+    ttf-iosevka-nerd
     ttf-ubuntu-font-family
     terminus-font
     );
@@ -255,6 +259,7 @@ flatpackages=();
     nitrogen
     lxappearance
     mate-icon-theme
+    grub-customizer
     );
 
     aurpackages+=(
@@ -281,6 +286,7 @@ flatpackages=();
     aurpackages+=(
     caffeine-ng
     sct
+    twmn-git
     );
 
     # wayland utils
@@ -293,6 +299,7 @@ flatpackages=();
     grim
     slurp
     wayshot
+    wev
     );
 
     aurpackages+=(
