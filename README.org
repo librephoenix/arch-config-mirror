@@ -21,19 +21,19 @@ Below is the taxonomy of my literate (org mode) config files, which each control
 | TODO XMonad Literate Config       | Window Manager        |
 | [[./.shell.org][Shell Literate Config]]             | Shell                 |
 | [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]         | Terminal              |
-| [[./.doom.d/doom-pub.org][Public Doom Emacs Literate Config]] | IDE                   |
-| TODO Ranger Literate Config       | File Manager          |
+| [[./.doom.d/doom-pub.org][Public Doom Emacs Literate Config]] | IDE + More            |
+| TODO Ranger Literate Config       | Quick File Manager    |
 | TODO Qutebrowser Literate Config  | Browser               |
 ** Packages (Programs) Overview
 Below is a taxonomy of my system documentation, which describes core programs in my variant of Arch Linux, and how to install or reinstall a system with my configurations.
-| Document                          | Classification |
-|-----------------------------------+----------------|
-| [[./.install][Installation Overview]]             | Installation   |
-| TODO Literate Installation Script | Installation   |
-| [[Packages (Programs)][Core Package List]]                 | Packages       |
-| TODO Supplementary Program Lists  | Packages       |
+| Document                         | Classification |
+|----------------------------------+----------------|
+| [[./.install][Installation Overview]]            | Installation   |
+| [[./.install/install.org][Literate Installation Script]]     | Installation   |
+| [[Packages (Programs)][Core Package List]]                | Packages       |
+| TODO Supplementary Program Lists | Packages       |
 ** More Detailed Information
-*** Config
+*** Configs
 Here is an organized list of my most important configs stored in this repository:
 - TODO XMonad Literate Config
   - [[./.xinitrc][.xinitrc]]
@@ -83,6 +83,8 @@ For my computing, I like to select programs based upon efficiency, security, and
 - [[https://alacritty.org/][Alacritty]] (Terminal Emulator)
 - [[https://wiki.gnome.org/Projects/Libsecret][libsecret]] (Secret Service)
 - [[https://keepassxc.org/][KeePassXC]] (Password Manager)
+- [[https://brave.com/][Brave Browser]] (Chromium-based Web Browser)
+- [[https://librewolf.net/][LibreWolf]] (Firefox-based Web Browser)
 - [[https://qutebrowser.org/][Qutebrowser]] (Web Browser)
 - [[https://www.vim.org/][Vim]] ("Quick" Terminal Text Editor)
 - [[https://github.com/hlissner/doom-emacs][Doom Emacs]] (IDE + more)
