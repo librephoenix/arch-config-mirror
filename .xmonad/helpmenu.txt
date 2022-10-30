@@ -3,29 +3,33 @@ M = Meta (Left Alt)
 S = Super ("Windows" Key)
 
 [Manage Xmonad]
-S-q .............. Close window                                  
-S-Shift-l ........ Lock session
-S-k .............. Focus previous window on workspace
-S-j .............. Focus next window on workspace
-M-Tab ............ Focus next window on workspace
-S-Shift-k ........ Move current window back
-S-Shift-j ........ Move current window forward
-S-l .............. Increase size of master window
-S-h .............. Decrease size of master window
-S-/ .............. Show this help menu
-S-[1..9] ......... Switch workspace
-S-Shift-[1..9] ... Move active window workspace
-S-Space .......... Switch tiling layout
-S-m .............. Move focused window to main area
-S-t .............. Toggle tiling/floating for focused window
+S-q ................ Close window
+S-Shift-q .......... Exit xmonad
+S-Shift-l .......... Lock session
+S-k ................ Focus window visually up
+S-j ................ Focus window visually down
+S-l ................ Focus window visually right
+S-h ................ Focus window visually left
+M-Tab .............. Focus next window on workspace
+S-Tab .............. Switch to given workspace
+S-/ ................ Show this help menu
+S-[1..9] ........... Switch workspace
+S-Shift-[1..9] ..... Move active window workspace
+S-Space ............ Switch tiling layout
+S-m ................ Move focused window to main area
+S-t ................ Toggle tiling/floating for focused window
+S-MouseLeft ........ Move tiling window
+S-Shift-MouseLeft .. Move floating window
+S-Shift-MouseRight . Resize floating window
 
 [Application Shortcuts]
 S-; .............. Dmenu run
-S-s .............. Web browser (Qutebrowser)
+S-s .............. Web browser (Brave Browser)
 S-a .............. Doom Emacs
-S-x .............. KeePassXC Dmenu Script
-S-Shift-x ........ KeePassXC Totp Dmenu Script
+S-x .............. KeePassXC
 S-w .............. Multi-application Templates Dmenu Script
+S-o .............. Octave
+S-b .............. Bottom (Control Panel)
 S-Return ......... Terminal (Alacritty)
 
 [Scratchpads]
