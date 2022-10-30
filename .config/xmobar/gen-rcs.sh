@@ -68,3 +68,26 @@ sed -i "s/color08Normal/#bbbbbb/g" dracula-xmobarrc # normal white
 sed -i "s/color08Bright/#ffffff/g" dracula-xmobarrc # bright white
 sed -i "s/colorFocus/#ff79c6/g" dracula-xmobarrc # wm focus color
 sed -i "s/colorSecondary/#bd93f9/g" dracula-xmobarrc # xmobar highlight color
+
+cp base-xmobarrc tomorrow-night-xmobarrc
+sed -i "s/colorBgNormal/#1d1f21/g" tomorrow-night-xmobarrc # normal background
+sed -i "s/colorBgBright/#3d3f41/g" tomorrow-night-xmobarrc # bright background
+sed -i "s/colorFgNormal/#c5c8c6/g" tomorrow-night-xmobarrc # normal foreground
+sed -i "s/color01Normal/#1d1f21/g" tomorrow-night-xmobarrc # normal black
+sed -i "s/color01Bright/#666666/g" tomorrow-night-xmobarrc # bright black
+sed -i "s/color02Normal/#cc6666/g" tomorrow-night-xmobarrc # normal red
+sed -i "s/color02Bright/#ff3334/g" tomorrow-night-xmobarrc # bright red
+sed -i "s/color03Normal/#b5bd68/g" tomorrow-night-xmobarrc # normal green
+sed -i "s/color03Bright/#9ec400/g" tomorrow-night-xmobarrc # bright green
+sed -i "s/color04Normal/#e6c547/g" tomorrow-night-xmobarrc # normal yellow
+sed -i "s/color04Bright/#f0c674/g" tomorrow-night-xmobarrc # bright yellow
+sed -i "s/color05Normal/#81a2be/g" tomorrow-night-xmobarrc # normal blue
+sed -i "s/color05Bright/#81a2be/g" tomorrow-night-xmobarrc # bright blue
+sed -i "s/color06Normal/#b294bb/g" tomorrow-night-xmobarrc # normal magenta
+sed -i "s/color06Bright/#b77ee0/g" tomorrow-night-xmobarrc # bright magenta
+sed -i "s/color07Normal/#70c0ba/g" tomorrow-night-xmobarrc # normal cyan
+sed -i "s/color07Bright/#54ced6/g" tomorrow-night-xmobarrc # bright cyan
+sed -i "s/color08Normal/#373b41/g" tomorrow-night-xmobarrc # normal white
+sed -i "s/color08Bright/#282a2e/g" tomorrow-night-xmobarrc # bright white
+sed -i "s/colorFocus/#e6c547/g" tomorrow-night-xmobarrc # wm focus color
+sed -i "s/colorSecondary/#70c0ba/g" tomorrow-night-xmobarrc # xmobar highlight color

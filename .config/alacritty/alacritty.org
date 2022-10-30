@@ -183,7 +183,7 @@ Credit to [[https://github.com/eendroroy][eendoroy]].
   # Colors the cursor will use if `custom_cursor_colors` is true
     cursor:
       text: '0x1d1f21'
-      cursor: '0xffffff'
+      cursor: '0xc5c8c6'
 
   # Normal colors
     normal:
@@ -303,7 +303,7 @@ Select a color scheme by specifying colors: *anchor, where anchor selects one of
 
 #+BEGIN_SRC yaml :tangle alacritty.yml
 #Select color theme
-colors: *dracula
+colors: *tomorrow_night
 
 #+END_SRC
 
