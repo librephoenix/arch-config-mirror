@@ -15,4 +15,18 @@ Credit to [[https://unsplash.com/@bkview][Jason McCann on Unsplash]] for [[https
 [[.img/silasa-desktop-octave-oceanic-next.png]]
 [[.img/silasa-desktop-ranger-oceanic-next.png]]
 
-Credit to [[https://unsplash.com/@timberfoster][Tim Foster on Unsplash]] for the [[https://unsplash.com/photos/wPXBkZ-Pxjw][the background in my Oceanic Next theme]].
+Credit to [[https://unsplash.com/@timberfoster][Tim Foster on Unsplash]] for [[https://unsplash.com/photos/wPXBkZ-Pxjw][the background in my Oceanic Next theme]].
+
+** Dracula
+[[.img/silasa-desktop-work-dracula.png]]
+[[.img/silasa-desktop-btm-dracula.png]]
+[[.img/silasa-desktop-spooky-dracula.png]]
+
+Credit to [[https://unsplash.com/@zetong][Zetong Li on Unsplash]] for [[https://unsplash.com/photos/WyVWoWn61LU][the background in my Dracula theme]].
+
+** Tomorrow Night
+[[.img/silasa-desktop-work-tomorrow-night.png]]
+[[.img/silasa-desktop-emacs-cfw-tomorrow-night.png]]
+[[.img/silasa-desktop-btm-tomorrow-night.png]]
+
+Credit to [[https://unsplash.com/@karsten_wuerth][Karsten Würth on Unsplash]] for [[https://unsplash.com/photos/7BjhtdogU3A][the background in my Tomorrow Night theme]].

@@ -10,9 +10,13 @@ This repository stores my dotfiles (configuration files) for my personal Arch Li
 Gotta have screenshots after informing you that I run Arch..
 [[.img/silasa-desktop-work-gruvbox.png]]
 [[.img/silasa-desktop-octave-oceanic-next.png]]
+[[.img/silasa-desktop-work-dracula.png]]
+[[.img/silasa-desktop-work-tomorrow-night.png]]
 
 Credit to [[https://unsplash.com/@bkview][Jason McCann on Unsplash]] for [[https://unsplash.com/photos/Gj76llxJHd4][the background in my Gruvbox theme]].
 Credit to [[https://unsplash.com/@timberfoster][Tim Foster on Unsplash]] for the [[https://unsplash.com/photos/wPXBkZ-Pxjw][the background in my Oceanic Next theme]].
+Credit to [[https://unsplash.com/@zetong][Zetong Li on Unsplash]] for [[https://unsplash.com/photos/WyVWoWn61LU][the background in my Dracula theme]].
+Credit to [[https://unsplash.com/@karsten_wuerth][Karsten Würth on Unsplash]] for [[https://unsplash.com/photos/7BjhtdogU3A][the background in my Tomorrow Night theme]].
 
 ** Config Overview
 Below is the taxonomy of my literate (org mode) config files, which each control the plethora of config files related to the programs I use.  I use these (literate org mode files) to configure my machine.
