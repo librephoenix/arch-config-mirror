@@ -1,4 +1,4 @@
-# Created 2022-10-27 Thu 18:27
+# Created 2022-10-30 Sun 14:54
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -46,7 +46,7 @@ I use this functionality to load my private config file with non-public informat
 (setq line-move-visual t)
 
 ;; Theme
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-tomorrow-night)
 (setq doom-font (font-spec :family "Inconsolata" :size 20))
 
 ;; Transparent background
@@ -91,7 +91,7 @@ I use this functionality to load my private config file with non-public informat
       :desc "Jump to register"
       "r" 'jump-to-register)
 
-(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.journal"))
+(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.org"))
 (set-register ?r '(file . "/home/emmet/README.org"))
 (set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
 (set-register ?h '(file . "/home/emmet"))
@@ -259,10 +259,13 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Open the link at point using mimeo"
       "o o" 'my-better-link-opener)
 
+;; Better org table editing
 (setq-default evil-insert-state-exit-hook '(org-update-parent-todo-statistics
  t))
-
 (setq org-table-automatic-realign nil)
+
+;; Better for org source blocks
+(setq electric-indent-mode nil)
 #+end_src
 *** Custom Org Mode Scripts
 **** my-ox-odp Script
@@ -947,11 +950,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :desc "Exec hledger command"
       "d" 'hledger-daily-report*)
 
-(map! :leader
-      :prefix ("l" . "hledger")
-      :desc "Add new entry to hledger journal"
-      "e" 'hledger-jentry)
-
 (map! :localleader
       :map hledger-mode-map
       :desc "Reschedule transaction at point"
@@ -1171,7 +1169,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
        (haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
-       ;;json              ; At least it ain't XML
+       json              ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
@@ -1224,6 +1222,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
        ;;literate
        (default +bindings +smartparens))
 #+end_src
+
 * My [[file:./packages.el][packages.el]]
 ** Default Preamble
 #+begin_src emacs-lisp

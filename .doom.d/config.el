@@ -12,7 +12,7 @@
 (setq line-move-visual t)
 
 ;; Theme
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-tomorrow-night)
 (setq doom-font (font-spec :family "Inconsolata" :size 20))
 
 ;; Transparent background
@@ -55,7 +55,7 @@
       :desc "Jump to register"
       "r" 'jump-to-register)
 
-(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.journal"))
+(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.org"))
 (set-register ?r '(file . "/home/emmet/README.org"))
 (set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
 (set-register ?h '(file . "/home/emmet"))
@@ -220,10 +220,13 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Open the link at point using mimeo"
       "o o" 'my-better-link-opener)
 
+;; Better org table editing
 (setq-default evil-insert-state-exit-hook '(org-update-parent-todo-statistics
  t))
-
 (setq org-table-automatic-realign nil)
+
+;; Better for org source blocks
+(setq electric-indent-mode nil)
 
 ;;;------ Org roam configuration ------;;;
 
@@ -674,11 +677,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :prefix ("l" . "hledger")
       :desc "Exec hledger command"
       "d" 'hledger-daily-report*)
-
-(map! :leader
-      :prefix ("l" . "hledger")
-      :desc "Add new entry to hledger journal"
-      "e" 'hledger-jentry)
 
 (map! :localleader
       :map hledger-mode-map
