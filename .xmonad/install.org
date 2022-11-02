@@ -1,0 +1,119 @@
+#+TITLE: Installing Xmonad, Xmonad-Contrib, and Xmobar with Stack
+#+AUTHOR: emmet
+
+Works using Arch Linux x86_64, kernel 5.16.16, as of March, 26th, 2022.
+
+** Why install using Stack?
+After using Xmonad and Xmobar for a while on Arch, I sometimes came across breakages after a pacman update, usually due to a minor dependency error.  Also, with the versions of Xmonad and Xmobar in the standard repos, I never had access to the [[https://archives.haskell.org/projects.haskell.org/xmobar/#mail-args-alias][mail system monitor in Xmobar]].  Installing with Stack fixed both of these problems!
+
+Just a quick note: this is essentially a TLDR of [[https://brianbuccola.com/how-to-install-xmonad-and-xmobar-via-stack/][Brian Buccola's tutorial]] which I found /very/ useful when installing this way (since I'm not really a Haskell programmer and didn't know anything about Stack). I'm simply reproducing this here for my own notes (just in case I need to reinstall from scratch).
+
+** Step 1: Install Stack
+I preferred to install Stack independently from my package manager using:
+
+#+BEGIN_SRC shell
+curl -sSL https://get.haskellstack.org/ | sh
+#+END_SRC
+
+The other way, using your AUR helper, is to install [[https://aur.archlinux.org/packages/stack-static/][stack-static]] from the AUR.  In my case, I use [[https://github.com/Morganamilo/paru][paru]]:
+
+#+BEGIN_SRC shell
+paru -S stack-static
+#+END_SRC
+
+** Step 2: Install GHC with Stack
+This gets us GHC which allows us to compile Haskell.  Install using:
+
+#+BEGIN_SRC shell
+stack setup
+#+END_SRC
+
+which installs the commands =stack ghc= and =stack ghci= into ~/.stack
+
+** Step 3: Git clone xmonad, xmonad-contrib, and xmobar
+While inside of the ~/.xmonad folder, clone the git repos using:
+
+#+BEGIN_SRC shell
+# From inside ~/.xmonad.
+git clone "https://github.com/xmonad/xmonad" xmonad-git
+git clone "https://github.com/xmonad/xmonad-contrib" xmonad-contrib-git
+git clone "https://github.com/jaor/xmobar" xmobar-git
+#+END_SRC
+
+Each of these files now contains a =.cabal= and =.yaml= file which are automatically used in the next step.
+
+** Step 4: Initialize Stack
+To initialize Stack, run:
+
+#+BEGIN_SRC shell
+# From inside ~/.xmonad
+stack init
+#+END_SRC
+
+This will automatically create =stack.yaml= which can be edited to include extra compilation flags.  Since I wanted the extra system monitor plugins on Xmobar, I added:
+
+#+BEGIN_SRC yaml
+flags:
+  xmobar:
+    all_extensions: true
+#+END_SRC
+and
+#+BEGIN_SRC yaml
+extra-deps:
+  - iwlib-0.1.0
+  - netlink-1.1.1.0
+  - hinotify-0.3.10
+#+END_SRC
+
+Note that different dependencies may be needed in the future, and these can be added manually (Stack should tell you in an error if this is necessary).
+
+** Step 5: Build and Install
+Simply, run:
+
+#+BEGIN_SRC shell
+# From inside ~/.xmonad
+stack install
+#+END_SRC
+
+Which will place =xmonad= and =xmobar= into =~/.local/bin=.  Make sure =~/.local/bin= is part of the =PATH= environment variable.
+
+** Step 6: Create build file
+=xmonad --recompile= won't work unless we make a custom build script, titled =build= inside of the =.xmonad= folder.
+
+#+BEGIN_SRC shell
+# ~/.xmonad/build
+#!/bin/sh
+exec stack ghc -- \
+  --make xmonad.hs \
+  -i \
+  -ilib \
+  -fforce-recomp \
+  -main-is main \
+  -v0 \
+  -o "$1"
+#+END_SRC
+
+** Step 7: Recompile/Restart Xmonad
+Restart the computer, then recompile Xmonad using:
+
+#+BEGIN_SRC shell
+xmonad --recompile && xmonad --restart
+#+END_SRC
+
+** Step 8: Updating
+To update, re-clone the git repos:
+
+#+BEGIN_SRC shell
+# From inside ~/.xmonad.
+git clone "https://github.com/xmonad/xmonad" xmonad-git
+git clone "https://github.com/xmonad/xmonad-contrib" xmonad-contrib-git
+git clone "https://github.com/jaor/xmobar" xmobar-git
+#+END_SRC
+
+and simply run:
+#+BEGIN_SRC shell
+# From inside ~/.xmonad
+stack install
+#+END_SRC
+
+If any new flags or dependencies are added inside of =stack.yaml=, run =stack clean= first.
