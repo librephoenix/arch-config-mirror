@@ -2,12 +2,11 @@
 #+author: emmet
 
 * XMonad
-The main configuration file for XMonad is [[./.xmonad.hs][~/.xmonad/xmonad.hs]].
+The main configuration file for XMonad is [[./xmonad.hs][~/.xmonad/xmonad.hs]].
 ** Imports
 First I import a bunch of libraries:
 #+BEGIN_SRC haskell :tangle xmonad.hs
 -- IMPORTS
-
 import qualified Data.Map as M
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86

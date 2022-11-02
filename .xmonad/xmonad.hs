@@ -1,5 +1,4 @@
 -- IMPORTS
-
 import qualified Data.Map as M
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
