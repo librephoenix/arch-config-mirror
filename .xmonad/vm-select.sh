@@ -5,7 +5,7 @@ nfColor=$2
 sbColor=$3
 sfColor=$4
 
-choices=$(/usr/bin/ls /etc/libvirt/qemu | grep .xml | cut -f 1 -d '.')
+choices=$(/usr/bin/ls ~/.config/libvirt/qemu | grep .xml | cut -f 1 -d '.')
 
 promptarray[0]="What VM?"
 promptarray[1]="Which VM?"
@@ -21,4 +21,4 @@ index=$(($RANDOM % $size))
 
 selectedprompt=${promptarray[$index]}
 
-choice=$(echo -e "$choices" | dmenu -i -nb ${nbColor} -nf ${nfColor} -sb ${sbColor} -sf ${sfColor} -fn 'UbuntuMono-R:regular:pixelsize=28' -p "$selectedprompt") && exec virt-manager -c qemu:///system --show-domain-console $choice
+choice=$(echo -e "$choices" | dmenu -i -nb ${nbColor} -nf ${nfColor} -sb ${sbColor} -sf ${sfColor} -fn 'UbuntuMono-R:regular:pixelsize=28' -p "$selectedprompt") && exec virt-manager -c qemu:///session --show-domain-console $choice

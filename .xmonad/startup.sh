@@ -7,7 +7,7 @@ nfColor=$3
 sbColor=$4
 sfColor=$5
 
-# Startup script called by xmonad to start necessary programs
+# Startup shell script called by xmonad to start necessary programs
 #
 ## Kill previous instances of applications (Prevents multiple instances of the following if XMonad is restarted durin the X session)
 killall xmobar

@@ -22,7 +22,7 @@ Credit to [[https://unsplash.com/@karsten_wuerth][Karsten Würth on Unsplash]] f
 Below is the taxonomy of my literate (org mode) config files, which each control the plethora of config files related to the programs I use.  I use these (literate org mode files) to configure my machine.
 | Literate Config                   | Config Classification |
 |-----------------------------------+-----------------------|
-| TODO XMonad Literate Config       | Window Manager        |
+| [[./.xmonad/xmonad.org][XMonad Literate Config]]            | Window Manager        |
 | [[./.shell.org][Shell Literate Config]]             | Shell                 |
 | [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]         | Terminal              |
 | [[./.doom.d/doom-pub.org][Public Doom Emacs Literate Config]] | IDE + More            |
@@ -39,7 +39,7 @@ Below is a taxonomy of my system documentation, which describes core programs in
 ** More Detailed Information
 *** Configs
 Here is an organized list of my most important configs stored in this repository:
-- TODO XMonad Literate Config
+- [[./.xmonad/xmonad.org][XMonad Literate Config]]
   - [[./.xinitrc][.xinitrc]]
   - [[./.xmonad/xmonad.hs][xmonad.hs]]
     - [[./.xmonad/startup.sh][startup.sh]]

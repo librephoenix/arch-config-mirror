@@ -9,7 +9,7 @@ Config { font = "xft:UbuntuMono-R:size=16"
        , iconOffset = -1
        , lowerOnStart = True
        , pickBroadest = False
-       , persistent = False 
+       , persistent = False
        , hideOnStart = False
        , iconRoot = "."
        , allDesktops = True
@@ -28,14 +28,14 @@ Config { font = "xft:UbuntuMono-R:size=16"
                     , Run Brightness
                       [ "-t", "<fc=color04Normal><fn=1>\xf5dd</fn> <percent>% </fc><fn=2><fc=colorBgNormal,colorBgBright>\xe0b0</fc></fn>", "--",
                         "-D", "amdgpu_bl1"
-                      ] 2 
+                      ] 2
                     , Run Volume "default" "Master"
                       [ "-t", "<status>", "--"
                       , "--on", "<fc=color07Normal,colorBgBright> <fn=1>\xf028</fn> <volume>% </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>"
                       , "--onc", "color07Normal"
                       , "--off", "<fc=color06Normal,colorBgBright> <fn=1>\xf026</fn>Mute </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>"
                       , "--offc", "color06Normal"
-                      ] 1 
+                      ] 1
                     , Run Com "/home/emmet/.config/xmobar/padding-icon.sh" [] "trayerpad" 2
                     , Run Com "/home/emmet/.config/xmobar/bitcoin-monitor.sh" [] "bitcoin" 300
                     , Run Mail [("<fn=1><fc=color05Normal>\xf6ed</fc></fn> ", "~/.mail/INBOX")] "mail"
