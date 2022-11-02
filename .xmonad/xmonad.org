@@ -814,6 +814,7 @@ xrandr --dpi 120
 picom --experimental-backends --daemon &
 xset r rate 350 50
 setxkbmap -option caps:escape &
+betterdiscordctl --d-install flatpak reinstall &
 
 # setup necessary environment variables
 export QT_QPA_PLATFORMTHEME="qt5ct"
