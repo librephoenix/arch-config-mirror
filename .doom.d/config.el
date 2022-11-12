@@ -59,6 +59,7 @@
 (set-register ?r '(file . "/home/emmet/README.org"))
 (set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
 (set-register ?h '(file . "/home/emmet"))
+(set-register ?x '(file . "/home/emmet/.xmonad/xmonad.org"))
 
 ;;;------ Org mode configuration ------;;;
 

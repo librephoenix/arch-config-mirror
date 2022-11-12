@@ -42,6 +42,9 @@ color03Normal, color03Bright, color04Normal, color04Bright :: String
 color05Normal, color05Bright, color06Normal, color06Bright :: String
 color07Normal, color07Bright, color08Normal, color08Bright :: String
 colorFocus, colorSecondary :: String
+gtkTheme :: String
+alacrittyTheme :: String
+doomEmacsTheme :: String
 
 gruvboxIndex, solarizedIndex, draculaIndex, tomorrowNightIndex, tokyoNightIndex, oceanicNextIndex, ubuntuIndex :: Int
 gruvboxIndex = 0
@@ -55,6 +58,9 @@ ubuntuIndex = 6
 -- color scheme arrays
 colorSchemeList = ["gruvbox", "solarized", "dracula", "tomorrow-night", "tokyo-night", "oceanic-next"]
 colorSchemePrettyList = ["Gruvbox Dark", "Solarized Dark", "Dracula", "Tomorrow Night", "Tokyo Night", "Oceanic Next"]
+gtkThemeList = ["MyGruvbox", "", "OfficialDracula", "MyGraphite", "", "MyOceanicNext"] -- names of corresponding gtk themes
+alacrittyThemeList = ["gruvbox_dark", "solarized_dark", "dracula", "tomorrow_night", "tokyo_night", "oceanic_next"]
+doomEmacsThemeList = ["doom-gruvbox", "doom-solarized-dark", "doom-dracula", "doom-tomorrow-night", "doom-tokyo-night", "doom-oceanic-next"]
 colorBgNormalList = ["#282828", "#002b36", "#282a36", "#1d1f21", "#1a1b26", "#1b2b34"] -- normal bg
 colorBgBrightList = ["#3b3838", "#113b3f", "#36343f", "#3d3f41", "#2a2b36", "#2b3b41"] -- lighter bg
 trayerBgNormalList = ["0x00282828", "0x00002b36", "0x00282a36", "0x1d1f21", "0x1a1b26", "0x1b2b34"] -- trayer tint
@@ -84,6 +90,9 @@ myColorScheme = tomorrowNightIndex
 -- setup color variables
 colorScheme = colorSchemeList !! myColorScheme
 colorSchemePretty = colorSchemePrettyList !! myColorScheme
+gtkTheme = gtkThemeList !! myColorScheme
+alacrittyTheme = alacrittyThemeList !! myColorScheme
+doomEmacsTheme = doomEmacsThemeList !! myColorScheme
 colorBgNormal = colorBgNormalList !! myColorScheme -- normal bg
 colorBgBright = colorBgBrightList !! myColorScheme -- lighter bg
 trayerBgNormal = trayerBgNormalList !! myColorScheme -- trayer tint
@@ -154,7 +163,7 @@ myScratchPads =
     NS "octave" spawnOctave findOctave manageOctave,
     NS "keepassxc" spawnKeepassXC findKeepassXC manageKeepassXC,
     NS "btm" spawnBtm findBtm manageBtm,
-    NS "mu4e" spawnMu4e findMu4e manageMu4e,
+    NS "geary" spawnGeary findGeary manageGeary,
     NS "helpmenu" spawnHelp findHelp manageHelp,
     NS "myuzi" spawnMyuzi findMyuzi manageMyuzi,
     NS "cfw" spawnCfw findCfw manageCfw,
@@ -210,9 +219,9 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnMu4e = "~/.xmonad/scratchpad-mu4e.sh"
-    findMu4e = title =? "scratch_mu4e"
-    manageMu4e = customFloating $ W.RationalRect l t w h
+    spawnGeary = "geary"
+    findGeary = className =? "Geary"
+    manageGeary = customFloating $ W.RationalRect l t w h
       where
         h = 0.5
         w = 0.4
@@ -360,7 +369,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_b), namedScratchpadAction myScratchPads "btm"),
       ((modm, xK_d), namedScratchpadAction myScratchPads "discord"),
       ((modm, xK_o), namedScratchpadAction myScratchPads "octave"),
-      ((modm, xK_e), namedScratchpadAction myScratchPads "mu4e"),
+      ((modm, xK_e), namedScratchpadAction myScratchPads "geary"),
       ((modm, xK_n), namedScratchpadAction myScratchPads "myuzi"),
       ((modm, xK_c), namedScratchpadAction myScratchPads "cfw"),
       ((modm, xK_y), namedScratchpadAction myScratchPads "pavucontrol"),
@@ -459,7 +468,7 @@ myManageHook =
       className =? "discord" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       title =? "ranger" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "btm" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
-      title =? "scratch_mu4e" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
+      className =? "Geary" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "scratch_cfw" --> (customFloating $ W.RationalRect 0.29 0.04 0.42 0.7),
       title =? "xmonad_helpmenu" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       className =? "fl64.exe" --> (customFloating $ W.RationalRect 0 0 1 1),
@@ -471,8 +480,9 @@ myManageHook =
       manageDocks
     ]
 
--- Apply fullscreen manage hook
+-- Apply fullscreen manage and event hooks
 myFullscreenManageHook = fullscreenManageHook
+myFullscreenEventHook = fullscreenEventHook
 
 -- Server mode event hook
 myEventHook = serverModeEventHook
@@ -482,11 +492,11 @@ myNavigation2DConfig = def {layoutNavigation = [("Tall", lineNavigation), ("Full
 
 -- Startup hook
 myStartupHook = do
-  spawnOnce ("~/.xmonad/startup.sh '" ++ trayerBgNormal ++ "' '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")
+  spawnOnce ("~/.xmonad/startup.sh '" ++ trayerBgNormal ++ "' '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "' '" ++ gtkTheme ++ "' '" ++ alacrittyTheme ++ "' '" ++ doomEmacsTheme ++ "' '" ++ color01Normal ++ "' '" ++ color01Bright ++ "' '" ++ color02Normal ++ "' '" ++ color02Bright ++ "' '" ++ color03Normal ++ "' '" ++ color03Bright ++ "' '" ++ color04Normal ++ "' '" ++ color04Bright ++ "' '" ++ color05Normal ++ "' '" ++ color05Bright ++ "' '" ++ color06Normal ++ "' '" ++ color06Bright ++ "' '" ++ color07Normal ++ "' '" ++ color07Bright ++ "' '" ++ color08Normal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ colorSecondary ++ "' '" ++ colorBgBright ++ "'")
 
 -- Now run xmonad with all the defaults we set up.
 main = do
-  xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
+  xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/xmobarrc")
   xmonad $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $

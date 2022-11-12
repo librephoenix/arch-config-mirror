@@ -288,7 +288,7 @@ Adapted from Ubuntu Gnome Terminal default colors.
 Fairy Floss color scheme.  Anchored as "fairy_floss" Adapted from Fairy Floss color scheme.
 
 * Select Color Scheme
-Select a color scheme by specifying colors: *anchor, where anchor selects one of the themes below:
+Select a color scheme by specifying colors: *tomorrow_night
 | Color Scheme   | Anchor         |
 |----------------+----------------|
 | Gruvbox Dark   | gruvbox_dark   |
