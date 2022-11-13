@@ -135,6 +135,7 @@ flatpackages=();
     aurpackages+=(
     airshipper # veloren
     nbtexplorer-bin
+    qjoypad
     );
 
     flatpackages+=(
