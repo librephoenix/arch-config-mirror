@@ -47,7 +47,8 @@ killall nitrogen
 killall xautolock
 killall caffeine
 killall syncthing-gtk
-killall webcord
+killall discord
+killall qjoypad
 
 # pre-launch configurations
 #dbus-update-activation-environment --all
@@ -107,7 +108,7 @@ twmnd &
 # nitrogen --restore &
 /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor "primary" &
 #gnome-keyring-daemon --start --components=secrets &
-mbsync -a & mu index &
+qjoypad &
 nm-applet &
 syncthing --no-browser &
 syncthing-gtk -m &
