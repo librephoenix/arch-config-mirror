@@ -41,6 +41,7 @@ flatpackages=();
     libreoffice-still
     atril
     xournalpp
+    geary
     kdeconnect
     );
 
