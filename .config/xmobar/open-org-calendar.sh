@@ -1,3 +1,3 @@
 #!/bin/sh
 
-emacsclient -c -e "(cfw:open-org-calendar)" -F "'(title . \"scratch_cfw\")"
+emacsclient -c -e "(cfw:open-calendar-buffer)" -F "'(title . \"scratch_cfw\")"
