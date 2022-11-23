@@ -210,19 +210,48 @@ schemes:
       cyan:    '0x56c2d6'
       white:   '0xccccc6'
 
-      # Bright colors
-      bright:
-        black:   '0x505354'
-        red:     '0xff5995'
-        green:   '0xb7eb46'
-        yellow:  '0xfeed6c'
-        blue:    '0x62ade3'
-        magenta: '0xbfa0fe'
-        cyan:    '0x94d8e5'
-        white:   '0xf8f8f2'
+    # Bright colors
+    bright:
+      black:   '0x505354'
+      red:     '0xff5995'
+      green:   '0xb7eb46'
+      yellow:  '0xfeed6c'
+      blue:    '0x62ade3'
+      magenta: '0xbfa0fe'
+      cyan:    '0x94d8e5'
+      white:   '0xf8f8f2'
+
+# Colors (Old Hope)
+  old_hope: &old_hope
+  # Default colors
+    primary:
+      background: '0x1c1d21'
+      foreground: '0xcbcdd2'
+
+    # Normal colors
+    normal:
+      black:   '0x45474f'
+      red:     '0xeb3d54'
+      green:   '0x78bd65'
+      yellow:  '0xe5cd52'
+      blue:    '0x4fb4d8'
+      magenta: '0xef7c2a'
+      cyan:    '0x4fb4d8'
+      white:   '0xcbcdd2'
+
+    # Bright colors
+    bright:
+      black:   '0x45474f'
+      red:     '0xeb3d54'
+      green:   '0x78bd65'
+      yellow:  '0xe5cd52'
+      blue:    '0x4fb4d8'
+      magenta: '0xef7c2a'
+      cyan:    '0x4fb4d8'
+      white:   '0xcbcdd2'
 
 #Select color theme
-colors: *tomorrow_night
+colors: *old_hope
 
 #Apply background opacity
 window:

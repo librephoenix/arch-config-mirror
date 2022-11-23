@@ -46,7 +46,7 @@ I use this functionality to load my private config file with non-public informat
 (setq line-move-visual t)
 
 ;; Theme
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-old-hope)
 (setq doom-font (font-spec :family "Inconsolata" :size 20))
 
 ;; Transparent background

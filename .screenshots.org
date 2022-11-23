@@ -30,3 +30,10 @@ Credit to [[https://unsplash.com/@zetong][Zetong Li on Unsplash]] for [[https://
 [[.img/silasa-desktop-btm-tomorrow-night.png]]
 
 Credit to [[https://unsplash.com/@karsten_wuerth][Karsten Würth on Unsplash]] for [[https://unsplash.com/photos/7BjhtdogU3A][the background in my Tomorrow Night theme]].
+
+** Old Hope
+[[.img/silasa-desktop-btm-ranger-old-hope.png]]
+[[.img/silasa-desktop-emacs-cfw-old-hope.png]]
+[[.img/silasa-desktop-work-old-hope.png]]
+
+Credit to [[https://unsplash.com/@maxwbender][Max Bender on Unsplash]] for [[https://unsplash.com/photos/8FdEwlxP3oU][the background in my Old Hope theme]].

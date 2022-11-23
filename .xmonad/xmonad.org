@@ -70,47 +70,48 @@ draculaIndex = 2
 tomorrowNightIndex = 3
 tokyoNightIndex = 4
 oceanicNextIndex = 5
-ubuntuIndex = 6
+oldHopeIndex = 6
+ubuntuIndex = 7
 
 #+END_SRC
 *** Color Scheme Arrays
 Each enumerated color scheme from [[Color Scheme Enumerations][before]] corresponds to the index of the following arrays.  These arrays are then used as the basis to select a color scheme.
 #+BEGIN_SRC haskell :tangle xmonad.hs
 -- color scheme arrays
-colorSchemeList = ["gruvbox", "solarized", "dracula", "tomorrow-night", "tokyo-night", "oceanic-next"]
-colorSchemePrettyList = ["Gruvbox Dark", "Solarized Dark", "Dracula", "Tomorrow Night", "Tokyo Night", "Oceanic Next"]
-gtkThemeList = ["MyGruvbox", "", "OfficialDracula", "MyGraphite", "", "MyOceanicNext"] -- names of corresponding gtk themes
-alacrittyThemeList = ["gruvbox_dark", "solarized_dark", "dracula", "tomorrow_night", "tokyo_night", "oceanic_next"]
-doomEmacsThemeList = ["doom-gruvbox", "doom-solarized-dark", "doom-dracula", "doom-tomorrow-night", "doom-tokyo-night", "doom-oceanic-next"]
-colorBgNormalList = ["#282828", "#002b36", "#282a36", "#1d1f21", "#1a1b26", "#1b2b34"] -- normal bg
-colorBgBrightList = ["#3b3838", "#113b3f", "#36343f", "#3d3f41", "#2a2b36", "#2b3b41"] -- lighter bg
-trayerBgNormalList = ["0x00282828", "0x00002b36", "0x00282a36", "0x1d1f21", "0x1a1b26", "0x1b2b34"] -- trayer tint
-colorFgNormalList = ["#ebdbb2", "#839496", "#f8f8f2", "#c5c8c6", "#a9b1d6", "#d8dee9"] -- normal fg
-color01NormalList = ["#343428", "#073642", "#000000", "#1d1f21", "#32344a", "#29414f"] -- black
-color01BrightList = ["#928374", "#002b36", "#555555", "#666666", "#444b6a", "#405860"] -- bright black
-color02NormalList = ["#cc241d", "#dc3ddf", "#ff5555", "#cc6666", "#f7768e", "#ec5f67"] -- red
-color02BrightList = ["#fb4934", "#cb4b16", "#ff1010", "#ff3334", "#ff7a93", "#ff3130"] -- bright red
-color03NormalList = ["#98971a", "#859900", "#50fa7b", "#b5bd68", "#9ece6a", "#99c794"] -- green
-color03BrightList = ["#b8bb26", "#586e75", "#02fe03", "#9ec400", "#b9f27c", "#66fa56"] -- bright green
-color04NormalList = ["#d79921", "#b58900", "#f1fa8c", "#e6c547", "#e0af68", "#fac863"] -- yellow
-color04BrightList = ["#fabd2f", "#657b83", "#ffff02", "#f0c674", "#ff9e64", "#ffca4f"] -- bright yellow
-color05NormalList = ["#458588", "#268bd2", "#bd93f9", "#81a2be", "#7aa2f7", "#6699cc"] -- blue
-color05BrightList = ["#83a598", "#839496", "#4d31fd", "#81a2be", "#7da6ff", "#4477ee"] -- bright blue
-color06NormalList = ["#b16286", "#d33682", "#ff79c6", "#b29fbb", "#ad8ee6", "#c594c5"] -- magenta
-color06BrightList = ["#d3869b", "#6c71c4", "#ff20d8", "#b77ee0", "#bb9af7", "#d864d8"] -- bright magenta
-color07NormalList = ["#689d6a", "#2aa198", "#8be9fd", "#70c0ba", "#449dab", "#5fb3b3"] -- cyan
-color07BrightList = ["#8ec07c", "#93a1a1", "#03feff", "#54ced6", "#0db9d7", "#30d2d0"] -- bright cyan
-color08NormalList = ["#a89984", "#eee8d5", "#bbbbbb", "#676b71", "#787c99", "#65737e"] -- white
-color08BrightList = ["#ebdbb2", "#fdf6e3", "#ffffff", "#787a7e", "#acb0d0", "#d8dee9"] -- bright white
-colorFocusList = ["#458588", "#859900", "#ff79c6", "#e6c547", "#ff9e64", "#c594c5"] -- focus and run launcher color
-colorSecondaryList = ["#d79921", "#dc3ddf", "#bbbbbb", "#70c0ba", "#0db9d7", "#fac863"] -- secondary color
+colorSchemeList = ["gruvbox", "solarized", "dracula", "tomorrow-night", "tokyo-night", "oceanic-next", "old-hope"]
+colorSchemePrettyList = ["Gruvbox Dark", "Solarized Dark", "Dracula", "Tomorrow Night", "Tokyo Night", "Oceanic Next", "Old Hope"]
+gtkThemeList = ["MyGruvbox", "", "OfficialDracula", "MyGraphite", "", "MyOceanicNext", "SweetDark"] -- names of corresponding gtk themes
+alacrittyThemeList = ["gruvbox_dark", "solarized_dark", "dracula", "tomorrow_night", "tokyo_night", "oceanic_next", "old_hope"]
+doomEmacsThemeList = ["doom-gruvbox", "doom-solarized-dark", "doom-dracula", "doom-tomorrow-night", "doom-tokyo-night", "doom-oceanic-next", "doom-old-hope"]
+colorBgNormalList = ["#282828", "#002b36", "#282a36", "#1d1f21", "#1a1b26", "#1b2b34", "#1c1d21"] -- normal bg
+colorBgBrightList = ["#3b3838", "#113b3f", "#36343f", "#3d3f41", "#2a2b36", "#2b3b41", "#3c3d41"] -- lighter bg
+trayerBgNormalList = ["0x00282828", "0x00002b36", "0x00282a36", "0x1d1f21", "0x1a1b26", "0x1b2b34", "0x1c1d21"] -- trayer tint
+colorFgNormalList = ["#ebdbb2", "#839496", "#f8f8f2", "#c5c8c6", "#a9b1d6", "#d8dee9", "#cbcdd2"] -- normal fg
+color01NormalList = ["#343428", "#073642", "#000000", "#1d1f21", "#32344a", "#29414f", "#45474f"] -- black
+color01BrightList = ["#928374", "#002b36", "#555555", "#666666", "#444b6a", "#405860", "#65676f"] -- bright black
+color02NormalList = ["#cc241d", "#dc3ddf", "#ff5555", "#cc6666", "#f7768e", "#ec5f67", "#eb3d54"] -- red
+color02BrightList = ["#fb4934", "#cb4b16", "#ff1010", "#ff3334", "#ff7a93", "#ff3130", "#eb3d54"] -- bright red
+color03NormalList = ["#98971a", "#859900", "#50fa7b", "#b5bd68", "#9ece6a", "#99c794", "#78bd65"] -- green
+color03BrightList = ["#b8bb26", "#586e75", "#02fe03", "#9ec400", "#b9f27c", "#66fa56", "#78bd65"] -- bright green
+color04NormalList = ["#d79921", "#b58900", "#f1fa8c", "#e6c547", "#e0af68", "#fac863", "#e5cd52"] -- yellow
+color04BrightList = ["#fabd2f", "#657b83", "#ffff02", "#f0c674", "#ff9e64", "#ffca4f", "#e5cd52"] -- bright yellow
+color05NormalList = ["#458588", "#268bd2", "#bd93f9", "#81a2be", "#7aa2f7", "#6699cc", "#4fb4d8"] -- blue
+color05BrightList = ["#83a598", "#839496", "#4d31fd", "#81a2be", "#7da6ff", "#4477ee", "#4fb4d8"] -- bright blue
+color06NormalList = ["#b16286", "#d33682", "#ff79c6", "#b29fbb", "#ad8ee6", "#c594c5", "#ef7c2a"] -- magenta
+color06BrightList = ["#d3869b", "#6c71c4", "#ff20d8", "#b77ee0", "#bb9af7", "#d864d8", "#ef7c2a"] -- bright magenta
+color07NormalList = ["#689d6a", "#2aa198", "#8be9fd", "#70c0ba", "#449dab", "#5fb3b3", "#4fb4d8"] -- cyan
+color07BrightList = ["#8ec07c", "#93a1a1", "#03feff", "#54ced6", "#0db9d7", "#30d2d0", "#4fb4d8"] -- bright cyan
+color08NormalList = ["#a89984", "#eee8d5", "#bbbbbb", "#676b71", "#787c99", "#65737e", "#cbcdd2"] -- white
+color08BrightList = ["#ebdbb2", "#fdf6e3", "#ffffff", "#787a7e", "#acb0d0", "#d8dee9", "#cbcdd2"] -- bright white
+colorFocusList = ["#458588", "#859900", "#ff79c6", "#e6c547", "#ff9e64", "#c594c5", "#eb3d54"] -- focus and run launcher color
+colorSecondaryList = ["#d79921", "#dc3ddf", "#bbbbbb", "#70c0ba", "#0db9d7", "#fac863", "#4fb4d8"] -- secondary color
 
 #+END_SRC
 *** Choose Theme
 A theme is selected by setting the =myColorScheme= variable to one of the color schemes [[Color Scheme Enumerations][enumerated before]].
 #+BEGIN_SRC haskell :tangle xmonad.hs
 -- choose a color scheme
-myColorScheme = tomorrowNightIndex
+myColorScheme = oldHopeIndex
 
 #+END_SRC
 *** Setup Color Variables

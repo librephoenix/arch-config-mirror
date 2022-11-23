@@ -12,12 +12,15 @@
 (setq line-move-visual t)
 
 ;; Theme
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-old-hope)
 (setq doom-font (font-spec :family "Inconsolata" :size 20))
 
 ;; Transparent background
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+
+;; Icons in completion buffers
+(all-the-icons-completion-mode)
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
 (solaire-global-mode +1)
@@ -576,6 +579,8 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
             :filter-return #'~/magit-process-environment)
 
 ;;;------ dired configuration ------;;;
+
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 (map! :desc "Increase font size"
       "C-=" 'text-scale-increase)

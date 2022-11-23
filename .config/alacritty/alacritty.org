@@ -267,16 +267,52 @@ Utilized work from [[https://github.com/sonatard][sonatard]]/[[https://github.co
       cyan:    '0x56c2d6'
       white:   '0xccccc6'
 
-      # Bright colors
-      bright:
-        black:   '0x505354'
-        red:     '0xff5995'
-        green:   '0xb7eb46'
-        yellow:  '0xfeed6c'
-        blue:    '0x62ade3'
-        magenta: '0xbfa0fe'
-        cyan:    '0x94d8e5'
-        white:   '0xf8f8f2'
+    # Bright colors
+    bright:
+      black:   '0x505354'
+      red:     '0xff5995'
+      green:   '0xb7eb46'
+      yellow:  '0xfeed6c'
+      blue:    '0x62ade3'
+      magenta: '0xbfa0fe'
+      cyan:    '0x94d8e5'
+      white:   '0xf8f8f2'
+
+#+END_SRC
+
+** Old Hope
+Old Hope color scheme.  Anchored as "old_hope"
+Adapted from [[https://github.com/mohkale/an-old-hope-theme][An Old Hope]] by [[https://github.com/mohkale][mohkale]].
+Utilized work from [[https://github.com/theherk][theherk]]/[[https://github.com/theherk/an-old-hope-alacritty][an-old-hope-alacritty]] for this port.
+#+BEGIN_SRC yaml :tangle alacritty.yml
+# Colors (Old Hope)
+  old_hope: &old_hope
+  # Default colors
+    primary:
+      background: '0x1c1d21'
+      foreground: '0xcbcdd2'
+
+    # Normal colors
+    normal:
+      black:   '0x45474f'
+      red:     '0xeb3d54'
+      green:   '0x78bd65'
+      yellow:  '0xe5cd52'
+      blue:    '0x4fb4d8'
+      magenta: '0xef7c2a'
+      cyan:    '0x4fb4d8'
+      white:   '0xcbcdd2'
+
+    # Bright colors
+    bright:
+      black:   '0x45474f'
+      red:     '0xeb3d54'
+      green:   '0x78bd65'
+      yellow:  '0xe5cd52'
+      blue:    '0x4fb4d8'
+      magenta: '0xef7c2a'
+      cyan:    '0x4fb4d8'
+      white:   '0xcbcdd2'
 
 #+END_SRC
 
@@ -288,7 +324,7 @@ Adapted from Ubuntu Gnome Terminal default colors.
 Fairy Floss color scheme.  Anchored as "fairy_floss" Adapted from Fairy Floss color scheme.
 
 * Select Color Scheme
-Select a color scheme by specifying colors: *tomorrow_night
+Select a color scheme by specifying colors: *old_hope
 | Color Scheme   | Anchor         |
 |----------------+----------------|
 | Gruvbox Dark   | gruvbox_dark   |
@@ -297,13 +333,14 @@ Select a color scheme by specifying colors: *tomorrow_night
 | Tokyo Night    | tokyo_night    |
 | Tomorrow Night | tomorrow_night |
 | Oceanic Next   | oceanic_next   |
+| Old Hope       | old_hope       |
 | Molokai        | molokai        |
 | Ubuntu         | ubuntu         |
 | Fairy Floss    | fairy_floss    |
 
 #+BEGIN_SRC yaml :tangle alacritty.yml
 #Select color theme
-colors: *tomorrow_night
+colors: *old_hope
 
 #+END_SRC
 
