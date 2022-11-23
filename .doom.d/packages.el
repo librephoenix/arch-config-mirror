@@ -55,6 +55,8 @@
 (package! org-download)
 (package! org-ql)
 (package! toc-org)
+(package! all-the-icons-dired)
+(package! all-the-icons-completion)
 (package! ox-reveal)
 (package! hledger-mode)
 (package! rainbow-mode)
