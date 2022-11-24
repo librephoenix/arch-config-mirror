@@ -171,6 +171,7 @@ flatpackages=();
     reflector
     brightnessctl
     w3m
+    hunspell hunspell-en_us
     );
 
     aurpackages+=(
