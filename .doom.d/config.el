@@ -35,6 +35,14 @@
 (bind-key* "C-l" #'evil-window-right)
 (bind-key* "C-q" #'evil-window-delete)
 
+;; I like evil mode visual movement
+(map! :map evil-normal-state-map
+      :desc "Move to next visual line"
+      "j" 'evil-next-visual-line)
+(map! :map evil-normal-state-map
+      :desc "Move to previous visual line"
+      "k" 'evil-previous-visual-line)
+
 ;; Disables custom.el
 (setq custom-file null-device)
 
