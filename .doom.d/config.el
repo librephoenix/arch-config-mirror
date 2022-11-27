@@ -319,7 +319,7 @@ same directory as the org-buffer and insert a link to this file."
 (after! org-roam
   (setq org-roam-capture-templates
         '(("d" "default" plain "%?" :target
-  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "${title}\n")
+  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
   :unnarrowed t))))
 
 (use-package org-roam-dblocks

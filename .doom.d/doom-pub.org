@@ -1,4 +1,4 @@
-# Created 2022-11-24 Thu 12:06
+# Created 2022-11-27 Sun 16:52
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -574,7 +574,7 @@ styletree.write('styles.xml')
 (after! org-roam
   (setq org-roam-capture-templates
         '(("d" "default" plain "%?" :target
-  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "${title}\n")
+  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
   :unnarrowed t))))
 
 (use-package org-roam-dblocks
