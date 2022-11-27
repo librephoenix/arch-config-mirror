@@ -497,7 +497,8 @@ myStartupHook = do
 
 -- Now run xmonad with all the defaults we set up.
 main = do
-  xmproc <- spawnPipe ("xmobar /home/emmet/.config/xmobar/xmobarrc")
+  xmproc0 <- spawnPipe ("xmobar -x 0 /home/emmet/.config/xmobar/xmobarrc")
+  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc")
   xmonad $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $
@@ -522,7 +523,7 @@ main = do
               logHook =
                 dynamicLogWithPP $
                   xmobarPP
-                    { ppOutput = \x -> hPutStrLn xmproc x,
+                    { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x,
                       ppTitle = xmobarColor colorFocus "" . shorten 10,
                       ppCurrent = xmobarColor colorFocus "" . wrap ("<box type=Bottom Top width=2 mb=2 color=" ++ colorFocus ++ ">") "</box>",
                       ppVisible = xmobarColor colorFgNormal "",
