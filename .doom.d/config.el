@@ -232,6 +232,31 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Open the link at point using mimeo"
       "o o" 'my-better-link-opener)
 
+;; Online images inside of org mode is pretty cool
+;; This snippit is from Tobias on Stack Exchange
+;; https://emacs.stackexchange.com/questions/42281/org-mode-is-it-possible-to-display-online-images
+(require 'org-yt)
+
+(defun org-image-link (protocol link _description)
+  "Interpret LINK as base64-encoded image data."
+  (cl-assert (string-match "\\`img" protocol) nil
+             "Expected protocol type starting with img")
+  (let ((buf (url-retrieve-synchronously (concat (substring protocol 3) ":" link))))
+    (cl-assert buf nil
+               "Download of image \"%s\" failed." link)
+    (with-current-buffer buf
+      (goto-char (point-min))
+      (re-search-forward "\r?\n\r?\n")
+      (buffer-substring-no-properties (point) (point-max)))))
+
+(org-link-set-parameters
+ "imghttp"
+ :image-data-fun #'org-image-link)
+
+(org-link-set-parameters
+ "imghttps"
+ :image-data-fun #'org-image-link)
+
 ;; Better org table editing
 (setq-default evil-insert-state-exit-hook '(org-update-parent-todo-statistics
  t))

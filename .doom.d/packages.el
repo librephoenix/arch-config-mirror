@@ -54,6 +54,7 @@
 (package! org-roam-nursery :recipe (:repo "https://github.com/chrisbarrett/nursery"))
 (package! org-download)
 (package! org-ql)
+(package! org-yt)
 (package! toc-org)
 (package! all-the-icons-dired)
 (package! all-the-icons-completion)
