@@ -125,7 +125,7 @@ myFocusedBorderColor = colorFocus
 -- Default apps
 myTerminal, myBrowser :: String
 myTerminal = "alacritty -o font.size=20"
-myBrowser = "brave"
+myBrowser = "librewolf"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
