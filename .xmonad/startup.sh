@@ -103,7 +103,7 @@ sed -i "s/export GTK_THEME=.*/export GTK_THEME="$themeGTKName"/" ~/.xsession &
 # Launch necessary desktop applications
 emacs --daemon &
 xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
-~/.local/bin/setup_external_monitor.sh &
+~/.local/bin/setup-external-monitor.sh &
 twmnd &
 # nitrogen --restore &
 /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor "primary" &
