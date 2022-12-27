@@ -83,6 +83,9 @@
 ;; This allows you to actually control how big images are in org docs!
 (setq org-image-actual-width nil)
 
+;; Have images automatically appear on org startup
+(setq org-startup-with-inline-images t)
+
 (custom-set-faces!
   '(org-level-1 :inherit outline-1 :height 1.6)
   '(org-level-2 :inherit outline-2 :height 1.4)
