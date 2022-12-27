@@ -22,6 +22,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ServerMode
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.Dwindle
 import XMonad.Layout.Fullscreen
@@ -695,7 +696,7 @@ This is all applied in the following code to set the =myLayout= variable, which 
 #+BEGIN_SRC haskell :tangle xmonad.hs
 -- Layouts:
 
-spcPx = 6
+spcPx = 5
 
 mySpacing = spacingRaw False (Border spcPx spcPx spcPx spcPx) True (Border spcPx spcPx spcPx spcPx) True
 
@@ -977,7 +978,7 @@ main = do
               manageHook = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
               handleEventHook = myEventHook <+> myFullscreenEventHook <+> fadeWindowsEventHook,
               logHook =
-                dynamicLogWithPP $
+                dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $
                   xmobarPP
                     { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x,
                       ppTitle = xmobarColor colorFocus "" . shorten 10,
@@ -1046,7 +1047,7 @@ Config { font = "UbuntuMono-R 18"
 #+END_SRC
 
 In order to get xmobar to work with trayer (systray), a padding-icon script must be used.  This script is based on [[https://github.com/jaor/xmobar/issues/239#issuecomment-233206552][Jonas Camillus Jeppensen's code]].  I have this called =padding-icon.sh=.
-#+BEGIN_SRC sh :tangle ../.config/xmobar/padding-icon.sh
+#+BEGIN_SRC sh :tangle ../.config/xmobar/padding-icon.sh :tangle-mode (identity #o755)
 #!/bin/bash
 
 # Detects the width of running window with name given as first
@@ -1091,14 +1092,15 @@ pname=${1:-panel}
 
 # Width of the trayer window, uncorrected for HiDPI scaling
 width=$(xprop -name $pname | grep 'program specified minimum size' | cut -d ' ' -f 5)
+correct_width=$((width+5))
 
 # Icon file name
-iconfile="/tmp/$pname-padding-${width:-0}px.xpm"
+iconfile="/tmp/$pname-padding-${correct_width:-0}px.xpm"
 
 # If the desired icon does not exist create it
 if [ ! -f $iconfile ]
 then
-    create_xpm_icon $width $iconfile
+    create_xpm_icon $correct_width $iconfile
 fi
 
 # Output the icon tag for xmobar
@@ -1151,64 +1153,4 @@ Config { font = "UbuntuMono-R 18"
        }
 }
 
-#+END_SRC
-
-In order to get xmobar to work with trayer (systray), a padding-icon script must be used.  This script is based on [[https://github.com/jaor/xmobar/issues/239#issuecomment-233206552][Jonas Camillus Jeppensen's code]].  I have this called =padding-icon.sh=.
-#+BEGIN_SRC sh :tangle ../.config/xmobar/padding-icon.sh
-#!/bin/bash
-
-# Detects the width of running window with name given as first
-# argument (xprop name '$1') and creates an XPM icon of that width,
-# 1px height, and transparent.  Outputs an <icon>-tag for use in
-# xmobar to display the generated XPM icon.
-#
-# Run script from xmobar and trayer:
-# `Run Com "/where/ever/padding-icon.sh" ["panel"] "trayerpad" 10`
-# and use `%trayerpad%` in your template.
-# or, if you're using for instance stalonetray:
-# `Run Com "/where/ever/padding-icon.sh" ["stalonetray"] "tray" 10`
-
-# Very heavily based on Jonas Camillus Jeppensen code
-# https://github.com/jaor/xmobar/issues/239#issuecomment-233206552
-
-# Function to create a transparent Wx1 px XPM icon
-create_xpm_icon () {
-timestamp=$(date)
-pixels=$(for i in `seq $1`; do echo -n "."; done)
-
-cat << EOF > "$2"
-/* XPM *
-static char * trayer_pad_xpm[] = {
-/* This XPM icon is used for padding in xmobar to */
-/* leave room for trayer-srg. It is dynamically   */
-/* updated by by trayer-pad-icon.sh which is run  */
-/* by xmobar.                                     */
-/* Created: ${timestamp} */
-/* <w/cols>  <h/rows>  <colors>  <chars per pixel> */
-"$1 1 1 1",
-/* Colors (none: transparent) */
-". c none",
-/* Pixels */
-"$pixels"
-};
-EOF
-}
-
-# panel window name
-pname=${1:-panel}
-
-# Width of the trayer window, uncorrected for HiDPI scaling
-width=$(xprop -name $pname | grep 'program specified minimum size' | cut -d ' ' -f 5)
-
-# Icon file name
-iconfile="/tmp/$pname-padding-${width:-0}px.xpm"
-
-# If the desired icon does not exist create it
-if [ ! -f $iconfile ]
-then
-    create_xpm_icon $width $iconfile
-fi
-
-# Output the icon tag for xmobar
-echo "<icon=${iconfile}/>"
 #+END_SRC

@@ -14,6 +14,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ServerMode
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.Dwindle
 import XMonad.Layout.Fullscreen
@@ -433,7 +434,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 
 -- Layouts:
 
-spcPx = 6
+spcPx = 5
 
 mySpacing = spacingRaw False (Border spcPx spcPx spcPx spcPx) True (Border spcPx spcPx spcPx spcPx) True
 
@@ -522,7 +523,7 @@ main = do
               manageHook = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
               handleEventHook = myEventHook <+> myFullscreenEventHook <+> fadeWindowsEventHook,
               logHook =
-                dynamicLogWithPP $
+                dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $
                   xmobarPP
                     { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x,
                       ppTitle = xmobarColor colorFocus "" . shorten 10,
