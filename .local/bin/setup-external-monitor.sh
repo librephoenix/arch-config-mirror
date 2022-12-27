@@ -13,7 +13,7 @@ if [ $(hostname) = "ordinal" ]; then
 	if [ -n "$is_hdmi_connected" ]; then
 		  DISPLAY=:0 $xrandr_command --output HDMI-A-0 --auto --pos 1920x0 --output eDP --auto --pos 1000x1200 --output DisplayPort-1-0 --auto --pos 0x0
 		    else
-                  DISPLAY=:0 $xrandr_command --output HDMI-A-0 --off --output eDP --auto
+                  DISPLAY=:0 $xrandr_command --output HDMI-A-0 --off --output Display-Port-1-0 --off --output eDP --auto
 	fi
 fi
 
