@@ -498,8 +498,8 @@ myStartupHook = do
 -- Now run xmonad with all the defaults we set up.
 main = do
   xmproc0 <- spawnPipe ("xmobar -x 0 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc2 <- spawnPipe ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc")
+  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc2")
+  xmproc2 <- spawnPipe ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc2")
   xmonad $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $

@@ -895,6 +895,29 @@ sed -i "s/color08Bright/"$color08Bright"/g" ~/.config/xmobar/xmobarrc # bright w
 sed -i "s/colorFocus/"$colorFocus"/g" ~/.config/xmobar/xmobarrc # wm focus color
 sed -i "s/colorSecondary/"$colorSecondary"/g" ~/.config/xmobar/xmobarrc & # xmobar highlight color
 
+cp ~/.config/xmobar/base-xmobarrc2 ~/.config/xmobar/xmobarrc2 &&
+sed -i "s/colorBgNormal/"$colorBgNormal"/g" ~/.config/xmobar/xmobarrc2 # normal background
+sed -i "s/colorBgBright/"$colorBgBright"/g" ~/.config/xmobar/xmobarrc2 # bright background
+sed -i "s/colorFgNormal/"$colorFgNormal"/g" ~/.config/xmobar/xmobarrc2 # normal foreground
+sed -i "s/color01Normal/"$color01Normal"/g" ~/.config/xmobar/xmobarrc2 # normal black
+sed -i "s/color01Bright/"$color01Bright"/g" ~/.config/xmobar/xmobarrc2 # bright black
+sed -i "s/color02Normal/"$color02Normal"/g" ~/.config/xmobar/xmobarrc2 # normal red
+sed -i "s/color02Bright/"$color02Bright"/g" ~/.config/xmobar/xmobarrc2 # bright red
+sed -i "s/color03Normal/"$color03Normal"/g" ~/.config/xmobar/xmobarrc2 # normal green
+sed -i "s/color03Bright/"$color03Bright"/g" ~/.config/xmobar/xmobarrc2 # bright green
+sed -i "s/color04Normal/"$color04Normal"/g" ~/.config/xmobar/xmobarrc2 # normal yellow
+sed -i "s/color04Bright/"$color04Bright"/g" ~/.config/xmobar/xmobarrc2 # bright yellow
+sed -i "s/color05Normal/"$color05Normal"/g" ~/.config/xmobar/xmobarrc2 # normal blue
+sed -i "s/color05Bright/"$color05Bright"/g" ~/.config/xmobar/xmobarrc2 # bright blue
+sed -i "s/color06Normal/"$color06Normal"/g" ~/.config/xmobar/xmobarrc2 # normal magenta
+sed -i "s/color06Bright/"$color06Bright"/g" ~/.config/xmobar/xmobarrc2 # bright magenta
+sed -i "s/color07Normal/"$color07Normal"/g" ~/.config/xmobar/xmobarrc2 # normal cyan
+sed -i "s/color07Bright/"$color07Bright"/g" ~/.config/xmobar/xmobarrc2 # bright cyan
+sed -i "s/color08Normal/"$color08Normal"/g" ~/.config/xmobar/xmobarrc2 # normal white
+sed -i "s/color08Bright/"$color08Bright"/g" ~/.config/xmobar/xmobarrc2 # bright white
+sed -i "s/colorFocus/"$colorFocus"/g" ~/.config/xmobar/xmobarrc2 # wm focus color
+sed -i "s/colorSecondary/"$colorSecondary"/g" ~/.config/xmobar/xmobarrc2 & # xmobar highlight color
+
 sed -i "s/Nsxiv.window.background: .*/Nsxiv.window.background: "$colorBgNormal"/" ~/.Xresources
 sed -i "s/Nsxiv.window.foreground: .*/Nsxiv.window.foreground: "$colorFgNormal"/" ~/.Xresources &
 
@@ -910,7 +933,7 @@ xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 ~/.local/bin/setup-external-monitor.sh &
 twmnd &
 nitrogen --restore &
-/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 30 --tint $trayertint --monitor "primary" &
+/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 28 --tint $trayertint --monitor "primary" &
 #gnome-keyring-daemon --start --components=secrets &
 qjoypad &
 nm-applet &
@@ -930,8 +953,8 @@ Lastly, xmonad is started with all of the [[Settings][settings set up as variabl
 -- Now run xmonad with all the defaults we set up.
 main = do
   xmproc0 <- spawnPipe ("xmobar -x 0 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc2 <- spawnPipe ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc")
+  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc2")
+  xmproc2 <- spawnPipe ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc2")
   xmonad $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $
@@ -968,19 +991,19 @@ main = do
             }
 #+END_SRC
 * XMobar
-I utilize xmobar as a status bar on one of my monitors.  To manage my xmobar config, I keep two files in my =~/.config/xmobar= directory:
-- [[./../.config/xmobar/base-xmobarrc][base-xmobarrc]] which contains the structure of my xmobar config
-- [[./../.config/xmobar/gen-rcs.sh][gen-rcs.sh]] which generates a one copy of my xmobarrc for every color theme I have
+I utilize xmobar as a status bar on one of my monitors.  To manage my xmobar configs, three main files are used:
+- [[./../.config/xmobar/base-xmobarrc][~/.config/xmobar/base-xmobarrc]] which contains the structure of my xmobar config for my primary monitor
+- [[./../.config/xmobar/base-xmobarrc2][~/.config/xmobar/base-xmobarrc2]] which contains the structure of my xmobar config for my other monitors (without trayer)
+- [[./startup.sh][~/.xmonad/startup.sh]] which has a section which generates a copy of my xmobarrcs for the current color scheme I set in [[./xmonad.hs][xmonad.hs]]
 ** Base xmobarrc
 My base xmobarrc depends on =UbuntuMono=, =Symbols Nerd Font= and =Inconsolata for Powerline=.
 #+BEGIN_SRC haskell :tangle ../.config/xmobar/base-xmobarrc
-Config { font = "xft:UbuntuMono-R:size=16"
-       , additionalFonts = ["xft:Symbols Nerd Font:size=16","xft:Inconsolata for Powerline:size=21"]
-       , borderColor = "colorBgNormal"
-       , border = FullB
+Config { font = "UbuntuMono-R 18"
+       , additionalFonts = ["Symbols Nerd Font 21","Inconsolata for Powerline 28"]
+       , border = NoBorder
        , bgColor = "colorBgNormal"
        , fgColor = "colorFgNormal"
-       , position = TopSize C 100 30
+       , position = TopSize C 100 28
        , textOffset = -1
        , iconOffset = -1
        , lowerOnStart = True
@@ -1013,12 +1036,10 @@ Config { font = "xft:UbuntuMono-R:size=16"
                       , "--offc", "color06Normal"
                       ] 1
                     , Run Com "/home/emmet/.config/xmobar/padding-icon.sh" [] "trayerpad" 2
-                    , Run Com "/home/emmet/.config/xmobar/bitcoin-monitor.sh" [] "bitcoin" 300
-                    , Run Mail [("<fn=1><fc=color05Normal>\xf6ed</fc></fn> ", "~/.mail/INBOX")] "mail"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> <action=`xdotool key Super_L+e`>%mail%</action> }<action=`xdotool key Super_L+c`>%date%</action>{<box color=colorBgBright width=3>%UnsafeStdinReader%</box> %trayerpad%"
+       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> }<action=`xdotool key Super_L+c`>%date%</action>{<box color=colorBgBright width=0>%UnsafeStdinReader%</box> %trayerpad%"
        }
 }
 
@@ -1083,113 +1104,111 @@ fi
 # Output the icon tag for xmobar
 echo "<icon=${iconfile}/>"
 #+END_SRC
-** Generating Themed Xmobar Configs
-I generate themed xmobar configs by copying the base xmobarrc file and replacing keywards such as =colorBgNormal=, =color01Normal=, =color01Bright=, =color02Normal=, etc.. with the /actual colors of the theme/.  This is done using my [[./../.config/xmobar/gen-rcs.sh][gen-rcs.sh]].  The new xmobarrc files are named using the convention ={theme-name}-xmobarrc=, which can then be programmatically used by [[Main][xmonad when it starts xmobar]].
-
-The themes are made in order with simple cp commands and sed substitutions.
-*** Gruvbox xmobarrc
-#+BEGIN_SRC sh :tangle ../.config/xmobar/gen-rcs.sh
-#!/bin/sh
-
-cp base-xmobarrc gruvbox-xmobarrc
-sed -i "s/colorBgNormal/#282828/g" gruvbox-xmobarrc # normal background
-sed -i "s/colorBgBright/#383838/g" gruvbox-xmobarrc # bright background
-sed -i "s/colorFgNormal/#ebdbb2/g" gruvbox-xmobarrc # normal foreground
-sed -i "s/color01Normal/#343428/g" gruvbox-xmobarrc # normal black
-sed -i "s/color01Bright/#928374/g" gruvbox-xmobarrc # bright black
-sed -i "s/color02Normal/#cc241d/g" gruvbox-xmobarrc # normal red
-sed -i "s/color02Bright/#fb4934/g" gruvbox-xmobarrc # bright red
-sed -i "s/color03Normal/#98971a/g" gruvbox-xmobarrc # normal green
-sed -i "s/color03Bright/#b8bb26/g" gruvbox-xmobarrc # bright green
-sed -i "s/color04Normal/#d79921/g" gruvbox-xmobarrc # normal yellow
-sed -i "s/color04Bright/#fabd2f/g" gruvbox-xmobarrc # bright yellow
-sed -i "s/color05Normal/#458588/g" gruvbox-xmobarrc # normal blue
-sed -i "s/color05Bright/#83a598/g" gruvbox-xmobarrc # bright blue
-sed -i "s/color06Normal/#b16286/g" gruvbox-xmobarrc # normal magenta
-sed -i "s/color06Bright/#d3869b/g" gruvbox-xmobarrc # bright magenta
-sed -i "s/color07Normal/#689d6a/g" gruvbox-xmobarrc # normal cyan
-sed -i "s/color07Bright/#8ec07c/g" gruvbox-xmobarrc # bright cyan
-sed -i "s/color08Normal/#a89984/g" gruvbox-xmobarrc # normal white
-sed -i "s/color08Bright/#ebdbb2/g" gruvbox-xmobarrc # bright white
-sed -i "s/colorFocus/#458588/g" gruvbox-xmobarrc # wm focus color
-sed -i "s/colorSecondary/#d79921/g" gruvbox-xmobarrc # xmobar highlight color
-
-#+END_SRC
-*** Oceanic Next xmobarrc
-#+BEGIN_SRC sh :tangle ../.config/xmobar/gen-rcs.sh
-cp base-xmobarrc oceanic-next-xmobarrc
-sed -i "s/colorBgNormal/#1b2b34/g" oceanic-next-xmobarrc # normal background
-sed -i "s/colorBgBright/#2b3b41/g" oceanic-next-xmobarrc # bright background
-sed -i "s/colorFgNormal/#d8dee9/g" oceanic-next-xmobarrc # normal foreground
-sed -i "s/color01Normal/#29414f/g" oceanic-next-xmobarrc # normal black
-sed -i "s/color01Bright/#405860/g" oceanic-next-xmobarrc # bright black
-sed -i "s/color02Normal/#ec5f67/g" oceanic-next-xmobarrc # normal red
-sed -i "s/color02Bright/#ff3130/g" oceanic-next-xmobarrc # bright red
-sed -i "s/color03Normal/#99c794/g" oceanic-next-xmobarrc # normal green
-sed -i "s/color03Bright/#66fa56/g" oceanic-next-xmobarrc # bright green
-sed -i "s/color04Normal/#fac863/g" oceanic-next-xmobarrc # normal yellow
-sed -i "s/color04Bright/#ffca4f/g" oceanic-next-xmobarrc # bright yellow
-sed -i "s/color05Normal/#6699cc/g" oceanic-next-xmobarrc # normal blue
-sed -i "s/color05Bright/#4477ee/g" oceanic-next-xmobarrc # bright blue
-sed -i "s/color06Normal/#c594c5/g" oceanic-next-xmobarrc # normal magenta
-sed -i "s/color06Bright/#d864d8/g" oceanic-next-xmobarrc # bright magenta
-sed -i "s/color07Normal/#5fb3b3/g" oceanic-next-xmobarrc # normal cyan
-sed -i "s/color07Bright/#30d2d0/g" oceanic-next-xmobarrc # bright cyan
-sed -i "s/color08Normal/#65737e/g" oceanic-next-xmobarrc # normal white
-sed -i "s/color08Bright/#d8dee9/g" oceanic-next-xmobarrc # bright white
-sed -i "s/colorFocus/#c594c5/g" oceanic-next-xmobarrc # wm focus color
-sed -i "s/colorSecondary/#5fb3b3/g" oceanic-next-xmobarrc # xmobar highlight color
+** Base xmobarrc2
+My 2nd base xmobarrc is used for non-primary monitors, which don't have trayer. This also depends on =UbuntuMono=, =Symbols Nerd Font= and =Inconsolata for Powerline=.
+#+BEGIN_SRC haskell :tangle ../.config/xmobar/base-xmobarrc2
+Config { font = "UbuntuMono-R 18"
+       , additionalFonts = ["Symbols Nerd Font 21","Inconsolata for Powerline 28"]
+       , border = NoBorder
+       , bgColor = "colorBgNormal"
+       , fgColor = "colorFgNormal"
+       , position = TopSize C 100 28
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [
+                      Run UnsafeStdinReader
+                    , Run Date "<fn=2><fc=colorBgBright,colorBgNormal>\xe0b2</fc></fn><fc=color06Normal,colorBgBright> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>" "date" 10
+                    , Run BatteryP ["BAT0"]
+                      ["-t", "<acstatus>",
+                      "-L", "10", "-H", "80", "-p", "3", "--",
+                      "-O","<fc=colorBgNormal,colorSecondary> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=colorSecondary,colorBgBright>\xe0b0</fc></fn><fc=color03Normal,colorBgBright> <fn=1>\xf583</fn><left>% </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>",
+                      "-i","<fc=colorBgNormal,colorSecondary> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=colorSecondary,colorBgBright>\xe0b0</fc></fn><fc=color03Normal,colorBgBright> <fn=1>\xf578</fn><left>% </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>",
+                      "-o","<fc=colorBgNormal,colorSecondary> <fn=1>\xe61f</fn>+<fn=1>\xf303</fn> </fc><fn=2><fc=colorSecondary,colorBgBright>\xe0b0</fc></fn><fc=color02Normal,colorBgBright> <fn=1>\xf58b</fn><left>% </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>",
+                      "-L", "-15", "-H", "-5",
+                      "-l", "color02Normal", "-m", "color05Normal", "-h", "color03Normal"] 10
+                    , Run Brightness
+                      [ "-t", "<fc=color04Normal><fn=1>\xf5dd</fn> <percent>% </fc><fn=2><fc=colorBgNormal,colorBgBright>\xe0b0</fc></fn>", "--",
+                        "-D", "amdgpu_bl1"
+                      ] 2
+                    , Run Volume "default" "Master"
+                      [ "-t", "<status>", "--"
+                      , "--on", "<fc=color07Normal,colorBgBright> <fn=1>\xf028</fn> <volume>% </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>"
+                      , "--onc", "color07Normal"
+                      , "--off", "<fc=color06Normal,colorBgBright> <fn=1>\xf026</fn>Mute </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>"
+                      , "--offc", "color06Normal"
+                      ] 1
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action>}<action=`xdotool key Super_L+c`>%date%</action>{<box color=colorBgBright width=0>%UnsafeStdinReader%</box>"
+       }
+}
 
 #+END_SRC
-*** Dracula xmobarrc
-#+BEGIN_SRC sh :tangle ../.config/xmobar/gen-rcs.sh
-cp base-xmobarrc dracula-xmobarrc
-sed -i "s/colorBgNormal/#282a36/g" dracula-xmobarrc # normal background
-sed -i "s/colorBgBright/#323f4b/g" dracula-xmobarrc # bright background
-sed -i "s/colorFgNormal/#f8f8f2/g" dracula-xmobarrc # normal foreground
-sed -i "s/color01Normal/#161616/g" dracula-xmobarrc # normal black
-sed -i "s/color01Bright/#555555/g" dracula-xmobarrc # bright black
-sed -i "s/color02Normal/#ff5555/g" dracula-xmobarrc # normal red
-sed -i "s/color02Bright/#ff5555/g" dracula-xmobarrc # bright red
-sed -i "s/color03Normal/#50fa7b/g" dracula-xmobarrc # normal green
-sed -i "s/color03Bright/#50fa7b/g" dracula-xmobarrc # bright green
-sed -i "s/color04Normal/#f1fa8c/g" dracula-xmobarrc # normal yellow
-sed -i "s/color04Bright/#f1fa8c/g" dracula-xmobarrc # bright yellow
-sed -i "s/color05Normal/#bd93f9/g" dracula-xmobarrc # normal blue
-sed -i "s/color05Bright/#bd93f9/g" dracula-xmobarrc # bright blue
-sed -i "s/color06Normal/#ff79c6/g" dracula-xmobarrc # normal magenta
-sed -i "s/color06Bright/#ff79c6/g" dracula-xmobarrc # bright magenta
-sed -i "s/color07Normal/#8be9fd/g" dracula-xmobarrc # normal cyan
-sed -i "s/color07Bright/#8be9fd/g" dracula-xmobarrc # bright cyan
-sed -i "s/color08Normal/#bbbbbb/g" dracula-xmobarrc # normal white
-sed -i "s/color08Bright/#ffffff/g" dracula-xmobarrc # bright white
-sed -i "s/colorFocus/#ff79c6/g" dracula-xmobarrc # wm focus color
-sed -i "s/colorSecondary/#bd93f9/g" dracula-xmobarrc # xmobar highlight color
 
-#+END_SRC
-*** Tomorrow Night xmobarrc
-#+BEGIN_SRC sh :tangle ../.config/xmobar/gen-rcs.sh
-cp base-xmobarrc tomorrow-night-xmobarrc
-sed -i "s/colorBgNormal/#1d1f21/g" tomorrow-night-xmobarrc # normal background
-sed -i "s/colorBgBright/#3d3f41/g" tomorrow-night-xmobarrc # bright background
-sed -i "s/colorFgNormal/#c5c8c6/g" tomorrow-night-xmobarrc # normal foreground
-sed -i "s/color01Normal/#1d1f21/g" tomorrow-night-xmobarrc # normal black
-sed -i "s/color01Bright/#666666/g" tomorrow-night-xmobarrc # bright black
-sed -i "s/color02Normal/#cc6666/g" tomorrow-night-xmobarrc # normal red
-sed -i "s/color02Bright/#ff3334/g" tomorrow-night-xmobarrc # bright red
-sed -i "s/color03Normal/#b5bd68/g" tomorrow-night-xmobarrc # normal green
-sed -i "s/color03Bright/#9ec400/g" tomorrow-night-xmobarrc # bright green
-sed -i "s/color04Normal/#e6c547/g" tomorrow-night-xmobarrc # normal yellow
-sed -i "s/color04Bright/#f0c674/g" tomorrow-night-xmobarrc # bright yellow
-sed -i "s/color05Normal/#81a2be/g" tomorrow-night-xmobarrc # normal blue
-sed -i "s/color05Bright/#81a2be/g" tomorrow-night-xmobarrc # bright blue
-sed -i "s/color06Normal/#b294bb/g" tomorrow-night-xmobarrc # normal magenta
-sed -i "s/color06Bright/#b77ee0/g" tomorrow-night-xmobarrc # bright magenta
-sed -i "s/color07Normal/#70c0ba/g" tomorrow-night-xmobarrc # normal cyan
-sed -i "s/color07Bright/#54ced6/g" tomorrow-night-xmobarrc # bright cyan
-sed -i "s/color08Normal/#373b41/g" tomorrow-night-xmobarrc # normal white
-sed -i "s/color08Bright/#282a2e/g" tomorrow-night-xmobarrc # bright white
-sed -i "s/colorFocus/#e6c547/g" tomorrow-night-xmobarrc # wm focus color
-sed -i "s/colorSecondary/#70c0ba/g" tomorrow-night-xmobarrc # xmobar highlight color
+In order to get xmobar to work with trayer (systray), a padding-icon script must be used.  This script is based on [[https://github.com/jaor/xmobar/issues/239#issuecomment-233206552][Jonas Camillus Jeppensen's code]].  I have this called =padding-icon.sh=.
+#+BEGIN_SRC sh :tangle ../.config/xmobar/padding-icon.sh
+#!/bin/bash
 
+# Detects the width of running window with name given as first
+# argument (xprop name '$1') and creates an XPM icon of that width,
+# 1px height, and transparent.  Outputs an <icon>-tag for use in
+# xmobar to display the generated XPM icon.
+#
+# Run script from xmobar and trayer:
+# `Run Com "/where/ever/padding-icon.sh" ["panel"] "trayerpad" 10`
+# and use `%trayerpad%` in your template.
+# or, if you're using for instance stalonetray:
+# `Run Com "/where/ever/padding-icon.sh" ["stalonetray"] "tray" 10`
+
+# Very heavily based on Jonas Camillus Jeppensen code
+# https://github.com/jaor/xmobar/issues/239#issuecomment-233206552
+
+# Function to create a transparent Wx1 px XPM icon
+create_xpm_icon () {
+timestamp=$(date)
+pixels=$(for i in `seq $1`; do echo -n "."; done)
+
+cat << EOF > "$2"
+/* XPM *
+static char * trayer_pad_xpm[] = {
+/* This XPM icon is used for padding in xmobar to */
+/* leave room for trayer-srg. It is dynamically   */
+/* updated by by trayer-pad-icon.sh which is run  */
+/* by xmobar.                                     */
+/* Created: ${timestamp} */
+/* <w/cols>  <h/rows>  <colors>  <chars per pixel> */
+"$1 1 1 1",
+/* Colors (none: transparent) */
+". c none",
+/* Pixels */
+"$pixels"
+};
+EOF
+}
+
+# panel window name
+pname=${1:-panel}
+
+# Width of the trayer window, uncorrected for HiDPI scaling
+width=$(xprop -name $pname | grep 'program specified minimum size' | cut -d ' ' -f 5)
+
+# Icon file name
+iconfile="/tmp/$pname-padding-${width:-0}px.xpm"
+
+# If the desired icon does not exist create it
+if [ ! -f $iconfile ]
+then
+    create_xpm_icon $width $iconfile
+fi
+
+# Output the icon tag for xmobar
+echo "<icon=${iconfile}/>"
 #+END_SRC
