@@ -1,6 +1,7 @@
 -- IMPORTS
 import qualified Data.Map as M
 import Data.Monoid
+import Data.Maybe (fromJust)
 import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import System.IO
@@ -156,6 +157,11 @@ myWorkspaces =
     "<fn=1>\xfce8</fn>⁸", -- rice icon for ricing
     "<fn=1>\xf11b</fn>⁹" -- gamepad icon for gaming
   ]
+
+myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
+
+clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
+    where i = fromJust $ M.lookup ws myWorkspaceIndices
 
 -- Scratchpads
 myScratchPads :: [NamedScratchpad]
@@ -528,8 +534,9 @@ main = do
                     { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x,
                       ppTitle = xmobarColor colorFocus "" . shorten 10,
                       ppCurrent = xmobarColor colorFocus "" . wrap ("<box type=Bottom Top width=2 mb=2 color=" ++ colorFocus ++ ">") "</box>",
-                      ppVisible = xmobarColor colorFgNormal "",
-                      ppHidden = xmobarColor color08Normal "",
+                      ppVisible = xmobarColor colorSecondary "" . clickable,
+                      ppHidden = xmobarColor colorFgNormal "". clickable,
+                      ppHiddenNoWindows = xmobarColor colorBgBright "". clickable,
                       ppOrder = \(ws : _) -> [ws],
                       ppSep = " "
                     },
