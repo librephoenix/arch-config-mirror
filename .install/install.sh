@@ -263,6 +263,7 @@ flatpackages=();
     lxappearance
     mate-icon-theme
     grub-customizer
+    xcursor-themes
     );
 
     aurpackages+=(
@@ -271,6 +272,7 @@ flatpackages=();
     qt5ct
     xwinwrap-git
     sddm-sugar-dark
+    xcursor-simp1e-breeze-snow
     );
 
     # graphical display and X utils
