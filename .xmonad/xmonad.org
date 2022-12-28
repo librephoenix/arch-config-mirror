@@ -854,15 +854,18 @@ killall qjoypad
 Then, a few things are set up before starting any applications, including the dpi, compositor, keyboard, and environment variables.
 #+BEGIN_SRC sh :tangle startup.sh :tangle-mode (identity #o755)
 # pre-launch configurations
-#dbus-update-activation-environment --all
-xrandr --dpi 120 &
+dbus-update-activation-environment --all &
+xrandr --output DisplayPort-1-0 --off
+xrandr --output HDMI-A-0 --off
+~/.local/bin/setup-external-monitor.sh
 picom --experimental-backends --daemon &
-xset r rate 350 50
+xmonad --restart
+xset r rate 350 50 &
 setxkbmap -option caps:escape &
-betterdiscordctl --d-install flatpak reinstall &
+betterdiscordctl --d-install flatpak install &
 
 # setup necessary environment variables
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="qt5ct" &
 export GTK_THEME=$themeGTKName
 
 #+END_SRC
@@ -879,7 +882,7 @@ sed -i "s/(setq doom-theme .*/(setq doom-theme '"$themeDoomEmacsName")/" ~/.doom
 sed -i "s/(setq doom-theme .*/(setq doom-theme '"$themeDoomEmacsName")/" ~/.doom.d/doom.org &
 sed -i "s/(setq doom-theme .*/(setq doom-theme '"$themeDoomEmacsName")/" ~/.doom.d/doom-pub.org &
 
-cp ~/.config/xmobar/base-xmobarrc ~/.config/xmobar/xmobarrc &&
+cp -f ~/.config/xmobar/base-xmobarrc ~/.config/xmobar/xmobarrc &&
 sed -i "s/colorBgNormal/"$colorBgNormal"/g" ~/.config/xmobar/xmobarrc # normal background
 sed -i "s/colorBgBright/"$colorBgBright"/g" ~/.config/xmobar/xmobarrc # bright background
 sed -i "s/colorFgNormal/"$colorFgNormal"/g" ~/.config/xmobar/xmobarrc # normal foreground
@@ -902,7 +905,7 @@ sed -i "s/color08Bright/"$color08Bright"/g" ~/.config/xmobar/xmobarrc # bright w
 sed -i "s/colorFocus/"$colorFocus"/g" ~/.config/xmobar/xmobarrc # wm focus color
 sed -i "s/colorSecondary/"$colorSecondary"/g" ~/.config/xmobar/xmobarrc & # xmobar highlight color
 
-cp ~/.config/xmobar/base-xmobarrc2 ~/.config/xmobar/xmobarrc2 &&
+cp -f ~/.config/xmobar/base-xmobarrc2 ~/.config/xmobar/xmobarrc2 &&
 sed -i "s/colorBgNormal/"$colorBgNormal"/g" ~/.config/xmobar/xmobarrc2 # normal background
 sed -i "s/colorBgBright/"$colorBgBright"/g" ~/.config/xmobar/xmobarrc2 # bright background
 sed -i "s/colorFgNormal/"$colorFgNormal"/g" ~/.config/xmobar/xmobarrc2 # normal foreground
@@ -937,20 +940,18 @@ Lastly, desktop applications are started in the background.
 # Launch necessary desktop applications
 emacs --daemon &
 xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
-~/.local/bin/setup-external-monitor.sh &
 twmnd &
 nitrogen --restore &
 /usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 28 --tint $trayertint --monitor "primary" &
-#gnome-keyring-daemon --start --components=secrets &
 qjoypad &
 nm-applet &
 syncthing --no-browser &
 syncthing-gtk -m &
-protonmail-bridge --no-window &
 flatpak run com.discordapp.Discord --start-minimized &
 kdeconnect-indicator &
-xmonad --recompile &
-xmonad --restart &
+gnome-keyring-daemon --start --components=secrets &
+protonmail-bridge --no-window
+~/.local/bin/setup-external-monitor.sh &
 #back4.sh 0.04 ~/Media/Backgrounds/steampunk-city.gif &
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"
 #+END_SRC
