@@ -334,11 +334,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
 Then, keybindings are setup line by line as in the following sections:
 **** Quick App Keybindings
 The following binds the following:
-| Keybinding | Action             |
-|------------+--------------------|
-| S-Return   | New terminal       |
-| S-a        | New emacs frame    |
-| S-s        | New browser window |
+| Keybinding          | Action                                        |
+|---------------------+-----------------------------------------------|
+| S-Return            | New terminal                                  |
+| S-a                 | New emacs frame                               |
+| S-s                 | New browser window                            |
+| PrintScreen         | Snip a screenshot                             |
+| C-PrintScreen       | Snip a screenshot (to clipboard)              |
+| Shift-PrintScreen   | Screen capture current monitor                |
+| Shift-C-PrintScreen | Screen capture current monitor (to clipboard) |
 #+BEGIN_SRC haskell :tangle xmonad.hs
       -- launch a terminal
       ((modm, xK_Return), spawn $ XMonad.terminal conf),
@@ -348,6 +352,12 @@ The following binds the following:
 
       -- launch browser
       ((modm, xK_s), spawn myBrowser),
+
+      -- take screenshots
+      ((0, xK_Print), spawn "flameshot gui"), -- snip screenshot and save
+      ((controlMask, xK_Print), spawn "flameshot gui --clipboard"), -- snip screenshot to clipboard
+      ((shiftMask, xK_Print), spawn "flameshot screen"), -- screen capture current monitor and save
+      ((controlMask .|. shiftMask, xK_Print), spawn "flameshot screen -c"), -- screen capture current monitor to clipboard
 
 #+END_SRC
 **** Generic Keybindings

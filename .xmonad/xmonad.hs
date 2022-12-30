@@ -282,6 +282,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- launch browser
       ((modm, xK_s), spawn myBrowser),
 
+      -- take screenshots
+      ((0, xK_Print), spawn "flameshot gui"), -- snip screenshot and save
+      ((controlMask, xK_Print), spawn "flameshot gui --clipboard"), -- snip screenshot to clipboard
+      ((shiftMask, xK_Print), spawn "flameshot screen"), -- screen capture current monitor and save
+      ((controlMask .|. shiftMask, xK_Print), spawn "flameshot screen -c"), -- screen capture current monitor to clipboard
+
       -- control brightness from kbd
       ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl set +15"),
       ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 15-"),
