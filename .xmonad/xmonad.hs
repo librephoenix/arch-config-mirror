@@ -288,6 +288,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((shiftMask, xK_Print), spawn "flameshot screen"), -- screen capture current monitor and save
       ((controlMask .|. shiftMask, xK_Print), spawn "flameshot screen -c"), -- screen capture current monitor to clipboard
 
+      -- launch game manager
+      ((modm, xK_g), spawn "gamehub"),
+
       -- control brightness from kbd
       ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl set +15"),
       ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 15-"),
