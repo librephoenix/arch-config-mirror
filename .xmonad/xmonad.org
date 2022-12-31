@@ -769,10 +769,12 @@ myManageHook =
       className =? "Syncthing GTK" --> (customFloating $ W.RationalRect 0.53 0.04 0.46 0.45),
       className =? "Zenity" --> (customFloating $ W.RationalRect 0.45 0.4 0.1 0.2),
       resource =? "desktop_window" --> doIgnore,
+      -- this gimp snippet is from Kathryn Anderson (https://xmonad.haskell.narkive.com/bV34Aiw3/layout-for-gimp-how-to)
       (className =? "Gimp" <&&> fmap ("color-selector" `isSuffixOf`) role) --> doFloat,
       (className =? "Gimp" <&&> fmap ("layer-new" `isSuffixOf`) role) --> doFloat,
       (className =? "Gimp" <&&> fmap ("-dialog" `isSuffixOf`) role) --> doFloat,
       (className =? "Gimp" <&&> fmap ("-tool" `isSuffixOf`) role) --> doFloat,
+      -- end snippet
       resource =? "kdesktop" --> doIgnore,
       manageDocks
     ]
