@@ -28,8 +28,8 @@ Below is the taxonomy of my literate (org mode) config files, which each control
 | [[./.shell.org][Shell Literate Config]]             | Shell                 |
 | [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]         | Terminal              |
 | [[./.doom.d/doom-pub.org][Public Doom Emacs Literate Config]] | IDE + More            |
-| TODO Ranger Literate Config       | Quick File Manager    |
-| TODO Qutebrowser Literate Config  | Browser               |
+| TODO Browser Literate Config      | Browser               |
+| TODO Ranger Literate Config       | File Manager          |
 ** Packages (Programs) Overview
 Below is a taxonomy of my system documentation, which describes core programs in my variant of Arch Linux, and how to install or reinstall a system with my configurations.
 | Document                         | Classification |
@@ -47,10 +47,8 @@ Here is an organized list of my most important configs stored in this repository
     - [[./.xmonad/startup.sh][startup.sh]]
     - [[./.xmonad/helpmenu.txt][helpmenu.txt]]
     - [[./.xmonad/scratchpad-mu4e.sh][scratchpad-mu4e.sh]]
-  - [[./.config/xmobar/base-xmobarrc][xmobarrc]]
-    - [[./.config/xmobar/gen-rcs.sh][gen-rcs.sh]]
+  - [[./.config/xmobar/base-xmobarrc][xmobarrc]] + [[./.config/xmobar/base-xmobarrc2][xmobarrc2]]
     - [[./.config/xmobar/padding-icon.sh][padding-icon.sh]]
-    - [[./.config/xmobar/mail-count.sh][mail-count.sh]]
   - [[./.config/twmn/twmn.conf][twmn.conf]]
 - [[./.shell.org][Shell Literate Config]]
   - [[./.bashrc][.bashrc]]
@@ -63,10 +61,13 @@ Here is an organized list of my most important configs stored in this repository
   - [[./.doom.d/config.el][config.el]]
   - [[./.doom.d/init.el][init.el]]
   - [[./.doom.d/packages.el][packages.el]]
-- TODO Qutebrowser Literate Config
-  - [[./.config/qutebrowser/config.py][config.py]]
-    - [[./.config/qutebrowser/themes][Custom Stylesheets]]
-    - [[./.config/qutebrowser/qute-home.html][Custom Startpage]]
+- Browsers Literate Config
+  - LibreWolf
+    - [[./.librewolf/librewolf.overrides.cfg][librewolf.overrides.cfg]]
+  - Qutebrowser
+    - [[./.config/qutebrowser/config.py][config.py]]
+      - [[./.config/qutebrowser/themes][Custom Stylesheets]]
+      - [[./.config/qutebrowser/qute-home.html][Custom Startpage]]
 - TODO Ranger Literate Config
   - [[./.config/ranger/rc.conf][rc.conf]]
   - [[./.config/ranger/rifle.conf][rifle.conf]]
@@ -83,14 +84,16 @@ For my computing, I like to select programs based upon efficiency, security, and
 - [[https://www.zsh.org/][zsh]] (Shell)
   - [[https://ohmyz.sh/][Oh My Zsh]] (Zsh Customization Utility)
 - [[https://github.com/Morganamilo/paru][paru]] (AUR Helper)
-- [[https://wiki.archlinux.org/title/Xinit][xinit]] (startx instead of a Display Manager)
+- [[https://github.com/sddm/sddm][SDDM]] (Display Manager)
+  - [[https://github.com/DN-debug/peux-os-sddm][Peux-OS Clairvoyance SDDM Theme]] (Display Manager Theme)
+- [[https://wiki.archlinux.org/title/Xinit][xinit]] (use startx if my display manager fails)
 - [[https://archlinux.org/packages/community/x86_64/xautolock/][xautolock]] + [[https://github.com/google/xsecurelock][xsecurelock]] (Inactivity Security Locker)
 - [[https://tools.suckless.org/dmenu/][dmenu]] (Run Prompt)
 - [[https://alacritty.org/][Alacritty]] (Terminal Emulator)
 - [[https://wiki.gnome.org/Projects/Libsecret][libsecret]] (Secret Service)
 - [[https://keepassxc.org/][KeePassXC]] (Password Manager)
-- [[https://brave.com/][Brave Browser]] (Chromium-based Web Browser)
 - [[https://librewolf.net/][LibreWolf]] (Firefox-based Web Browser)
+- [[https://brave.com/][Brave Browser]] (Chromium-based Web Browser)
 - [[https://qutebrowser.org/][Qutebrowser]] (Web Browser)
 - [[https://www.vim.org/][Vim]] ("Quick" Terminal Text Editor)
 - [[https://github.com/hlissner/doom-emacs][Doom Emacs]] (IDE + more)
@@ -119,3 +122,4 @@ For my computing, I like to select programs based upon efficiency, security, and
 - [[https://syncthing.net/][Syncthing]] network (Backup and File Sharing)
   - [[https://salsa.debian.org/debian/syncthing-gtk][syncthing-gtk]] (Syncthing Tray Application)
 - [[https://hledger.org/][hledger]] (Financial Accounting)
+- [[https://github.com/tkashkin/GameHub][Gamehub]] (Game Library Management)
