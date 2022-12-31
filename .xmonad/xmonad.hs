@@ -1,5 +1,6 @@
 -- IMPORTS
 import qualified Data.Map as M
+import Data.List
 import Data.Monoid
 import Data.Maybe (fromJust)
 import Graphics.X11.ExtraTypes.XF86
@@ -20,6 +21,7 @@ import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.Dwindle
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Gaps
+import XMonad.Layout.LayoutHints
 import XMonad.Layout.LimitWindows
 import XMonad.Layout.MouseResizableTile
 import XMonad.Layout.Spacing
@@ -453,7 +455,7 @@ spcPx = 5
 
 mySpacing = spacingRaw False (Border spcPx spcPx spcPx spcPx) True (Border spcPx spcPx spcPx spcPx) True
 
-myLayout = fullscreenFocus $ draggingVisualizer $ avoidStruts $ (mySpacing $ (mouseResizable ||| mouseResizableMirrored ||| Full))
+myLayout = fullscreenFocus $ draggingVisualizer $ avoidStruts $ layoutHintsToCenter $ (mySpacing $ (mouseResizable ||| mouseResizableMirrored ||| Full))
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall 1 (5 / 100) (1 / 2)
@@ -493,9 +495,14 @@ myManageHook =
       className =? "Syncthing GTK" --> (customFloating $ W.RationalRect 0.53 0.04 0.46 0.45),
       className =? "Zenity" --> (customFloating $ W.RationalRect 0.45 0.4 0.1 0.2),
       resource =? "desktop_window" --> doIgnore,
+      (className =? "Gimp" <&&> fmap ("color-selector" `isSuffixOf`) role) --> doFloat,
+      (className =? "Gimp" <&&> fmap ("layer-new" `isSuffixOf`) role) --> doFloat,
+      (className =? "Gimp" <&&> fmap ("-dialog" `isSuffixOf`) role) --> doFloat,
+      (className =? "Gimp" <&&> fmap ("-tool" `isSuffixOf`) role) --> doFloat,
       resource =? "kdesktop" --> doIgnore,
       manageDocks
     ]
+   where role = stringProperty "WM_WINDOW_ROLE"
 
 -- Apply fullscreen manage and event hooks
 myFullscreenManageHook = fullscreenManageHook
