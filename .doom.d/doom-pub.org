@@ -1,4 +1,4 @@
-# Created 2022-12-27 Tue 11:00
+# Created 2022-12-31 Sat 14:39
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -617,13 +617,11 @@ styletree.write('styles.xml')
       org-agenda-start-day "+0d")
 
 ;; Set folder for my org agenda files
-(setq org-agenda-files (list "/home/emmet/Family.s/Agenda"
-                             "/home/emmet/Producer.p/Agenda"
-                             "/home/emmet/Producer.p/Roam"
-                             "/home/emmet/Agenda"
-                             "/home/emmet/Teaching.p/Agenda"
-                             "/home/emmet/Author.p/Agenda"
-                             "/home/emmet/Gamedev.p/Agenda"))
+(setq org-agenda-files (list))
+
+(dolist (item full-org-roam-db-list)
+  (setq org-agenda-files
+        (append (list (concat item "/Agenda")) org-agenda-files)))
 
 ;; Function to be run when org-agenda is opened
 (defun org-agenda-open-hook ()
@@ -639,7 +637,8 @@ styletree.write('styles.xml')
   (interactive)
   (setq full-agenda-file-list nil)
   (dolist (item org-agenda-files)
-    (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list)))
+   (if (f-directory-p item)
+    (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list))))
   (setq choice (completing-read "Select agenda file:" full-agenda-file-list nil t))
   (find-file choice))
 

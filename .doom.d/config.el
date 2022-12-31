@@ -360,13 +360,11 @@ same directory as the org-buffer and insert a link to this file."
       org-agenda-start-day "+0d")
 
 ;; Set folder for my org agenda files
-(setq org-agenda-files (list "/home/emmet/Family.s/Agenda"
-                             "/home/emmet/Producer.p/Agenda"
-                             "/home/emmet/Producer.p/Roam"
-                             "/home/emmet/Agenda"
-                             "/home/emmet/Teaching.p/Agenda"
-                             "/home/emmet/Author.p/Agenda"
-                             "/home/emmet/Gamedev.p/Agenda"))
+(setq org-agenda-files (list))
+
+(dolist (item full-org-roam-db-list)
+  (setq org-agenda-files
+        (append (list (concat item "/Agenda")) org-agenda-files)))
 
 ;; Function to be run when org-agenda is opened
 (defun org-agenda-open-hook ()
@@ -382,7 +380,8 @@ same directory as the org-buffer and insert a link to this file."
   (interactive)
   (setq full-agenda-file-list nil)
   (dolist (item org-agenda-files)
-    (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list)))
+   (if (f-directory-p item)
+    (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list))))
   (setq choice (completing-read "Select agenda file:" full-agenda-file-list nil t))
   (find-file choice))
 
