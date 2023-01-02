@@ -1,4 +1,4 @@
-# Created 2022-12-31 Sat 14:39
+# Created 2023-01-02 Mon 11:05
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -530,6 +530,15 @@ styletree.write('styles.xml')
 
 (setq org-roam-node-display-template
       "${title:65}📝${tags:*}")
+
+(setq full-org-roam-db-list nil)
+
+(setq full-org-roam-db-list (directory-files "~" t "\\.[p,s]$"))
+(dolist (item full-org-roam-db-list)
+  (setq full-org-roam-db-list
+        (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
+
+
 
 (defun org-roam-switch-db ()
   "Switch to a different org-roam database"

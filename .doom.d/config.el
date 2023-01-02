@@ -276,6 +276,15 @@ same directory as the org-buffer and insert a link to this file."
 (setq org-roam-node-display-template
       "${title:65}📝${tags:*}")
 
+(setq full-org-roam-db-list nil)
+
+(setq full-org-roam-db-list (directory-files "~" t "\\.[p,s]$"))
+(dolist (item full-org-roam-db-list)
+  (setq full-org-roam-db-list
+        (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
+
+
+
 (defun org-roam-switch-db ()
   "Switch to a different org-roam database"
   (interactive)
