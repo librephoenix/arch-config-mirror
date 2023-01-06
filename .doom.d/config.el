@@ -369,7 +369,7 @@ same directory as the org-buffer and insert a link to this file."
       org-agenda-start-day "+0d")
 
 ;; Set folder for my org agenda files
-(setq org-agenda-files (list))
+(setq org-agenda-files (list "~/Agenda"))
 
 (dolist (item full-org-roam-db-list)
   (setq org-agenda-files

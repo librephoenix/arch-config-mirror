@@ -1,4 +1,4 @@
-# Created 2023-01-02 Mon 11:05
+# Created 2023-01-06 Fri 16:42
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -626,7 +626,7 @@ styletree.write('styles.xml')
       org-agenda-start-day "+0d")
 
 ;; Set folder for my org agenda files
-(setq org-agenda-files (list))
+(setq org-agenda-files (list "~/Agenda"))
 
 (dolist (item full-org-roam-db-list)
   (setq org-agenda-files
