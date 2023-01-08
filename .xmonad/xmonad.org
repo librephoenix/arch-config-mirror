@@ -205,7 +205,7 @@ myWorkspaces =
     "<fn=1>\xf1fc</fn>⁵", -- paint icon for art
     "<fn=1>\xfa66</fn>⁶", -- video icon for recording/editing
     "<fn=1>\xf616</fn>⁷", -- money icon for finances
-    "<fn=1>\xfce8</fn>⁸", -- rice icon for ricing
+    "<fn=1>\xf19d</fn>⁸", -- cap icon for teaching
     "<fn=1>\xf11b</fn>⁹" -- gamepad icon for gaming
   ]
 
@@ -406,7 +406,7 @@ nfColor=$2
 sbColor=$3
 sfColor=$4
 
-choices="writing\nbrowsing\ncoding\nmusic\nart\nvideo\nfinances\nricing\ngaming"
+choices="writing\nbrowsing\ncoding\nmusic\nart\nvideo\nfinances\nteaching\ngaming"
 
 promptarray[0]="What do you wish to work on?"
 promptarray[1]="Let me guess... ricing?"
@@ -430,7 +430,7 @@ choice=$(echo -e "$choices" | dmenu -i -nb ${nbColor} -nf ${nfColor} -sb ${sbCol
 	art) ~/.xmonad/xmonadctl 9 ;;
 	video) ~/.xmonad/xmonadctl 11 ;;
 	finances) ~/.xmonad/xmonadctl 13 ;;
-	ricing) ~/.xmonad/xmonadctl 15 ;;
+	teaching) ~/.xmonad/xmonadctl 15 ;;
 	gaming) ~/.xmonad/xmonadctl 17 ;;
 esac
 #+END_SRC
@@ -525,8 +525,8 @@ All of the following keybinds pertain to window management and layouts:
 | S-Space           | Switch to next layout                                                                          |
 | S-Shift-Space     | Reset layout on current workspace                                                              |
 | S-r               | Resize windows to correct size                                                                 |
-| S-Tab             | Next window on current workspace                                                               |
-| S-Shift-Tab       | Previous window on current workspace                                                           |
+| M-Tab             | Next window on current workspace                                                               |
+| M-Shift-Tab       | Previous window on current workspace                                                           |
 | S-{h,j,k,l}       | Switch to window visually {left,down,up,right} (requires a [[Window Rules and Hooks][Navigation2Dconfig]])                 |
 | S-Shift-{h,j,k,l} | Swap window visually {left,down,up,right} on current workspace (requires a [[Window Rules and Hooks][Navigation2Dconfig]]) |
 | S-C-{h,l}         | Resize master window area                                                                      |

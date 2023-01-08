@@ -156,7 +156,7 @@ myWorkspaces =
     "<fn=1>\xf1fc</fn>⁵", -- paint icon for art
     "<fn=1>\xfa66</fn>⁶", -- video icon for recording/editing
     "<fn=1>\xf616</fn>⁷", -- money icon for finances
-    "<fn=1>\xfce8</fn>⁸", -- rice icon for ricing
+    "<fn=1>\xf19d</fn>⁸", -- cap icon for teaching
     "<fn=1>\xf11b</fn>⁹" -- gamepad icon for gaming
   ]
 
