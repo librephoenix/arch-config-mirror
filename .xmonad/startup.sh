@@ -49,6 +49,7 @@ killall caffeine
 killall syncthing-gtk
 killall discord
 killall qjoypad
+killall xfce4-panel
 
 # pre-launch configurations
 dbus-update-activation-environment --all &
@@ -60,6 +61,7 @@ xmonad --restart
 xset r rate 350 50 &
 setxkbmap -option caps:escape &
 betterdiscordctl --d-install flatpak install &
+xfce4-panel &
 
 # setup necessary environment variables
 export QT_QPA_PLATFORMTHEME="qt5ct" &
