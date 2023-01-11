@@ -863,7 +863,6 @@ killall trayer
 killall nm-applet
 killall nextcloud
 killall xwinwrap
-killall gnome-keyring-daemon
 killall nitrogen
 killall xautolock
 killall caffeine
@@ -878,6 +877,7 @@ Then, a few things are set up before starting any applications, including the dp
 #+BEGIN_SRC sh :tangle startup.sh :tangle-mode (identity #o755)
 # pre-launch configurations
 dbus-update-activation-environment --all &
+/usr/bin/gnome-keyring-daemon --daemonize --login &
 xrandr --output DisplayPort-1-0 --off
 xrandr --output HDMI-A-0 --off
 ~/.local/bin/setup-external-monitor.sh
