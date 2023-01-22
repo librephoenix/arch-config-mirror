@@ -62,3 +62,4 @@
 (package! hledger-mode)
 (package! rainbow-mode)
 (package! crdt)
+(package! ess)

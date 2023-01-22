@@ -1360,6 +1360,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (package! hledger-mode)
 (package! rainbow-mode)
 (package! crdt)
+(package! ess)
 #+end_src
 * Publish Script
 I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with noexport, and then export my private doom.org config using the following script:
