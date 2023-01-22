@@ -258,7 +258,7 @@ myScratchPads =
         w = 0.4
         t = 0.75 - h
         l = 0.70 - w
-    spawnBtm = myTerminal ++ " -t btm -e btm"
+    spawnBtm = myTerminal ++ " -o font.size=12 -t btm -e btm"
     findBtm = title =? "btm"
     manageBtm = customFloating $ W.RationalRect l t w h
       where
