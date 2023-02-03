@@ -423,27 +423,31 @@ same directory as the org-buffer and insert a link to this file."
                 :and(
                     :file-path "Teaching.p"
                     :tag "planning"
-                    :not (:tag "grading"))
+                    :not (:tag "grading")
+                    :not (:tag "event"))
                 :order 3)
          (:name "Teaching Secretarial"
                 ;; Single arguments given alone
                 :and(
                     :file-path "Teaching.p"
                     :tag "secretarial"
-                    :not (:tag "grading"))
+                    :not (:tag "grading")
+                    :not (:tag "event"))
                 :order 3)
          (:name "Teaching Grading"
                 ;; Single arguments given alone
                 :and(
                     :file-path "Teaching.p"
                     :tag "grading"
-                    :not (:tag "planning"))
+                    :not (:tag "planning")
+                    :not (:tag "event"))
                 :order 3)
          (:name "School Side Projects"
                 :and(
                     :file-path "Teaching.p"
                     :tag "tech"
-                    :not (:tag "planning"))
+                    :not (:tag "planning")
+                    :not (:tag "event"))
                 :order 3)
          (:name "Gamedev Current Projects"
                 ;; Single arguments given alone
