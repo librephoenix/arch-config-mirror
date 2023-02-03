@@ -492,7 +492,8 @@ myManageHook =
       title =? "xmonad_helpmenu" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       className =? "fl64.exe" --> (customFloating $ W.RationalRect 0 0 1 1),
       className =? "Pavucontrol" --> (customFloating $ W.RationalRect 0.05 0.04 0.5 0.35),
-      className =? "Syncthing GTK" --> (customFloating $ W.RationalRect 0.53 0.04 0.46 0.45),
+      className =? "Syncthing GTK" --> (customFloating $ W.RationalRect 0.53 0.50 0.46 0.45),
+      className =? "Proton Mail Bridge" --> (customFloating $ W.RationalRect 0.59 0.66 0.40 0.30),
       className =? "Zenity" --> (customFloating $ W.RationalRect 0.45 0.4 0.1 0.2),
       resource =? "desktop_window" --> doIgnore,
       -- this gimp snippet is from Kathryn Anderson (https://xmonad.haskell.narkive.com/bV34Aiw3/layout-for-gimp-how-to)
@@ -523,8 +524,8 @@ myStartupHook = do
 -- Now run xmonad with all the defaults we set up.
 main = do
   xmproc0 <- spawnPipe ("xmobar -x 0 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc2")
-  xmproc2 <- spawnPipe ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc2")
+  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc")
+  xmproc2 <- spawnPipe ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc")
   xmonad $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $

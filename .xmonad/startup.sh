@@ -100,28 +100,28 @@ sed -i "s/color08Bright/"$color08Bright"/g" ~/.config/xmobar/xmobarrc # bright w
 sed -i "s/colorFocus/"$colorFocus"/g" ~/.config/xmobar/xmobarrc # wm focus color
 sed -i "s/colorSecondary/"$colorSecondary"/g" ~/.config/xmobar/xmobarrc & # xmobar highlight color
 
-cp -f ~/.config/xmobar/base-xmobarrc2 ~/.config/xmobar/xmobarrc2 &&
-sed -i "s/colorBgNormal/"$colorBgNormal"/g" ~/.config/xmobar/xmobarrc2 # normal background
-sed -i "s/colorBgBright/"$colorBgBright"/g" ~/.config/xmobar/xmobarrc2 # bright background
-sed -i "s/colorFgNormal/"$colorFgNormal"/g" ~/.config/xmobar/xmobarrc2 # normal foreground
-sed -i "s/color01Normal/"$color01Normal"/g" ~/.config/xmobar/xmobarrc2 # normal black
-sed -i "s/color01Bright/"$color01Bright"/g" ~/.config/xmobar/xmobarrc2 # bright black
-sed -i "s/color02Normal/"$color02Normal"/g" ~/.config/xmobar/xmobarrc2 # normal red
-sed -i "s/color02Bright/"$color02Bright"/g" ~/.config/xmobar/xmobarrc2 # bright red
-sed -i "s/color03Normal/"$color03Normal"/g" ~/.config/xmobar/xmobarrc2 # normal green
-sed -i "s/color03Bright/"$color03Bright"/g" ~/.config/xmobar/xmobarrc2 # bright green
-sed -i "s/color04Normal/"$color04Normal"/g" ~/.config/xmobar/xmobarrc2 # normal yellow
-sed -i "s/color04Bright/"$color04Bright"/g" ~/.config/xmobar/xmobarrc2 # bright yellow
-sed -i "s/color05Normal/"$color05Normal"/g" ~/.config/xmobar/xmobarrc2 # normal blue
-sed -i "s/color05Bright/"$color05Bright"/g" ~/.config/xmobar/xmobarrc2 # bright blue
-sed -i "s/color06Normal/"$color06Normal"/g" ~/.config/xmobar/xmobarrc2 # normal magenta
-sed -i "s/color06Bright/"$color06Bright"/g" ~/.config/xmobar/xmobarrc2 # bright magenta
-sed -i "s/color07Normal/"$color07Normal"/g" ~/.config/xmobar/xmobarrc2 # normal cyan
-sed -i "s/color07Bright/"$color07Bright"/g" ~/.config/xmobar/xmobarrc2 # bright cyan
-sed -i "s/color08Normal/"$color08Normal"/g" ~/.config/xmobar/xmobarrc2 # normal white
-sed -i "s/color08Bright/"$color08Bright"/g" ~/.config/xmobar/xmobarrc2 # bright white
-sed -i "s/colorFocus/"$colorFocus"/g" ~/.config/xmobar/xmobarrc2 # wm focus color
-sed -i "s/colorSecondary/"$colorSecondary"/g" ~/.config/xmobar/xmobarrc2 & # xmobar highlight color
+cp -f ~/.config/xmobar/base-xmobarrc-trayer ~/.config/xmobar/xmobarrc-trayer &&
+sed -i "s/colorBgNormal/"$colorBgNormal"/g" ~/.config/xmobar/xmobarrc-trayer # normal background
+sed -i "s/colorBgBright/"$colorBgBright"/g" ~/.config/xmobar/xmobarrc-trayer # bright background
+sed -i "s/colorFgNormal/"$colorFgNormal"/g" ~/.config/xmobar/xmobarrc-trayer # normal foreground
+sed -i "s/color01Normal/"$color01Normal"/g" ~/.config/xmobar/xmobarrc-trayer # normal black
+sed -i "s/color01Bright/"$color01Bright"/g" ~/.config/xmobar/xmobarrc-trayer # bright black
+sed -i "s/color02Normal/"$color02Normal"/g" ~/.config/xmobar/xmobarrc-trayer # normal red
+sed -i "s/color02Bright/"$color02Bright"/g" ~/.config/xmobar/xmobarrc-trayer # bright red
+sed -i "s/color03Normal/"$color03Normal"/g" ~/.config/xmobar/xmobarrc-trayer # normal green
+sed -i "s/color03Bright/"$color03Bright"/g" ~/.config/xmobar/xmobarrc-trayer # bright green
+sed -i "s/color04Normal/"$color04Normal"/g" ~/.config/xmobar/xmobarrc-trayer # normal yellow
+sed -i "s/color04Bright/"$color04Bright"/g" ~/.config/xmobar/xmobarrc-trayer # bright yellow
+sed -i "s/color05Normal/"$color05Normal"/g" ~/.config/xmobar/xmobarrc-trayer # normal blue
+sed -i "s/color05Bright/"$color05Bright"/g" ~/.config/xmobar/xmobarrc-trayer # bright blue
+sed -i "s/color06Normal/"$color06Normal"/g" ~/.config/xmobar/xmobarrc-trayer # normal magenta
+sed -i "s/color06Bright/"$color06Bright"/g" ~/.config/xmobar/xmobarrc-trayer # bright magenta
+sed -i "s/color07Normal/"$color07Normal"/g" ~/.config/xmobar/xmobarrc-trayer # normal cyan
+sed -i "s/color07Bright/"$color07Bright"/g" ~/.config/xmobar/xmobarrc-trayer # bright cyan
+sed -i "s/color08Normal/"$color08Normal"/g" ~/.config/xmobar/xmobarrc-trayer # normal white
+sed -i "s/color08Bright/"$color08Bright"/g" ~/.config/xmobar/xmobarrc-trayer # bright white
+sed -i "s/colorFocus/"$colorFocus"/g" ~/.config/xmobar/xmobarrc-trayer # wm focus color
+sed -i "s/colorSecondary/"$colorSecondary"/g" ~/.config/xmobar/xmobarrc-trayer & # xmobar highlight color
 
 sed -i "s/Nsxiv.window.background: .*/Nsxiv.window.background: "$colorBgNormal"/" ~/.Xresources
 sed -i "s/Nsxiv.window.foreground: .*/Nsxiv.window.foreground: "$colorFgNormal"/" ~/.Xresources &
@@ -133,13 +133,11 @@ emacs --daemon &
 xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 twmnd &
 nitrogen --restore &
-/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 28 --tint $trayertint --monitor "primary" &
-qjoypad &
+##/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 28 --tint $trayertint --monitor "primary" &
 nm-applet &
 syncthing --no-browser &
 syncthing-gtk -m &
 flatpak run com.discordapp.Discord --start-minimized &
-kdeconnect-indicator &
 gnome-keyring-daemon --start --components=secrets &
 protonmail-bridge --no-window
 ~/.local/bin/setup-external-monitor.sh &

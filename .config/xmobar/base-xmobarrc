@@ -35,10 +35,9 @@ Config { font = "UbuntuMono-R 18"
                       , "--off", "<fc=color06Normal,colorBgBright> <fn=1>\xf026</fn>Mute </fc><fn=2><fc=colorBgBright,colorBgNormal>\xe0b0</fc></fn>"
                       , "--offc", "color06Normal"
                       ] 1
-                    , Run Com "/home/emmet/.config/xmobar/padding-icon.sh" [] "trayerpad" 2
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action> }<action=`xdotool key Super_L+c`>%date%</action>{<box color=colorBgBright width=0>%UnsafeStdinReader%</box> %trayerpad%"
+       , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action>}<action=`xdotool key Super_L+c`>%date%</action>{<box color=colorBgBright width=0>%UnsafeStdinReader%</box>"
        }
 }
