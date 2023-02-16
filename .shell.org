@@ -142,6 +142,7 @@ source ~/.secrets
 For my aliases, I put them in a [[./.aliases][.aliases]] file in my home directory.
 #+BEGIN_SRC shell :tangle .aliases
 # aliases
+alias sudo='doas'
 alias ls='exa --icons -l -T -L=1'
 alias grep='rg'
 alias cat='bat'
