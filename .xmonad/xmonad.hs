@@ -175,7 +175,7 @@ myScratchPads =
     NS "btm" spawnBtm findBtm manageBtm,
     NS "geary" spawnGeary findGeary manageGeary,
     NS "helpmenu" spawnHelp findHelp manageHelp,
-    NS "myuzi" spawnMyuzi findMyuzi manageMyuzi,
+    NS "cmus" spawnCmus findCmus manageCmus,
     NS "cfw" spawnCfw findCfw manageCfw,
     NS "pavucontrol" spawnPavucontrol findPavucontrol managePavucontrol,
     NS "discord" spawnDiscord findDiscord manageDiscord
@@ -189,24 +189,24 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnRanger = myTerminal ++ " -t ranger -e ranger"
-    findRanger = title =? "ranger"
+    spawnRanger = myTerminal ++ " -t ranger-scratchpad -e ranger"
+    findRanger = title =? "ranger-scratchpad"
     manageRanger = customFloating $ W.RationalRect l t w h
       where
         h = 0.9
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnOctave = myTerminal ++ " -t octave -e octave"
-    findOctave = title =? "octave"
+    spawnOctave = myTerminal ++ " -t octave-scratchpad -e octave"
+    findOctave = title =? "octave-scratchpad"
     manageOctave = customFloating $ W.RationalRect l t w h
       where
         h = 0.5
         w = 0.4
         t = 0.75 - h
         l = 0.70 - w
-    spawnBtm = myTerminal ++ " -o font.size=12 -t btm -e btm"
-    findBtm = title =? "btm"
+    spawnBtm = myTerminal ++ " -o font.size=12 -t btm-scratchpad -e btm"
+    findBtm = title =? "btm-scratchpad"
     manageBtm = customFloating $ W.RationalRect l t w h
       where
         h = 0.5
@@ -245,9 +245,9 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnMyuzi = "myuzi"
-    findMyuzi = title =? "Myuzi"
-    manageMyuzi = customFloating $ W.RationalRect l t w h
+    spawnCmus = myTerminal ++ " -o font.size=28 -t cmus-scratchpad -e cmus && cmus-remote -R && cmus-remote -S"
+    findCmus = title =? "cmus-scratchpad"
+    manageCmus = customFloating $ W.RationalRect l t w h
       where
         h = 0.9
         w = 0.9
@@ -307,6 +307,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 10"),
       ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 10"),
       ((0, xF86XK_AudioMute), spawn "pamixer -t"),
+
+      -- control music from kbd
+      ((0, xF86XK_AudioPlay), spawn "cmus-remote -u"),
+      ((0, xF86XK_AudioStop), spawn "cmus-remote -s"),
+      ((0, xF86XK_AudioNext), spawn "cmus-remote -n && ~/.local/bin/cmus-current-song-notify.sh"),
+      ((0, xF86XK_AudioPrev), spawn "cmus-remote -r && ~/.local/bin/cmus-current-song-notify.sh"),
 
       -- manage multiple monitors with kbd
       -- ((0, xF86XK_Explorer), spawn "/home/emmet/.local/bin/setup_external_monitor.sh"),
@@ -389,7 +395,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_d), namedScratchpadAction myScratchPads "discord"),
       ((modm, xK_o), namedScratchpadAction myScratchPads "octave"),
       ((modm, xK_e), namedScratchpadAction myScratchPads "geary"),
-      ((modm, xK_n), namedScratchpadAction myScratchPads "myuzi"),
+      ((modm, xK_n), namedScratchpadAction myScratchPads "cmus"),
       ((modm, xK_c), namedScratchpadAction myScratchPads "cfw"),
       ((modm, xK_y), namedScratchpadAction myScratchPads "pavucontrol"),
       ((modm, xK_slash), namedScratchpadAction myScratchPads "helpmenu")
@@ -482,11 +488,11 @@ myManageHook =
   composeAll
     [ className =? "KeePassXC" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "Myuzi" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
-      title =? "octave" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
+      title =? "octave-scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       title =? "scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       className =? "discord" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
-      title =? "ranger" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
-      title =? "btm" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
+      title =? "ranger-scratchpad" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
+      title =? "btm-scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       className =? "Geary" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "scratch_cfw" --> (customFloating $ W.RationalRect 0.29 0.04 0.42 0.7),
       title =? "xmonad_helpmenu" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
