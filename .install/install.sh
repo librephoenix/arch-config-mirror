@@ -15,6 +15,12 @@ archpackages=();
 aurpackages=();
 flatpackages=();
 
+    # KDE plasma
+    archpackages+=(
+    plasma-desktop
+    dolphin
+    );
+
     # hypr
     aurpackages+=(
     hypr-git
@@ -28,13 +34,15 @@ flatpackages=();
 
     # browsers
     archpackages+=(
-    qutebrowser
-    luakit
+    #firefox
+    #qutebrowser
+    #luakit
     );
 
     aurpackages+=(
     brave-bin
-    librewolf-bin);
+    librewolf-bin
+    );
 
     # documents
     archpackages+=(
@@ -56,8 +64,6 @@ flatpackages=();
 
     aurpackages+=(
     protonmail-bridge-bin
-    mu
-    mbsync
     );
 
     # file sync
@@ -88,9 +94,10 @@ flatpackages=();
         krita
 
         # media players
+        cmus
         vlc
         mpv
-        youtube-dl
+        yt-dlp
 
         # 3d modelling and video editing
         blender
@@ -108,8 +115,10 @@ flatpackages=();
         nsxiv
 
         # media players
-        freetube-bin
-        myuzi
+        #freetube-bin
+        #myuzi
+        ytsub-bin
+        ytfzf
 
         # media recording
         audio-recorder
@@ -134,6 +143,7 @@ flatpackages=();
     );
 
     aurpackages+=(
+    gamehub-bin
     airshipper # veloren
     nbtexplorer-bin
     qjoypad
@@ -152,7 +162,7 @@ flatpackages=();
     # terminal emulators
     archpackages+=(
     alacritty
-    kitty
+    #kitty
     );
 
     # command line utilities
@@ -171,6 +181,7 @@ flatpackages=();
     reflector
     brightnessctl
     w3m
+    fzf
     hunspell hunspell-en_us
     );
 

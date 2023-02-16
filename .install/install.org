@@ -44,8 +44,14 @@ flatpackages=();
 
 #+END_SRC
 
-**** WMs
+**** DEs + WMs
 #+BEGIN_SRC shell :tangle install.sh
+    # KDE plasma
+    archpackages+=(
+    plasma-desktop
+    dolphin
+    );
+
     # hypr
     aurpackages+=(
     hypr-git
@@ -63,13 +69,15 @@ flatpackages=();
 #+BEGIN_SRC shell :tangle install.sh
     # browsers
     archpackages+=(
-    qutebrowser
-    luakit
+    #firefox
+    #qutebrowser
+    #luakit
     );
 
     aurpackages+=(
     brave-bin
-    librewolf-bin);
+    librewolf-bin
+    );
 
 #+END_SRC
 
@@ -95,8 +103,6 @@ flatpackages=();
 
     aurpackages+=(
     protonmail-bridge-bin
-    mu
-    mbsync
     );
 
     # file sync
@@ -134,9 +140,10 @@ flatpackages=();
         krita
 
         # media players
+        cmus
         vlc
         mpv
-        youtube-dl
+        yt-dlp
 
         # 3d modelling and video editing
         blender
@@ -154,8 +161,10 @@ flatpackages=();
         nsxiv
 
         # media players
-        freetube-bin
-        myuzi
+        #freetube-bin
+        #myuzi
+        ytsub-bin
+        ytfzf
 
         # media recording
         audio-recorder
@@ -183,6 +192,7 @@ flatpackages=();
     );
 
     aurpackages+=(
+    gamehub-bin
     airshipper # veloren
     nbtexplorer-bin
     qjoypad
@@ -208,7 +218,7 @@ flatpackages=();
     # terminal emulators
     archpackages+=(
     alacritty
-    kitty
+    #kitty
     );
 
 #+END_SRC
@@ -231,6 +241,7 @@ flatpackages=();
     reflector
     brightnessctl
     w3m
+    fzf
     hunspell hunspell-en_us
     );
 
