@@ -415,7 +415,7 @@ same directory as the org-buffer and insert a link to this file."
          (:name "Family"
                 ;; Single arguments given alone
                 :and(
-                    :file-path "Family.s"
+                    :file-path "Family"
                     :not (:tag "event"))
                 :order 3)
          (:name "Teaching Prep"
@@ -452,7 +452,7 @@ same directory as the org-buffer and insert a link to this file."
          (:name "Gamedev Current Projects"
                 ;; Single arguments given alone
                 :and (
-                    :file-path "Gamedev.p"
+                    :file-path "Gamedev"
                     :todo "STRT")
                 :order 5)
          (:name "Youtube"
