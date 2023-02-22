@@ -283,8 +283,6 @@ same directory as the org-buffer and insert a link to this file."
   (setq full-org-roam-db-list
         (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
-
-
 (defun org-roam-switch-db ()
   "Switch to a different org-roam database"
   (interactive)
@@ -304,15 +302,15 @@ same directory as the org-buffer and insert a link to this file."
   (setq org-roam-db-choice (completing-read "Select org roam database: "
                             full-org-roam-db-list-pretty nil t))
   (if (string= org-roam-db-choice "Default")
-      (setq org-roam-directory "~/Roam"
-            org-roam-db-location "~/Roam/org-roam.db"
-            org-directory "~/Roam")
-      (setq org-roam-directory (concat "~/" org-roam-db-choice "/Roam")
-            org-roam-db-location (concat "~/" org-roam-db-choice "/Roam/org-roam.db")
-            org-directory (concat "~/" org-roam-db-choice "/Roam")))
-  (if (string= org-roam-db-choice "Default")
-      (dired "~/Roam")
-      (dired (concat "~/" org-roam-db-choice "/Roam")))
+      (setq org-roam-directory (f-canonical "~/Roam")
+            org-roam-db-location (f-canonical "~/Roam/org-roam.db")
+            org-directory (f-canonical"~/Roam"))
+      (setq org-roam-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))
+            org-roam-db-location (f-canonical (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
+            org-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))))
+  (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
+      (org-open-file (concat org-roam-directory "/dashboard.org"))
+      (dired org-roam-directory))
 
   (message (concat "Switched to " org-roam-db-choice " org-roam database!")))
 

@@ -49,7 +49,6 @@
 
 (package! org-bullets)
 (package! org-super-agenda)
-(package! org-roam)
 (package! org-roam-ui)
 (package! org-roam-nursery :recipe (:repo "https://github.com/chrisbarrett/nursery"))
 (package! org-download)
