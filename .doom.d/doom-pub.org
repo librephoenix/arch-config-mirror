@@ -1,4 +1,4 @@
-# Created 2023-02-16 Thu 14:11
+# Created 2023-02-22 Wed 12:29
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -538,8 +538,6 @@ styletree.write('styles.xml')
   (setq full-org-roam-db-list
         (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
-
-
 (defun org-roam-switch-db ()
   "Switch to a different org-roam database"
   (interactive)
@@ -559,15 +557,15 @@ styletree.write('styles.xml')
   (setq org-roam-db-choice (completing-read "Select org roam database: "
                             full-org-roam-db-list-pretty nil t))
   (if (string= org-roam-db-choice "Default")
-      (setq org-roam-directory "~/Roam"
-            org-roam-db-location "~/Roam/org-roam.db"
-            org-directory "~/Roam")
-      (setq org-roam-directory (concat "~/" org-roam-db-choice "/Roam")
-            org-roam-db-location (concat "~/" org-roam-db-choice "/Roam/org-roam.db")
-            org-directory (concat "~/" org-roam-db-choice "/Roam")))
-  (if (string= org-roam-db-choice "Default")
-      (dired "~/Roam")
-      (dired (concat "~/" org-roam-db-choice "/Roam")))
+      (setq org-roam-directory (f-canonical "~/Roam")
+            org-roam-db-location (f-canonical "~/Roam/org-roam.db")
+            org-directory (f-canonical"~/Roam"))
+      (setq org-roam-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))
+            org-roam-db-location (f-canonical (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
+            org-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))))
+  (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
+      (org-open-file (concat org-roam-directory "/dashboard.org"))
+      (dired org-roam-directory))
 
   (message (concat "Switched to " org-roam-db-choice " org-roam database!")))
 
@@ -1249,12 +1247,12 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
        latex             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
-       lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       lua                 ; one-based indices? one-based indices
+       markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       org               ; organize your plain life in plain text
+       (org +roam2)      ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -1351,9 +1349,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 #+begin_src emacs-lisp
 (package! org-bullets)
 (package! org-super-agenda)
-(package! org-roam)
 (package! org-roam-ui)
 (package! org-roam-nursery :recipe (:repo "https://github.com/chrisbarrett/nursery"))
+(package! lister)
+(package! org-roam-delve :recipe (:repo "https://github.com/publicimageltd/delve"))
 (package! org-download)
 (package! org-ql)
 (package! org-yt)
