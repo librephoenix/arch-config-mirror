@@ -47,9 +47,10 @@ Here is an organized list of my most important configs stored in this repository
     - [[./.xmonad/startup.sh][startup.sh]]
     - [[./.xmonad/helpmenu.txt][helpmenu.txt]]
     - [[./.xmonad/scratchpad-mu4e.sh][scratchpad-mu4e.sh]]
-  - [[./.config/xmobar/base-xmobarrc][xmobarrc]] + [[./.config/xmobar/base-xmobarrc2][xmobarrc2]]
+  - [[./.config/xmobar/base-xmobarrc][xmobarrc]]
     - [[./.config/xmobar/padding-icon.sh][padding-icon.sh]]
   - [[./.config/twmn/twmn.conf][twmn.conf]]
+  - TODO xfce4-panel config
 - [[./.shell.org][Shell Literate Config]]
   - [[./.bashrc][.bashrc]]
   - [[./.zshrc][.zshrc]]
@@ -61,7 +62,7 @@ Here is an organized list of my most important configs stored in this repository
   - [[./.doom.d/config.el][config.el]]
   - [[./.doom.d/init.el][init.el]]
   - [[./.doom.d/packages.el][packages.el]]
-- Browsers Literate Config
+- TODO Browsers Literate Config
   - LibreWolf
     - [[./.librewolf/librewolf.overrides.cfg][librewolf.overrides.cfg]]
   - Qutebrowser
@@ -80,7 +81,8 @@ For my computing, I like to select programs based upon efficiency, security, and
 - [[https://github.com/AdnanHodzic/auto-cpufreq][auto-cpufreq]] (CPU Throttle)
 - [[https://xmonad.org/][XMonad]] (Window Manager)
 - [[https://github.com/jaor/xmobar][XMobar]] (Panel)
-- [[https://github.com/sargon/trayer-srg][trayer-srg]] (Systray)
+- [[https://docs.xfce.org/xfce/xfce4-panel/start][xfce4-panel]] (Another Panel)
+- [[https://github.com/sboli/twmn][twmn]] (Notification Manager)
 - [[https://www.zsh.org/][zsh]] (Shell)
   - [[https://ohmyz.sh/][Oh My Zsh]] (Zsh Customization Utility)
 - [[https://github.com/Morganamilo/paru][paru]] (AUR Helper)
@@ -94,21 +96,23 @@ For my computing, I like to select programs based upon efficiency, security, and
 - [[https://keepassxc.org/][KeePassXC]] (Password Manager)
 - [[https://librewolf.net/][LibreWolf]] (Firefox-based Web Browser)
 - [[https://brave.com/][Brave Browser]] (Chromium-based Web Browser)
-- [[https://qutebrowser.org/][Qutebrowser]] (Web Browser)
+- [[https://qutebrowser.org/][Qutebrowser]] (Vim-like Web Browser)
+- [[https://github.com/skyjake/lagrange][Lagrange]] (Gemini Browser)
 - [[https://www.vim.org/][Vim]] ("Quick" Terminal Text Editor)
 - [[https://github.com/hlissner/doom-emacs][Doom Emacs]] (IDE + more)
   - [[https://orgmode.org/][Org Mode]] (Hierarchical text-based document format)
   - [[https://www.orgroam.com/][Org Roam]] (A second brain / personal wiki)
   - [[https://orgmode.org/][Org Agenda]] (Calendar and todo list)
-  - [[https://www.emacswiki.org/emacs/mu4e][mu4e]] (Email)
-  - [[https://github.com/skeeto/elfeed][elfeed]] (RSS Reader)
   - [[https://magit.vc/][magit]] (Git Client)
 - [[https://www.libreoffice.org/][LibreOffice]] (Office Suite)
 - [[https://github.com/mate-desktop/atril][Atril]] (PDF Viewer)
+- [[https://hyliu.me/fluent-reader/][Fluent Reader]] (RSS Reader)
+- [[https://wiki.gnome.org/Apps/Geary][Geary]] (Mail Client)
 - [[https://www.gnu.org/software/octave/index][GNU Octave]] (Calculator)
 - [[https://github.com/ranger/ranger][Ranger]] (Terminal File Manager)
+- [[https://obsproject.com/][OBS Studio]] (Video/Screen Recorder)
+- [[https://kdenlive.org/en/][Kdenlive]] (Video Editor)
 - [[https://wiki.lxde.org/en/PCManFM][PCManFM]] (GUI File Manager)
-- [[https://github.com/sboli/twmn][twmn]] (Notification Manager)
 - [[https://github.com/l3ib/nitrogen][Nitrogen]] (Desktop Background Manager)
 - [[https://wiki.lxde.org/en/LXAppearance][LXAppearance]] (GTK Theming)
 - [[https://sourceforge.net/projects/qt5ct/][qt5ct]] (Qt Theming)
