@@ -25,6 +25,9 @@
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
 (solaire-global-mode +1)
 
+;; Grammar tasing should be voluntary
+(setq writegood-mode nil)
+
 ;; Beacon shows where the cursor is, even when fast scrolling
 (setq beacon-mode t)
 
@@ -215,6 +218,41 @@ same directory as the org-buffer and insert a link to this file."
   (async-shell-command (concat the-command " '" the-link "'"))
   )
 
+
+(when (require 'openwith nil 'noerror)
+   (setq openwith-associations
+         (list
+         (list (openwith-make-extension-regexp
+                '("mpg" "mpeg" "mp3" "mp4"
+                  "avi" "wmv" "wav" "mov" "flv"
+                  "ogm" "ogg" "mkv"))
+                  "mpv"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("doc" "xls" "ppt" "odt" "ods" "odg" "odp"))
+                  "libreoffice"
+                  '(file))
+             '("\\.lyx" "lyx" (file))
+             '("\\.chm" "kchmviewer" (file))
+         (list (openwith-make-extension-regexp
+                '("pdf" "ps" "ps.gz" "dvi"))
+                  "atril"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("kdenlive"))
+                  "kdenlive"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("kra"))
+                  "krita"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("blend" "blend1"))
+                  "blender"
+                  '(file))
+             ))
+   (openwith-mode 1))
+
 (add-to-list 'display-buffer-alist '("^*Async Shell Command*" . (display-buffer-no-window)))
 
 (map! :leader
@@ -311,6 +349,8 @@ same directory as the org-buffer and insert a link to this file."
   (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
       (org-open-file (concat org-roam-directory "/dashboard.org"))
       (dired org-roam-directory))
+
+  (org-roam-db-sync)
 
   (message (concat "Switched to " org-roam-db-choice " org-roam database!")))
 

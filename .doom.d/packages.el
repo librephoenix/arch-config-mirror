@@ -51,6 +51,8 @@
 (package! org-super-agenda)
 (package! org-roam-ui)
 (package! org-roam-nursery :recipe (:repo "https://github.com/chrisbarrett/nursery"))
+;;(package! lister)
+;;(package! org-roam-delve :recipe (:repo "https://github.com/publicimageltd/delve"))
 (package! org-download)
 (package! org-ql)
 (package! org-yt)
@@ -62,3 +64,4 @@
 (package! rainbow-mode)
 (package! crdt)
 (package! ess)
+(package! openwith)
