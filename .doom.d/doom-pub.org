@@ -1,4 +1,4 @@
-# Created 2023-02-22 Wed 12:29
+# Created 2023-02-25 Sat 20:39
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -58,6 +58,9 @@ I use this functionality to load my private config file with non-public informat
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
 (solaire-global-mode +1)
+
+;; Grammar tasing should be voluntary
+(setq writegood-mode nil)
 
 ;; Beacon shows where the cursor is, even when fast scrolling
 (setq beacon-mode t)
@@ -253,6 +256,41 @@ same directory as the org-buffer and insert a link to this file."
                        (if (string= (file-name-extension the-link) "blend") "blender")))
   (async-shell-command (concat the-command " '" the-link "'"))
   )
+
+
+(when (require 'openwith nil 'noerror)
+   (setq openwith-associations
+         (list
+         (list (openwith-make-extension-regexp
+                '("mpg" "mpeg" "mp3" "mp4"
+                  "avi" "wmv" "wav" "mov" "flv"
+                  "ogm" "ogg" "mkv"))
+                  "mpv"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("doc" "xls" "ppt" "odt" "ods" "odg" "odp"))
+                  "libreoffice"
+                  '(file))
+             '("\\.lyx" "lyx" (file))
+             '("\\.chm" "kchmviewer" (file))
+         (list (openwith-make-extension-regexp
+                '("pdf" "ps" "ps.gz" "dvi"))
+                  "atril"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("kdenlive"))
+                  "kdenlive"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("kra"))
+                  "krita"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("blend" "blend1"))
+                  "blender"
+                  '(file))
+             ))
+   (openwith-mode 1))
 
 (add-to-list 'display-buffer-alist '("^*Async Shell Command*" . (display-buffer-no-window)))
 
@@ -566,6 +604,8 @@ styletree.write('styles.xml')
   (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
       (org-open-file (concat org-roam-directory "/dashboard.org"))
       (dired org-roam-directory))
+
+  (org-roam-db-sync)
 
   (message (concat "Switched to " org-roam-db-choice " org-roam database!")))
 
@@ -1183,7 +1223,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
        :checkers
        syntax              ; tasing you for every semicolon you forget
        (spell +flyspell) ; tasing you for misspelling mispelling
-       grammar           ; tasing grammar mistake every you make
+       ;;grammar           ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
@@ -1364,6 +1404,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (package! rainbow-mode)
 (package! crdt)
 (package! ess)
+(package! openwith)
 #+end_src
 * Publish Script
 I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with noexport, and then export my private doom.org config using the following script:
