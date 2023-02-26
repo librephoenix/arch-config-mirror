@@ -458,7 +458,7 @@ spcPx = 5
 
 mySpacing = spacingRaw False (Border spcPx spcPx spcPx spcPx) True (Border spcPx spcPx spcPx spcPx) True
 
-myLayout = fullscreenFocus $ draggingVisualizer $ avoidStruts $ layoutHintsToCenter $ (mySpacing $ (mouseResizable ||| mouseResizableMirrored ||| Full))
+myLayout = fullscreenFocus $ draggingVisualizer $ avoidStruts $ layoutHintsToCenter $ (mySpacing $ (Full ||| mouseResizable ||| mouseResizableMirrored))
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall 1 (5 / 100) (1 / 2)
