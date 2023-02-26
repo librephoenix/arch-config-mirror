@@ -284,6 +284,7 @@ flatpackages=();
     xwinwrap-git
     sddm-sugar-dark
     xcursor-simp1e-breeze-snow
+    alttab-git
     );
 
     # graphical display and X utils
