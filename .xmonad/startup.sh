@@ -132,6 +132,7 @@ sed -i "s/export GTK_THEME=.*/export GTK_THEME="$themeGTKName"/" ~/.xsession &
 emacs --daemon &
 xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 twmnd &
+alttab -w 1 -t 240x160 -i 64x64 -sc 1 -bg $colorBgNormal -fg $colorFgNormal -frame $colorSecondary -inact $colorFgNormal
 nitrogen --restore &
 autokey-gtk &
 ##/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 28 --tint $trayertint --monitor "primary" &

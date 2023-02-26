@@ -21,6 +21,7 @@ import XMonad.Actions.TiledWindowDragging
 import XMonad.Actions.WindowNavigation
 import XMonad.Actions.WithAll
 import XMonad.Hooks.DynamicLog
+import qualified XMonad.Hooks.EwmhDesktops as EWMHD
 import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ServerMode
@@ -531,8 +532,6 @@ All of the following keybinds pertain to window management and layouts:
 | S-Space           | Switch to next layout                                                                          |
 | S-Shift-Space     | Reset layout on current workspace                                                              |
 | S-r               | Resize windows to correct size                                                                 |
-| M-Tab             | Next window on current workspace                                                               |
-| M-Shift-Tab       | Previous window on current workspace                                                           |
 | S-{h,j,k,l}       | Switch to window visually {left,down,up,right} (requires a [[Window Rules and Hooks][Navigation2Dconfig]])                 |
 | S-Shift-{h,j,k,l} | Swap window visually {left,down,up,right} on current workspace (requires a [[Window Rules and Hooks][Navigation2Dconfig]]) |
 | S-C-{h,l}         | Resize master window area                                                                      |
@@ -558,10 +557,6 @@ These keybindings are then set via:
 
       -- Resize viewed windows to the correct size
       ((modm, xK_r), refresh),
-
-      -- Move focus to the next/previous window
-      ((mod1Mask, xK_Tab), windows W.focusDown),
-      ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp),
 
       -- Move focus to window below
       ((modm, xK_j), windowGo D False),
@@ -972,6 +967,7 @@ Lastly, desktop applications are started in the background.
 emacs --daemon &
 xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
 twmnd &
+alttab -w 1 -t 240x160 -i 64x64 -sc 1 -bg $colorBgNormal -fg $colorFgNormal -frame $colorSecondary -inact $colorFgNormal
 nitrogen --restore &
 autokey-gtk &
 ##/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 28 --tint $trayertint --monitor "primary" &
@@ -996,7 +992,8 @@ main = do
   xmonad $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $
-        docks
+        docks $
+         EWMHD.ewmh
           def
             { -- simple stuff
               terminal = myTerminal,

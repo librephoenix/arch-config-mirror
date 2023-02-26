@@ -13,6 +13,7 @@ import XMonad.Actions.TiledWindowDragging
 import XMonad.Actions.WindowNavigation
 import XMonad.Actions.WithAll
 import XMonad.Hooks.DynamicLog
+import qualified XMonad.Hooks.EwmhDesktops as EWMHD
 import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ServerMode
@@ -349,10 +350,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Resize viewed windows to the correct size
       ((modm, xK_r), refresh),
 
-      -- Move focus to the next/previous window
-      ((mod1Mask, xK_Tab), windows W.focusDown),
-      ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp),
-
       -- Move focus to window below
       ((modm, xK_j), windowGo D False),
       -- Move focus to window above
@@ -535,7 +532,8 @@ main = do
   xmonad $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $
-        docks
+        docks $
+         EWMHD.ewmh
           def
             { -- simple stuff
               terminal = myTerminal,
