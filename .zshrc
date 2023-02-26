@@ -27,6 +27,7 @@ ZSH_THEME="agnoster"
 
 # plugins
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+# plugins=(git zsh-syntax-highlighting)
 
 # source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
