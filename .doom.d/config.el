@@ -250,6 +250,14 @@ same directory as the org-buffer and insert a link to this file."
                 '("blend" "blend1"))
                   "blender"
                   '(file))
+         (list (openwith-make-extension-regexp
+                '("helio"))
+                  "helio"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("svg"))
+                  "inkscape"
+                  '(file))
              ))
    (openwith-mode 1))
 

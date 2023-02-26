@@ -1,4 +1,4 @@
-# Created 2023-02-25 Sat 20:39
+# Created 2023-02-25 Sat 20:42
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -288,6 +288,14 @@ same directory as the org-buffer and insert a link to this file."
          (list (openwith-make-extension-regexp
                 '("blend" "blend1"))
                   "blender"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("helio"))
+                  "helio"
+                  '(file))
+         (list (openwith-make-extension-regexp
+                '("svg"))
+                  "inkscape"
                   '(file))
              ))
    (openwith-mode 1))
