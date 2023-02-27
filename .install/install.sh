@@ -106,6 +106,11 @@ flatpackages=();
         cheese
         obs-studio
 
+        # video editing
+        kdenlive
+        movit
+        mediainfo
+
         # digital audio workstation
         lmms
     );
@@ -115,13 +120,16 @@ flatpackages=();
         nsxiv
 
         # media players
-        #freetube-bin
+        freetube-bin
         #myuzi
         ytsub-bin
         ytfzf
 
         # media recording
         audio-recorder
+
+        # digital audio workstation
+        helio-workstation-bin
 
         # misc
         betterdiscordctl-git
