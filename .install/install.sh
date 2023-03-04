@@ -18,8 +18,15 @@ flatpackages=();
     # KDE plasma
     archpackages+=(
     plasma-desktop
+    plasma-wayland-session
+    plasma-wayland-protocols
     dolphin
     );
+
+    # Cinnamon
+    #archpackages+=(
+    #cinnamon
+    #);
 
     # hypr
     aurpackages+=(
@@ -130,6 +137,8 @@ flatpackages=();
 
         # digital audio workstation
         helio-workstation-bin
+        helm-synth
+        zynaddsubfx
 
         # misc
         betterdiscordctl-git
@@ -185,6 +194,7 @@ flatpackages=();
     htop
     hwinfo
     unzip
+    unrar
     octave
     reflector
     brightnessctl
@@ -254,6 +264,10 @@ flatpackages=();
         archpackages+=(
         texinfo
         libffi zlib # required to build xmonad + xmobar
+        );
+
+        aurpackages+=(
+        ungit-electron
         );
 
     #fonts
@@ -487,7 +501,5 @@ echo "Post Install Reminders"
 echo "-------------------"
 echo ""
 echo "Configure wallpaper via nitrogen"
-echo "Set up mbsync and mu4e, including mu-1.16.5"
 echo "Transfer relevant files via backups and syncthing"
-echo "Configure larger and nicer fonts for the tty"
 echo "Set up ssh keys for servers and git"
