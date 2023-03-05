@@ -52,6 +52,32 @@
 ;; Fancy splash image
 (setq fancy-splash-image "~/.doom.d/arch.png")
 
+(setq +doom-dashboard-menu-sections
+'(("Open org roam overview" :icon
+  (all-the-icons-octicon "globe" :face 'doom-dashboard-menu-title)
+  :face
+  (:inherit
+   (doom-dashboard-menu-title bold))
+  :action org-roam-default-overview)
+ ("Roam to another db" :icon
+  (all-the-icons-fileicon "org" :face 'doom-dashboard-menu-title)
+  :action org-roam-switch-db)
+ ("Open agenda" :icon
+  (all-the-icons-octicon "calendar" :face 'doom-dashboard-menu-title)
+  :when
+  (fboundp 'org-agenda)
+  :action org-agenda-list
+  :key "SPC o A a")
+ ("Open private configuration" :icon
+  (all-the-icons-octicon "tools" :face 'doom-dashboard-menu-title)
+  :when
+  (file-directory-p doom-user-dir)
+  :action doom/open-private-config)
+ ("Open documentation" :icon
+  (all-the-icons-octicon "book" :face 'doom-dashboard-menu-title)
+  :action doom/help))
+)
+
 ;; Requires for faster loading
 (require 'org-agenda)
 (require 'dired)
@@ -329,24 +355,28 @@ same directory as the org-buffer and insert a link to this file."
   (setq full-org-roam-db-list
         (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
-(defun org-roam-switch-db ()
+(defun org-roam-switch-db (&optional arg)
   "Switch to a different org-roam database"
   (interactive)
+  (when (not arg)
   (setq full-org-roam-db-list nil)
 
   (setq full-org-roam-db-list (directory-files "~" t "\\.[p,s]$"))
   (dolist (item full-org-roam-db-list)
     (setq full-org-roam-db-list
-          (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
+        (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
   (setq full-org-roam-db-list-pretty (list "Default"))
   (dolist (item full-org-roam-db-list)
     (setq full-org-roam-db-list-pretty
-          (append (list
-                   (replace-regexp-in-string "\\/home\\/emmet\\/" "" item)) full-org-roam-db-list-pretty)))
+        (append (list
+                 (replace-regexp-in-string "\\/home\\/emmet\\/" "" item)) full-org-roam-db-list-pretty)))
 
   (setq org-roam-db-choice (completing-read "Select org roam database: "
-                            full-org-roam-db-list-pretty nil t))
+                          full-org-roam-db-list-pretty nil t)))
+  (when arg
+    (setq org-roam-db-choice arg))
+
   (if (string= org-roam-db-choice "Default")
       (setq org-roam-directory (f-canonical "~/Roam")
             org-roam-db-location (f-canonical "~/Roam/org-roam.db")
@@ -361,6 +391,10 @@ same directory as the org-buffer and insert a link to this file."
   (org-roam-db-sync)
 
   (message (concat "Switched to " org-roam-db-choice " org-roam database!")))
+
+(defun org-roam-default-overview ()
+  (interactive)
+  (org-roam-switch-db "Default"))
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
@@ -396,6 +430,11 @@ same directory as the org-buffer and insert a link to this file."
       :prefix ("N" . "org-roam notes")
       :desc "Re-zoom on current node in org-roam-ui"
       "z" 'org-roam-ui-node-zoom)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Visualize org-roam database with org-roam-ui"
+      "O" 'org-roam-default-overview)
 
 (org-roam-db-autosync-mode)
 
