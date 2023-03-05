@@ -4,6 +4,11 @@ update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd
 [Colors:View]
 BackgroundNormal=14, 24, 29
 
+[General]
+BrowserApplication=librewolf.desktop
+TerminalApplication=alacritty
+TerminalService=Alacritty.desktop
+
 [KFileDialog Settings]
 Allow Expansion=false
 Automatically select filename extension=true
