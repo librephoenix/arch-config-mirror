@@ -206,6 +206,7 @@ flatpackages=();
     aurpackages+=(
     mimeo
     pandoc-bin
+    mermaid-cli
     );
 
     # editors

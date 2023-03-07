@@ -266,6 +266,7 @@ flatpackages=();
     aurpackages+=(
     mimeo
     pandoc-bin
+    mermaid-cli
     );
 
 #+END_SRC

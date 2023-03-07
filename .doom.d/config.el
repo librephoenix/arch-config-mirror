@@ -166,8 +166,10 @@
   (setq output-pptx-file-name (replace-regexp-in-string "\.org" "\.pptx" (buffer-file-name)))
   (setq output-odp-file-name (replace-regexp-in-string "\.org" "\.odp" (buffer-file-name)))
   (setq odp-style-file-name (completing-read "Choose style: "
-                                             '(("/home/emmet/.doom.d/scripts/ox-odp/styles/water.odp")) nil t))
-  (shell-command (concat "~/.doom.d/scripts/ox-odp.sh \"" (buffer-file-name) "\" \"" odp-style-file-name "\" > /dev/null"))
+                                             '("/home/emmet/.doom.d/scripts/ox-odp/styles/water.odp"
+                                                "/home/emmet/.doom.d/scripts/ox-odp/styles/dark.odp"
+                                              ) nil t))
+  (shell-command (concat "~/.doom.d/scripts/ox-odp/ox-odp.sh \"" (buffer-file-name) "\" \"" odp-style-file-name "\" > /dev/null"))
   )
 
 (map! :leader
@@ -340,6 +342,9 @@ same directory as the org-buffer and insert a link to this file."
 ;; Better for org source blocks
 (setq electric-indent-mode nil)
 
+;; Mermaid diagrams
+(setq ob-mermaid-cli-path "/usr/bin/mmdc")
+
 ;;;------ Org roam configuration ------;;;
 
 (setq org-roam-directory "~/Roam"
@@ -355,8 +360,8 @@ same directory as the org-buffer and insert a link to this file."
   (setq full-org-roam-db-list
         (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
-(defun org-roam-switch-db (&optional arg)
-  "Switch to a different org-roam database"
+(defun org-roam-switch-db (&optional arg silent)
+  "Switch to a different org-roam database, arg"
   (interactive)
   (when (not arg)
   (setq full-org-roam-db-list nil)
@@ -384,9 +389,10 @@ same directory as the org-buffer and insert a link to this file."
       (setq org-roam-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))
             org-roam-db-location (f-canonical (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
             org-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))))
+  (when (not silent)
   (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
       (org-open-file (concat org-roam-directory "/dashboard.org"))
-      (dired org-roam-directory))
+      (dired org-roam-directory)))
 
   (org-roam-db-sync)
 
@@ -395,6 +401,16 @@ same directory as the org-buffer and insert a link to this file."
 (defun org-roam-default-overview ()
   (interactive)
   (org-roam-switch-db "Default"))
+
+(defun org-roam-switch-db-id-open (arg ID &optional switchpersist)
+  "Switch to another org-roam db and visit file with id arg"
+  "If switchpersist is non-nil, stay in the new org-roam db after visiting file"
+  (interactive)
+  (setq prev-org-roam-db-choice org-roam-db-choice)
+  (org-roam-switch-db arg 1)
+  (org-roam-id-open ID)
+  (when (not switchpersist)
+    (org-roam-switch-db prev-org-roam-db-choice 1)))
 
 (map! :leader
       :prefix ("N" . "org-roam notes")

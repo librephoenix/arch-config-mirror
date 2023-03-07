@@ -24,7 +24,7 @@ if [ $filenameext = "org" ]; then
        sed 's~</text:span>~~g' content.xml
        sed 's~<text:span text:style-name="..">~~g' content.xml
 
-       python3 ~/.doom.d/ox-odp-xml-parse.py
+       python3 ~/.doom.d/scripts/ox-odp/ox-odp-xml-parse.py
 
        zip -d $finaloutput styles.xml
        zip -m $finaloutput styles.xml

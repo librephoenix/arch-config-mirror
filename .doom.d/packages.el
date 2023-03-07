@@ -65,3 +65,4 @@
 (package! crdt)
 (package! ess)
 (package! openwith)
+(package! ob-mermaid)
