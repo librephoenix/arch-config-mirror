@@ -972,6 +972,7 @@ autokey-gtk &
 ##/usr/bin/trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --height 28 --tint $trayertint --monitor "primary" &
 nm-applet &
 GOMAXPROCS=1 syncthing --no-browser &
+rclone mount adantium-nextcloud:/ ~/Nextcloud &
 syncthing-gtk -m &
 # flatpak run com.discordapp.Discord --start-minimized &
 gnome-keyring-daemon --start --components=secrets &
