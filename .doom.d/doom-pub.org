@@ -1,4 +1,4 @@
-# Created 2023-03-04 Sat 17:59
+# Created 2023-03-10 Fri 14:24
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -136,6 +136,7 @@ I use this functionality to load my private config file with non-public informat
 (set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
 (set-register ?h '(file . "/home/emmet"))
 (set-register ?x '(file . "/home/emmet/.xmonad/xmonad.org"))
+(set-register ?s '(file . "/home/emmet/.install/install.org"))
 #+end_src
 ** Org Mode Configuration
 *** Standard Org Mode Configuration
@@ -205,8 +206,10 @@ I use this functionality to load my private config file with non-public informat
   (setq output-pptx-file-name (replace-regexp-in-string "\.org" "\.pptx" (buffer-file-name)))
   (setq output-odp-file-name (replace-regexp-in-string "\.org" "\.odp" (buffer-file-name)))
   (setq odp-style-file-name (completing-read "Choose style: "
-                                             '(("/home/emmet/.doom.d/scripts/ox-odp/styles/water.odp")) nil t))
-  (shell-command (concat "~/.doom.d/scripts/ox-odp.sh \"" (buffer-file-name) "\" \"" odp-style-file-name "\" > /dev/null"))
+                                             '("/home/emmet/.doom.d/scripts/ox-odp/styles/water.odp"
+                                                "/home/emmet/.doom.d/scripts/ox-odp/styles/dark.odp"
+                                              ) nil t))
+  (shell-command (concat "~/.doom.d/scripts/ox-odp/ox-odp.sh \"" (buffer-file-name) "\" \"" odp-style-file-name "\" > /dev/null"))
   )
 
 (map! :leader
@@ -323,6 +326,10 @@ same directory as the org-buffer and insert a link to this file."
                 '("svg"))
                   "inkscape"
                   '(file))
+         (list (openwith-make-extension-regexp
+                '("flp"))
+                  "~/.local/bin/flstudio"
+                  '(file))
              ))
    (openwith-mode 1))
 
@@ -378,6 +385,9 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; Better for org source blocks
 (setq electric-indent-mode nil)
+
+;; Mermaid diagrams
+(setq ob-mermaid-cli-path "/usr/bin/mmdc")
 #+end_src
 *** Custom Org Mode Scripts
 **** my-ox-odp Script
@@ -410,7 +420,7 @@ if [ $filenameext = "org" ]; then
        sed 's~</text:span>~~g' content.xml
        sed 's~<text:span text:style-name="..">~~g' content.xml
 
-       python3 ~/.doom.d/ox-odp-xml-parse.py
+       python3 ~/.doom.d/scripts/ox-odp/ox-odp-xml-parse.py
 
        zip -d $finaloutput styles.xml
        zip -m $finaloutput styles.xml
@@ -610,8 +620,8 @@ styletree.write('styles.xml')
   (setq full-org-roam-db-list
         (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
-(defun org-roam-switch-db (&optional arg)
-  "Switch to a different org-roam database"
+(defun org-roam-switch-db (&optional arg silent)
+  "Switch to a different org-roam database, arg"
   (interactive)
   (when (not arg)
   (setq full-org-roam-db-list nil)
@@ -639,9 +649,10 @@ styletree.write('styles.xml')
       (setq org-roam-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))
             org-roam-db-location (f-canonical (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
             org-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))))
+  (when (not silent)
   (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
       (org-open-file (concat org-roam-directory "/dashboard.org"))
-      (dired org-roam-directory))
+      (dired org-roam-directory)))
 
   (org-roam-db-sync)
 
@@ -650,6 +661,16 @@ styletree.write('styles.xml')
 (defun org-roam-default-overview ()
   (interactive)
   (org-roam-switch-db "Default"))
+
+(defun org-roam-switch-db-id-open (arg ID &optional switchpersist)
+  "Switch to another org-roam db and visit file with id arg"
+  "If switchpersist is non-nil, stay in the new org-roam db after visiting file"
+  (interactive)
+  (setq prev-org-roam-db-choice org-roam-db-choice)
+  (org-roam-switch-db arg 1)
+  (org-roam-id-open ID)
+  (when (not switchpersist)
+    (org-roam-switch-db prev-org-roam-db-choice 1)))
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
@@ -1436,6 +1457,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 #+begin_src emacs-lisp
 (package! org-bullets)
 (package! org-super-agenda)
+(package! emacsql :pin "c1a4407")
 (package! org-roam-ui)
 (package! org-roam-nursery :recipe (:repo "https://github.com/chrisbarrett/nursery"))
 (package! lister)
@@ -1452,6 +1474,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (package! crdt)
 (package! ess)
 (package! openwith)
+(package! ob-mermaid)
 #+end_src
 * Publish Script
 I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with noexport, and then export my private doom.org config using the following script:

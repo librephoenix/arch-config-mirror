@@ -287,6 +287,10 @@ same directory as the org-buffer and insert a link to this file."
                 '("svg"))
                   "inkscape"
                   '(file))
+         (list (openwith-make-extension-regexp
+                '("flp"))
+                  "~/.local/bin/flstudio"
+                  '(file))
              ))
    (openwith-mode 1))
 
