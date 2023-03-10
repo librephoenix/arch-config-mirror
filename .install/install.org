@@ -14,7 +14,7 @@ curl -sSL https://gitlab.com/librephoenix/dotfiles/-/raw/main/.install/install.s
 #+END_SRC
 
 Otherwise, the remainder of this literate org document explains the entire script:
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 #!/bin/sh
 
 # emmet's Arch Config Installation Script
@@ -22,7 +22,7 @@ Otherwise, the remainder of this literate org document explains the entire scrip
 #+END_SRC
 *** Package Lists
 First, we make sure git is installed and we checkout my full dotfiles repository.
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # make sure git is installed
 sudo pacman -Syu --noconfirm;
 sudo pacman -S --needed --noconfirm git;
@@ -36,7 +36,7 @@ git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME checkout;
 Then, we begin by listing necessary packages from the standard Arch repositories, the AUR, and Flathub.  Packages can be changed or commented out if necessary.
 
 Packages are organized by function.
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # intialize package list bash arrays
 archpackages=();
 aurpackages=();
@@ -45,7 +45,7 @@ flatpackages=();
 #+END_SRC
 
 **** DEs + WMs
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # KDE plasma
     archpackages+=(
     plasma-desktop
@@ -54,10 +54,10 @@ flatpackages=();
     dolphin
     );
 
-    # Cinnamon
-    #archpackages+=(
-    #cinnamon
-    #);
+#    # Cinnamon
+#    archpackages+=(
+#    cinnamon
+#    );
 
     # hypr
     aurpackages+=(
@@ -73,12 +73,12 @@ flatpackages=();
 #+END_SRC
 
 **** Browsers
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # browsers
     archpackages+=(
-    #firefox
-    #qutebrowser
-    #luakit
+#    firefox
+#    qutebrowser
+#    luakit
     );
 
     aurpackages+=(
@@ -89,14 +89,14 @@ flatpackages=();
 #+END_SRC
 
 **** Office
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # documents
     archpackages+=(
     libreoffice-still
     atril
     xournalpp
     geary
-    kdeconnect
+#    kdeconnect
     );
 
     aurpackages+=(
@@ -123,7 +123,7 @@ flatpackages=();
 #+END_SRC
 
 **** File Managers
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # file managers
     archpackages+=(
     ranger
@@ -138,7 +138,7 @@ flatpackages=();
 #+END_SRC
 
 **** Media
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # media
     archpackages+=(
 
@@ -164,8 +164,8 @@ flatpackages=();
         movit
         mediainfo
 
-        # digital audio workstation
-        lmms
+#        # digital audio workstation
+#        lmms
     );
 
     aurpackages+=(
@@ -181,10 +181,10 @@ flatpackages=();
         # media recording
         audio-recorder
 
-        # digital audio workstation
-        helio-workstation-bin
-        helm-synth
-        zynaddsubfx
+        # digital audio workstations
+#        helio-workstation-bin
+#        helm-synth
+#        zynaddsubfx
 
         # misc
         betterdiscordctl-git
@@ -196,7 +196,7 @@ flatpackages=();
 
 #+END_SRC
 **** Games
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # games and relevant apps
     archpackages+=(
     steam
@@ -222,26 +222,26 @@ flatpackages=();
 #+END_SRC
 
 **** Shells
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # shells
     archpackages+=(
     zsh
-    ##fish
+#    fish
     );
 
 #+END_SRC
 **** Terminal Emulators
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # terminal emulators
     archpackages+=(
     alacritty
-    #kitty
+#    kitty
     );
 
 #+END_SRC
 
 **** Command Line Utilities
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # command line utilities
     archpackages+=(
     neofetch lolcat cowsay
@@ -271,7 +271,7 @@ flatpackages=();
 
 #+END_SRC
 **** Editors
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # editors
     archpackages+=(
     vim
@@ -284,12 +284,12 @@ flatpackages=();
 
 #+END_SRC
 **** Development
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # development packages
 
 #+END_SRC
 ***** Android
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
         # android
         archpackages+=(
         android-tools
@@ -297,7 +297,7 @@ flatpackages=();
         );
 #+END_SRC
 ***** CC
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
         # cc
         archpackages+=(
         gcc
@@ -312,7 +312,7 @@ flatpackages=();
 #+END_SRC
 
 ***** Python
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
         # python
         archpackages+=(
         python
@@ -322,7 +322,7 @@ flatpackages=();
 #+END_SRC
 
 ***** Haskell
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
         # haskell
         aurpackages+=(
         haskell-language-server-static
@@ -331,7 +331,7 @@ flatpackages=();
 #+END_SRC
 
 ***** Java
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
         # java
         archpackages+=(
         jdk-openjdk
@@ -342,7 +342,7 @@ flatpackages=();
 #+END_SRC
 
 ***** Gamedev
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
         # gamedev
         archpackages+=(
         godot
@@ -350,7 +350,7 @@ flatpackages=();
 
 #+END_SRC
 ***** Other
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
         # other
         archpackages+=(
         texinfo
@@ -362,14 +362,13 @@ flatpackages=();
         );
 #+END_SRC
 **** Fonts
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     #fonts
     archpackages+=(
     ttf-font-awesome
     ttf-inconsolata
-    ttf-nerd-fonts-symbols
+    ttf-nerd-fonts-symbols-common
     ttf-nerd-fonts-symbols-1000-em
-    ttf-nerd-fonts-symbols-mono
     ttf-iosevka-nerd
     ttf-ubuntu-font-family
     terminus-font
@@ -382,7 +381,7 @@ flatpackages=();
 
 #+END_SRC
 **** Compositor and Desktop Utils
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # desktop utils
     archpackages+=(
     sddm
@@ -407,14 +406,14 @@ flatpackages=();
 #+END_SRC
 
 **** X Utils
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # graphical display and X utils
     archpackages+=(
     xorg
     autorandr
     xorg-xinit
-    ##xf86-video-vesa
-    ##xf86-video-intel
+#    xf86-video-vesa
+#    xf86-video-intel
     xf86-video-amdgpu
     xdotool
     xclip
@@ -429,7 +428,7 @@ flatpackages=();
 #+END_SRC
 
 **** Wayland Utils
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # wayland utils
     archpackages+=(
     xdg-desktop-portal-wlr
@@ -439,18 +438,18 @@ flatpackages=();
     swaylock
     grim
     slurp
-    wayshot
-    wev
     );
 
     aurpackages+=(
     wlsunset
     hyprpaper-git
+    wayshot-bin
+    wev
     );
 
 #+END_SRC
 **** Audio Server
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # pipewire for audio server
     archpackages+=(
     pipewire
@@ -465,7 +464,7 @@ flatpackages=();
 #+END_SRC
 
 **** Virtual Machines
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # virtual machines
     archpackages+=(
     libvirt
@@ -478,11 +477,13 @@ flatpackages=();
 #+END_SRC
 
 **** Core System Packages
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # core system packages
     archpackages+=(
     linux linux-firmware linux-headers
-    base base-devel
+    base
+    snapper
+#    snap-pac # Idk if I know what I'm doing with this yet
     binutils
     git
     git-delta
@@ -492,6 +493,7 @@ flatpackages=();
     cups
     gparted
     flatpak
+    rclone
     );
 
     aurpackages+=(
@@ -501,7 +503,7 @@ flatpackages=();
 #+END_SRC
 
 **** Security
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # security
     archpackages+=(
     xsecurelock xautolock
@@ -514,7 +516,7 @@ flatpackages=();
 #+END_SRC
 
 **** Networking Utils
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # networking
     archpackages+=(
     networkmanager
@@ -533,7 +535,7 @@ flatpackages=();
 
 #+END_SRC
 **** File Systems
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # file systems
     archpackages+=(
     dosfstools
@@ -541,10 +543,10 @@ flatpackages=();
 
 #+END_SRC
 **** Microcode
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
     # microcode
     archpackages+=(
-    ##intel-ucode
+#    intel-ucode
     amd-ucode
     );
 
@@ -554,16 +556,18 @@ Here, we begin by installing necessary packages from the standard Arch repositor
 
 To complete the installation, packages not tracked by package managers are installed, including: Doom Emacs, Oh My Zsh + Zsh Plugins.
 **** Arch Packages
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # install arch packages
+sudo pacman -Syu --noconfirm;
 sudo pacman -S --needed --noconfirm "${archpackages[@]}";
+echo ${archpackages[@]} | tr " " "\n" > ~/.install/archpackages.txt
 
 #+END_SRC
 
 **** Paru + AUR Packages
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # install paru if it isn't already installed
-sudo pacman -S --needed --noconfirm base-devel;
+# sudo pacman -S --needed --noconfirm base-devel;
 if ! command -v paru &> /dev/null
    then
       cd /tmp;
@@ -575,12 +579,18 @@ cd ~;
 
 # install aur packages
 paru -S --needed --noconfirm "${aurpackages[@]}";
+echo ${aurpackages[@]} | tr " " "\n" >> ~/.install/archpackages.txt
+
+# cleanup
+# sudo pacman -Rsu --noconfirm $(comm -23 <(pacman -Qq | sort) <(sort ~/.install/archpackages.txt))
 
 #+END_SRC
 
 **** Flatpaks
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # install flatpaks
+flatpak update;
+flatpak upgrade;
 flatpak install "${flatpackages[@]}";
 
 # apply my gtk themes to all flatpaks
@@ -593,18 +603,22 @@ mkdir ~/.discord_launchpad;
 sudo flatpak override com.discordapp.Discord --filesystem=$HOME/.discord_launchpad
 
 # set up betterdiscord
-betterdiscordctl -i flatpak install
+betterdiscordctl --d-install flatpak install;
+betterdiscordctl --d-install flatpak reinstall;
 
 #+END_SRC
 **** Stack Packages
 ***** Install Stack
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # install stack
-curl -sSL https://get.haskellstack.org/ | sh;
+if ! command -v stack &> /dev/null
+   then
+      curl -sSL https://get.haskellstack.org/ | sh;
+fi;
 
 #+END_SRC
 ***** Install XMonad and XMobar plus extras
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # install xmonad and xmobar
 
 # go to .xmonad working directory
@@ -612,8 +626,16 @@ cd ~/.xmonad;
 
 # clone xmonad, xmonad-contrib, and xmobar
 git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git;
+cd ~/.xmonad/xmonad-git;
+git pull;
 git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git;
+cd ~/.xmonad/xmonad-contrib-git;
+git pull;
 git clone https://codeberg.org/xmobar/xmobar.git ~/.xmonad/xmobar-git;
+cd ~/.xmonad/xmobar-git;
+git pull;
+
+cd ~/.xmonad;
 
 # setup stack and install
 stack setup;
@@ -622,9 +644,12 @@ stack install;
 # compile xmonadctl binary
 stack ghc xmonadctl.hs;
 
+# recompile xmonad so I can login
+xmonad --recompile;
+
 #+END_SRC
 ***** Install Hledger
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # install hledger
 
 stack install hledger;
@@ -632,39 +657,43 @@ stack install hledger;
 #+END_SRC
 
 **** Doom Emacs
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # install doom
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d; &&
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d &&
 ~/.emacs.d/bin/doom install;
 ~/.emacs.d/bin/doom sync;
 
 #+END_SRC
 **** Oh My Zsh
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # install oh-my-zsh with unattended flag
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended; &&
+# sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended &&
 
 # re-apply my existing config
-mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc; &&
+# mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc; &&
 
 # get zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions; &&
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
+cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
+git pull &&
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting; &&
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
+cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
+git pull &&
 
-chsh -s /bin/zsh;
+# chsh -s /bin/zsh;
 
 #+END_SRC
 *** Post Install Reminders
 In this section, the script outputs a list of "post install reminders" which are things that I haven't added to the script yet, or are difficult to set up a script for.
-#+BEGIN_SRC shell :tangle install.sh
+#+BEGIN_SRC shell :tangle install.sh :tangle-mode (identity #o755)
 # post install reminders
-echo ""
-echo "Post Install Reminders"
-echo "-------------------"
-echo ""
-echo "Configure wallpaper via nitrogen"
-echo "Transfer relevant files via backups and syncthing"
-echo "Set up ssh keys for servers and git"
+# echo ""
+# echo "Post Install Reminders"
+# echo "-------------------"
+# echo ""
+# echo "Configure wallpaper via nitrogen"
+# echo "Transfer relevant files via backups and syncthing"
+# echo "Set up ssh keys for servers and git"
 
 #+END_SRC

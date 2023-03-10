@@ -23,10 +23,10 @@ flatpackages=();
     dolphin
     );
 
-    # Cinnamon
-    #archpackages+=(
-    #cinnamon
-    #);
+#    # Cinnamon
+#    archpackages+=(
+#    cinnamon
+#    );
 
     # hypr
     aurpackages+=(
@@ -41,9 +41,9 @@ flatpackages=();
 
     # browsers
     archpackages+=(
-    #firefox
-    #qutebrowser
-    #luakit
+#    firefox
+#    qutebrowser
+#    luakit
     );
 
     aurpackages+=(
@@ -57,7 +57,7 @@ flatpackages=();
     atril
     xournalpp
     geary
-    kdeconnect
+#    kdeconnect
     );
 
     aurpackages+=(
@@ -118,8 +118,8 @@ flatpackages=();
         movit
         mediainfo
 
-        # digital audio workstation
-        lmms
+#        # digital audio workstation
+#        lmms
     );
 
     aurpackages+=(
@@ -135,10 +135,10 @@ flatpackages=();
         # media recording
         audio-recorder
 
-        # digital audio workstation
-        helio-workstation-bin
-        helm-synth
-        zynaddsubfx
+        # digital audio workstations
+#        helio-workstation-bin
+#        helm-synth
+#        zynaddsubfx
 
         # misc
         betterdiscordctl-git
@@ -173,13 +173,13 @@ flatpackages=();
     # shells
     archpackages+=(
     zsh
-    ##fish
+#    fish
     );
 
     # terminal emulators
     archpackages+=(
     alacritty
-    #kitty
+#    kitty
     );
 
     # command line utilities
@@ -275,9 +275,8 @@ flatpackages=();
     archpackages+=(
     ttf-font-awesome
     ttf-inconsolata
-    ttf-nerd-fonts-symbols
+    ttf-nerd-fonts-symbols-common
     ttf-nerd-fonts-symbols-1000-em
-    ttf-nerd-fonts-symbols-mono
     ttf-iosevka-nerd
     ttf-ubuntu-font-family
     terminus-font
@@ -315,8 +314,8 @@ flatpackages=();
     xorg
     autorandr
     xorg-xinit
-    ##xf86-video-vesa
-    ##xf86-video-intel
+#    xf86-video-vesa
+#    xf86-video-intel
     xf86-video-amdgpu
     xdotool
     xclip
@@ -338,13 +337,13 @@ flatpackages=();
     swaylock
     grim
     slurp
-    wayshot
-    wev
     );
 
     aurpackages+=(
     wlsunset
     hyprpaper-git
+    wayshot-bin
+    wev
     );
 
     # pipewire for audio server
@@ -370,7 +369,9 @@ flatpackages=();
     # core system packages
     archpackages+=(
     linux linux-firmware linux-headers
-    base base-devel
+    base
+    snapper
+#    snap-pac # Idk if I know what I'm doing with this yet
     binutils
     git
     git-delta
@@ -380,6 +381,7 @@ flatpackages=();
     cups
     gparted
     flatpak
+    rclone
     );
 
     aurpackages+=(
@@ -418,15 +420,17 @@ flatpackages=();
 
     # microcode
     archpackages+=(
-    ##intel-ucode
+#    intel-ucode
     amd-ucode
     );
 
 # install arch packages
+sudo pacman -Syu --noconfirm;
 sudo pacman -S --needed --noconfirm "${archpackages[@]}";
+echo ${archpackages[@]} | tr " " "\n" > ~/.install/archpackages.txt
 
 # install paru if it isn't already installed
-sudo pacman -S --needed --noconfirm base-devel;
+# sudo pacman -S --needed --noconfirm base-devel;
 if ! command -v paru &> /dev/null
    then
       cd /tmp;
@@ -438,8 +442,14 @@ cd ~;
 
 # install aur packages
 paru -S --needed --noconfirm "${aurpackages[@]}";
+echo ${aurpackages[@]} | tr " " "\n" >> ~/.install/archpackages.txt
+
+# cleanup
+# sudo pacman -Rsu --noconfirm $(comm -23 <(pacman -Qq | sort) <(sort ~/.install/archpackages.txt))
 
 # install flatpaks
+flatpak update;
+flatpak upgrade;
 flatpak install "${flatpackages[@]}";
 
 # apply my gtk themes to all flatpaks
@@ -452,10 +462,14 @@ mkdir ~/.discord_launchpad;
 sudo flatpak override com.discordapp.Discord --filesystem=$HOME/.discord_launchpad
 
 # set up betterdiscord
-betterdiscordctl -i flatpak install
+betterdiscordctl --d-install flatpak install;
+betterdiscordctl --d-install flatpak reinstall;
 
 # install stack
-curl -sSL https://get.haskellstack.org/ | sh;
+if ! command -v stack &> /dev/null
+   then
+      curl -sSL https://get.haskellstack.org/ | sh;
+fi;
 
 # install xmonad and xmobar
 
@@ -464,8 +478,16 @@ cd ~/.xmonad;
 
 # clone xmonad, xmonad-contrib, and xmobar
 git clone https://github.com/xmonad/xmonad ~/.xmonad/xmonad-git;
+cd ~/.xmonad/xmonad-git;
+git pull;
 git clone https://github.com/xmonad/xmonad-contrib ~/.xmonad/xmonad-contrib-git;
+cd ~/.xmonad/xmonad-contrib-git;
+git pull;
 git clone https://codeberg.org/xmobar/xmobar.git ~/.xmonad/xmobar-git;
+cd ~/.xmonad/xmobar-git;
+git pull;
+
+cd ~/.xmonad;
 
 # setup stack and install
 stack setup;
@@ -474,33 +496,40 @@ stack install;
 # compile xmonadctl binary
 stack ghc xmonadctl.hs;
 
+# recompile xmonad so I can login
+xmonad --recompile;
+
 # install hledger
 
 stack install hledger;
 
 # install doom
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d; &&
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d &&
 ~/.emacs.d/bin/doom install;
 ~/.emacs.d/bin/doom sync;
 
 # install oh-my-zsh with unattended flag
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended; &&
+# sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended &&
 
 # re-apply my existing config
-mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc; &&
+# mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc; &&
 
 # get zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions; &&
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
+cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
+git pull &&
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting; &&
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
+cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
+git pull &&
 
-chsh -s /bin/zsh;
+# chsh -s /bin/zsh;
 
 # post install reminders
-echo ""
-echo "Post Install Reminders"
-echo "-------------------"
-echo ""
-echo "Configure wallpaper via nitrogen"
-echo "Transfer relevant files via backups and syncthing"
-echo "Set up ssh keys for servers and git"
+# echo ""
+# echo "Post Install Reminders"
+# echo "-------------------"
+# echo ""
+# echo "Configure wallpaper via nitrogen"
+# echo "Transfer relevant files via backups and syncthing"
+# echo "Set up ssh keys for servers and git"

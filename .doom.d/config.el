@@ -100,6 +100,7 @@
 (set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
 (set-register ?h '(file . "/home/emmet"))
 (set-register ?x '(file . "/home/emmet/.xmonad/xmonad.org"))
+(set-register ?s '(file . "/home/emmet/.install/install.org"))
 
 ;;;------ Org mode configuration ------;;;
 

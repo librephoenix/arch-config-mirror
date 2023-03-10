@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$1" = "sync" ]; then
+    ~/.local/bin/arch-sync;
+elif [ "$1" = "help" ]; then
+    echo "arch sync - synchronize config packages with install.org and install.sh"
+    echo "arch help - display this message"
+else
+    echo "no subcommand $1"
+    echo "type \"arch help\" for a subcommand list"
+fi;
