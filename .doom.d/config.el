@@ -350,6 +350,39 @@ same directory as the org-buffer and insert a link to this file."
 ;; Mermaid diagrams
 (setq ob-mermaid-cli-path "/usr/bin/mmdc")
 
+;; Print org mode
+(defun org-simple-print-buffer ()
+  "Open an htmlized form of current buffer and open in a web browser to print"
+  (interactive)
+  (htmlize-buffer)
+  (browse-url-of-buffer (concat (buffer-name) ".html"))
+  (sleep-for 1)
+  (kill-buffer (concat (buffer-name) ".html")))
+
+;; Doesn't work yet, bc htmlize-region takes arguments BEG and END
+;(defun org-simple-print-region()
+;  "Open an htmlized form of current region and open in a web browser to print"
+;  (interactive)
+;  (htmlize-region )
+;  (browse-url-of-buffer (concat (buffer-name) ".html"))
+;  (sleep-for 1)
+;  (kill-buffer (concat (buffer-name) ".html")))
+
+(map! :leader
+      :prefix ("P" . "Print")
+      :desc "Simple print buffer in web browser"
+      "p" 'org-simple-print-buffer)
+
+(map! :leader
+      :prefix ("P" . "Print")
+      :desc "Simple print buffer in web browser"
+      "b" 'org-simple-print-buffer)
+
+;(map! :leader
+;      :prefix ("P" . "Print")
+;      :desc "Simple print region in web browser"
+;      "r" 'org-simple-print-region)
+
 ;;;------ Org roam configuration ------;;;
 
 (setq org-roam-directory "~/Roam"
@@ -467,6 +500,8 @@ same directory as the org-buffer and insert a link to this file."
 
 (use-package org-roam-dblocks
   :hook (org-mode . org-roam-dblocks-autoupdate-mode))
+
+(setq org-id-extra-files 'org-agenda-text-search-extra-files)
 
 ;;;------ Org agenda configuration ------;;;
 
