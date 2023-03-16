@@ -38,6 +38,10 @@
 (bind-key* "C-l" #'evil-window-right)
 (bind-key* "C-q" #'evil-window-delete)
 
+;; Mouse buffer management
+(bind-key* "<mouse-8>" #'previous-buffer)
+(bind-key* "<mouse-9>" #'next-buffer)
+
 ;; I like evil mode visual movement
 (map! :map evil-normal-state-map
       :desc "Move to next visual line"
@@ -876,6 +880,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 ;; For company-mode users:
 (add-to-list 'company-backends 'hledger-company)
 
+(evil-define-key* 'normal hledger-view-mode-map "q" 'kill-current-buffer)
+(evil-define-key* 'normal hledger-view-mode-map "[" 'hledger-prev-report)
+(evil-define-key* 'normal hledger-view-mode-map "]" 'hledger-next-report)
+
 (map! :leader
       :prefix ("l" . "hledger")
       :desc "Exec hledger command"
@@ -900,6 +908,49 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :map hledger-mode-map
       :desc "Edit amount at point"
       "t a" 'hledger-edit-amount)
+
+;;;-- Centaur Tabs configuration ;;;--
+
+;; Ricing tabs
+(setq centaur-tabs-set-bar 'under)
+(setq centaur-tabs-style "wave")
+
+;; Kbd tab navigation
+(map!
+  :map evil-normal-state-map
+  "H" #'centaur-tabs-backward
+  "L" #'centaur-tabs-forward)
+
+(defun centaur-tabs-hide-tab (x)
+  "Do no to show buffer X in tabs."
+  (let ((name (format "%s" x)))
+    (or
+     ;; Current window is not dedicated window.
+     (window-dedicated-p (selected-window))
+
+     ;; Buffer name not match below blacklist.
+     (string-prefix-p "*epc" name)
+     (string-prefix-p "*helm" name)
+     (string-prefix-p "*Helm" name)
+     (string-prefix-p "*Compile-Log*" name)
+     (string-prefix-p "*compilation*" name)
+     (string-prefix-p "*Ibuffer*" name)
+     (string-prefix-p "*Messages*" name)
+     (string-prefix-p "*lsp" name)
+     (string-prefix-p "*company" name)
+     (string-prefix-p "*Flycheck" name)
+     (string-prefix-p "*tramp" name)
+     (string-prefix-p " *Mini" name)
+     (string-prefix-p "*help" name)
+     (string-prefix-p "*straight" name)
+     (string-prefix-p " *temp" name)
+     (string-prefix-p "*Help" name)
+     (string-prefix-p "*mybuf" name)
+
+     ;; Is not magit buffer.
+     (and (string-prefix-p "magit" name)
+          (not (file-name-extension name)))
+     )))
 
 ;;;------ Load my private config ------;;;
 
