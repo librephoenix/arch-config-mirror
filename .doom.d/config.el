@@ -922,7 +922,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
   "L" #'centaur-tabs-forward)
 
 (setq centaur-tabs-excluded-prefixes
-  '("*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help"))
+  '("*magit-process" "*magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help"))
 
 ;;;------ Load my private config ------;;;
 

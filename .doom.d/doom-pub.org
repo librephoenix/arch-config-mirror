@@ -1,4 +1,4 @@
-# Created 2023-03-16 Thu 16:38
+# Created 2023-03-16 Thu 17:36
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1196,7 +1196,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
   "L" #'centaur-tabs-forward)
 
 (setq centaur-tabs-excluded-prefixes
-  '("*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help"))
+  '("*magit-process" "*magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help"))
 #+end_src
 ** EAF
 #+begin_src emacs-lisp
