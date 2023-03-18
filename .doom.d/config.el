@@ -919,10 +919,27 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (map!
   :map evil-normal-state-map
   "H" #'centaur-tabs-backward
-  "L" #'centaur-tabs-forward)
+  "L" #'centaur-tabs-forward
+  "C-<iso-lefttab>" #'centaur-tabs-backward
+  "C-<tab>" #'centaur-tabs-forward)
 
+;; Excluded tabs buffer prefixes
 (setq centaur-tabs-excluded-prefixes
-  '("*magit-process" "*magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help"))
+  '("*magit-process" "*magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"))
+
+;; I personally don't like grouping buffers, it makes things kinda hard to find
+(defun centaur-tabs-buffer-groups ()
+  "This function: `centaur-tabs-buffer-groups' control buffers' group rules."
+  (list
+   (cond
+    (t
+     "Everything")
+    (t
+     (centaur-tabs-get-group-name (current-buffer))))))
+
+(evil-global-set-key 'normal (kbd "C-w") 'kill-current-buffer)
+
+(centaur-tabs-mode t)
 
 ;;;------ Load my private config ------;;;
 
