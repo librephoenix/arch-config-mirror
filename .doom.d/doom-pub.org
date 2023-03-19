@@ -1,4 +1,4 @@
-# Created 2023-03-17 Fri 22:17
+# Created 2023-03-19 Sun 15:27
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -139,7 +139,7 @@ I use this functionality to load my private config file with non-public informat
       :desc "Jump to register"
       "r" 'jump-to-register)
 
-(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.org"))
+(set-register ?f '(file . "/home/emmet/Family.s/Roam/hledger.org"))
 (set-register ?r '(file . "/home/emmet/README.org"))
 (set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
 (set-register ?h '(file . "/home/emmet"))
@@ -1150,7 +1150,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
 
 ;; The default journal location is too opinionated.
-(setq hledger-jfile "/home/emmet/Family.s/Documents/Finances/hledger.journal")
+(setq hledger-jfile "/home/emmet/Family.s/Roam/hledger.journal")
 
 ;;; Auto-completion for account names
 ;; For company-mode users:
