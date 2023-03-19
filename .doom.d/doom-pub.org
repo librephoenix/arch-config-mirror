@@ -1,9 +1,9 @@
-# Created 2023-03-17 Fri 22:04
+# Created 2023-03-17 Fri 22:17
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
 * What is Doom Emacs?
-[[https://github.com/doomemacs/doomemacs][Doom Emacs]] is a distribution of the [[https://www.gnu.org/software/emacs/][Emacs Text Editor]] designed for [[https://www.vim.org/][Vim]] users. I like to use Emacs due to its extensibility and extra features it is cabaple of (besides text editing). Some of these extra features include:
+[[https://github.com/doomemacs/doomemacs][Doom Emacs]] is a distribution of the [[https://www.gnu.org/software/emacs/][Emacs Text Editor]] designed for [[https://www.vim.org/][Vim]] users. I like to use Emacs due to its extensibility and extra features it is capable of (besides text editing). Some of these extra features include:
 - [[https://orgmode.org/][Org Mode]] (Hierarchical text-based document format)
 - [[https://www.orgroam.com/][Org Roam]] (A second brain / personal wiki)
 - [[https://orgmode.org/][Org Agenda]] (Calendar and todo list)
@@ -113,7 +113,11 @@ I use this functionality to load my private config file with non-public informat
   :action doom/open-private-config)
  ("Open documentation" :icon
   (all-the-icons-octicon "book" :face 'doom-dashboard-menu-title)
-  :action doom/help))
+  :action doom/help)
+ ("Quit emacs" :icon
+  (all-the-icons-faicon "level-down" :face 'doom-dashboard-menu-title)
+  :action save-buffers-kill-terminal)
+ )
 )
 
 ;; Requires for faster loading
@@ -1199,7 +1203,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 ;; Excluded tabs buffer prefixes
 (setq centaur-tabs-excluded-prefixes
-  '("*magit-process" "*magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"))
+  '("*magit-process" "*magit-diff" "magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"))
 
 ;; I personally don't like grouping buffers, it makes things kinda hard to find
 (defun centaur-tabs-buffer-groups ()
@@ -1554,7 +1558,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (package! ob-mermaid)
 #+end_src
 * Publish Script
-I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with noexport, and then export my private doom.org config using the following script:
+I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with =noexport=, and then export my private doom.org config using the following script:
 #+begin_src emacs-lisp
 ;; Export link below runs this
 (org-org-export-to-org)

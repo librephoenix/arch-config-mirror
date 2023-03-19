@@ -79,7 +79,11 @@
   :action doom/open-private-config)
  ("Open documentation" :icon
   (all-the-icons-octicon "book" :face 'doom-dashboard-menu-title)
-  :action doom/help))
+  :action doom/help)
+ ("Quit emacs" :icon
+  (all-the-icons-faicon "level-down" :face 'doom-dashboard-menu-title)
+  :action save-buffers-kill-terminal)
+ )
 )
 
 ;; Requires for faster loading
@@ -99,7 +103,7 @@
       :desc "Jump to register"
       "r" 'jump-to-register)
 
-(set-register ?f '(file . "/home/emmet/Family.s/Documents/Finances/hledger.org"))
+(set-register ?f '(file . "/home/emmet/Family.s/Roam/hledger.org"))
 (set-register ?r '(file . "/home/emmet/README.org"))
 (set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
 (set-register ?h '(file . "/home/emmet"))
@@ -874,7 +878,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
 
 ;; The default journal location is too opinionated.
-(setq hledger-jfile "/home/emmet/Family.s/Documents/Finances/hledger.journal")
+(setq hledger-jfile "/home/emmet/Family.s/Roam/hledger.journal")
 
 ;;; Auto-completion for account names
 ;; For company-mode users:
@@ -925,7 +929,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 ;; Excluded tabs buffer prefixes
 (setq centaur-tabs-excluded-prefixes
-  '("*magit-process" "*magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"))
+  '("*magit-process" "*magit-diff" "magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"))
 
 ;; I personally don't like grouping buffers, it makes things kinda hard to find
 (defun centaur-tabs-buffer-groups ()
