@@ -339,8 +339,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_c), killAll),
       -- exit xmonad
       ((modm .|. shiftMask, xK_q), spawn "killall xmonad-x86_64-linux"),
-      -- Lock with xsecurelock and suspend
+      -- Lock with dm-tool
+      ((modm, xK_Escape), spawn "dm-tool switch-to-greeter"),
+      -- Lock with dm-tool and suspend
       ((modm .|. shiftMask, xK_s), spawn "dm-tool switch-to-greeter & systemctl suspend"),
+      ((modm .|. shiftMask, xK_Escape), spawn "dm-tool switch-to-greeter & systemctl suspend"),
 
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),

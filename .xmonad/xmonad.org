@@ -528,7 +528,9 @@ All of the following keybinds pertain to window management and layouts:
 | S-q               | Kill window                                                                                    |
 | S-Shift-c         | Kill all windows on current workspace                                                          |
 | S-Shift-q         | Exit xmonad                                                                                    |
+| S-Shift-Escape    | Lock xmonad                                                                                    |
 | S-Shift-s         | Lock xmonad and suspend                                                                        |
+| S-Shift-Escape    | Lock xmonad and suspend                                                                        |
 | S-Space           | Switch to next layout                                                                          |
 | S-Shift-Space     | Reset layout on current workspace                                                              |
 | S-r               | Resize windows to correct size                                                                 |
@@ -547,8 +549,11 @@ These keybindings are then set via:
       ((modm .|. shiftMask, xK_c), killAll),
       -- exit xmonad
       ((modm .|. shiftMask, xK_q), spawn "killall xmonad-x86_64-linux"),
-      -- Lock with xsecurelock and suspend
+      -- Lock with dm-tool
+      ((modm, xK_Escape), spawn "dm-tool switch-to-greeter"),
+      -- Lock with dm-tool and suspend
       ((modm .|. shiftMask, xK_s), spawn "dm-tool switch-to-greeter & systemctl suspend"),
+      ((modm .|. shiftMask, xK_Escape), spawn "dm-tool switch-to-greeter & systemctl suspend"),
 
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
