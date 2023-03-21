@@ -290,6 +290,7 @@ flatpackages=();
     # desktop utils
     archpackages+=(
     sddm
+    lightdm
     dmenu
     tint2
     nitrogen

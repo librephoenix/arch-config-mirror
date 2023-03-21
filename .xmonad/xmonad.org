@@ -548,7 +548,7 @@ These keybindings are then set via:
       -- exit xmonad
       ((modm .|. shiftMask, xK_q), spawn "killall xmonad-x86_64-linux"),
       -- Lock with xsecurelock and suspend
-      ((modm .|. shiftMask, xK_s), spawn "xsecurelock & systemctl suspend"),
+      ((modm .|. shiftMask, xK_s), spawn "dm-tool switch-to-greeter & systemctl suspend"),
 
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
@@ -964,7 +964,7 @@ Lastly, desktop applications are started in the background.
 #+BEGIN_SRC sh :tangle startup.sh :tangle-mode (identity #o755)
 # Launch necessary desktop applications
 emacs --daemon &
-xautolock -time 25 -locker "xsecurelock & systemctl suspend" &
+xautolock -time 10 -locker "dm-tool switch-to-greeter & systemctl suspend" &
 twmnd &
 alttab -w 1 -t 240x160 -i 64x64 -sc 1 -bg $colorBgNormal -fg $colorFgNormal -frame $colorSecondary -inact $colorFgNormal &
 nitrogen --restore &
