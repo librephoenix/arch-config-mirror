@@ -157,7 +157,20 @@
   (when (string= (message "%s" major-mode) "org-mode")
     (org-babel-tangle)))
 
+(defun text-in-buffer-p (TEXT)
+(save-excursion (goto-char (point-min)) (search-forward TEXT nil t)))
+
+(defun add-todos-tag-on-save-org-mode-file()
+  (interactive)
+    (if (or (text-in-buffer-p "SCHEDULED") (text-in-buffer-p "DEADLINE"))
+      (org-roam-tag-add '("todos"))
+      (org-roam-tag-remove '("todos"))
+    )
+    (org-roam-db-sync)
+  )
+
 (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
+(add-hook 'after-save-hook 'add-todos-tag-on-save-org-mode-file)
 
 ;; Enable autorevert globally so that buffers update when files change on disk.
 ;; Very useful when used with file syncing (i.e. syncthing)
@@ -458,6 +471,34 @@ same directory as the org-buffer and insert a link to this file."
   (when (not switchpersist)
     (org-roam-switch-db prev-org-roam-db-choice 1)))
 
+(defun org-roam-filter-by-tag (tag-name)
+  (lambda (node)
+    (member tag-name (org-roam-node-tags node))))
+
+(defun org-roam-list-notes-by-tag (tag-name)
+  (mapcar #'org-roam-node-file
+          (seq-filter
+           (org-roam-filter-by-tag tag-name)
+           (org-roam-node-list))))
+
+(defun org-roam-append-notes-to-agenda (tag-name db)
+  (org-roam-switch-db db t)
+  (setq org-agenda-files (append org-agenda-files (org-roam-list-notes-by-tag "todos")))
+)
+
+(defun org-roam-refresh-agenda-list ()
+  (interactive)
+  (setq prev-org-roam-db-choice org-roam-db-choice)
+  (setq org-agenda-files '())
+  (dolist (DB full-org-roam-db-list-pretty)
+    (org-roam-append-notes-to-agenda "todos" DB)
+  )
+  (org-roam-switch-db prev-org-roam-db-choice 1)
+)
+
+;; Build the agenda list the first time for the session
+(org-roam-refresh-agenda-list)
+
 (map! :leader
       :prefix ("N" . "org-roam notes")
       :desc "Capture new roam node"
@@ -518,11 +559,11 @@ same directory as the org-buffer and insert a link to this file."
       org-agenda-start-day "+0d")
 
 ;; Set folder for my org agenda files
-(setq org-agenda-files (list "~/Agenda"))
+;(setq org-agenda-files (list "~/Agenda"))
 
-(dolist (item full-org-roam-db-list)
-  (setq org-agenda-files
-        (append (list (concat item "/Agenda")) org-agenda-files)))
+;(dolist (item full-org-roam-db-list)
+;  (setq org-agenda-files
+;        (append (list (concat item "/Agenda")) org-agenda-files)))
 
 ;; Function to be run when org-agenda is opened
 (defun org-agenda-open-hook ()
@@ -537,10 +578,11 @@ same directory as the org-buffer and insert a link to this file."
   "Lists all available agenda files and switches to desired one"
   (interactive)
   (setq full-agenda-file-list nil)
-  (dolist (item org-agenda-files)
-   (if (f-directory-p item)
-    (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list))))
-  (setq choice (completing-read "Select agenda file:" full-agenda-file-list nil t))
+;  (dolist (item org-agenda-files)
+;   (if (f-directory-p item)
+;    (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list))
+;   (setq full-agenda-file-list (append item full-agenda-file-list))))
+  (setq choice (completing-read "Select agenda file:" org-agenda-files nil t))
   (find-file choice))
 
 (map! :leader
@@ -929,7 +971,8 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 ;; Excluded tabs buffer prefixes
 (setq centaur-tabs-excluded-prefixes
-  '("magit" "*magit-process" "magit-process" "*magit-diff" "magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"))
+  '("magit" "*magit-process" "magit-process" "*magit-diff" "magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"
+  "*Calendar" "Calendar"))
 
 ;; I personally don't like grouping buffers, it makes things kinda hard to find
 (defun centaur-tabs-buffer-groups ()
