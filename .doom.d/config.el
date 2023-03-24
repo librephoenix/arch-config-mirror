@@ -162,12 +162,12 @@
 
 (defun add-todos-tag-on-save-org-mode-file()
   (interactive)
-    (if (or (text-in-buffer-p "SCHEDULED") (text-in-buffer-p "DEADLINE"))
+    (if (or (text-in-buffer-p "SCHEDULED: <") (text-in-buffer-p "DEADLINE: <"))
       (org-roam-tag-add '("todos"))
       (org-roam-tag-remove '("todos"))
     )
     (org-roam-db-sync)
-  )
+)
 
 (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
 (add-hook 'after-save-hook 'add-todos-tag-on-save-org-mode-file)
