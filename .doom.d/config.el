@@ -160,13 +160,38 @@
 (defun text-in-buffer-p (TEXT)
 (save-excursion (goto-char (point-min)) (search-forward TEXT nil t)))
 
+(defun apply-old-todos-tag-maybe (&optional FILE)
+   (interactive)
+   (if (stringp FILE)
+   (setq the-daily-node-filename FILE)
+   (setq the-daily-node-filename buffer-file-name))
+   (if (org-roam-dailies--daily-note-p the-daily-node-filename)
+    (if (<= (nth 2 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 2 org-agenda-current-date))
+      (if (<= (nth 1 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 1 org-agenda-current-date))
+        (if (<= (nth 0 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 0 org-agenda-current-date))
+          (funcall (lambda ()
+            (with-current-buffer (get-file-buffer the-daily-node-filename) (org-roam-tag-add '("old-todos")))
+            (with-current-buffer (get-file-buffer the-daily-node-filename) (org-roam-tag-remove '("todos")))
+            (with-current-buffer (get-file-buffer the-daily-node-filename) (save-buffer))))
+        )
+      )
+    )
+  )
+)
+
+; This has a bug where it won't sync a new agenda file
+; if I'm editing an org roam node file while set to another
+; org roam db
 (defun add-todos-tag-on-save-org-mode-file()
   (interactive)
+  (when (string= (message "%s" major-mode) "org-mode")
     (if (or (text-in-buffer-p "SCHEDULED: <") (text-in-buffer-p "DEADLINE: <"))
       (org-roam-tag-add '("todos"))
       (org-roam-tag-remove '("todos"))
     )
+    (apply-old-todos-tag-maybe)
     (org-roam-db-sync)
+  )
 )
 
 (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
@@ -419,6 +444,13 @@ same directory as the org-buffer and insert a link to this file."
   (setq full-org-roam-db-list
         (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
 
+(setq org-roam-db-choice "Default")
+(setq full-org-roam-db-list-pretty (list "Default"))
+(dolist (item full-org-roam-db-list)
+  (setq full-org-roam-db-list-pretty
+       (append (list
+             (replace-regexp-in-string "\\/home\\/emmet\\/" "" item)) full-org-roam-db-list-pretty)))
+
 (defun org-roam-switch-db (&optional arg silent)
   "Switch to a different org-roam database, arg"
   (interactive)
@@ -481,8 +513,13 @@ same directory as the org-buffer and insert a link to this file."
            (org-roam-filter-by-tag tag-name)
            (org-roam-node-list))))
 
+;(defun org-roam-dailies-apply-old-todos-tags-to-all ()
+;  (mapcar 'apply-old-todos-tag-maybe
+;           (org-roam-dailies--list-files)))
+
 (defun org-roam-append-notes-to-agenda (tag-name db)
   (org-roam-switch-db db t)
+;  (org-roam-dailies-apply-old-todos-tags-to-all)
   (setq org-agenda-files (append org-agenda-files (org-roam-list-notes-by-tag "todos")))
 )
 
