@@ -1,4 +1,4 @@
-# Created 2023-03-25 Sat 14:54
+# Created 2023-03-25 Sat 15:35
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -172,6 +172,9 @@ I use this functionality to load my private config file with non-public informat
   '(org-level-6 :inherit outline-6 :height 1.1)
   '(org-level-7 :inherit outline-7 :height 1.05)
   )
+
+(custom-set-faces!
+  '(org-link :foreground nil))
 
 ;; Pretty org bullets
 (use-package org-bullets
