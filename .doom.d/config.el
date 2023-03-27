@@ -134,6 +134,9 @@
   '(org-level-7 :inherit outline-7 :height 1.05)
   )
 
+(custom-set-faces!
+  '(org-link :foreground nil))
+
 ;; Pretty org bullets
 (use-package org-bullets
     :ensure t
@@ -172,11 +175,20 @@
           (funcall (lambda ()
             (with-current-buffer (get-file-buffer the-daily-node-filename) (org-roam-tag-add '("old-todos")))
             (with-current-buffer (get-file-buffer the-daily-node-filename) (org-roam-tag-remove '("todos")))
-            (with-current-buffer (get-file-buffer the-daily-node-filename) (save-buffer))))
+            )
+          )
         )
       )
     )
   )
+)
+
+(defun apply-old-todos-tag-maybe-and-save (FILE)
+  (interactive)
+  (find-file-noselect FILE)
+  (apply-old-todos-tag-maybe FILE)
+  (with-current-buffer (get-file-buffer the-daily-node-filename) (save-buffer))
+  (with-current-buffer (get-file-buffer the-daily-node-filename) (kill-buffer))
 )
 
 ; This has a bug where it won't sync a new agenda file
@@ -185,13 +197,18 @@
 (defun add-todos-tag-on-save-org-mode-file()
   (interactive)
   (when (string= (message "%s" major-mode) "org-mode")
-    (if (or (text-in-buffer-p "SCHEDULED: <") (text-in-buffer-p "DEADLINE: <"))
-      (org-roam-tag-add '("todos"))
-      (org-roam-tag-remove '("todos"))
+    (if (org-roam-node-p (org-roam-node-at-point))
+    (funcall (lambda()
+      (if (or (text-in-buffer-p "SCHEDULED: <") (text-in-buffer-p "DEADLINE: <"))
+        (org-roam-tag-add '("todos"))
+        (org-roam-tag-remove '("todos"))
+      )
+      (apply-old-todos-tag-maybe)
+      (org-roam-db-sync)
+     )
     )
-    (apply-old-todos-tag-maybe)
-    (org-roam-db-sync)
   )
+ )
 )
 
 (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
@@ -431,6 +448,32 @@ same directory as the org-buffer and insert a link to this file."
 
 ;;;------ Org roam configuration ------;;;
 
+(require 'org-roam)
+
+(defun org-roam-dailies--daily-note-p (&optional file)
+  "Return t if FILE is an Org-roam daily-note, nil otherwise.
+If FILE is not specified, use the current buffer's file-path."
+  (when-let ((path (expand-file-name
+                    (or file
+                        (buffer-file-name (buffer-base-buffer)))))
+             (directory (expand-file-name org-roam-dailies-directory org-roam-directory)))
+    (setq path (expand-file-name path))
+    (save-match-data
+      (and
+       (org-roam-file-p path)
+       (org-roam-descendant-of-p path directory)))))
+
+;;; Calendar integration
+(defun org-roam-dailies-calendar--file-to-date (file)
+  "Convert FILE to date.
+Return (MONTH DAY YEAR) or nil if not an Org time-string."
+  (ignore-errors
+    (cl-destructuring-bind (_ _ _ d m y _ _ _)
+        (org-parse-time-string
+         (file-name-sans-extension
+          (file-name-nondirectory file)))
+      (list m d y))))
+
 (setq org-roam-directory "~/Roam"
       org-roam-db-location "~/Roam/org-roam.db")
 
@@ -513,9 +556,16 @@ same directory as the org-buffer and insert a link to this file."
            (org-roam-filter-by-tag tag-name)
            (org-roam-node-list))))
 
-;(defun org-roam-dailies-apply-old-todos-tags-to-all ()
-;  (mapcar 'apply-old-todos-tag-maybe
-;           (org-roam-dailies--list-files)))
+(defun org-roam-dailies-apply-old-todos-tags-to-all ()
+;  (dolist (daily-node org-roam-dailies-files)
+;           (apply-old-todos-tag-maybe-and-save daily-node)
+;  )
+  (setq num 0)
+  (while (< num (list-length (org-roam-list-notes-by-tag "todos")))
+    (apply-old-todos-tag-maybe-and-save (nth num (org-roam-list-notes-by-tag "todos")))
+  (setq num (1+ num))
+  )
+)
 
 (defun org-roam-append-notes-to-agenda (tag-name db)
   (org-roam-switch-db db t)
@@ -534,7 +584,7 @@ same directory as the org-buffer and insert a link to this file."
 )
 
 ;; Build the agenda list the first time for the session
-(org-roam-refresh-agenda-list)
+;;(org-roam-refresh-agenda-list)
 
 (map! :leader
       :prefix ("N" . "org-roam notes")

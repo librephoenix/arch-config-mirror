@@ -1,4 +1,4 @@
-# Created 2023-03-25 Sat 15:35
+# Created 2023-03-26 Sun 19:13
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -236,13 +236,18 @@ I use this functionality to load my private config file with non-public informat
 (defun add-todos-tag-on-save-org-mode-file()
   (interactive)
   (when (string= (message "%s" major-mode) "org-mode")
-    (if (or (text-in-buffer-p "SCHEDULED: <") (text-in-buffer-p "DEADLINE: <"))
-      (org-roam-tag-add '("todos"))
-      (org-roam-tag-remove '("todos"))
+    (if (org-roam-node-p (org-roam-node-at-point))
+    (funcall (lambda()
+      (if (or (text-in-buffer-p "SCHEDULED: <") (text-in-buffer-p "DEADLINE: <"))
+        (org-roam-tag-add '("todos"))
+        (org-roam-tag-remove '("todos"))
+      )
+      (apply-old-todos-tag-maybe)
+      (org-roam-db-sync)
+     )
     )
-    (apply-old-todos-tag-maybe)
-    (org-roam-db-sync)
   )
+ )
 )
 
 (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
@@ -698,6 +703,32 @@ styletree.write('styles.xml')
 #+begin_src emacs-lisp
 ;;;------ Org roam configuration ------;;;
 
+(require 'org-roam)
+
+(defun org-roam-dailies--daily-note-p (&optional file)
+  "Return t if FILE is an Org-roam daily-note, nil otherwise.
+If FILE is not specified, use the current buffer's file-path."
+  (when-let ((path (expand-file-name
+                    (or file
+                        (buffer-file-name (buffer-base-buffer)))))
+             (directory (expand-file-name org-roam-dailies-directory org-roam-directory)))
+    (setq path (expand-file-name path))
+    (save-match-data
+      (and
+       (org-roam-file-p path)
+       (org-roam-descendant-of-p path directory)))))
+
+;;; Calendar integration
+(defun org-roam-dailies-calendar--file-to-date (file)
+  "Convert FILE to date.
+Return (MONTH DAY YEAR) or nil if not an Org time-string."
+  (ignore-errors
+    (cl-destructuring-bind (_ _ _ d m y _ _ _)
+        (org-parse-time-string
+         (file-name-sans-extension
+          (file-name-nondirectory file)))
+      (list m d y))))
+
 (setq org-roam-directory "~/Roam"
       org-roam-db-location "~/Roam/org-roam.db")
 
@@ -808,7 +839,7 @@ styletree.write('styles.xml')
 )
 
 ;; Build the agenda list the first time for the session
-(org-roam-refresh-agenda-list)
+;;(org-roam-refresh-agenda-list)
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
