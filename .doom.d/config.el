@@ -204,7 +204,6 @@
         (org-roam-tag-remove '("todos"))
       )
       (apply-old-todos-tag-maybe)
-      (org-roam-db-sync)
      )
     )
   )
@@ -212,7 +211,7 @@
 )
 
 (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
-(add-hook 'after-save-hook 'add-todos-tag-on-save-org-mode-file)
+(add-hook 'before-save-hook 'add-todos-tag-on-save-org-mode-file)
 
 ;; Enable autorevert globally so that buffers update when files change on disk.
 ;; Very useful when used with file syncing (i.e. syncthing)
@@ -517,12 +516,12 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
     (setq org-roam-db-choice arg))
 
   (if (string= org-roam-db-choice "Default")
-      (setq org-roam-directory (f-canonical "~/Roam")
-            org-roam-db-location (f-canonical "~/Roam/org-roam.db")
-            org-directory (f-canonical"~/Roam"))
-      (setq org-roam-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))
-            org-roam-db-location (f-canonical (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
-            org-directory (f-canonical (concat "~/" org-roam-db-choice "/Roam"))))
+      (setq org-roam-directory (file-truename "~/Roam")
+            org-roam-db-location (file-truename "~/Roam/org-roam.db")
+            org-directory (file-truename"~/Roam"))
+      (setq org-roam-directory (file-truename (concat "~/" org-roam-db-choice "/Roam"))
+            org-roam-db-location (file-truename (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
+            org-directory (file-truename (concat "~/" org-roam-db-choice "/Roam"))))
   (when (not silent)
   (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
       (org-open-file (concat org-roam-directory "/dashboard.org"))
@@ -582,6 +581,8 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   )
   (org-roam-switch-db prev-org-roam-db-choice 1)
 )
+
+(org-roam-refresh-agenda-list)
 
 ;; Build the agenda list the first time for the session
 ;;(org-roam-refresh-agenda-list)
