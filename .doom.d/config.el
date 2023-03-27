@@ -584,6 +584,8 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 
 (org-roam-refresh-agenda-list)
 
+(add-hook 'org-agenda-finalize-hook 'org-roam-refresh-agenda-list)
+
 ;; Build the agenda list the first time for the session
 ;;(org-roam-refresh-agenda-list)
 
