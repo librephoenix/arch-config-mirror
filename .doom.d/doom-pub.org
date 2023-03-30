@@ -1,4 +1,4 @@
-# Created 2023-03-30 Thu 18:39
+# Created 2023-03-30 Thu 18:43
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1667,6 +1667,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (package! openwith)
 (package! ob-mermaid)
 (package! focus)
+(package! olivetti)
 #+end_src
 * Publish Script
 I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with =noexport=, and then export my private doom.org config using the following script:

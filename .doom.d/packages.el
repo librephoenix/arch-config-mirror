@@ -68,3 +68,4 @@
 (package! openwith)
 (package! ob-mermaid)
 (package! focus)
+(package! olivetti)
