@@ -1,4 +1,4 @@
-# Created 2023-03-26 Sun 20:01
+# Created 2023-03-30 Thu 18:28
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1363,29 +1363,8 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
   :config
   (defalias 'browse-web #'eaf-open-browser)
 
-  (require 'eaf-file-manager)
-  (require 'eaf-music-player)
-  (require 'eaf-image-viewer)
-  (require 'eaf-camera)
-  (require 'eaf-demo)
-  (require 'eaf-airshare)
-  (require 'eaf-terminal)
-  (require 'eaf-markdown-previewer)
-  (require 'eaf-video-player)
-  (require 'eaf-vue-demo)
-  (require 'eaf-file-sender)
   (require 'eaf-pdf-viewer)
-  (require 'eaf-mindmap)
-  (require 'eaf-netease-cloud-music)
-  (require 'eaf-jupyter)
-  (require 'eaf-org-previewer)
-  (require 'eaf-system-monitor)
-  (require 'eaf-rss-reader)
-  (require 'eaf-file-browser)
   (require 'eaf-browser)
-  (require 'eaf-org)
-  (require 'eaf-mail)
-  (require 'eaf-git)
 
   (require 'eaf-evil)
   (define-key key-translation-map (kbd "SPC")

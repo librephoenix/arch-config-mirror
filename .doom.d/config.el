@@ -1076,6 +1076,37 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 (centaur-tabs-mode t)
 
+;;;-- Load emacs application framework;;;--
+(use-package! eaf
+  :load-path "~/.emacs.d/site-lisp/emacs-application-framework/"
+  :init
+  :custom
+  (eaf-browser-continue-where-left-off t)
+  (eaf-browser-enable-adblocker t)
+  (browse-url-browser-function 'eaf-open-browser) ;; Make EAF Browser my default browser
+  :config
+  (defalias 'browse-web #'eaf-open-browser)
+
+  (require 'eaf-pdf-viewer)
+  (require 'eaf-browser)
+
+  (require 'eaf-evil)
+  (define-key key-translation-map (kbd "SPC")
+    (lambda (prompt)
+      (if (derived-mode-p 'eaf-mode)
+          (pcase eaf--buffer-app-name
+            ("browser" (if  (string= (eaf-call-sync "eval_function" eaf--buffer-id "is_focus") "True")
+                           (kbd "SPC")
+                         (kbd eaf-evil-leader-key)))
+            ("pdf-viewer" (kbd eaf-evil-leader-key))
+            ("image-viewer" (kbd eaf-evil-leader-key))
+            (_  (kbd "SPC")))
+        (kbd "SPC")))))
+
+(map! :leader
+      :desc "Open web browser"
+      "o w" #'eaf-open-browser-with-history)
+
 ;;;------ Load my private config ------;;;
 
 (load! "~/.doom.d/private.el")
