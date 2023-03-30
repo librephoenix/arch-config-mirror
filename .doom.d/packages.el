@@ -67,3 +67,4 @@
 (package! ess)
 (package! openwith)
 (package! ob-mermaid)
+(package! focus)
