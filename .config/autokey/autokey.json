@@ -13,7 +13,7 @@
         "undoUsingBackspace": true,
         "windowDefaultSize": [
             1894,
-            989
+            1109
         ],
         "hPanePosition": 472,
         "columnWidths": [
@@ -33,9 +33,12 @@
             "0",
             "0:0",
             "0:2",
-            "0:3"
+            "0:3",
+            "0:0:2",
+            "0:2:0",
+            "0:2:1"
         ],
-        "pathLastOpen": "0:2"
+        "pathLastOpen": "0:2:0:3"
     },
     "folders": [],
     "toggleServiceHotkey": {
