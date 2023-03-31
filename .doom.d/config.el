@@ -893,7 +893,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 ;; Excluded tabs buffer prefixes
 (setq centaur-tabs-excluded-prefixes
   '("magit" "*magit-process" "magit-process" "*magit-diff" "magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"
-  "*Calendar" "Calendar"))
+  "*Calendar" "Calendar" "*eaf"))
 
 ;; I personally don't like grouping buffers, it makes things kinda hard to find
 (defun centaur-tabs-buffer-groups ()

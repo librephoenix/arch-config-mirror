@@ -55,7 +55,6 @@
 (package! lister)
 (package! org-roam-delve :recipe (:repo "https://github.com/publicimageltd/delve"))
 (package! org-download)
-(package! org-ql)
 (package! org-yt)
 (package! toc-org)
 (package! all-the-icons-dired)
