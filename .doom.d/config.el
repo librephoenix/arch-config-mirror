@@ -1076,6 +1076,24 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 (centaur-tabs-mode t)
 
+(require 'focus)
+
+(map! :leader
+      :prefix ("F" . "Focus mode")
+      :desc "Toggle focus mode"
+      "t" 'focus-mode
+      :desc "Pin focused section"
+      "p" 'focus-pin
+      :desc "Unpin focused section"
+      "u" 'focus-unpin
+)
+
+(add-to-list 'focus-mode-to-thing '(org-mode . org-element))
+(add-to-list 'focus-mode-to-thing '(python-mode . paragraph))
+(add-to-list 'focus-mode-to-thing '(lisp-mode . paragraph))
+
+(add-hook 'org-mode-hook #'focus-mode)
+
 ;;;-- Load emacs application framework;;;--
 (use-package! eaf
   :load-path "~/.emacs.d/site-lisp/emacs-application-framework/"

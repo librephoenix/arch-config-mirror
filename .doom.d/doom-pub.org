@@ -1,4 +1,4 @@
-# Created 2023-03-30 Thu 18:43
+# Created 2023-03-30 Thu 21:07
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1349,6 +1349,26 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (evil-global-set-key 'normal (kbd "C-w") 'kill-current-buffer)
 
 (centaur-tabs-mode t)
+#+end_src
+** Focus Mode Configuration
+#+begin_src emacs-lisp
+(require 'focus)
+
+(map! :leader
+      :prefix ("F" . "Focus mode")
+      :desc "Toggle focus mode"
+      "t" 'focus-mode
+      :desc "Pin focused section"
+      "p" 'focus-pin
+      :desc "Unpin focused section"
+      "u" 'focus-unpin
+)
+
+(add-to-list 'focus-mode-to-thing '(org-mode . org-element))
+(add-to-list 'focus-mode-to-thing '(python-mode . paragraph))
+(add-to-list 'focus-mode-to-thing '(lisp-mode . paragraph))
+
+(add-hook 'org-mode-hook #'focus-mode)
 #+end_src
 ** EAF
 #+begin_src emacs-lisp
