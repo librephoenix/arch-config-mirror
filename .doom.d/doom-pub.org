@@ -1,4 +1,4 @@
-# Created 2023-03-31 Fri 20:36
+# Created 2023-03-31 Fri 20:44
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -44,6 +44,11 @@ I use this functionality to load my private config file with non-public informat
 
 ;; Makes for easier editing with wrapped lines
 (setq line-move-visual t)
+
+(use-package-hook! evil
+  :pre-init
+  (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
+  t)
 
 ;; Theme
 (setq doom-theme 'doom-old-hope)
@@ -1247,29 +1252,14 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (load! "~/.doom.d/private.el")
 #+end_src
 * My [[file:./init.el][init.el]]
-** Default Preamble
-#+begin_src emacs-lisp
-;;; init.el -*- lexical-binding: t; -*-
+This section is the [[file:./init.el][init.el]] section, which controls which Doom modules are loaded.
 
-;; This file controls what Doom modules are enabled and what order they load
-;; in. Remember to run 'doom sync' after modifying it!
+=SPC h d h= (vim) or =C-h d h= (non-vim) can be used to access Doom's documentation (including a "Module Index").
 
-;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's
-;;      documentation. There you'll find a "Module Index" link where you'll find
-;;      a comprehensive list of Doom's modules and what flags they support.
+=K= (vim) or =C-c c k= (non-vim) can be used to view a module's documentation (this can help you discover module flags as well).
 
-;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or
-;;      'C-c c k' for non-vim users) to view its documentation. This works on
-;;      flags as well (those symbols that start with a plus).
-;;
-;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
-;;      directory (for easy access to its source code).
+=gd= (vim) or =C-c c d= (non-vim) will let you browse a module's directory (source code).
 
-;;(use-package-hook! evil
-;;  :pre-init
-;;  (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
-;;  t)
-#+end_src
 ** Doom Package List
 #+begin_src emacs-lisp
 (doom! :input
@@ -1410,16 +1400,16 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
        ;;ocaml             ; an objective camel
        (org +roam2)      ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
-       plantuml          ; diagrams for confusing people more
+       ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
-       rest              ; Emacs as a REST client
+       ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
-       (ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;(scheme +guile)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor

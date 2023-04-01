@@ -11,6 +11,11 @@
 ;; Makes for easier editing with wrapped lines
 (setq line-move-visual t)
 
+(use-package-hook! evil
+  :pre-init
+  (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
+  t)
+
 ;; Theme
 (setq doom-theme 'doom-old-hope)
 (setq doom-font (font-spec :family "Inconsolata" :size 20))
