@@ -1,6 +1,30 @@
-# Created 2023-03-31 Fri 20:44
+# Created 2023-03-31 Fri 20:47
 #+title: Doom Emacs Literate Config
 #+author: emmet
+
+* Table of Contents :TOC:
+- [[#what-is-doom-emacs][What is Doom Emacs?]]
+- [[#configuration-for-doom-emacs][Configuration for Doom Emacs]]
+- [[#my-configel][My config.el]]
+  - [[#preamble--user-configuration][Preamble + User Configuration]]
+  - [[#registers][Registers]]
+  - [[#org-mode-configuration][Org Mode Configuration]]
+  - [[#org-roam-configuration][Org Roam Configuration]]
+  - [[#org-agenda-configuration][Org Agenda Configuration]]
+  - [[#magit-configuration][Magit Configuration]]
+  - [[#dired-configuration][Dired Configuration]]
+  - [[#ranger-configuration][Ranger Configuration]]
+  - [[#elfeed-configuration][Elfeed Configuration]]
+  - [[#hledger-mode-configuration][hledger-mode Configuration]]
+  - [[#centaur-tabs-configuration][Centaur Tabs Configuration]]
+  - [[#focus-mode-configuration][Focus Mode Configuration]]
+  - [[#eaf][EAF]]
+  - [[#load-prvate-config][Load Prvate Config]]
+- [[#my-initel][My init.el]]
+  - [[#doom-package-list][Doom Package List]]
+- [[#my-packagesel][My packages.el]]
+  - [[#melpaelpaemacsmirror-package-list][MELPA/ELPA/emacsmirror Package List]]
+- [[#publish-script][Publish Script]]
 
 * What is Doom Emacs?
 [[https://github.com/doomemacs/doomemacs][Doom Emacs]] is a distribution of the [[https://www.gnu.org/software/emacs/][Emacs Text Editor]] designed for [[https://www.vim.org/][Vim]] users. I like to use Emacs due to its extensibility and extra features it is capable of (besides text editing). Some of these extra features include:
