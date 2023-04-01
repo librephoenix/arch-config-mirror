@@ -1,4 +1,4 @@
-# Created 2023-03-31 Fri 20:17
+# Created 2023-03-31 Fri 20:23
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1528,13 +1528,11 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 * Publish Script
 I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with =noexport=, and then export my private doom.org config using the following script:
 #+begin_src emacs-lisp
-;; Export link below runs this
-(org-org-export-to-org)
-[[/home/emmet/.doom.d/doom.org_20220910_141453_QgNMtZ.png]]
-#+end_src
-#+begin_src emacs-lisp
 ;; Publish link below runs this
-(rename-file "./doom.org.org" "doom-pub.org")
+(funcall (lambda ()
+  (org-org-export-to-org)
+  (delete-file "./doom-pub.org")
+  (rename-file "./doom.org.org" "doom-pub.org")
+))
 #+end_src
-[[elisp:(org-org-export-to-org)][Export]]
-[[elisp:(rename-file "./doom.org.org" "doom-pub.org" t)][Publish]]
+[[elisp:(funcall (lambda () (org-org-export-to-org) (delete-file "./doom-pub.org") (rename-file "./doom.org.org" "doom-pub.org")))][Publish]]
