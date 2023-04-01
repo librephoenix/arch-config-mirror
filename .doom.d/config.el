@@ -821,30 +821,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :desc "Open ranger"
       "o d" 'ranger)
 
-;;;------ elfeed configuration ------;;;
-
-(map! :leader
-      :desc "Open elfeed"
-      "o n" #'elfeed)
-
-(map! :map elfeed-search-mode-map
-      :desc "Update all feeds"
-      "r" 'elfeed-update)
-
-;; Load elfeed-org
-(require 'elfeed-org)
-
-;; Initialize elfeed-org
-;; This hooks up elfeed-org to read the configuration when elfeed
-;; is started with =M-x elfeed=
-(elfeed-org)
-
-;; Optionally specify a number of files containing elfeed
-;; configuration. If not set then the location below is used.
-;; Note: The customize interface is also supported.
-(setq rmh-elfeed-org-files (list "~/Documents/RSS/elfeed.org"))
-(setq elfeed-search-filter "@4-weeks-ago +unread ")
-
 ;;;-- hledger-mode configuration ;;;--
 
 ;;; Basic configuration

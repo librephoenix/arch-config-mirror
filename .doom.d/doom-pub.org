@@ -1,4 +1,4 @@
-# Created 2023-03-31 Fri 21:19
+# Created 2023-03-31 Fri 21:20
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -15,7 +15,6 @@
   - [[#magit-configuration][Magit Configuration]]
   - [[#dired-configuration][Dired Configuration]]
   - [[#ranger-configuration][Ranger Configuration]]
-  - [[#elfeed-configuration][Elfeed Configuration]]
   - [[#hledger-mode-configuration][hledger-mode Configuration]]
   - [[#centaur-tabs-configuration][Centaur Tabs Configuration]]
   - [[#focus-mode-configuration][Focus Mode Configuration]]
@@ -34,7 +33,6 @@
 - [[https://www.orgroam.com/][Org Roam]] (A second brain / personal wiki)
 - [[https://orgmode.org/][Org Agenda]] (Calendar and todo list)
 - [[https://www.emacswiki.org/emacs/mu4e][mu4e]] (Email)
-- [[https://github.com/skeeto/elfeed][elfeed]] (RSS Reader)
 - [[https://magit.vc/][magit]] (Git Client)
 
 I have found Emacs to be incredibly efficient, and transferring my workflow to fit inside of Emacs has allowed me to get much more work done.
@@ -1109,32 +1107,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (map! :leader
       :desc "Open ranger"
       "o d" 'ranger)
-#+end_src
-** Elfeed Configuration
-#+begin_src emacs-lisp
-;;;------ elfeed configuration ------;;;
-
-(map! :leader
-      :desc "Open elfeed"
-      "o n" #'elfeed)
-
-(map! :map elfeed-search-mode-map
-      :desc "Update all feeds"
-      "r" 'elfeed-update)
-
-;; Load elfeed-org
-(require 'elfeed-org)
-
-;; Initialize elfeed-org
-;; This hooks up elfeed-org to read the configuration when elfeed
-;; is started with =M-x elfeed=
-(elfeed-org)
-
-;; Optionally specify a number of files containing elfeed
-;; configuration. If not set then the location below is used.
-;; Note: The customize interface is also supported.
-(setq rmh-elfeed-org-files (list "~/Documents/RSS/elfeed.org"))
-(setq elfeed-search-filter "@4-weeks-ago +unread ")
 #+end_src
 ** hledger-mode Configuration
 #+begin_src emacs-lisp
