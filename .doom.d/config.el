@@ -139,8 +139,8 @@
   '(org-level-7 :inherit outline-7 :height 1.05)
   )
 
-(custom-set-faces!
-  '(org-link :foreground nil))
+;(custom-set-faces!
+;  '(org-link :foreground nil))
 
 ;; Pretty org bullets
 (use-package org-bullets
@@ -157,7 +157,6 @@
       ;; enable in markdown, too
       (add-hook 'markdown-mode-hook 'toc-org-mode))
   (warn "toc-org not found"))
-
 
 ;;---- this block from http://fgiasson.com/blog/index.php/2016/06/21/optimal-emacs-settings-for-org-mode-for-literate-programming/ ----;;
 ;; Tangle Org files when we save them
@@ -939,7 +938,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (add-to-list 'focus-mode-to-thing '(python-mode . paragraph))
 (add-to-list 'focus-mode-to-thing '(lisp-mode . paragraph))
 
-(add-hook 'org-mode-hook #'focus-mode)
+;(add-hook 'org-mode-hook #'focus-mode)
 
 ;;;-- Load emacs application framework;;;--
 (use-package! eaf
