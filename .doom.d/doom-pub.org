@@ -1,4 +1,4 @@
-# Created 2023-03-31 Fri 21:20
+# Created 2023-03-31 Fri 21:21
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1428,7 +1428,7 @@ This section is the [[file:./init.el][init.el]] section, which controls which Do
        ;;emms
        ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
-       (rss +org)        ; emacs as an RSS reader
+       ;;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
