@@ -1,4 +1,4 @@
-# Created 2023-03-31 Fri 20:23
+# Created 2023-03-31 Fri 20:36
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1450,57 +1450,22 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 #+end_src
 
 * My [[file:./packages.el][packages.el]]
-** Default Preamble
-#+begin_src emacs-lisp
-;; -*- no-byte-compile: t; -*-
-;;; $DOOMDIR/packages.el
+The [[file:./packages.el][packages.el]] file allows extra packages to be configured outside of the typical Doom modules from [[file:./init.el][init.el]].
 
-;; To install a package with Doom you must declare them here and run 'doom sync'
-;; on the command line, then restart Emacs for the changes to take effect -- or
-;; use 'M-x doom/reload'.
+Packages are declared via =(package! some-package)= where =some-package= is from MELPA, ELPA, or emacsmirror.
 
-;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
-;(package! some-package)
+There are other ways to install packages outside of Emacs package archives, including directly from git.  Installing a package directly from git requires a =:recipe=.  Here is [[https://github.com/raxod502/straight.el#the-recipe-format][a full documentation of the recipe format]].
 
-;; To install a package directly from a remote git repo, you must specify a
-;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
-;; https://github.com/raxod502/straight.el#the-recipe-format
-;(package! another-package
-;  :recipe (:host github :repo "username/repo"))
+Doom's built-in packages can also be modified here:
+- =(package! builtin-package :disable t)= to disable
+- =(package! builtin-package-2 :recipe (:repo "myfork/package"))= to override the recipe
+  - Side-note: the full recipe for built-in packages does not need specification, as the override will inherit the unspecified properties directly from Doom
 
-;; If the package you are trying to install does not contain a PACKAGENAME.el
-;; file, or is located in a subdirectory of the repo, you'll need to specify
-;; `:files' in the `:recipe':
-;(package! this-package
-;  :recipe (:host github :repo "username/repo"
-;           :files ("some-file.el" "src/lisp/*.el")))
+Any git package can be configured for a particular commit or branch:
+- =(package! builtin-package :recipe (:branch "develop")= for a particular branch
+- =(package! builtin-package :pin "1a2b3c4d5e")= for a particular commit
+- =(unpin! pinned-package another-pinned-package)= to get bleeding edge instead of Doom's stability
 
-;; If you'd like to disable a package included with Doom, you can do so here
-;; with the `:disable' property:
-;(package! builtin-package :disable t)
-
-;; You can override the recipe of a built in package without having to specify
-;; all the properties for `:recipe'. These will inherit the rest of its recipe
-;; from Doom or MELPA/ELPA/Emacsmirror:
-;(package! builtin-package :recipe (:nonrecursive t))
-;(package! builtin-package-2 :recipe (:repo "myfork/package"))
-
-;; Specify a `:branch' to install a package from a particular branch or tag.
-;; This is required for some packages whose default branch isn't 'master' (which
-;; our package manager can't deal with; see raxod502/straight.el#279)
-;(package! builtin-package :recipe (:branch "develop"))
-
-;; Use `:pin' to specify a particular commit to install.
-;(package! builtin-package :pin "1a2b3c4d5e")
-
-;; Doom's packages are pinned to a specific commit and updated from release to
-;; release. The `unpin!' macro allows you to unpin single packages...
-;(unpin! pinned-package)
-;; ...or multiple packages
-;(unpin! pinned-package another-pinned-package)
-;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
-;(unpin! t)
-#+end_src
 ** MELPA/ELPA/emacsmirror Package List
 #+begin_src emacs-lisp
 (package! org-bullets)
@@ -1509,7 +1474,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (package! org-roam-ui)
 (package! org-roam-nursery :recipe (:repo "https://github.com/chrisbarrett/nursery"))
 (package! lister)
-(package! org-roam-delve :recipe (:repo "https://github.com/publicimageltd/delve"))
 (package! org-download)
 (package! org-yt)
 (package! toc-org)
