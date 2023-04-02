@@ -1,4 +1,4 @@
-# Created 2023-04-01 Sat 19:00
+# Created 2023-04-01 Sat 19:15
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -1182,9 +1182,9 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
   (list
    (cond
     (t
-     "Everything")
-    (t
-     (centaur-tabs-get-group-name (current-buffer))))))
+     "Everything"))))
+
+(setq centaur-tabs-label-fixed-length 10)
 
 (evil-global-set-key 'normal (kbd "C-w") 'kill-current-buffer)
 

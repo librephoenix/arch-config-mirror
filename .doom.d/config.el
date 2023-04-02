@@ -891,9 +891,9 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
   (list
    (cond
     (t
-     "Everything")
-    (t
-     (centaur-tabs-get-group-name (current-buffer))))))
+     "Everything"))))
+
+(setq centaur-tabs-label-fixed-length 10)
 
 (evil-global-set-key 'normal (kbd "C-w") 'kill-current-buffer)
 
