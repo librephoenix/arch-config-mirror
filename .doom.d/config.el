@@ -25,6 +25,7 @@
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; Icons in completion buffers
+(add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
 (all-the-icons-completion-mode)
 
 ;; This makes non-main buffers dimmer, so you can focus on main buffers
