@@ -5,20 +5,24 @@
 ;; My default user identity as my yt alias
 (setq user-full-name "emmet")
 
-;; This shows me normal line numbers
-(setq display-line-numbers-type 'visual)
-
-;; Makes for easier editing with wrapped lines
-(setq line-move-visual t)
-
+;; I prefer visual lines
+(setq display-line-numbers-type 'visual
+      line-move-visual t)
 (use-package-hook! evil
   :pre-init
   (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
   t)
 
-;; Theme
-(setq doom-theme 'doom-old-hope)
-(setq doom-font (font-spec :family "Inconsolata" :size 20))
+;; I also like evil mode visual movement
+(map! :map evil-normal-state-map
+      :desc "Move to next visual line"
+      "j" 'evil-next-visual-line
+      :desc "Move to previous visual line"
+      "k" 'evil-previous-visual-line)
+
+;; Theme and font
+(setq doom-theme 'doom-old-hope
+      doom-font (font-spec :family "Inconsolata" :size 20))
 
 ;; Transparent background
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
@@ -47,14 +51,6 @@
 ;; Mouse buffer management
 (bind-key* "<mouse-8>" #'previous-buffer)
 (bind-key* "<mouse-9>" #'next-buffer)
-
-;; I like evil mode visual movement
-(map! :map evil-normal-state-map
-      :desc "Move to next visual line"
-      "j" 'evil-next-visual-line)
-(map! :map evil-normal-state-map
-      :desc "Move to previous visual line"
-      "k" 'evil-previous-visual-line)
 
 ;; Disables custom.el
 (setq custom-file null-device)
@@ -103,6 +99,11 @@
 (add-hook 'focus-out-hook 'garbage-collect)
 (run-with-idle-timer 5 t 'garbage-collect)
 
+;; Enable autorevert globally so that buffers update when files change on disk.
+;; Very useful when used with file syncing (i.e. syncthing)
+(setq global-auto-revert-mode nil)
+(setq auto-revert-use-notify t)
+
 ;;;------ Registers ------;;;
 
 (map! :leader
@@ -124,12 +125,11 @@
 (remove-hook 'after-save-hook #'+literate|recompile-maybe)
 (set-company-backend! 'org-mode nil)
 
-;; This allows you to actually control how big images are in org docs!
-(setq org-image-actual-width nil)
+;; Automatically show images but manually control their size
+(setq org-startup-with-inline-images t
+      org-image-actual-width nil)
 
-;; Have images automatically appear on org startup
-(setq org-startup-with-inline-images t)
-
+;; Top-level headings should be bigger!
 (custom-set-faces!
   '(org-level-1 :inherit outline-1 :height 1.6)
   '(org-level-2 :inherit outline-2 :height 1.4)
@@ -154,8 +154,6 @@
 (if (require 'toc-org nil t)
     (progn
       (add-hook 'org-mode-hook 'toc-org-mode)
-
-      ;; enable in markdown, too
       (add-hook 'markdown-mode-hook 'toc-org-mode))
   (warn "toc-org not found"))
 
@@ -165,84 +163,16 @@
   (when (string= (message "%s" major-mode) "org-mode")
     (org-babel-tangle)))
 
-(defun text-in-buffer-p (TEXT)
-(save-excursion (goto-char (point-min)) (search-forward TEXT nil t)))
-
-(defun apply-old-todos-tag-maybe (&optional FILE)
-   (interactive)
-   (if (stringp FILE)
-   (setq the-daily-node-filename FILE)
-   (setq the-daily-node-filename buffer-file-name))
-   (if (org-roam-dailies--daily-note-p the-daily-node-filename)
-    (if (<= (nth 2 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 2 org-agenda-current-date))
-      (if (<= (nth 1 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 1 org-agenda-current-date))
-        (if (<= (nth 0 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 0 org-agenda-current-date))
-          (funcall (lambda ()
-            (with-current-buffer (get-file-buffer the-daily-node-filename) (org-roam-tag-add '("old-todos")))
-            (with-current-buffer (get-file-buffer the-daily-node-filename) (org-roam-tag-remove '("todos")))
-            )
-          )
-        )
-      )
-    )
-  )
-)
-
-(defun apply-old-todos-tag-maybe-and-save (FILE)
-  (interactive)
-  (find-file-noselect FILE)
-  (apply-old-todos-tag-maybe FILE)
-  (with-current-buffer (get-file-buffer the-daily-node-filename) (save-buffer))
-  (with-current-buffer (get-file-buffer the-daily-node-filename) (kill-buffer))
-)
-
-; This has a bug where it won't sync a new agenda file
-; if I'm editing an org roam node file while set to another
-; org roam db
-(defun add-todos-tag-on-save-org-mode-file()
-  (interactive)
-  (when (string= (message "%s" major-mode) "org-mode")
-    (if (org-roam-node-p (org-roam-node-at-point))
-    (funcall (lambda()
-      (if (or (text-in-buffer-p "SCHEDULED: <") (text-in-buffer-p "DEADLINE: <"))
-        (org-roam-tag-add '("todos"))
-        (org-roam-tag-remove '("todos"))
-      )
-      (apply-old-todos-tag-maybe)
-     )
-    )
-  )
- )
-)
-
 (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
-(add-hook 'before-save-hook 'add-todos-tag-on-save-org-mode-file)
-
-;; Enable autorevert globally so that buffers update when files change on disk.
-;; Very useful when used with file syncing (i.e. syncthing)
-(setq global-auto-revert-mode nil)
-(setq auto-revert-use-notify t)
-
 ;; ---- end block ---- ;;
 
-;; Custom function to convert org mode to ODP presentation
-;; Depends on bash, libreoffice, and pandoc
-(defun my-ox-odp ()
-  "Convert an org mode file to an ODP presentation."
-  (interactive)
-  (setq file-name (buffer-file-name))
-  (setq output-pptx-file-name (replace-regexp-in-string "\.org" "\.pptx" (buffer-file-name)))
-  (setq output-odp-file-name (replace-regexp-in-string "\.org" "\.odp" (buffer-file-name)))
-  (setq odp-style-file-name (completing-read "Choose style: "
-                                             '("/home/emmet/.doom.d/scripts/ox-odp/styles/water.odp"
-                                                "/home/emmet/.doom.d/scripts/ox-odp/styles/dark.odp"
-                                              ) nil t))
-  (shell-command (concat "~/.doom.d/scripts/ox-odp/ox-odp.sh \"" (buffer-file-name) "\" \"" odp-style-file-name "\" > /dev/null"))
-  )
+;; Better org table editing
+(setq-default evil-insert-state-exit-hook '(org-update-parent-todo-statistics
+ t))
+(setq org-table-automatic-realign nil)
 
-(map! :leader
-      :desc "Convert org document to odp presentation"
-      "e p" 'my-ox-odp)
+;; Better for org source blocks
+(setq electric-indent-mode nil)
 
 (require 'org-download)
 
@@ -304,16 +234,6 @@ same directory as the org-buffer and insert a link to this file."
   (setq prettyname (read-from-minibuffer "Pretty name:"))
   (insert (concat "[[./files/" (file-name-nondirectory filename) "][" prettyname "]]"))
   (org-display-inline-images))
-
-(defun my-better-link-opener()
-  "Open a link with mimeo instead of using emacs"
-  (interactive)
-  (setq the-link (expand-file-name (link-hint-copy-link-at-point)))
-  (setq the-command (if (string= (file-name-extension the-link) "kra") "krita --nosplash"
-                       (if (string= (file-name-extension the-link) "blend") "blender")))
-  (async-shell-command (concat the-command " '" the-link "'"))
-  )
-
 
 (when (require 'openwith nil 'noerror)
    (setq openwith-associations
@@ -377,10 +297,6 @@ same directory as the org-buffer and insert a link to this file."
       :desc "Create a new file from a template and insert a link at point"
       "i t" 'my-org-new-file-from-template)
 
-(map! :leader
-      :desc "Open the link at point using mimeo"
-      "o o" 'my-better-link-opener)
-
 ;; Online images inside of org mode is pretty cool
 ;; This snippit is from Tobias on Stack Exchange
 ;; https://emacs.stackexchange.com/questions/42281/org-mode-is-it-possible-to-display-online-images
@@ -405,14 +321,6 @@ same directory as the org-buffer and insert a link to this file."
 (org-link-set-parameters
  "imghttps"
  :image-data-fun #'org-image-link)
-
-;; Better org table editing
-(setq-default evil-insert-state-exit-hook '(org-update-parent-todo-statistics
- t))
-(setq org-table-automatic-realign nil)
-
-;; Better for org source blocks
-(setq electric-indent-mode nil)
 
 ;; Mermaid diagrams
 (setq ob-mermaid-cli-path "/usr/bin/mmdc")
@@ -450,9 +358,36 @@ same directory as the org-buffer and insert a link to this file."
 ;      :desc "Simple print region in web browser"
 ;      "r" 'org-simple-print-region)
 
+;; Custom function to convert org mode to ODP presentation
+;; Depends on bash, libreoffice, and pandoc
+(defun my-ox-odp ()
+  "Convert an org mode file to an ODP presentation."
+  (interactive)
+  (setq file-name (buffer-file-name))
+  (setq output-pptx-file-name (replace-regexp-in-string "\.org" "\.pptx" (buffer-file-name)))
+  (setq output-odp-file-name (replace-regexp-in-string "\.org" "\.odp" (buffer-file-name)))
+  (setq odp-style-file-name (completing-read "Choose style: "
+                                             '("/home/emmet/.doom.d/scripts/ox-odp/styles/water.odp"
+                                                "/home/emmet/.doom.d/scripts/ox-odp/styles/dark.odp"
+                                              ) nil t))
+  (shell-command (concat "~/.doom.d/scripts/ox-odp/ox-odp.sh \"" (buffer-file-name) "\" \"" odp-style-file-name "\" > /dev/null"))
+  )
+
+(map! :leader
+      :desc "Convert org document to odp presentation"
+      "e p" 'my-ox-odp)
+
 ;;;------ Org roam configuration ------;;;
 
 (require 'org-roam)
+
+(setq org-roam-directory "~/Roam"
+      org-roam-db-location "~/Roam/org-roam.db")
+
+(setq org-roam-node-display-template
+      "${title:65}📝${tags:*}")
+
+(org-roam-db-autosync-mode)
 
 (defun org-roam-dailies--daily-note-p (&optional file)
   "Return t if FILE is an Org-roam daily-note, nil otherwise.
@@ -478,12 +413,6 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
           (file-name-nondirectory file)))
       (list m d y))))
 
-(setq org-roam-directory "~/Roam"
-      org-roam-db-location "~/Roam/org-roam.db")
-
-(setq org-roam-node-display-template
-      "${title:65}📝${tags:*}")
-
 (setq full-org-roam-db-list nil)
 
 (setq full-org-roam-db-list (directory-files "~" t "\\.[p,s]$"))
@@ -497,6 +426,14 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   (setq full-org-roam-db-list-pretty
        (append (list
              (replace-regexp-in-string "\\/home\\/emmet\\/" "" item)) full-org-roam-db-list-pretty)))
+
+(defun org-roam-open-dashboard ()
+  "Open ${org-roam-directory}/dashboard.org (I use this naming convention to create dashboards for each of my org roam maps)"
+  (interactive)
+  (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
+      (org-open-file (concat org-roam-directory "/dashboard.org"))
+      (dired org-roam-directory))
+)
 
 (defun org-roam-switch-db (&optional arg silent)
   "Switch to a different org-roam database, arg"
@@ -528,9 +465,7 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
             org-roam-db-location (file-truename (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
             org-directory (file-truename (concat "~/" org-roam-db-choice "/Roam"))))
   (when (not silent)
-  (if (file-exists-p (concat org-roam-directory "/dashboard.org"))
-      (org-open-file (concat org-roam-directory "/dashboard.org"))
-      (dired org-roam-directory)))
+  (org-roam-open-dashboard)
 
   (org-roam-db-sync)
 
@@ -549,6 +484,59 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   (org-roam-id-open ID)
   (when (not switchpersist)
     (org-roam-switch-db prev-org-roam-db-choice 1)))
+
+;;;------ Org-roam-agenda configuration ------;;;
+(defun text-in-buffer-p (TEXT)
+(save-excursion (goto-char (point-min)) (search-forward TEXT nil t)))
+
+(defun apply-old-todos-tag-maybe (&optional FILE)
+   (interactive)
+   (if (stringp FILE)
+   (setq the-daily-node-filename FILE)
+   (setq the-daily-node-filename buffer-file-name))
+   (if (org-roam-dailies--daily-note-p the-daily-node-filename)
+    (if (<= (nth 2 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 2 org-agenda-current-date))
+      (if (<= (nth 1 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 1 org-agenda-current-date))
+        (if (<= (nth 0 (org-roam-dailies-calendar--file-to-date the-daily-node-filename)) (nth 0 org-agenda-current-date))
+          (funcall (lambda ()
+            (with-current-buffer (get-file-buffer the-daily-node-filename) (org-roam-tag-add '("old-todos")))
+            (with-current-buffer (get-file-buffer the-daily-node-filename) (org-roam-tag-remove '("todos")))
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+(defun apply-old-todos-tag-maybe-and-save (FILE)
+  (interactive)
+  (find-file-noselect FILE)
+  (apply-old-todos-tag-maybe FILE)
+  (with-current-buffer (get-file-buffer the-daily-node-filename) (save-buffer))
+  (with-current-buffer (get-file-buffer the-daily-node-filename) (kill-buffer))
+)
+
+; This has a bug where it won't sync a new agenda file
+; if I'm editing an org roam node file while set to another
+; org roam db
+(defun add-todos-tag-on-save-org-mode-file()
+  (interactive)
+  (when (string= (message "%s" major-mode) "org-mode")
+    (if (org-roam-node-p (org-roam-node-at-point))
+    (funcall (lambda()
+      (if (or (text-in-buffer-p "SCHEDULED: <") (text-in-buffer-p "DEADLINE: <"))
+        (org-roam-tag-add '("todos"))
+        (org-roam-tag-remove '("todos"))
+      )
+      (apply-old-todos-tag-maybe)
+     )
+    )
+  )
+ )
+)
+
+(add-hook 'before-save-hook 'add-todos-tag-on-save-org-mode-file)
 
 (defun org-roam-filter-by-tag (tag-name)
   (lambda (node)
@@ -587,10 +575,8 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   (org-roam-switch-db prev-org-roam-db-choice 1)
 )
 
+;; Build agenda for first time during this session
 (org-roam-refresh-agenda-list)
-
-;; Build the agenda list the first time for the session
-;;(org-roam-refresh-agenda-list)
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
@@ -632,7 +618,10 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
       :desc "Visualize org-roam database with org-roam-ui"
       "O" 'org-roam-default-overview)
 
-(org-roam-db-autosync-mode)
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Visualize org-roam database with org-roam-ui"
+      "o" 'org-roam-open-dashboard)
 
 (after! org-roam
   (setq org-roam-capture-templates
@@ -646,12 +635,12 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 (setq org-id-extra-files 'org-agenda-text-search-extra-files)
 
 (add-to-list 'display-buffer-alist '("^ORUI" display-buffer-in-side-window
-                                    (side . left)
-                                    (window-width . 110)
+                                    (side . right)
+                                    (window-width . 50)
 ))
 (add-to-list 'display-buffer-alist '("^localhost:35901" display-buffer-in-side-window
-                                    (side . left)
-                                    (window-width . 110)
+                                    (side . right)
+                                    (window-width . 50)
 ))
 
 ;;;------ Org agenda configuration ------;;;
@@ -660,17 +649,9 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 (setq org-agenda-span 1
       org-agenda-start-day "+0d")
 
-;; Set folder for my org agenda files
-;(setq org-agenda-files (list "~/Agenda"))
-
-;(dolist (item full-org-roam-db-list)
-;  (setq org-agenda-files
-;        (append (list (concat item "/Agenda")) org-agenda-files)))
-
 ;; Function to be run when org-agenda is opened
 (defun org-agenda-open-hook ()
-  "Hook to be run when org-agenda is opened"
-  )
+  "Hook to be run when org-agenda is opened")
 
 ;; Adds hook to org agenda mode, making follow mode active in org agenda
 (add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
@@ -680,10 +661,6 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   "Lists all available agenda files and switches to desired one"
   (interactive)
   (setq full-agenda-file-list nil)
-;  (dolist (item org-agenda-files)
-;   (if (f-directory-p item)
-;    (setq full-agenda-file-list (append (directory-files item t org-agenda-file-regexp) full-agenda-file-list))
-;   (setq full-agenda-file-list (append item full-agenda-file-list))))
   (setq choice (completing-read "Select agenda file:" org-agenda-files nil t))
   (find-file choice))
 
@@ -700,78 +677,49 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 (setq org-super-agenda-groups
        '(;; Each group has an implicit boolean OR operator between its selectors.
          (:name "Home Tech"
-                ;; Single arguments given alone
-                :and(
-                    :file-path "emmet/Agenda"
-                    :not (:tag "event"))
+                :and(:file-path "emmet/Agenda" :not (:tag "event"))
                 :order 3)
+
          (:name "Family"
-                ;; Single arguments given alone
-                :and(
-                    :file-path "Family"
-                    :not (:tag "event"))
+                :and(:file-path "Family" :not (:tag "event"))
                 :order 3)
+
          (:name "Teaching Prep"
-                ;; Single arguments given alone
-                :and(
-                    :file-path "Teaching.p"
-                    :tag "planning"
-                    :not (:tag "grading")
-                    :not (:tag "event"))
+                :and(:file-path "Teaching.p" :tag "planning" :not (:tag "grading") :not (:tag "event"))
                 :order 3)
+
          (:name "Teaching Secretarial"
-                ;; Single arguments given alone
-                :and(
-                    :file-path "Teaching.p"
-                    :tag "secretarial"
-                    :not (:tag "grading")
-                    :not (:tag "event"))
+                :and(:file-path "Teaching.p" :tag "secretarial" :not (:tag "grading") :not (:tag "event"))
                 :order 3)
+
          (:name "Teaching Grading"
-                ;; Single arguments given alone
-                :and(
-                    :file-path "Teaching.p"
-                    :tag "grading"
-                    :not (:tag "planning")
-                    :not (:tag "event"))
+                :and(:file-path "Teaching.p" :tag "grading" :not (:tag "planning") :not (:tag "event"))
                 :order 3)
+
          (:name "School Side Projects"
-                :and(
-                    :file-path "Teaching.p"
-                    :tag "tech"
-                    :not (:tag "planning")
-                    :not (:tag "event"))
+                :and(:file-path "Teaching.p" :tag "tech" :not (:tag "planning") :not (:tag "event"))
                 :order 3)
+
          (:name "Gamedev Current Projects"
-                ;; Single arguments given alone
-                :and (
-                    :file-path "Gamedev"
-                    :todo "STRT")
+                :and (:file-path "Gamedev" :todo "STRT")
                 :order 5)
+
          (:name "Youtube"
-                ;; Single arguments given alone
                 :tag "youtube"
                 :order 6)
+
          (:name "Learning"
-                ;; Single arguments given alone
                 :tag "learning"
                 :order 7)
+
           (:name "Today"  ; Optionally specify section name
                 :time-grid t
                 :date today
                 :scheduled today
                 :order 1)
-       ))
+))
 
 (org-super-agenda-mode t)
-
-(map! :leader
-      :desc "Open org QL view"
-      "o q v" #'org-ql-view)
-
-(map! :leader
-      :desc "Open org QL view dispatcher"
-      "o q d" #'org-ql-view-dispatch)
 
 (map! :desc "Next line"
       :map org-super-agenda-header-map
