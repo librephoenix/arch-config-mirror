@@ -1,4 +1,4 @@
-# Created 2023-04-01 Sat 19:59
+# Created 2023-04-01 Sat 20:03
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -757,7 +757,7 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
             org-roam-db-location (file-truename (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
             org-directory (file-truename (concat "~/" org-roam-db-choice "/Roam"))))
   (when (not silent)
-  (org-roam-open-dashboard)
+  (org-roam-open-dashboard))
 
   (org-roam-db-sync)
 

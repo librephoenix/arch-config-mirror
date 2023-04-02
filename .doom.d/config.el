@@ -465,7 +465,7 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
             org-roam-db-location (file-truename (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
             org-directory (file-truename (concat "~/" org-roam-db-choice "/Roam"))))
   (when (not silent)
-  (org-roam-open-dashboard)
+  (org-roam-open-dashboard))
 
   (org-roam-db-sync)
 
