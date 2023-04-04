@@ -624,6 +624,15 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
   :unnarrowed t))))
 
+(defun org-roam-olivetti-mode ()
+  (interactive)
+  (if (org-roam-file-p)
+      (olivetti-mode))
+  (if (org-roam-file-p)
+      (doom-disable-line-numbers-h)))
+
+(add-hook 'org-mode-hook 'org-roam-olivetti-mode)
+
 (use-package org-roam-dblocks
   :hook (org-mode . org-roam-dblocks-autoupdate-mode))
 

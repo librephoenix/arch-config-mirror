@@ -1,4 +1,4 @@
-# Created 2023-04-03 Mon 21:18
+# Created 2023-04-03 Mon 21:39
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -923,6 +923,17 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
         '(("d" "default" plain "%?" :target
   (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
   :unnarrowed t))))
+#+end_src
+*** Org Roam Olivetti Mode
+#+begin_src emacs-lisp
+(defun org-roam-olivetti-mode ()
+  (interactive)
+  (if (org-roam-file-p)
+      (olivetti-mode))
+  (if (org-roam-file-p)
+      (doom-disable-line-numbers-h)))
+
+(add-hook 'org-mode-hook 'org-roam-olivetti-mode)
 #+end_src
 *** Org Roam Dynamic Blocks
 #+begin_src emacs-lisp
