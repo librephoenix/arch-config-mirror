@@ -605,11 +605,6 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
-      :desc "Visualize org-roam database with org-roam-ui"
-      "v" 'org-roam-ui-open)
-
-(map! :leader
-      :prefix ("N" . "org-roam notes")
       :desc "Re-zoom on current node in org-roam-ui"
       "z" 'org-roam-ui-node-zoom)
 
@@ -634,14 +629,37 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 
 (setq org-id-extra-files 'org-agenda-text-search-extra-files)
 
-(add-to-list 'display-buffer-alist '("^ORUI" display-buffer-in-side-window
-                                    (side . right)
-                                    (window-width . 50)
-))
-(add-to-list 'display-buffer-alist '("^localhost:35901" display-buffer-in-side-window
-                                    (side . right)
-                                    (window-width . 50)
-))
+;(add-to-list 'display-buffer-alist '("^\\ORUI" display-buffer-in-side-window
+;                                    '(side . right)
+;                                    (window-width . 50)
+;))
+;(add-to-list 'display-buffer-alist '("^\\localhost:35901" display-buffer-in-side-window
+;                                    '(side . right)
+;                                    (window-width . 50)
+;))
+
+(defun open-org-roam-ui ()
+  (interactive)
+  (+evil/window-vsplit-and-follow)
+  (org-roam-ui-open)
+  (evil-window-left))
+
+(defun kill-org-roam-ui ()
+  (interactive)
+  (delete-window (get-buffer-window "ORUI" t))
+  (kill-buffer "ORUI")
+  (kill-buffer "*httpd*")
+)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Visualize org-roam database with org-roam-ui"
+      "v" 'open-org-roam-ui)
+
+(map! :leader
+      :prefix ("N" . "org-roam notes")
+      :desc "Kill all org roam ui buffers"
+      "V" 'kill-org-roam-ui)
 
 ;;;------ Org agenda configuration ------;;;
 
