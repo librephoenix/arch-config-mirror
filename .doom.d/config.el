@@ -21,8 +21,8 @@
       "k" 'evil-previous-visual-line)
 
 ;; Theme and font
-(setq doom-theme 'doom-old-hope
-      doom-font (font-spec :family "Inconsolata" :size 20))
+(setq doom-theme 'doom-old-hope)
+(setq doom-font (font-spec :family "Inconsolata" :size 20))
 
 ;; Transparent background
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
