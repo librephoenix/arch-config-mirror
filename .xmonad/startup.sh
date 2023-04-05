@@ -51,7 +51,7 @@ killall qjoypad
 killall xfce4-panel
 
 # pre-launch configurations
-dbus-update-activation-environment --all &
+# dbus-update-activation-environment --all &
 /usr/bin/gnome-keyring-daemon --daemonize --login &
 xrandr --output DisplayPort-1-0 --off
 xrandr --output HDMI-A-0 --off
