@@ -580,41 +580,28 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 
 (map! :leader
       :prefix ("N" . "org-roam notes")
+
       :desc "Capture new roam node"
-      "c" 'org-roam-capture)
+      "c" 'org-roam-capture
 
-(map! :leader
-      :prefix ("N" . "org-roam notes")
       :desc "Insert roam node link at point"
-      "i" 'org-roam-node-insert)
+      "i" 'org-roam-node-insert
 
-(map! :leader
-      :prefix ("N" . "org-roam notes")
       :desc "Find roam node"
-      "." 'org-roam-node-find)
+      "." 'org-roam-node-find
 
-(map! :leader
-      :prefix ("N" . "org-roam notes")
       :desc "Switch org-roam database"
-      "s" 'org-roam-switch-db)
+      "s" 'org-roam-switch-db
 
-(map! :leader
-      :prefix ("N" . "org-roam notes")
       :desc "Update current org-roam database"
-      "u" 'org-roam-db-sync)
+      "u" 'org-roam-db-sync
 
-(map! :leader
-      :prefix ("N" . "org-roam notes")
       :desc "Re-zoom on current node in org-roam-ui"
-      "z" 'org-roam-ui-node-zoom)
+      "z" 'org-roam-ui-node-zoom
 
-(map! :leader
-      :prefix ("N" . "org-roam notes")
       :desc "Visualize org-roam database with org-roam-ui"
-      "O" 'org-roam-default-overview)
+      "O" 'org-roam-default-overview
 
-(map! :leader
-      :prefix ("N" . "org-roam notes")
       :desc "Visualize org-roam database with org-roam-ui"
       "o" 'org-roam-open-dashboard)
 
@@ -778,22 +765,20 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 (map! :desc "Increase font size"
-      "C-=" 'text-scale-increase)
+      "C-=" 'text-scale-increase
 
-(map! :desc "Decrease font size"
+      :desc "Decrease font size"
       "C--" 'text-scale-decrease)
 
 ;;;------ ranger configuration ------;;;
 
 (map! :map ranger-mode-map
       :desc "Mark current file"
-      "m" 'ranger-mark)
+      "m" 'ranger-mark
 
-(map! :map ranger-mode-map
       :desc "Toggle mark on current file"
-      "x" 'ranger-toggle-mark)
+      "x" 'ranger-toggle-mark
 
-(map! :leader
       :desc "Open ranger"
       "o d" 'ranger)
 
@@ -819,25 +804,20 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (map! :leader
       :prefix ("l" . "hledger")
       :desc "Exec hledger command"
-      "c" 'hledger-run-command)
+      "c" 'hledger-run-command
 
-(map! :leader
-      :prefix ("l" . "hledger")
       :desc "Generate hledger balancesheet"
-      "b" 'hledger-balancesheet*)
+      "b" 'hledger-balancesheet*
 
-(map! :leader
-      :prefix ("l" . "hledger")
       :desc "Exec hledger command"
       "d" 'hledger-daily-report*)
 
 (map! :localleader
       :map hledger-mode-map
-      :desc "Reschedule transaction at point"
-      "d s" 'hledger-reschedule)
 
-(map! :localleader
-      :map hledger-mode-map
+      :desc "Reschedule transaction at point"
+      "d s" 'hledger-reschedule
+
       :desc "Edit amount at point"
       "t a" 'hledger-edit-amount)
 
@@ -880,11 +860,12 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :prefix ("F" . "Focus mode")
       :desc "Toggle focus mode"
       "t" 'focus-mode
+
       :desc "Pin focused section"
       "p" 'focus-pin
+
       :desc "Unpin focused section"
-      "u" 'focus-unpin
-)
+      "u" 'focus-unpin)
 
 (add-to-list 'focus-mode-to-thing '(org-mode . org-element))
 (add-to-list 'focus-mode-to-thing '(python-mode . paragraph))
@@ -894,7 +875,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 ;;;-- Load emacs application framework;;;--
 (use-package! eaf
-  :load-path "~/.emacs.d/site-lisp/emacs-application-framework/"
+  :load-path "~/.local/bin/emacs-application-framework/"
   :init
   :custom
   (eaf-browser-continue-where-left-off t)
