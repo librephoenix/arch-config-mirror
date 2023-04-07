@@ -144,5 +144,6 @@ syncthing-gtk -m &
 gnome-keyring-daemon --start --components=secrets &
 protonmail-bridge --no-window
 ~/.local/bin/setup-external-monitor.sh &
+rm -rf ~/org
 #back4.sh 0.04 ~/Media/Backgrounds/steampunk-city.gif &
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"
