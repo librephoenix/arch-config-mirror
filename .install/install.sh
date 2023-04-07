@@ -516,17 +516,18 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d &&
 # mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc; &&
 
 # get zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions;
 cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
-git pull &&
+git pull;
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting;
 cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &&
-git pull &&
+git pull;
 
 # chsh -s /bin/zsh;
 
 # post install reminders
+echo "All finished!"
 # echo ""
 # echo "Post Install Reminders"
 # echo "-------------------"
