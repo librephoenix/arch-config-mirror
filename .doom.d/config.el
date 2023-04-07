@@ -110,7 +110,7 @@
       :desc "Jump to register"
       "r" 'jump-to-register)
 
-(set-register ?f '(file . "/home/emmet/Family.s/Roam/hledger.org"))
+(set-register ?f '(file . "/home/emmet/Org/Family.s/Notes/hledger.org"))
 (set-register ?r '(file . "/home/emmet/README.org"))
 (set-register ?d '(file . "/home/emmet/.doom.d/doom.org"))
 (set-register ?h '(file . "/home/emmet"))
@@ -381,8 +381,8 @@ same directory as the org-buffer and insert a link to this file."
 
 (require 'org-roam)
 
-(setq org-roam-directory "~/Roam"
-      org-roam-db-location "~/Roam/org-roam.db")
+(setq org-roam-directory "~/Org/Personal/Notes"
+      org-roam-db-location "~/Org/Personal/Notes/org-roam.db")
 
 (setq org-roam-node-display-template
       "${title:65}📝${tags:*}")
@@ -415,7 +415,7 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 
 (setq full-org-roam-db-list nil)
 
-(setq full-org-roam-db-list (directory-files "~" t "\\.[p,s]$"))
+(setq full-org-roam-db-list (directory-files "~/Org" t "\\.[p,s]$"))
 (dolist (item full-org-roam-db-list)
   (setq full-org-roam-db-list
         (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
@@ -425,7 +425,7 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 (dolist (item full-org-roam-db-list)
   (setq full-org-roam-db-list-pretty
        (append (list
-             (replace-regexp-in-string "\\/home\\/emmet\\/" "" item)) full-org-roam-db-list-pretty)))
+             (replace-regexp-in-string "\\/home\\/emmet\\/Org\\/" "" item)) full-org-roam-db-list-pretty)))
 
 (defun org-roam-open-dashboard ()
   "Open ${org-roam-directory}/dashboard.org (I use this naming convention to create dashboards for each of my org roam maps)"
@@ -441,7 +441,7 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   (when (not arg)
   (setq full-org-roam-db-list nil)
 
-  (setq full-org-roam-db-list (directory-files "~" t "\\.[p,s]$"))
+  (setq full-org-roam-db-list (directory-files "~/Org" t "\\.[p,s]$"))
   (dolist (item full-org-roam-db-list)
     (setq full-org-roam-db-list
         (append (directory-files item t "\\.[p,s]$") full-org-roam-db-list)))
@@ -450,7 +450,7 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   (dolist (item full-org-roam-db-list)
     (setq full-org-roam-db-list-pretty
         (append (list
-                 (replace-regexp-in-string "\\/home\\/emmet\\/" "" item)) full-org-roam-db-list-pretty)))
+                 (replace-regexp-in-string "\\/home\\/emmet\\/Org\\/" "" item)) full-org-roam-db-list-pretty)))
 
   (setq org-roam-db-choice (completing-read "Select org roam database: "
                           full-org-roam-db-list-pretty nil t)))
@@ -458,12 +458,12 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
     (setq org-roam-db-choice arg))
 
   (if (string= org-roam-db-choice "Default")
-      (setq org-roam-directory (file-truename "~/Roam")
-            org-roam-db-location (file-truename "~/Roam/org-roam.db")
-            org-directory (file-truename"~/Roam"))
-      (setq org-roam-directory (file-truename (concat "~/" org-roam-db-choice "/Roam"))
-            org-roam-db-location (file-truename (concat "~/" org-roam-db-choice "/Roam/org-roam.db"))
-            org-directory (file-truename (concat "~/" org-roam-db-choice "/Roam"))))
+      (setq org-roam-directory (file-truename "~/Org/Personal/Notes")
+            org-roam-db-location (file-truename "~/Org/Personal/Notes/org-roam.db")
+            org-directory (file-truename"~/Org/Personal/Notes"))
+      (setq org-roam-directory (file-truename (concat "~/Org/" org-roam-db-choice "/Notes"))
+            org-roam-db-location (file-truename (concat "~/Org/" org-roam-db-choice "/Notes/org-roam.db"))
+            org-directory (file-truename (concat "~/Org/" org-roam-db-choice "/Notes"))))
   (when (not silent)
   (org-roam-open-dashboard))
 
