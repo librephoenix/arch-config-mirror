@@ -1,4 +1,4 @@
-# Created 2023-04-11 Tue 11:01
+# Created 2023-04-11 Tue 11:14
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -375,15 +375,14 @@ same directory as the org-buffer and insert a link to this file."
   (interactive)
   (if (eq major-mode #'org-mode)
       (link-hint-copy-link-at-point)
-      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (gui-get-selection 'CLIPBOARD)) nil nil)
   )
   (if (eq major-mode #'ranger-mode)
-      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (ranger-copy-absolute-file-paths)))
+      (ranger-copy-absolute-file-paths)
   )
   (if (eq major-mode #'image-mode)
       (image-mode-copy-file-name-as-kill)
-      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (gui-get-selection 'CLIPBOARD)) nil nil)
   )
+  (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (gui-get-selection 'CLIPBOARD)) nil nil)
 )
 
 (map! :leader
