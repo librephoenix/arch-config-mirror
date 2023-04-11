@@ -1,4 +1,4 @@
-# Created 2023-04-07 Fri 18:48
+# Created 2023-04-11 Tue 11:01
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -351,14 +351,58 @@ same directory as the org-buffer and insert a link to this file."
 ;;      "i s" 'my-org-screenshot)
       "i s" 'org-download-screenshot)
 
+(defun org-download-clipboard-basename ()
+  (interactive)
+  (setq org-download-path-last-dir org-download-image-dir)
+  (setq org-download-image-dir (completing-read "directory: " (-filter #'f-directory-p (directory-files-recursively "." "" t)) nil t))
+  (org-download-clipboard (completing-read "basename: " '() nil nil))
+  (setq org-download-image-dir org-download-path-last-dir)
+)
+
 (map! :leader
       :desc "Insert image from clipboard"
-;;      "i p" 'my-org-paste)
-      "i p" 'org-download-clipboard)
+      "i p" 'org-download-clipboard
+      "i P" 'org-download-clipboard-basename)
 
 (map! :leader
       :desc "Create a new file from a template and insert a link at point"
       "i t" 'my-org-new-file-from-template)
+#+end_src
+*** Copy Links/Files into Clipboard
+#+begin_src emacs-lisp
+(defun org-copy-link-to-clipboard-at-point ()
+  "Copy current link at point into clipboard (useful for images and links)"
+  (interactive)
+  (if (eq major-mode #'org-mode)
+      (link-hint-copy-link-at-point)
+      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (gui-get-selection 'CLIPBOARD)) nil nil)
+  )
+  (if (eq major-mode #'ranger-mode)
+      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (ranger-copy-absolute-file-paths)))
+  )
+  (if (eq major-mode #'image-mode)
+      (image-mode-copy-file-name-as-kill)
+      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (gui-get-selection 'CLIPBOARD)) nil nil)
+  )
+)
+
+(map! :leader
+      :desc "Copy link/file at point into system clipbord (C-g to escape if copying a file)"
+      "y y" 'org-copy-link-to-clipboard-at-point)
+#+end_src
+**** Copy Link/File to Clipboard Helper Script
+Shamelessly stolen from [[https://unix.stackexchange.com/questions/30093/copy-image-from-command-line-to-clipboard][here]] and modified for my use.
+#+begin_src shell
+#!/bin/sh
+#command -v xclip >/dev/null 2>&1 || { echo "Need command xclip. Aborting." >&2; exit 1; }
+if [[ -f "$1" ]]; then
+  TYPE=$(file -b --mime-type "$1")
+  xclip -selection clipboard -t "$TYPE" -i "$1"
+else
+  echo $1 | xclip -selection clipboard -t text/plain &> /dev/null
+  exit
+fi
+exit
 #+end_src
 *** Org Online Images
 #+begin_src emacs-lisp
@@ -1115,7 +1159,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
 
 ;; The default journal location is too opinionated.
-(setq hledger-jfile "/home/emmet/Family.s/Roam/hledger.journal")
+(setq hledger-jfile "/home/emmet/Org/Family.s/Notes/hledger.journal")
 
 ;;; Auto-completion for account names
 ;; For company-mode users:

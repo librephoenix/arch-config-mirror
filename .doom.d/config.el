@@ -288,14 +288,42 @@ same directory as the org-buffer and insert a link to this file."
 ;;      "i s" 'my-org-screenshot)
       "i s" 'org-download-screenshot)
 
+(defun org-download-clipboard-basename ()
+  (interactive)
+  (setq org-download-path-last-dir org-download-image-dir)
+  (setq org-download-image-dir (completing-read "directory: " (-filter #'f-directory-p (directory-files-recursively "." "" t)) nil t))
+  (org-download-clipboard (completing-read "basename: " '() nil nil))
+  (setq org-download-image-dir org-download-path-last-dir)
+)
+
 (map! :leader
       :desc "Insert image from clipboard"
-;;      "i p" 'my-org-paste)
-      "i p" 'org-download-clipboard)
+      "i p" 'org-download-clipboard
+      "i P" 'org-download-clipboard-basename)
 
 (map! :leader
       :desc "Create a new file from a template and insert a link at point"
       "i t" 'my-org-new-file-from-template)
+
+(defun org-copy-link-to-clipboard-at-point ()
+  "Copy current link at point into clipboard (useful for images and links)"
+  (interactive)
+  (if (eq major-mode #'org-mode)
+      (link-hint-copy-link-at-point)
+      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (gui-get-selection 'CLIPBOARD)) nil nil)
+  )
+  (if (eq major-mode #'ranger-mode)
+      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (ranger-copy-absolute-file-paths)))
+  )
+  (if (eq major-mode #'image-mode)
+      (image-mode-copy-file-name-as-kill)
+      (shell-command (concat "~/.doom.d/scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh " (gui-get-selection 'CLIPBOARD)) nil nil)
+  )
+)
+
+(map! :leader
+      :desc "Copy link/file at point into system clipbord (C-g to escape if copying a file)"
+      "y y" 'org-copy-link-to-clipboard-at-point)
 
 ;; Online images inside of org mode is pretty cool
 ;; This snippit is from Tobias on Stack Exchange
@@ -791,7 +819,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
 
 ;; The default journal location is too opinionated.
-(setq hledger-jfile "/home/emmet/Family.s/Roam/hledger.journal")
+(setq hledger-jfile "/home/emmet/Org/Family.s/Notes/hledger.journal")
 
 ;;; Auto-completion for account names
 ;; For company-mode users:
