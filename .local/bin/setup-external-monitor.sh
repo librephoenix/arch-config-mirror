@@ -13,4 +13,3 @@ is_hdmi_connected=`DISPLAY=:0 $xrandr_command | $sed_command -n '/HDMI-A-0 conne
 	fi
 
 nitrogen --restore
-xmonad --restart
