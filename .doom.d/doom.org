@@ -27,7 +27,6 @@
 - [[https://orgmode.org/][Org Mode]] (Hierarchical text-based document format)
 - [[https://www.orgroam.com/][Org Roam]] (A second brain / personal wiki)
 - [[https://orgmode.org/][Org Agenda]] (Calendar and todo list)
-- [[https://www.emacswiki.org/emacs/mu4e][mu4e]] (Email)
 - [[https://magit.vc/][magit]] (Git Client)
 
 I have found Emacs to be incredibly efficient, and transferring my workflow to fit inside of Emacs has allowed me to get much more work done.
