@@ -20,7 +20,6 @@
   - [[#eaf][EAF]]
 - [[#my-initel][My init.el]]
 - [[#my-packagesel][My packages.el]]
-- [[#publish-script][Publish Script]]
 #+END_QUOTE
 
 * What is Doom Emacs?
@@ -1552,14 +1551,3 @@ Any git package can be configured for a particular commit or branch:
 (package! focus)
 (package! olivetti)
 #+END_SRC
-* Publish Script
-I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with =noexport=, and then export my private doom.org config using the following script:
-#+BEGIN_SRC emacs-lisp
-;; Publish link below runs this
-(funcall (lambda ()
-  (org-org-export-to-org)
-  (delete-file "./doom-pub.org")
-  (rename-file "./doom.org.org" "doom-pub.org")
-))
-#+END_SRC
-[[elisp:(funcall (lambda () (org-org-export-to-org) (delete-file "./doom-pub.org") (rename-file "./doom.org.org" "doom-pub.org")))][Publish]]
