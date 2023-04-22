@@ -173,6 +173,26 @@
 
 ;; Better for org source blocks
 (setq electric-indent-mode nil)
+(setq org-src-window-setup 'current-window)
+(delete
+  '("^\\*Org Src"
+  (+popup-buffer)
+  (actions)
+  (side . bottom)
+  (size . 0.42)
+  (window-width . 40)
+  (window-height . 0.42)
+  (slot)
+  (vslot)
+  (window-parameters
+   (ttl)
+   (quit)
+   (select . t)
+   (modeline . t)
+   (autosave . t)
+   (transient . t)
+   (no-other-window . t)))
+ display-buffer-alist)
 
 (require 'org-download)
 
@@ -930,7 +950,3 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (map! :leader
       :desc "Open web browser"
       "o w" #'eaf-open-browser-with-history)
-
-;;;------ Load my private config ------;;;
-
-(load! "~/.doom.d/private.el")

@@ -1,4 +1,4 @@
-# Created 2023-04-11 Tue 11:14
+# Created 2023-04-22 Sat 11:43
 #+title: Doom Emacs Literate Config
 #+author: emmet
 
@@ -19,7 +19,6 @@
   - [[#centaur-tabs-configuration][Centaur Tabs Configuration]]
   - [[#focus-mode-configuration][Focus Mode Configuration]]
   - [[#eaf][EAF]]
-  - [[#load-prvate-config][Load Prvate Config]]
 - [[#my-initel][My init.el]]
 - [[#my-packagesel][My packages.el]]
 - [[#publish-script][Publish Script]]
@@ -234,6 +233,26 @@ I use this functionality to load my private config file with non-public informat
 
 ;; Better for org source blocks
 (setq electric-indent-mode nil)
+(setq org-src-window-setup 'current-window)
+(delete
+  '("^\\*Org Src"
+  (+popup-buffer)
+  (actions)
+  (side . bottom)
+  (size . 0.42)
+  (window-width . 40)
+  (window-height . 0.42)
+  (slot)
+  (vslot)
+  (window-parameters
+   (ttl)
+   (quit)
+   (select . t)
+   (modeline . t)
+   (autosave . t)
+   (transient . t)
+   (no-other-window . t)))
+ display-buffer-alist)
 #+end_src
 *** Org Download, Image Capture, and Opening Files in External Programs
 #+begin_src emacs-lisp
@@ -1276,12 +1295,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (map! :leader
       :desc "Open web browser"
       "o w" #'eaf-open-browser-with-history)
-#+end_src
-** Load Prvate Config
-#+begin_src emacs-lisp
-;;;------ Load my private config ------;;;
-
-(load! "~/.doom.d/private.el")
 #+end_src
 * My [[file:./init.el][init.el]]
 This section is the [[file:./init.el][init.el]] section, which controls which Doom modules are loaded.
