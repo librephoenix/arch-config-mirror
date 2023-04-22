@@ -1,9 +1,8 @@
-# Created 2023-04-22 Sat 11:43
-#+title: Doom Emacs Literate Config
-#+author: emmet
+#+TITLE: Doom Emacs Literate Config
+#+AUTHOR: emmet
 
 * Table of Contents :TOC:QUOTE:
-#+begin_quote
+#+BEGIN_QUOTE
 - [[#what-is-doom-emacs][What is Doom Emacs?]]
 - [[#configuration-for-doom-emacs][Configuration for Doom Emacs]]
 - [[#my-configel][My config.el]]
@@ -22,7 +21,7 @@
 - [[#my-initel][My init.el]]
 - [[#my-packagesel][My packages.el]]
 - [[#publish-script][Publish Script]]
-#+end_quote
+#+END_QUOTE
 
 * What is Doom Emacs?
 [[https://github.com/doomemacs/doomemacs][Doom Emacs]] is a distribution of the [[https://www.gnu.org/software/emacs/][Emacs Text Editor]] designed for [[https://www.vim.org/][Vim]] users. I like to use Emacs due to its extensibility and extra features it is capable of (besides text editing). Some of these extra features include:
@@ -36,23 +35,23 @@ I have found Emacs to be incredibly efficient, and transferring my workflow to f
 
 * Configuration for Doom Emacs
 Doom Emacs is configured via 3 main files, written in Elisp, a dialect of the Lisp programming langauge designed for Emacs. These 3 main files are:
-- [[file:./config.el][config.el]] - Stores your main configuration and allows to set user variables.
-- [[file:./init.el][init.el]] - Allows quick downloads of groups of Emacs packages. These groups of Emacs packages are curated by the Doom Emacs developers.
-- [[file:./packages.el][packages.el]] - Allows you to download additional packages from Melpa (Emacs package manager).
+- [[./config.el][config.el]] - Stores your main configuration and allows to set user variables.
+- [[./init.el][init.el]] - Allows quick downloads of groups of Emacs packages. These groups of Emacs packages are curated by the Doom Emacs developers.
+- [[./packages.el][packages.el]] - Allows you to download additional packages from Melpa (Emacs package manager).
 
 By storing your configuration in these 3 files, it allows for quick reproducible builds of Doom Emacs.
 
-You can also load separate files inside of [[file:./config.el][config.el]] via the =load!= function, like so:
+You can also load separate files inside of [[./config.el][config.el]] via the =load!= function, like so:
 
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (load! "~/.doom.d/private.el")
-#+end_src
+#+END_SRC
 
 I use this functionality to load my private config file with non-public information.
 
-* My [[file:./config.el][config.el]]
+* My [[./config.el][config.el]]
 ** Preamble + User Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;;;------ User configuration ------;;;
@@ -158,9 +157,10 @@ I use this functionality to load my private config file with non-public informat
 ;; Very useful when used with file syncing (i.e. syncthing)
 (setq global-auto-revert-mode nil)
 (setq auto-revert-use-notify t)
-#+end_src
+
+#+END_SRC
 ** Registers
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;------ Registers ------;;;
 
 (map! :leader
@@ -173,10 +173,11 @@ I use this functionality to load my private config file with non-public informat
 (set-register ?h '(file . "/home/emmet"))
 (set-register ?x '(file . "/home/emmet/.xmonad/xmonad.org"))
 (set-register ?s '(file . "/home/emmet/.install/install.org"))
-#+end_src
+
+#+END_SRC
 ** Org Mode Configuration
 *** Standard Org Mode Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;------ Org mode configuration ------;;;
 
 ;; Set default org directory
@@ -253,9 +254,10 @@ I use this functionality to load my private config file with non-public informat
    (transient . t)
    (no-other-window . t)))
  display-buffer-alist)
-#+end_src
+
+#+END_SRC
 *** Org Download, Image Capture, and Opening Files in External Programs
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (require 'org-download)
 
 ;; Drag-and-drop to `dired`
@@ -386,9 +388,10 @@ same directory as the org-buffer and insert a link to this file."
 (map! :leader
       :desc "Create a new file from a template and insert a link at point"
       "i t" 'my-org-new-file-from-template)
-#+end_src
+
+#+END_SRC
 *** Copy Links/Files into Clipboard
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (defun org-copy-link-to-clipboard-at-point ()
   "Copy current link at point into clipboard (useful for images and links)"
   (interactive)
@@ -407,10 +410,11 @@ same directory as the org-buffer and insert a link to this file."
 (map! :leader
       :desc "Copy link/file at point into system clipbord (C-g to escape if copying a file)"
       "y y" 'org-copy-link-to-clipboard-at-point)
-#+end_src
+
+#+END_SRC
 **** Copy Link/File to Clipboard Helper Script
 Shamelessly stolen from [[https://unix.stackexchange.com/questions/30093/copy-image-from-command-line-to-clipboard][here]] and modified for my use.
-#+begin_src shell
+#+BEGIN_SRC shell :tangle ./scripts/copy-link-or-file/copy-link-or-file-to-clipboard.sh :tangle-mode (identity #o755)
 #!/bin/sh
 #command -v xclip >/dev/null 2>&1 || { echo "Need command xclip. Aborting." >&2; exit 1; }
 if [[ -f "$1" ]]; then
@@ -421,9 +425,9 @@ else
   exit
 fi
 exit
-#+end_src
+#+END_SRC
 *** Org Online Images
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;; Online images inside of org mode is pretty cool
 ;; This snippit is from Tobias on Stack Exchange
 ;; https://emacs.stackexchange.com/questions/42281/org-mode-is-it-possible-to-display-online-images
@@ -448,14 +452,14 @@ exit
 (org-link-set-parameters
  "imghttps"
  :image-data-fun #'org-image-link)
-#+end_src
+#+END_SRC
 *** Org Mermaid Diagrams
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;; Mermaid diagrams
 (setq ob-mermaid-cli-path "/usr/bin/mmdc")
-#+end_src
+#+END_SRC
 *** Org Simple Printing
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;; Print org mode
 (defun org-simple-print-buffer ()
   "Open an htmlized form of current buffer and open in a web browser to print"
@@ -488,9 +492,10 @@ exit
 ;      :prefix ("P" . "Print")
 ;      :desc "Simple print region in web browser"
 ;      "r" 'org-simple-print-region)
-#+end_src
+
+#+END_SRC
 *** Org -> ODP Presentation Export
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;; Custom function to convert org mode to ODP presentation
 ;; Depends on bash, libreoffice, and pandoc
 (defun my-ox-odp ()
@@ -509,11 +514,12 @@ exit
 (map! :leader
       :desc "Convert org document to odp presentation"
       "e p" 'my-ox-odp)
-#+end_src
+
+#+END_SRC
 **** Org -> ODP Helper Scripts
-These are helper scripts for =my-ox-odp= (defined above), which converts an org document to an ODP presentation. This fundamentally functions by running a shell script ([[file:./scripts/ox-odp/ox-odp.sh][ox-odp.sh]]), which also calls a Python script ([[file:./scripts/ox-odp/ox-odp-xml-parse.py][ox-odp-xml-parse.py]]).
-***** [[file:./scripts/ox-odp/ox-odp.sh][ox-odp.sh]]
-#+begin_src shell
+These are helper scripts for =my-ox-odp= (defined above), which converts an org document to an ODP presentation. This fundamentally functions by running a shell script ([[./scripts/ox-odp/ox-odp.sh][ox-odp.sh]]), which also calls a Python script ([[./scripts/ox-odp/ox-odp-xml-parse.py][ox-odp-xml-parse.py]]).
+***** [[./scripts/ox-odp/ox-odp.sh][ox-odp.sh]]
+#+BEGIN_SRC shell :tangle ./scripts/ox-odp/ox-odp.sh :tangle-mode (identity #o755)
 #!/bin/sh
 
 filename=$1
@@ -561,10 +567,11 @@ else
 fi
 
 exit
-#+end_src
-***** [[file:./scripts/ox-odp/ox-odp-xml-parse.py][ox-odp-xml-parse.py]]
+
+#+END_SRC
+***** [[./scripts/ox-odp/ox-odp-xml-parse.py][ox-odp-xml-parse.py]]
 This script parses through the raw LibreOffice XML to fix some common formatting errors with the standard Org to pptx to odp conversion strategy.
-#+begin_src python
+#+BEGIN_SRC python :tangle ./scripts/ox-odp/ox-odp-xml-parse.py :tangle-mode (identity #o755)
 #!/usr/bin/env python3
 
 import xml.etree.ElementTree as ET
@@ -722,10 +729,11 @@ print("Updated "+str(counter)+" text:list elements")
 #mytree.canonicalize(out='content.xml')
 mytree.write('content.xml')
 styletree.write('styles.xml')
-#+end_src
+
+#+END_SRC
 ** Org Roam Configuration
 *** Standard Org Roam Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;------ Org roam configuration ------;;;
 
 (require 'org-roam)
@@ -737,10 +745,11 @@ styletree.write('styles.xml')
       "${title:65}📝${tags:*}")
 
 (org-roam-db-autosync-mode)
-#+end_src
+
+#+END_SRC
 *** TODO Low Level Org Roam Function Redefinition
 I noticed sometimes I couldn't get these functions to load (even with =(require 'org-roam)=), so I am manually redefining them here as a bandaid.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (defun org-roam-dailies--daily-note-p (&optional file)
   "Return t if FILE is an Org-roam daily-note, nil otherwise.
 If FILE is not specified, use the current buffer's file-path."
@@ -764,9 +773,10 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
          (file-name-sans-extension
           (file-name-nondirectory file)))
       (list m d y))))
-#+end_src
+
+#+END_SRC
 *** Multi Org Roam Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (setq full-org-roam-db-list nil)
 
 (setq full-org-roam-db-list (directory-files "~/Org" t "\\.[p,s]$"))
@@ -838,9 +848,10 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
   (org-roam-id-open ID)
   (when (not switchpersist)
     (org-roam-switch-db prev-org-roam-db-choice 1)))
-#+end_src
+
+#+END_SRC
 *** Org Roam "todos" Tagging for Org Agenda
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;------ Org-roam-agenda configuration ------;;;
 (defun text-in-buffer-p (TEXT)
 (save-excursion (goto-char (point-min)) (search-forward TEXT nil t)))
@@ -893,9 +904,10 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 )
 
 (add-hook 'before-save-hook 'add-todos-tag-on-save-org-mode-file)
-#+end_src
+
+#+END_SRC
 *** Setup Org Agenda from Org Roam
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (defun org-roam-filter-by-tag (tag-name)
   (lambda (node)
     (member tag-name (org-roam-node-tags node))))
@@ -935,9 +947,10 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 
 ;; Build agenda for first time during this session
 (org-roam-refresh-agenda-list)
-#+end_src
+
+#+END_SRC
 *** Org Roam Keybindings
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (map! :leader
       :prefix ("N" . "org-roam notes")
 
@@ -964,17 +977,19 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
 
       :desc "Visualize org-roam database with org-roam-ui"
       "o" 'org-roam-open-dashboard)
-#+end_src
+
+#+END_SRC
 *** Org Roam Capture Templates
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (after! org-roam
   (setq org-roam-capture-templates
         '(("d" "default" plain "%?" :target
   (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
   :unnarrowed t))))
-#+end_src
+
+#+END_SRC
 *** Org Roam Olivetti Mode
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (defun org-roam-olivetti-mode ()
   (interactive)
   (if (org-roam-file-p)
@@ -983,19 +998,22 @@ Return (MONTH DAY YEAR) or nil if not an Org time-string."
       (doom-disable-line-numbers-h)))
 
 (add-hook 'org-mode-hook 'org-roam-olivetti-mode)
-#+end_src
+
+#+END_SRC
 *** Org Roam Dynamic Blocks
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (use-package org-roam-dblocks
   :hook (org-mode . org-roam-dblocks-autoupdate-mode))
-#+end_src
+
+#+END_SRC
 *** Org Roam Export Setup
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (setq org-id-extra-files 'org-agenda-text-search-extra-files)
-#+end_src
+
+#+END_SRC
 *** TODO Org Roam UI Setup
 I want this to be able to automatically open ORUI in EAF Browser in a split to the right.  This kinda works now?
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;(add-to-list 'display-buffer-alist '("^\\ORUI" display-buffer-in-side-window
 ;                                    '(side . right)
 ;                                    (window-width . 50)
@@ -1027,10 +1045,11 @@ I want this to be able to automatically open ORUI in EAF Browser in a split to t
       :prefix ("N" . "org-roam notes")
       :desc "Kill all org roam ui buffers"
       "V" 'kill-org-roam-ui)
-#+end_src
+
+#+END_SRC
 ** Org Agenda Configuration
 *** Standard Org Agenda Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;------ Org agenda configuration ------;;;
 
 ;; Set span for agenda
@@ -1043,9 +1062,10 @@ I want this to be able to automatically open ORUI in EAF Browser in a split to t
 
 ;; Adds hook to org agenda mode, making follow mode active in org agenda
 (add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
-#+end_src
+
+#+END_SRC
 *** Org Agenda Convenience Functions
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;; Function to list all my available org agenda files and switch to them
 (defun list-and-switch-to-agenda-file ()
   "Lists all available agenda files and switches to desired one"
@@ -1061,9 +1081,10 @@ I want this to be able to automatically open ORUI in EAF Browser in a split to t
 (map! :leader
       :desc "Open org calendar"
       "o c" #'cfw:open-org-calendar)
-#+end_src
+
+#+END_SRC
 *** Org Super Agenda Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (require 'org-super-agenda)
 
 (setq org-super-agenda-groups
@@ -1120,9 +1141,10 @@ I want this to be able to automatically open ORUI in EAF Browser in a split to t
 (map! :desc "Next line"
       :map org-super-agenda-header-map
       "k" 'org-agenda-previous-line)
-#+end_src
+
+#+END_SRC
 ** Magit Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;------ magit configuration ------;;;
 
 ;; Need the following two blocks to make magit work with git bare repos
@@ -1139,9 +1161,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
 (advice-add 'magit-process-environment
             :filter-return #'~/magit-process-environment)
-#+end_src
+
+#+END_SRC
 ** Dired Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;------ dired configuration ------;;;
 
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
@@ -1151,9 +1174,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
       :desc "Decrease font size"
       "C--" 'text-scale-decrease)
-#+end_src
+
+#+END_SRC
 ** Ranger Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;------ ranger configuration ------;;;
 
 (map! :map ranger-mode-map
@@ -1165,9 +1189,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
       :desc "Open ranger"
       "o d" 'ranger)
-#+end_src
+
+#+END_SRC
 ** hledger-mode Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;-- hledger-mode configuration ;;;--
 
 ;;; Basic configuration
@@ -1206,9 +1231,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 
       :desc "Edit amount at point"
       "t a" 'hledger-edit-amount)
-#+end_src
+
+#+END_SRC
 ** Centaur Tabs Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;-- Centaur Tabs configuration ;;;--
 
 ;; Ricing tabs
@@ -1241,9 +1267,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (evil-global-set-key 'normal (kbd "C-w") 'kill-current-buffer)
 
 (centaur-tabs-mode t)
-#+end_src
+
+#+END_SRC
 ** Focus Mode Configuration
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 (require 'focus)
 
 (map! :leader
@@ -1262,9 +1289,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (add-to-list 'focus-mode-to-thing '(lisp-mode . paragraph))
 
 ;(add-hook 'org-mode-hook #'focus-mode)
-#+end_src
+
+#+END_SRC
 ** EAF
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle config.el
 ;;;-- Load emacs application framework;;;--
 (use-package! eaf
   :load-path "~/.local/bin/emacs-application-framework/"
@@ -1295,9 +1323,10 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
 (map! :leader
       :desc "Open web browser"
       "o w" #'eaf-open-browser-with-history)
-#+end_src
-* My [[file:./init.el][init.el]]
-This section is the [[file:./init.el][init.el]] section, which controls which Doom modules are loaded.
+
+#+END_SRC
+* My [[./init.el][init.el]]
+This section is the [[./init.el][init.el]] section, which controls which Doom modules are loaded.
 
 =SPC h d h= (vim) or =C-h d h= (non-vim) can be used to access Doom's documentation (including a "Module Index").
 
@@ -1305,7 +1334,7 @@ This section is the [[file:./init.el][init.el]] section, which controls which Do
 
 =gd= (vim) or =C-c c d= (non-vim) will let you browse a module's directory (source code).
 
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle init.el
 (doom! :input
        ;;chinese
        ;;japanese
@@ -1481,10 +1510,11 @@ This section is the [[file:./init.el][init.el]] section, which controls which Do
        :config
        ;;literate
        (default +bindings +smartparens))
-#+end_src
 
-* My [[file:./packages.el][packages.el]]
-The [[file:./packages.el][packages.el]] file allows extra packages to be configured outside of the typical Doom modules from [[file:./init.el][init.el]].
+#+END_SRC
+
+* My [[./packages.el][packages.el]]
+The [[./packages.el][packages.el]] file allows extra packages to be configured outside of the typical Doom modules from [[./init.el][init.el]].
 
 Packages are declared via =(package! some-package)= where =some-package= is from MELPA, ELPA, or emacsmirror.
 
@@ -1500,7 +1530,7 @@ Any git package can be configured for a particular commit or branch:
 - =(package! builtin-package :pin "1a2b3c4d5e")= for a particular commit
 - =(unpin! pinned-package another-pinned-package)= to get bleeding edge instead of Doom's stability
 
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle packages.el
 (package! org-bullets)
 (package! org-super-agenda)
 (package! emacsql :pin "c1a4407")
@@ -1521,15 +1551,15 @@ Any git package can be configured for a particular commit or branch:
 (package! ob-mermaid)
 (package! focus)
 (package! olivetti)
-#+end_src
+#+END_SRC
 * Publish Script
 I keep two literate configs, one which I edit (doom.org) and one that gets published to GitLab (doom-pub.org). I simply keep sensitive information inside of headers with =noexport=, and then export my private doom.org config using the following script:
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 ;; Publish link below runs this
 (funcall (lambda ()
   (org-org-export-to-org)
   (delete-file "./doom-pub.org")
   (rename-file "./doom.org.org" "doom-pub.org")
 ))
-#+end_src
+#+END_SRC
 [[elisp:(funcall (lambda () (org-org-export-to-org) (delete-file "./doom-pub.org") (rename-file "./doom.org.org" "doom-pub.org")))][Publish]]

@@ -22,14 +22,14 @@ Credit to [[https://unsplash.com/@maxwbender][Max Bender on Unsplash]] for [[htt
 
 ** Config Overview
 Below is the taxonomy of my literate (org mode) config files, which each control the plethora of config files related to the programs I use.  I use these (literate org mode files) to configure my machine.
-| Literate Config                   | Config Classification |
-|-----------------------------------+-----------------------|
-| [[./.xmonad/xmonad.org][XMonad Literate Config]]            | Window Manager        |
-| [[./.shell.org][Shell Literate Config]]             | Shell                 |
-| [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]         | Terminal              |
-| [[./.doom.d/doom-pub.org][Public Doom Emacs Literate Config]] | IDE + More            |
-| TODO Browser Literate Config      | Browser               |
-| TODO Ranger Literate Config       | File Manager          |
+| Literate Config              | Config Classification |
+|------------------------------+-----------------------|
+| [[./.xmonad/xmonad.org][XMonad Literate Config]]       | Window Manager        |
+| [[./.shell.org][Shell Literate Config]]        | Shell                 |
+| [[./.config/alacritty/alacritty.org][Alacritty Literate Config]]    | Terminal              |
+| [[./.doom.d/doom.org][Doom Emacs Literate Config]]   | IDE + More            |
+| TODO Browser Literate Config | Browser               |
+| TODO Ranger Literate Config  | File Manager          |
 ** Packages (Programs) Overview
 Below is a taxonomy of my system documentation, which describes core programs in my variant of Arch Linux, and how to install or reinstall a system with my configurations.
 | Document                         | Classification |
