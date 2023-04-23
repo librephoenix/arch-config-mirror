@@ -320,7 +320,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- ((0, xK_F8), spawn "/home/emmet/.local/bin/setup_external_monitor.sh"),
 
       -- launch dmenu
-      ((modm, xK_semicolon), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")),
+      --((modm, xK_semicolon), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")),
+      ((modm, xK_semicolon), spawn ("rofi -show drun -show-icons")),
 
       -- launch workspace switch dmenu script
       ((modm, xK_Tab), spawn ("~/.xmonad/workspace-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")),
@@ -354,13 +355,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_r), refresh),
 
       -- Move focus to window below
-      ((modm, xK_j), windowGo D False),
+      ((modm, xK_j), screenGo D True),
       -- Move focus to window above
-      ((modm, xK_k), windowGo U False),
+      ((modm, xK_k), screenGo U True),
       -- Move focus to window left
-      ((modm, xK_h), windowGo L False),
+      ((modm, xK_h), windowGo L True),
       -- Move focus to window right
-      ((modm, xK_l), windowGo R False),
+      ((modm, xK_l), windowGo R True),
 
       -- Swap with window below
       ((modm .|. shiftMask, xK_j), windowSwap D False),

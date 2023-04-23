@@ -399,7 +399,8 @@ These setup standard bindings for brightness and audio control from the keyboard
 I have =dmenu_run= bound to =S-;= for quick app access.
 #+BEGIN_SRC haskell :tangle xmonad.hs
       -- launch dmenu
-      ((modm, xK_semicolon), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")),
+      --((modm, xK_semicolon), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")),
+      ((modm, xK_semicolon), spawn ("rofi -show drun -show-icons")),
 
 #+END_SRC
 I also have some dmenu scripts bound to keybinds for quick use.
@@ -564,13 +565,13 @@ These keybindings are then set via:
       ((modm, xK_r), refresh),
 
       -- Move focus to window below
-      ((modm, xK_j), windowGo D False),
+      ((modm, xK_j), screenGo D True),
       -- Move focus to window above
-      ((modm, xK_k), windowGo U False),
+      ((modm, xK_k), screenGo U True),
       -- Move focus to window left
-      ((modm, xK_h), windowGo L False),
+      ((modm, xK_h), windowGo L True),
       -- Move focus to window right
-      ((modm, xK_l), windowGo R False),
+      ((modm, xK_l), windowGo R True),
 
       -- Swap with window below
       ((modm .|. shiftMask, xK_j), windowSwap D False),
