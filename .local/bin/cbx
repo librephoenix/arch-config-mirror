@@ -1,0 +1,20 @@
+#!/bin/sh
+# xclip wrapper to be used with ranger and elsewhere
+
+# I was experimenting with cb
+#if [ "$1" = "copy" ]; then
+#  cb cp1 "${@:2}";
+#fi
+#if [ "$1" = "paste" ]; then
+#  cb paste1;
+#fi
+#if [ "$1" = "cut" ]; then
+#  cb cut1 $2;
+#fi
+
+if [ "$#" -le "2" ]; then
+  if [ "$1" = "copy" -o "$1" = "cut" ]; then
+    #xclip -selection clipboard -t $(file -b --mime-type $2) -i $2;
+    xclip -selection clipboard -t image/png -i $2;
+  fi
+fi
