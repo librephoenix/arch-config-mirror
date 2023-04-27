@@ -401,6 +401,7 @@ I have =dmenu_run= bound to =S-;= for quick app access.
       -- launch dmenu
       --((modm, xK_semicolon), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")),
       ((modm, xK_semicolon), spawn ("rofi -show drun -show-icons")),
+      ((modm, xK_p), spawn ("keepmenu")),
 
 #+END_SRC
 I also have some dmenu scripts bound to keybinds for quick use.
@@ -618,7 +619,7 @@ These are then bound:
 #+BEGIN_SRC haskell :tangle xmonad.hs
       -- scratchpad keybindings
       ((modm, xK_f), namedScratchpadAction myScratchPads "ranger"),
-      ((modm, xK_x), namedScratchpadAction myScratchPads "keepassxc"),
+      --((modm, xK_x), namedScratchpadAction myScratchPads "keepassxc"),
       ((modm, xK_z), namedScratchpadAction myScratchPads "terminal"),
       ((modm, xK_b), namedScratchpadAction myScratchPads "btm"),
       ((modm, xK_d), namedScratchpadAction myScratchPads "discord"),

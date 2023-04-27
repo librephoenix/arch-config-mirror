@@ -322,6 +322,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- launch dmenu
       --((modm, xK_semicolon), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")),
       ((modm, xK_semicolon), spawn ("rofi -show drun -show-icons")),
+      ((modm, xK_p), spawn ("keepmenu")),
 
       -- launch workspace switch dmenu script
       ((modm, xK_Tab), spawn ("~/.xmonad/workspace-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")),
@@ -390,7 +391,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
 
       -- scratchpad keybindings
       ((modm, xK_f), namedScratchpadAction myScratchPads "ranger"),
-      ((modm, xK_x), namedScratchpadAction myScratchPads "keepassxc"),
+      --((modm, xK_x), namedScratchpadAction myScratchPads "keepassxc"),
       ((modm, xK_z), namedScratchpadAction myScratchPads "terminal"),
       ((modm, xK_b), namedScratchpadAction myScratchPads "btm"),
       ((modm, xK_d), namedScratchpadAction myScratchPads "discord"),
