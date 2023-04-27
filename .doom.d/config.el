@@ -427,6 +427,7 @@ same directory as the org-buffer and insert a link to this file."
 ;;;------ Org roam configuration ------;;;
 
 (require 'org-roam)
+(require 'org-roam-dailies)
 
 (setq org-roam-directory "~/Org/Personal/Notes"
       org-roam-db-location "~/Org/Personal/Notes/org-roam.db")
@@ -435,30 +436,6 @@ same directory as the org-buffer and insert a link to this file."
       "${title:65}📝${tags:*}")
 
 (org-roam-db-autosync-mode)
-
-(defun org-roam-dailies--daily-note-p (&optional file)
-  "Return t if FILE is an Org-roam daily-note, nil otherwise.
-If FILE is not specified, use the current buffer's file-path."
-  (when-let ((path (expand-file-name
-                    (or file
-                        (buffer-file-name (buffer-base-buffer)))))
-             (directory (expand-file-name org-roam-dailies-directory org-roam-directory)))
-    (setq path (expand-file-name path))
-    (save-match-data
-      (and
-       (org-roam-file-p path)
-       (org-roam-descendant-of-p path directory)))))
-
-;;; Calendar integration
-(defun org-roam-dailies-calendar--file-to-date (file)
-  "Convert FILE to date.
-Return (MONTH DAY YEAR) or nil if not an Org time-string."
-  (ignore-errors
-    (cl-destructuring-bind (_ _ _ d m y _ _ _)
-        (org-parse-time-string
-         (file-name-sans-extension
-          (file-name-nondirectory file)))
-      (list m d y))))
 
 (setq full-org-roam-db-list nil)
 
