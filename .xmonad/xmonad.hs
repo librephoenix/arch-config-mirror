@@ -182,7 +182,7 @@ myScratchPads =
     NS "discord" spawnDiscord findDiscord manageDiscord
   ]
   where
-    spawnTerm = myTerminal ++ " -t scratchpad"
+    spawnTerm = myTerminal ++ " --title scratchpad"
     findTerm = title =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
       where
@@ -190,7 +190,8 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnRanger = myTerminal ++ " -t ranger-scratchpad -e ranger"
+    --spawnRanger = myTerminal ++ " --title ranger-scratchpad -e ranger"
+    spawnRanger = "kitty --title ranger-scratchpad -e ranger"
     findRanger = title =? "ranger-scratchpad"
     manageRanger = customFloating $ W.RationalRect l t w h
       where
@@ -198,7 +199,7 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnOctave = myTerminal ++ " -t octave-scratchpad -e octave"
+    spawnOctave = myTerminal ++ " --title octave-scratchpad -e octave"
     findOctave = title =? "octave-scratchpad"
     manageOctave = customFloating $ W.RationalRect l t w h
       where
@@ -206,7 +207,7 @@ myScratchPads =
         w = 0.4
         t = 0.75 - h
         l = 0.70 - w
-    spawnBtm = myTerminal ++ " -o font.size=12 -t btm-scratchpad -e btm"
+    spawnBtm = myTerminal ++ " -o font.size=12 --title btm-scratchpad -e btm"
     findBtm = title =? "btm-scratchpad"
     manageBtm = customFloating $ W.RationalRect l t w h
       where
@@ -238,7 +239,7 @@ myScratchPads =
         w = 0.4
         t = 0.75 - h
         l = 0.70 - w
-    spawnHelp = myTerminal ++ " -t xmonad_helpmenu -e w3m ~/.xmonad/helpmenu.txt"
+    spawnHelp = myTerminal ++ " --title xmonad_helpmenu -e w3m ~/.xmonad/helpmenu.txt"
     findHelp = title =? "xmonad_helpmenu"
     manageHelp = customFloating $ W.RationalRect l t w h
       where
@@ -246,7 +247,7 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnCmus = myTerminal ++ " -o font.size=28 -t cmus-scratchpad -e cmus && cmus-remote -R && cmus-remote -S"
+    spawnCmus = myTerminal ++ " -o font.size=28 --title cmus-scratchpad -e cmus && cmus-remote -R && cmus-remote -S"
     findCmus = title =? "cmus-scratchpad"
     manageCmus = customFloating $ W.RationalRect l t w h
       where
