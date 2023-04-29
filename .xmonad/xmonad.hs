@@ -1,5 +1,6 @@
 -- IMPORTS
 import qualified Data.Map as M
+import Control.Monad as C
 import Data.List
 import Data.Monoid
 import Data.Maybe (fromJust)
@@ -16,6 +17,7 @@ import XMonad.Hooks.DynamicLog
 import qualified XMonad.Hooks.EwmhDesktops as EWMHD
 import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.RefocusLast
 import XMonad.Hooks.ServerMode
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.DraggingVisualizer
@@ -357,13 +359,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_r), refresh),
 
       -- Move focus to window below
-      ((modm, xK_j), screenGo D True),
+      ((modm, xK_j), C.sequence_ [windowGo D True, switchLayer]),
       -- Move focus to window above
-      ((modm, xK_k), screenGo U True),
+      ((modm, xK_k), C.sequence_ [windowGo U True, switchLayer]),
       -- Move focus to window left
-      ((modm, xK_h), windowGo L True),
+      ((modm, xK_h), C.sequence_ [windowGo L True, switchLayer]),
       -- Move focus to window right
-      ((modm, xK_l), windowGo R True),
+      ((modm, xK_l), C.sequence_ [windowGo R True, switchLayer]),
 
       -- Swap with window below
       ((modm .|. shiftMask, xK_j), windowSwap D False),
@@ -523,7 +525,8 @@ myFullscreenEventHook = fullscreenEventHook
 myEventHook = serverModeEventHook
 
 -- navigation 2d config required for visual window movement
-myNavigation2DConfig = def {layoutNavigation = [("Tall", lineNavigation), ("Full", centerNavigation)]}
+myNavigation2DConfig = def {layoutNavigation = [("Tall", hybridOf sideNavigation $ hybridOf centerNavigation lineNavigation), ("Full", hybridOf sideNavigation centerNavigation)]
+                          , floatNavigation = hybridOf lineNavigation centerNavigation}
 
 -- Startup hook
 myStartupHook = do
@@ -557,7 +560,8 @@ main = do
               manageHook = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
               handleEventHook = myEventHook <+> myFullscreenEventHook <+> fadeWindowsEventHook,
               logHook =
-                dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $
+                (refocusLastLogHook >> nsHideOnFocusLoss myScratchPads) <+>
+                (dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $
                   xmobarPP
                     { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x,
                       ppTitle = xmobarColor colorFocus "" . shorten 10,
@@ -567,6 +571,6 @@ main = do
                       ppHiddenNoWindows = xmobarColor colorBgBright "". clickable,
                       ppOrder = \(ws : _) -> [ws],
                       ppSep = " "
-                    },
+                    }),
               startupHook = myStartupHook
             }
