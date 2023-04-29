@@ -31,6 +31,8 @@ import XMonad.Layout.MouseResizableTile
 import XMonad.Layout.Spacing
 import XMonad.ManageHook
 import qualified XMonad.StackSet as W
+import qualified DBus as D
+import qualified DBus.Client as D
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
@@ -327,9 +329,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       --((modm, xK_semicolon), spawn ("dmenu_run -nb '" ++ colorBgNormal ++ "' -nf '" ++ color08Bright ++ "' -sb '" ++ colorFocus ++ "' -sf '" ++ color08Bright ++ "' -fn 'UbuntuMono-R:regular:pixelsize=28' -l 4 -p '➤'")),
       ((modm, xK_semicolon), spawn ("rofi -show drun -show-icons")),
       ((modm, xK_p), spawn ("keepmenu")),
-
-      -- launch workspace switch dmenu script
-      ((modm, xK_Tab), spawn ("~/.xmonad/workspace-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")),
 
       -- launch app template dmenu script
       ((modm, xK_w), spawn ("~/.xmonad/template-select.sh '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "'")),
