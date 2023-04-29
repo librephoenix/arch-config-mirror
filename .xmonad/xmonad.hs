@@ -11,6 +11,7 @@ import XMonad
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.SpawnOn
 import XMonad.Actions.TiledWindowDragging
+import XMonad.Actions.Warp
 import XMonad.Actions.WindowNavigation
 import XMonad.Actions.WithAll
 import XMonad.Hooks.DynamicLog
@@ -359,22 +360,31 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_r), refresh),
 
       -- Move focus to window below
-      ((modm, xK_j), C.sequence_ [windowGo D True, switchLayer]),
+      ((modm, xK_j), C.sequence_ [windowGo D True, switchLayer, warpToWindow 0.5 0.5]),
       -- Move focus to window above
-      ((modm, xK_k), C.sequence_ [windowGo U True, switchLayer]),
+      ((modm, xK_k), C.sequence_ [windowGo U True, switchLayer, warpToWindow 0.5 0.5]),
       -- Move focus to window left
-      ((modm, xK_h), C.sequence_ [windowGo L True, switchLayer]),
+      ((modm, xK_h), C.sequence_ [windowGo L True, switchLayer, warpToWindow 0.5 0.5]),
       -- Move focus to window right
-      ((modm, xK_l), C.sequence_ [windowGo R True, switchLayer]),
+      ((modm, xK_l), C.sequence_ [windowGo R True, switchLayer, warpToWindow 0.5 0.5]),
+
+      -- Move focus to screen below
+      ((modm, xK_Down), C.sequence_ [screenGo D True, warpToCurrentScreen 0.5 0.5]),
+      -- Move focus to screen up
+      ((modm, xK_Up), C.sequence_ [screenGo U True, warpToCurrentScreen 0.5 0.5]),
+      -- Move focus to screen left
+      ((modm, xK_Left), C.sequence_ [screenGo L True, warpToCurrentScreen 0.5 0.5]),
+      -- Move focus to screen right
+      ((modm, xK_Right), C.sequence_ [screenGo R True, warpToCurrentScreen 0.5 0.5]),
 
       -- Swap with window below
-      ((modm .|. shiftMask, xK_j), windowSwap D False),
+      ((modm .|. shiftMask, xK_j), C.sequence_ [windowSwap D True, windowGo U True, switchLayer]),
       -- Swap with window above
-      ((modm .|. shiftMask, xK_k), windowSwap U False),
+      ((modm .|. shiftMask, xK_k), C.sequence_ [windowSwap U True, windowGo D True, switchLayer]),
       -- Swap with window left
-      ((modm .|. shiftMask, xK_h), windowSwap L False),
+      ((modm .|. shiftMask, xK_h), C.sequence_ [windowSwap L True, windowGo R True, switchLayer]),
       -- Swap with window right
-      ((modm .|. shiftMask, xK_l), windowSwap R False),
+      ((modm .|. shiftMask, xK_l), C.sequence_ [windowSwap R True, windowGo L True, switchLayer]),
 
       -- Shrink the master area
       ((modm .|. controlMask, xK_h), sendMessage Shrink),
@@ -416,17 +426,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
           (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
       ]
 
-      ++
-      --
-      -- mod-{Left, Right}, Switch to physical/Xinerama screens 1 or 2
-      -- mod-shift-{Left, Right}, Move client to screen 1 or 2
-      --
-      [ ((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_Left, xK_Right] [0 ..],
-          (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
-      ]
-
   where
+    -- toggle float/tiling status of current window
     toggleFloat w =
       windows
         ( \s ->
@@ -434,6 +435,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
               then W.sink w s
               else (W.float w (W.RationalRect (1 / 8) (1 / 8) (3 / 4) (3 / 4)) s)
         )
+    -- warp cursor to (x, y) coordinate of current screen
+    warpToCurrentScreen x y = do
+      sid <- withWindowSet $ return . W.screen . W.current
+      warpToScreen sid x y
+    -- TODO goto and warp (coords x, y) to window in DIRECTION, or goto and warp (coords x, y) to screen in DIRECTION if no window is available
+    windowOrScreenGoAndWarp direction x y =
+      do windowGo direction True
 
 -- Mouse bindings: default actions bound to mouse events
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
@@ -526,7 +534,8 @@ myEventHook = serverModeEventHook
 
 -- navigation 2d config required for visual window movement
 myNavigation2DConfig = def {layoutNavigation = [("Tall", hybridOf sideNavigation $ hybridOf centerNavigation lineNavigation), ("Full", hybridOf sideNavigation centerNavigation)]
-                          , floatNavigation = hybridOf lineNavigation centerNavigation}
+                          , floatNavigation = hybridOf lineNavigation centerNavigation
+                          , screenNavigation = hybridOf lineNavigation centerNavigation}
 
 -- Startup hook
 myStartupHook = do
