@@ -177,7 +177,6 @@ myScratchPads =
   [ NS "terminal" spawnTerm findTerm manageTerm,
     NS "ranger" spawnRanger findRanger manageRanger,
     NS "octave" spawnOctave findOctave manageOctave,
-    NS "keepassxc" spawnKeepassXC findKeepassXC manageKeepassXC,
     NS "btm" spawnBtm findBtm manageBtm,
     NS "geary" spawnGeary findGeary manageGeary,
     NS "helpmenu" spawnHelp findHelp manageHelp,
@@ -228,14 +227,6 @@ myScratchPads =
         w = 0.4
         t = 0.75 - h
         l = 0.70 - w
-    spawnKeepassXC = "keepassxc"
-    findKeepassXC = className =? "KeePassXC"
-    manageKeepassXC = customFloating $ W.RationalRect l t w h
-      where
-        h = 0.9
-        w = 0.9
-        t = 0.95 - h
-        l = 0.95 - w
     spawnGeary = "geary"
     findGeary = className =? "Geary"
     manageGeary = customFloating $ W.RationalRect l t w h
@@ -498,8 +489,7 @@ myLayout = fullscreenFocus $ draggingVisualizer $ avoidStruts $ layoutHintsToCen
 -- Window rules:
 myManageHook =
   composeAll
-    [ className =? "KeePassXC" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
-      title =? "Myuzi" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
+    [ title =? "Myuzi" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "octave-scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       title =? "scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       className =? "discord" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
