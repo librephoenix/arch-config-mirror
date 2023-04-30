@@ -1,6 +1,10 @@
 #+TITLE: Arch Config
 #+AUTHOR: emmet
 
+[[https://gitlab.com/librephoenix/arch-config][Main Repo Link (GitLab)]]
+
+[[https://github.com/librephoenix/arch-config-mirror][Mirror Repo Link (GitHub)]]
+
 ** What is this repository?
 This repository stores my dotfiles (configuration files) for my Arch Linux system. I manage this repository using the git bare repository method (credit for this method to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
 
@@ -13,9 +17,13 @@ Gotta have screenshots after informing you that I run Arch..
 [[.img/silasa-desktop-btm-ranger-old-hope.png]]
 
 Credit to [[https://unsplash.com/@bkview][Jason McCann on Unsplash]] for [[https://unsplash.com/photos/Gj76llxJHd4][the background in my Gruvbox theme]].
+
 Credit to [[https://unsplash.com/@timberfoster][Tim Foster on Unsplash]] for the [[https://unsplash.com/photos/wPXBkZ-Pxjw][the background in my Oceanic Next theme]].
+
 Credit to [[https://unsplash.com/@zetong][Zetong Li on Unsplash]] for [[https://unsplash.com/photos/WyVWoWn61LU][the background in my Dracula theme]].
+
 Credit to [[https://unsplash.com/@karsten_wuerth][Karsten Würth on Unsplash]] for [[https://unsplash.com/photos/7BjhtdogU3A][the background in my Tomorrow Night theme]].
+
 Credit to [[https://unsplash.com/@maxwbender][Max Bender on Unsplash]] for [[https://unsplash.com/photos/8FdEwlxP3oU][the background in my Old Hope theme]].
 
 ** Config Overview
