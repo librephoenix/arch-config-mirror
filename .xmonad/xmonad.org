@@ -634,26 +634,22 @@ To have =toggleFloat= and =warpToCurrentScreen=, I must define them after settin
 #+END_SRC
 **** Mouse Bindings
 The following code sets up some convenient mouse bindings:
-| Mouse Binding      | Action                        |
-|--------------------+-------------------------------|
-| S-Left click       | Drag and move tiling window   |
-| S-Shift-Left click | Drag and move floating window |
-| S-Right click      | Resize floating window        |
+| Mouse Binding | Action                                       |
+|---------------+----------------------------------------------|
+| S-Left click  | Make window floating and drag to move window |
+| S-Right click | Make window floating and resize window       |
 #+BEGIN_SRC haskell :tangle xmonad.hs
 -- Mouse bindings: default actions bound to mouse events
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
   M.fromList $
     --    -- mod-button1, Set the window to floating mode and move by dragging
-    [ ( (modm .|. shiftMask, button1),
+    [ ( (modm,  button1),
         ( \w ->
             focus w
               >> mouseMoveWindow w
               >> windows W.shiftMaster
         )
       ),
-      ((modm, button1), dragWindow),
-      -- mod-button2, Raise the window to the top of the stack
-      ((modm, button2), (\w -> focus w >> windows W.shiftMaster)),
       -- mod-button3, Set the window to floating mode and resize by dragging
       ( (modm, button3),
         ( \w ->
@@ -726,7 +722,7 @@ myManageHook =
       title =? "ranger-scratchpad" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "btm-scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       className =? "Geary" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
-      title =? "scratch_cfw" --> (customFloating $ W.RationalRect 0.29 0.04 0.42 0.7),
+      title =? "scratch_cfw" --> (customFloating $ W.RationalRect 0.58 0.04 0.42 0.7),
       title =? "xmonad_helpmenu" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       className =? "Pavucontrol" --> (customFloating $ W.RationalRect 0.05 0.04 0.5 0.35),
       className =? "Syncthing GTK" --> (customFloating $ W.RationalRect 0.53 0.50 0.46 0.45),
@@ -871,7 +867,7 @@ sed -i "s/(setq doom-theme .*/(setq doom-theme '"$themeDoomEmacsName")/" ~/.doom
 sed -i "s/(setq doom-theme .*/(setq doom-theme '"$themeDoomEmacsName")/" ~/.doom.d/doom.org &
 sed -i "s/(setq doom-theme .*/(setq doom-theme '"$themeDoomEmacsName")/" ~/.doom.d/doom-pub.org &
 
-cp -f ~/.config/xmobar/base-xmobarrc ~/.config/xmobar/xmobarrc &&
+cp -f ~/.config/xmobar/base-t-xmobarrc ~/.config/xmobar/xmobarrc &&
 sed -i "s/colorBgNormal/"$colorBgNormal"/g" ~/.config/xmobar/xmobarrc # normal background
 sed -i "s/colorBgBright/"$colorBgBright"/g" ~/.config/xmobar/xmobarrc # bright background
 sed -i "s/colorFgNormal/"$colorFgNormal"/g" ~/.config/xmobar/xmobarrc # normal foreground
@@ -1004,6 +1000,7 @@ Config { font = "UbuntuMono-R 18"
        , additionalFonts = ["Symbols Nerd Font 21","Inconsolata for Powerline 28"]
        , border = NoBorder
        , bgColor = "colorBgNormal"
+       , alpha = 255
        , fgColor = "colorFgNormal"
        , position = TopSize C 100 28
        , textOffset = -1
@@ -1041,6 +1038,55 @@ Config { font = "UbuntuMono-R 18"
        , sepChar = "%"
        , alignSep = "}{"
        , template = "%battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action>}<action=`xdotool key Super_L+c`>%date%</action>{<box color=colorBgBright width=0>%UnsafeStdinReader%</box>"
+       }
+}
+
+#+END_SRC
+** Transparent xmobarrc
+This is my transparent xmobarrc. This also depends on =UbuntuMono=, =Symbols Nerd Font= and =Inconsolata for Powerline=.
+#+BEGIN_SRC haskell :tangle ../.config/xmobar/base-t-xmobarrc
+Config { font = "UbuntuMono-R 18"
+       , additionalFonts = ["Symbols Nerd Font 21","Inconsolata for Powerline 28"]
+       , border = NoBorder
+       , bgColor = "colorBgNormal"
+       , alpha = 200
+       , fgColor = "colorFgNormal"
+       , position = TopSize C 100 28
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [
+                      Run UnsafeStdinReader
+                    , Run Date "<fc=color06Normal> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P</fc>" "date" 10
+                    , Run BatteryP ["BAT0"]
+                      ["-t", "<acstatus>",
+                      "-L", "10", "-H", "80", "-p", "3", "--",
+                      "-O","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color03Normal> <fn=1>\xf583</fn><left>% </fc>",
+                      "-i","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color03Normal> <fn=1>\xf578</fn><left>% </fc>",
+                      "-o","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color02Normal> <fn=1>\xf58b</fn><left>% </fc>",
+                      "-L", "-15", "-H", "-5",
+                      "-l", "color02Normal", "-m", "color05Normal", "-h", "color03Normal"] 10
+                    , Run Brightness
+                      [ "-t", "<fc=color04Normal><fn=1>\xf5dd</fn> <percent>% </fc>", "--",
+                        "-D", "amdgpu_bl1"
+                      ] 2
+                    , Run Volume "default" "Master"
+                      [ "-t", "<status>", "--"
+                      , "--on", "<fc=color07Normal> <fn=1>\xf028</fn> <volume>% </fc>"
+                      , "--onc", "color07Normal"
+                      , "--off", "<fc=color06Normal> <fn=1>\xf026</fn>Mute </fc>"
+                      , "--offc", "color06Normal"
+                      ] 1
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action>}<box color=colorBgBright width=0>%UnsafeStdinReader%</box>{<action=`xdotool key Super_L+c`>%date%</action> "
        }
 }
 

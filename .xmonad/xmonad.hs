@@ -437,16 +437,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
   M.fromList $
     --    -- mod-button1, Set the window to floating mode and move by dragging
-    [ ( (modm .|. shiftMask, button1),
+    [ ( (modm,  button1),
         ( \w ->
             focus w
               >> mouseMoveWindow w
               >> windows W.shiftMaster
         )
       ),
-      ((modm, button1), dragWindow),
-      -- mod-button2, Raise the window to the top of the stack
-      ((modm, button2), (\w -> focus w >> windows W.shiftMaster)),
       -- mod-button3, Set the window to floating mode and resize by dragging
       ( (modm, button3),
         ( \w ->
@@ -496,7 +493,7 @@ myManageHook =
       title =? "ranger-scratchpad" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       title =? "btm-scratchpad" --> (customFloating $ W.RationalRect 0.1 0.1 0.8 0.8),
       className =? "Geary" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
-      title =? "scratch_cfw" --> (customFloating $ W.RationalRect 0.29 0.04 0.42 0.7),
+      title =? "scratch_cfw" --> (customFloating $ W.RationalRect 0.58 0.04 0.42 0.7),
       title =? "xmonad_helpmenu" --> (customFloating $ W.RationalRect 0.05 0.05 0.9 0.9),
       className =? "Pavucontrol" --> (customFloating $ W.RationalRect 0.05 0.04 0.5 0.35),
       className =? "Syncthing GTK" --> (customFloating $ W.RationalRect 0.53 0.50 0.46 0.45),

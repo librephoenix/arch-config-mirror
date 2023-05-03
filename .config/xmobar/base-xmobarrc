@@ -2,6 +2,7 @@ Config { font = "UbuntuMono-R 18"
        , additionalFonts = ["Symbols Nerd Font 21","Inconsolata for Powerline 28"]
        , border = NoBorder
        , bgColor = "colorBgNormal"
+       , alpha = 255
        , fgColor = "colorFgNormal"
        , position = TopSize C 100 28
        , textOffset = -1
