@@ -234,7 +234,7 @@ myScratchPads =
     NS "geary" spawnGeary findGeary manageGeary,
     NS "helpmenu" spawnHelp findHelp manageHelp,
     NS "cmus" spawnCmus findCmus manageCmus,
-    NS "cfw" spawnCfw findCfw manageCfw,
+    NS "cal" spawnCal findCal manageCal,
     NS "pavucontrol" spawnPavucontrol findPavucontrol managePavucontrol,
     NS "discord" spawnDiscord findDiscord manageDiscord
   ]
@@ -304,14 +304,14 @@ myScratchPads =
         w = 0.9
         t = 0.95 - h
         l = 0.95 - w
-    spawnCfw = "~/.config/xmobar/open-org-calendar.sh"
-    findCfw = title =? "scratch_cfw"
-    manageCfw = customFloating $ W.RationalRect l t w h
+    spawnCal = "alacritty -o font.size=18 --title cal-scratchpad -e calcurse"
+    findCal = title =? "cal-scratchpad"
+    manageCal = customFloating $ W.RationalRect l t w h
       where
-        h = 0.5
-        w = 0.3
-        t = 0.9 - h
-        l = 0.65 - w
+        h = 0.6
+        w = 0.6
+        t = 0.65 - h
+        l = 1 - w
     spawnPavucontrol = "pavucontrol"
     findPavucontrol = className =? "Pavucontrol"
     managePavucontrol = customFloating $ W.RationalRect l t w h
@@ -588,7 +588,7 @@ These are then bound:
       ((modm, xK_o), namedScratchpadAction myScratchPads "octave"),
       ((modm, xK_e), namedScratchpadAction myScratchPads "geary"),
       ((modm, xK_n), namedScratchpadAction myScratchPads "cmus"),
-      ((modm, xK_c), namedScratchpadAction myScratchPads "cfw"),
+      ((modm, xK_c), namedScratchpadAction myScratchPads "cal"),
       ((modm, xK_y), namedScratchpadAction myScratchPads "pavucontrol"),
       ((modm, xK_slash), namedScratchpadAction myScratchPads "helpmenu")
 
