@@ -20,6 +20,7 @@ import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.RefocusLast
 import XMonad.Hooks.ServerMode
+import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.Dwindle
@@ -156,15 +157,17 @@ myModMask = mod4Mask
 myWorkspaces :: [String]
 myWorkspaces =
   [ "<fn=1>\xf15c</fn>¹", -- document icon for writing
-    "<fn=1>\xfa9e</fn>²", -- globe icon for browsing
+    "<fn=1>\xf059f</fn>²", -- globe icon for browsing
     "<fn=1>\xf121</fn>³", -- dev icon for programming
-    "<fn=1>\xf722</fn>⁴", -- music file icon for composition
+    "<fn=1>\xf001</fn>⁴", -- music file icon for composition
     "<fn=1>\xf1fc</fn>⁵", -- paint icon for art
-    "<fn=1>\xfa66</fn>⁶", -- video icon for recording/editing
-    "<fn=1>\xf616</fn>⁷", -- money icon for finances
+    "<fn=1>\xead9</fn>⁶", -- video icon for recording/editing
+    "<fn=1>\xf0d6</fn>⁷", -- money icon for finances
     "<fn=1>\xf19d</fn>⁸", -- cap icon for teaching
     "<fn=1>\xf11b</fn>⁹" -- gamepad icon for gaming
   ]
+--myWorkspaces =
+--  [ "doc", "www", "dev", "mus", "art", "vid", "fin", "edu", "game"]
 
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
@@ -527,12 +530,23 @@ myNavigation2DConfig = def {layoutNavigation = [("Tall", hybridOf sideNavigation
 myStartupHook = do
   spawnOnce ("~/.xmonad/startup.sh '" ++ trayerBgNormal ++ "' '" ++ colorBgNormal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ color08Bright ++ "' '" ++ gtkTheme ++ "' '" ++ alacrittyTheme ++ "' '" ++ doomEmacsTheme ++ "' '" ++ color01Normal ++ "' '" ++ color01Bright ++ "' '" ++ color02Normal ++ "' '" ++ color02Bright ++ "' '" ++ color03Normal ++ "' '" ++ color03Bright ++ "' '" ++ color04Normal ++ "' '" ++ color04Bright ++ "' '" ++ color05Normal ++ "' '" ++ color05Bright ++ "' '" ++ color06Normal ++ "' '" ++ color06Bright ++ "' '" ++ color07Normal ++ "' '" ++ color07Bright ++ "' '" ++ color08Normal ++ "' '" ++ color08Bright ++ "' '" ++ colorFocus ++ "' '" ++ colorSecondary ++ "' '" ++ colorBgBright ++ "'")
 
+--myPP = def { ppCurrent = xmobarColor colorFocus "" }
+myPP = xmobarPP { ppTitle = xmobarColor colorFocus "",
+                  ppCurrent = xmobarStripTags ["NSP"] . xmobarColor colorFocus "",
+                  ppVisible = xmobarStripTags ["NSP"] . xmobarColor colorSecondary "",
+                  ppHidden = xmobarStripTags ["NSP"] . xmobarColor colorFgNormal "",
+                  ppHiddenNoWindows = xmobarStripTags ["NSP"] . xmobarColor colorBgBright "",
+                  ppOrder = \(ws : _) -> [ws],
+                  ppSep = " "
+                }
+mySB = statusBarProp "xmobar" (pure myPP)
+
 -- Now run xmonad with all the defaults we set up.
 main = do
-  xmproc0 <- spawnPipe ("xmobar -x 0 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc2 <- spawnPipe ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc")
-  xmonad $
+  spawn ("xmobar -x 0 /home/emmet/.config/xmobar/xmobarrc")
+  spawn ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc")
+  spawn ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc")
+  xmonad . withSB mySB $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $
         docks $
@@ -554,18 +568,6 @@ main = do
               layoutHook = myLayout,
               manageHook = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
               handleEventHook = myEventHook <+> myFullscreenEventHook <+> fadeWindowsEventHook,
-              logHook =
-                (refocusLastLogHook >> nsHideOnFocusLoss myScratchPads) <+>
-                (dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $
-                  xmobarPP
-                    { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x,
-                      ppTitle = xmobarColor colorFocus "" . shorten 10,
-                      ppCurrent = xmobarColor colorFocus "" . wrap ("<box type=Bottom Top width=2 mb=2 color=" ++ colorFocus ++ ">") "</box>",
-                      ppVisible = xmobarColor colorSecondary "" . clickable,
-                      ppHidden = xmobarColor colorFgNormal "". clickable,
-                      ppHiddenNoWindows = xmobarColor colorBgBright "". clickable,
-                      ppOrder = \(ws : _) -> [ws],
-                      ppSep = " "
-                    }),
+              logHook = (refocusLastLogHook >> nsHideOnFocusLoss myScratchPads),
               startupHook = myStartupHook
             }

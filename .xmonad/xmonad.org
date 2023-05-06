@@ -28,6 +28,7 @@ import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.RefocusLast
 import XMonad.Hooks.ServerMode
+import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.Dwindle
@@ -205,15 +206,17 @@ By default, workspaces are simply numeric strings ("1", "2", "3", etc..), but an
 myWorkspaces :: [String]
 myWorkspaces =
   [ "<fn=1>\xf15c</fn>¹", -- document icon for writing
-    "<fn=1>\xfa9e</fn>²", -- globe icon for browsing
+    "<fn=1>\xf059f</fn>²", -- globe icon for browsing
     "<fn=1>\xf121</fn>³", -- dev icon for programming
-    "<fn=1>\xf722</fn>⁴", -- music file icon for composition
+    "<fn=1>\xf001</fn>⁴", -- music file icon for composition
     "<fn=1>\xf1fc</fn>⁵", -- paint icon for art
-    "<fn=1>\xfa66</fn>⁶", -- video icon for recording/editing
-    "<fn=1>\xf616</fn>⁷", -- money icon for finances
+    "<fn=1>\xead9</fn>⁶", -- video icon for recording/editing
+    "<fn=1>\xf0d6</fn>⁷", -- money icon for finances
     "<fn=1>\xf19d</fn>⁸", -- cap icon for teaching
     "<fn=1>\xf11b</fn>⁹" -- gamepad icon for gaming
   ]
+--myWorkspaces =
+--  [ "doc", "www", "dev", "mus", "art", "vid", "fin", "edu", "game"]
 
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
@@ -824,7 +827,6 @@ killall twmnd
 killall trayer
 killall nm-applet
 killall nextcloud
-killall xwinwrap
 killall nitrogen
 killall xautolock
 killall caffeine
@@ -839,12 +841,9 @@ Then, a few things are set up before starting any applications, including the dp
 # pre-launch configurations
 # dbus-update-activation-environment --all &
 /usr/bin/gnome-keyring-daemon --daemonize --login &
-xrandr --output DisplayPort-1-0 --off
-xrandr --output HDMI-A-0 --off
 ~/.local/bin/setup-external-monitor.sh &
 # picom --experimental-backends &
 picom --animations --animation-window-mass 1 --animation-for-open-window zoom --animation-stiffness 200 --experimental-backends & # requires picom-pijulius
-xmonad --restart
 xset r rate 350 50 &
 setxkbmap -option caps:escape &
 betterdiscordctl --d-install flatpak install &
@@ -942,15 +941,29 @@ rm -rf ~/org
 #back4.sh 0.04 ~/Media/Backgrounds/steampunk-city.gif &
 ##sleep 2 && xwinwrap -b -s -fs -st -sp -nf -ov -fdt -- mpv -wid WID --really-quiet --framedrop=vo --no-audio --panscan="1.0" --loop-file=inf --osc=no ~/Downloads/gruvbox-town-mod.gif --scale="bilinear"
 #+END_SRC
+*** New Xmobar Setup
+#+BEGIN_SRC haskell :tangle xmonad.hs
+--myPP = def { ppCurrent = xmobarColor colorFocus "" }
+myPP = xmobarPP { ppTitle = xmobarColor colorFocus "",
+                  ppCurrent = xmobarStripTags ["NSP"] . xmobarColor colorFocus "",
+                  ppVisible = xmobarStripTags ["NSP"] . xmobarColor colorSecondary "",
+                  ppHidden = xmobarStripTags ["NSP"] . xmobarColor colorFgNormal "",
+                  ppHiddenNoWindows = xmobarStripTags ["NSP"] . xmobarColor colorBgBright "",
+                  ppOrder = \(ws : _) -> [ws],
+                  ppSep = " "
+                }
+mySB = statusBarProp "xmobar" (pure myPP)
+
+#+END_SRC
 ** Main
 Lastly, xmonad is started with all of the [[Settings][settings set up as variables]].  First xmobar is setup with =spawnPipe= so that it has access to the [[Workspaces][workspaces from xmonad]].  Then xmonad is executed with the settings.
 #+BEGIN_SRC haskell :tangle xmonad.hs
 -- Now run xmonad with all the defaults we set up.
 main = do
-  xmproc0 <- spawnPipe ("xmobar -x 0 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc1 <- spawnPipe ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc")
-  xmproc2 <- spawnPipe ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc")
-  xmonad $
+  spawn ("xmobar -x 0 /home/emmet/.config/xmobar/xmobarrc")
+  spawn ("xmobar -x 1 /home/emmet/.config/xmobar/xmobarrc")
+  spawn ("xmobar -x 2 /home/emmet/.config/xmobar/xmobarrc")
+  xmonad . withSB mySB $
     withNavigation2DConfig myNavigation2DConfig $
       fullscreenSupportBorder $
         docks $
@@ -972,19 +985,7 @@ main = do
               layoutHook = myLayout,
               manageHook = myManageHook <+> myFullscreenManageHook <+> namedScratchpadManageHook myScratchPads,
               handleEventHook = myEventHook <+> myFullscreenEventHook <+> fadeWindowsEventHook,
-              logHook =
-                (refocusLastLogHook >> nsHideOnFocusLoss myScratchPads) <+>
-                (dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $
-                  xmobarPP
-                    { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x,
-                      ppTitle = xmobarColor colorFocus "" . shorten 10,
-                      ppCurrent = xmobarColor colorFocus "" . wrap ("<box type=Bottom Top width=2 mb=2 color=" ++ colorFocus ++ ">") "</box>",
-                      ppVisible = xmobarColor colorSecondary "" . clickable,
-                      ppHidden = xmobarColor colorFgNormal "". clickable,
-                      ppHiddenNoWindows = xmobarColor colorBgBright "". clickable,
-                      ppOrder = \(ws : _) -> [ws],
-                      ppSep = " "
-                    }),
+              logHook = (refocusLastLogHook >> nsHideOnFocusLoss myScratchPads),
               startupHook = myStartupHook
             }
 #+END_SRC
@@ -1062,18 +1063,18 @@ Config { font = "UbuntuMono-R 18"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [
-                      Run UnsafeStdinReader
+                      Run XMonadLog
                     , Run Date "<fc=color06Normal> <fn=1>\xf073</fn> %a %-m/%-d/%y %-I:%M:%S%P</fc>" "date" 10
                     , Run BatteryP ["BAT0"]
                       ["-t", "<acstatus>",
                       "-L", "10", "-H", "80", "-p", "3", "--",
-                      "-O","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color03Normal> <fn=1>\xf583</fn><left>% </fc>",
-                      "-i","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color03Normal> <fn=1>\xf578</fn><left>% </fc>",
-                      "-o","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color02Normal> <fn=1>\xf58b</fn><left>% </fc>",
+                      "-O","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color03Normal> <fn=1>\xf17e3</fn><left>% </fc>",
+                      "-i","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color03Normal> <fn=1>\xf17e7</fn><left>% </fc>",
+                      "-o","<fc=colorFgNormal> <fn=1>\xf303</fn></fc> <fc=color02Normal> <fn=1>\xf17e4</fn><left>% </fc>",
                       "-L", "-15", "-H", "-5",
                       "-l", "color02Normal", "-m", "color05Normal", "-h", "color03Normal"] 10
                     , Run Brightness
-                      [ "-t", "<fc=color04Normal><fn=1>\xf5dd</fn> <percent>% </fc>", "--",
+                      [ "-t", "<fc=color04Normal><fn=1>\xf0eb</fn> <percent>% </fc>", "--",
                         "-D", "amdgpu_bl1"
                       ] 2
                     , Run Volume "default" "Master"
@@ -1086,7 +1087,7 @@ Config { font = "UbuntuMono-R 18"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action>}<box color=colorBgBright width=0>%UnsafeStdinReader%</box>{<action=`xdotool key Super_L+c`>%date%</action> "
+       , template = " %battery% %bright%<action=`xdotool key Super_L+y`>%default:Master%</action>}<box color=colorBgBright width=0>%XMonadLog%</box>{<action=`xdotool key Super_L+c`>%date%</action> "
        }
 }
 

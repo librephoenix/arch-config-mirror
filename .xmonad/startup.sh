@@ -41,7 +41,6 @@ killall twmnd
 killall trayer
 killall nm-applet
 killall nextcloud
-killall xwinwrap
 killall nitrogen
 killall xautolock
 killall caffeine
@@ -52,12 +51,9 @@ killall qjoypad
 # pre-launch configurations
 # dbus-update-activation-environment --all &
 /usr/bin/gnome-keyring-daemon --daemonize --login &
-xrandr --output DisplayPort-1-0 --off
-xrandr --output HDMI-A-0 --off
 ~/.local/bin/setup-external-monitor.sh &
 # picom --experimental-backends &
 picom --animations --animation-window-mass 1 --animation-for-open-window zoom --animation-stiffness 200 --experimental-backends & # requires picom-pijulius
-xmonad --restart
 xset r rate 350 50 &
 setxkbmap -option caps:escape &
 betterdiscordctl --d-install flatpak install &
