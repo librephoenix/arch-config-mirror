@@ -32,8 +32,8 @@ import XMonad.Layout.MouseResizableTile
 import XMonad.Layout.Spacing
 import XMonad.ManageHook
 import qualified XMonad.StackSet as W
-import qualified DBus as D
-import qualified DBus.Client as D
+--import qualified DBus as D
+--import qualified DBus.Client as D
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
