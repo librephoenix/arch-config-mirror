@@ -745,6 +745,20 @@ same directory as the org-buffer and insert a link to this file."
 ;; Adds hook to org agenda mode, making follow mode active in org agenda
 (add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
 
+(defun org-agenda-show-svg ()
+  (let* ((case-fold-search nil)
+         (keywords (mapcar #'svg-tag--build-keywords svg-tag--active-tags))
+         (keyword (car keywords)))
+    (while keyword
+      (save-excursion
+        (while (re-search-forward (nth 0 keyword) nil t)
+          (overlay-put (make-overlay
+                        (match-beginning 0) (match-end 0))
+                       'display  (nth 3 (eval (nth 2 keyword)))) ))
+      (pop keywords)
+      (setq keyword (car keywords)))))
+(add-hook 'org-agenda-finalize-hook #'org-agenda-show-svg)
+
 ;; Function to list all my available org agenda files and switch to them
 (defun list-and-switch-to-agenda-file ()
   "Lists all available agenda files and switches to desired one"
@@ -896,38 +910,22 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       :desc "Edit amount at point"
       "t a" 'hledger-edit-amount)
 
-;;;-- Centaur Tabs configuration ;;;--
-
-;; Ricing tabs
-(setq centaur-tabs-set-bar 'under)
-(setq centaur-tabs-style "wave")
+;;;-- tab-bar-mode configuration ;;;--
 
 ;; Kbd tab navigation
 (map!
   :map evil-normal-state-map
-  "H" #'centaur-tabs-backward
-  "L" #'centaur-tabs-forward
-  "C-<iso-lefttab>" #'centaur-tabs-backward
-  "C-<tab>" #'centaur-tabs-forward)
+  "H" #'tab-bar-switch-to-prev-tab
+  "L" #'tab-bar-switch-to-next-tab
+  "C-<iso-lefttab>" #'tab-bar-switch-to-prev-tab
+  "C-<tab>" #'tab-bar-switch-to-next-tab)
 
-;; Excluded tabs buffer prefixes
-(setq centaur-tabs-excluded-prefixes
-  '("magit" "*magit-process" "magit-process" "*magit-diff" "magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"
-  "*Calendar" "Calendar" "*eaf" "*httpd"))
+(evil-global-set-key 'normal (kbd "C-w") 'tab-bar-close-tab)
+(evil-global-set-key 'normal (kbd "C-t") 'tab-bar-new-tab)
 
-;; I personally don't like grouping buffers, it makes things kinda hard to find
-(defun centaur-tabs-buffer-groups ()
-  "This function: `centaur-tabs-buffer-groups' control buffers' group rules."
-  (list
-   (cond
-    (t
-     "Everything"))))
+(setq tab-bar-new-tab-choice "*doom*")
 
-(setq centaur-tabs-label-fixed-length 10)
-
-(evil-global-set-key 'normal (kbd "C-w") 'kill-current-buffer)
-
-(centaur-tabs-mode t)
+(tab-bar-mode t)
 
 (require 'focus)
 
