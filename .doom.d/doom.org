@@ -203,11 +203,39 @@ I use this functionality to load my private config file with non-public informat
 ;  '(org-link :foreground nil))
 
 ;; Pretty org bullets
-(use-package org-bullets
-    :ensure t
-        :init
-        (add-hook 'org-mode-hook (lambda ()
-                                   (org-bullets-mode 1))))
+;;(use-package org-bullets
+;;    :ensure t
+;;        :init
+;;        (add-hook 'org-mode-hook (lambda ()
+;;                                   (org-bullets-mode 1))))
+
+(with-eval-after-load 'org (global-org-modern-mode))
+
+;; Add frame borders and window dividers
+(modify-all-frames-parameters
+ '((right-divider-width . 10)
+   (internal-border-width . 10)))
+(dolist (face '(window-divider
+                window-divider-first-pixel
+                window-divider-last-pixel))
+  (face-spec-reset-face face)
+  (set-face-foreground face (face-attribute 'default :background)))
+(set-face-background 'fringe (face-attribute 'default :background))
+
+(setq
+ ;; Edit settings
+ org-auto-align-tags nil
+ org-tags-column 0
+ org-catch-invisible-edits 'show-and-error
+ org-special-ctrl-a/e t
+ org-insert-heading-respect-content t
+
+ ;; Org styling, hide markup etc.
+ org-hide-emphasis-markers t
+ org-pretty-entities t
+ org-ellipsis "…")
+
+(setq-default line-spacing 0.1)
 
 ; Automatic table of contents is nice
 (if (require 'toc-org nil t)
@@ -1525,7 +1553,8 @@ Any git package can be configured for a particular commit or branch:
 - =(unpin! pinned-package another-pinned-package)= to get bleeding edge instead of Doom's stability
 
 #+BEGIN_SRC emacs-lisp :tangle packages.el
-(package! org-bullets)
+;;(package! org-bullets)
+(package! org-modern)
 (package! org-super-agenda)
 (package! emacsql :pin "c1a4407")
 (package! org-roam-ui)

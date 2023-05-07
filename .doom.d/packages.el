@@ -1,4 +1,5 @@
-(package! org-bullets)
+;;(package! org-bullets)
+(package! org-modern)
 (package! org-super-agenda)
 (package! emacsql :pin "c1a4407")
 (package! org-roam-ui)

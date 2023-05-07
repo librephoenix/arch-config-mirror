@@ -144,11 +144,39 @@
 ;  '(org-link :foreground nil))
 
 ;; Pretty org bullets
-(use-package org-bullets
-    :ensure t
-        :init
-        (add-hook 'org-mode-hook (lambda ()
-                                   (org-bullets-mode 1))))
+;;(use-package org-bullets
+;;    :ensure t
+;;        :init
+;;        (add-hook 'org-mode-hook (lambda ()
+;;                                   (org-bullets-mode 1))))
+
+(with-eval-after-load 'org (global-org-modern-mode))
+
+;; Add frame borders and window dividers
+(modify-all-frames-parameters
+ '((right-divider-width . 10)
+   (internal-border-width . 10)))
+(dolist (face '(window-divider
+                window-divider-first-pixel
+                window-divider-last-pixel))
+  (face-spec-reset-face face)
+  (set-face-foreground face (face-attribute 'default :background)))
+(set-face-background 'fringe (face-attribute 'default :background))
+
+(setq
+ ;; Edit settings
+ org-auto-align-tags nil
+ org-tags-column 0
+ org-catch-invisible-edits 'show-and-error
+ org-special-ctrl-a/e t
+ org-insert-heading-respect-content t
+
+ ;; Org styling, hide markup etc.
+ org-hide-emphasis-markers t
+ org-pretty-entities t
+ org-ellipsis "…")
+
+(setq-default line-spacing 0.1)
 
 ; Automatic table of contents is nice
 (if (require 'toc-org nil t)
