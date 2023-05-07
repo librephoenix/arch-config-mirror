@@ -15,7 +15,6 @@
   - [[#dired-configuration][Dired Configuration]]
   - [[#ranger-configuration][Ranger Configuration]]
   - [[#hledger-mode-configuration][hledger-mode Configuration]]
-  - [[#centaur-tabs-configuration][Centaur Tabs Configuration]]
   - [[#tab-bar-configuration][Tab Bar Configuration]]
   - [[#focus-mode-configuration][Focus Mode Configuration]]
   - [[#eaf][EAF]]
@@ -1270,43 +1269,6 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
       "t a" 'hledger-edit-amount)
 
 #+END_SRC
-** Centaur Tabs Configuration
-I don't have this active right now since I'm exploring tab-bar mode instead!
-#+BEGIN_SRC emacs-lisp
-;;;-- Centaur Tabs configuration ;;;--
-
-;; Ricing tabs
-(setq centaur-tabs-set-bar 'under)
-(setq centaur-tabs-style "wave")
-
-;; Kbd tab navigation
-(map!
-  :map evil-normal-state-map
-  "H" #'centaur-tabs-backward
-  "L" #'centaur-tabs-forward
-  "C-<iso-lefttab>" #'centaur-tabs-backward
-  "C-<tab>" #'centaur-tabs-forward)
-
-;; Excluded tabs buffer prefixes
-(setq centaur-tabs-excluded-prefixes
-  '("magit" "*magit-process" "magit-process" "*magit-diff" "magit-diff" "*scratch" "*elfeed-log" "*Messages" "*Ibuffer" "*Native-compile-Log" "*Async-native-compile-log" "*epc" "*helm" "*Helm" " *which" "*Compile-Log*" "*lsp" "*LSP" "*company" "*Flycheck" "*Ediff" "*ediff" "*tramp" " *Mini" "*help" "*straight" " *temp" "*Help" "*compilation"
-  "*Calendar" "Calendar" "*eaf" "*httpd"))
-
-;; I personally don't like grouping buffers, it makes things kinda hard to find
-(defun centaur-tabs-buffer-groups ()
-  "This function: `centaur-tabs-buffer-groups' control buffers' group rules."
-  (list
-   (cond
-    (t
-     "Everything"))))
-
-(setq centaur-tabs-label-fixed-length 10)
-
-(evil-global-set-key 'normal (kbd "C-w") 'kill-current-buffer)
-
-(centaur-tabs-mode t)
-
-#+END_SRC
 ** Tab Bar Configuration
 I don't have this active right now since I'm exploring tab-bar mode instead!
 #+BEGIN_SRC emacs-lisp :tangle config.el
@@ -1422,7 +1384,7 @@ This section is the [[./init.el][init.el]] section, which controls which Doom mo
        neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       tabs              ; a tab bar for Emacs
+       ;;tabs              ; a tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
