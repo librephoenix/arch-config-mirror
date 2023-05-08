@@ -746,20 +746,6 @@ same directory as the org-buffer and insert a link to this file."
 ;; Adds hook to org agenda mode, making follow mode active in org agenda
 (add-hook 'org-agenda-mode-hook 'org-agenda-open-hook)
 
-(defun org-agenda-show-svg ()
-  (let* ((case-fold-search nil)
-         (keywords (mapcar #'svg-tag--build-keywords svg-tag--active-tags))
-         (keyword (car keywords)))
-    (while keyword
-      (save-excursion
-        (while (re-search-forward (nth 0 keyword) nil t)
-          (overlay-put (make-overlay
-                        (match-beginning 0) (match-end 0))
-                       'display  (nth 3 (eval (nth 2 keyword)))) ))
-      (pop keywords)
-      (setq keyword (car keywords)))))
-(add-hook 'org-agenda-finalize-hook #'org-agenda-show-svg)
-
 ;; Function to list all my available org agenda files and switch to them
 (defun list-and-switch-to-agenda-file ()
   "Lists all available agenda files and switches to desired one"
