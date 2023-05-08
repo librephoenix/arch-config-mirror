@@ -735,6 +735,7 @@ same directory as the org-buffer and insert a link to this file."
         ("Story" ,(list (all-the-icons-faicon "book" :height 0.9)) nil nil :ascent center)
         ("Author" ,(list (all-the-icons-faicon "pencil" :height 0.9)) nil nil :ascent center)
         ("Gamedev" ,(list (all-the-icons-faicon "gamepad" :height 0.9)) nil nil :ascent center)
+        ("Tech" ,(list (all-the-icons-faicon "laptop" :height 0.9)) nil nil :ascent center)
 ))
 
 ;; Function to be run when org-agenda is opened
