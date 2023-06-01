@@ -5,6 +5,13 @@
 
 [[https://github.com/librephoenix/arch-config-mirror][Mirror Repo Link (GitHub)]]
 
+** I no longer use Arch btw
+I think Arch/BTW is an amazing Linux distribution! It taught me /a lot/ about Linux and computing. Now, however, I have switched to daily driving NixOS (Nix btw) instead of Arch. Since I don't use Arch, I will no longer update this repo, but my dotfiles live on in my =nixos-config= repo:
+
+[[https://gitlab.com/librephoenix/nixos-config][NixOS Dotfiles Link (GitLab)]]
+
+[[https://github.com/librephoenix/nixos-config-mirror][NixOS Dotfiles Link Mirror (GitHub)]]
+
 ** What is this repository?
 This repository stores my dotfiles (configuration files) for my Arch Linux system. I manage this repository using the git bare repository method (credit for this method to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
 
