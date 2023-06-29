@@ -7,7 +7,7 @@ sudo pacman -Syu --noconfirm;
 sudo pacman -S --needed --noconfirm git;
 
 # checkout my full dotfiles repo
-git clone --bare https://gitlab.com/librephoenix/dotfiles.git .dotfiles.git;
+git clone --bare https://gitlab.com/librephoenix/arch-config.git .dotfiles.git;
 git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME checkout;
 
 # intialize package list bash arrays
