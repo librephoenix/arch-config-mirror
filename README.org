@@ -3,7 +3,7 @@
 
 [[https://gitlab.com/librephoenix/arch-config][Main Repo Link (GitLab)]]
 
-[[https://github.com/librephoenix/arch-config-mirror][Mirror Repo Link (GitHub)]]
+[[https://github.com/librephoenix/arch-config][Mirror Repo Link (GitHub)]]
 
 ** I no longer use Arch btw
 I think Arch/BTW is an amazing Linux distribution! It taught me /a lot/ about Linux and computing. Now, however, I have switched to daily driving NixOS (Nix btw) instead of Arch. Since I don't use Arch, I will no longer update this repo, but my dotfiles live on in my =nixos-config= repo:
