@@ -10,7 +10,7 @@ I think Arch/BTW is an amazing Linux distribution! It taught me /a lot/ about Li
 
 [[https://gitlab.com/librephoenix/nixos-config][NixOS Dotfiles Link (GitLab)]]
 
-[[https://github.com/librephoenix/nixos-config-mirror][NixOS Dotfiles Link Mirror (GitHub)]]
+[[https://github.com/librephoenix/nixos-config][NixOS Dotfiles Link Mirror (GitHub)]]
 
 ** What is this repository?
 This repository stores my dotfiles (configuration files) for my Arch Linux system. I manage this repository using the git bare repository method (credit for this method to [[https://www.atlassian.com/git/tutorials/dotfiles][Nicola Paolucci]], [[https://odysee.com/@DistroTube:2/git-bare-repository-a-better-way-to:7][DistroTube]], and [[https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html][Harfang]]).
